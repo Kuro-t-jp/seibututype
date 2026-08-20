@@ -5,7 +5,7 @@
 Google Apps Script のウェブアプリとしても、GitHub Pages などの静的サイトとしても、
 **同じ `index.html` がそのまま動きます**（ランキングだけウェブアプリ版限定）。
 
-👉 **[アプリを開く](https://USERNAME.github.io/REPO/)**
+👉 **[アプリを開く](https://kuro-t-jp.github.io/seibututype/)**
 
 ## 3つの遊び方
 
@@ -63,7 +63,7 @@ Google Apps Script のウェブアプリとしても、GitHub Pages などの静
 1. リポジトリを GitHub にプッシュ
 2. **Settings → Pages** を開く
 3. **Source** を `Deploy from a branch`、**Branch** を `main` / `/ (root)` にして Save
-4. `https://<ユーザー名>.github.io/<リポジトリ名>/` で公開されます
+4. `https://kuro-t-jp.github.io/seibututype/` で公開されます（設定済み）
 
 ランキングは自動的に「ウェブアプリ版で使えます」の表示に切り替わり、それ以外は全機能そのまま動きます。
 
