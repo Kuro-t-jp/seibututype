@@ -1,0 +1,1776 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>生物タイピング — 高校生物 用語タイピングゲーム</title>
+<style>
+  :root{
+    --bg1:#0f172a; --bg2:#1e293b; --card:#1e293b;
+    --accent:#38bdf8; --accent2:#34d399; --warn:#fbbf24; --miss:#f87171;
+    --text:#e2e8f0; --sub:#94a3b8; --line:#334155;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",Meiryo,system-ui,sans-serif;
+    background:radial-gradient(1200px 600px at 20% -10%,#1d3a5f 0,transparent 60%),
+               radial-gradient(1000px 600px at 100% 0,#164e40 0,transparent 55%),
+               linear-gradient(160deg,var(--bg1),#0b1220);
+    color:var(--text);min-height:100vh;display:flex;flex-direction:column;
+    align-items:center;justify-content:flex-start;padding:24px 16px;
+  }
+  .wrap{width:100%;max-width:840px}
+  header{text-align:center;margin-bottom:18px}
+  header h1{font-size:clamp(22px,4vw,34px);letter-spacing:.5px}
+  header h1 .em{color:var(--accent)}
+  header p{color:var(--sub);margin-top:6px;font-size:14px}
+  .card{
+    background:linear-gradient(180deg,rgba(30,41,59,.9),rgba(15,23,42,.9));
+    border:1px solid var(--line);border-radius:18px;padding:26px;
+    box-shadow:0 20px 50px -20px rgba(0,0,0,.6);
+  }
+  .section-title{font-size:14px;color:var(--sub);margin:4px 0 10px;font-weight:600;letter-spacing:.5px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .chip{
+    padding:8px 14px;border-radius:999px;border:1px solid var(--line);
+    background:#0b1220;color:var(--text);cursor:pointer;font-size:14px;
+    transition:.15s;user-select:none;
+  }
+  .chip:hover{border-color:var(--accent)}
+  .chip.active{background:var(--accent);color:#04222e;border-color:var(--accent);font-weight:700}
+  .chip small{opacity:.7;margin-left:6px}
+  .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+  .btn{
+    border:none;border-radius:12px;padding:14px 26px;font-size:16px;font-weight:700;
+    cursor:pointer;transition:.15s;background:var(--accent);color:#04222e;
+  }
+  .btn:hover{transform:translateY(-1px);filter:brightness(1.05)}
+  .btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+  .modes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+  .mode{flex:1;min-width:150px;border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.15s;background:#0b1220}
+  .mode:hover{border-color:var(--accent)}
+  .mode.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(56,189,248,.25) inset}
+  .mode b{display:block;font-size:15px;margin-bottom:4px}
+  .mode span{font-size:12px;color:var(--sub)}
+  .hud{display:flex;justify-content:space-between;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+  .stat{background:#0b1220;border:1px solid var(--line);border-radius:12px;padding:10px 14px;flex:1;min-width:90px;text-align:center}
+  .stat .v{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
+  .stat .l{font-size:11px;color:var(--sub);margin-top:2px}
+  .stat.timer .v{color:var(--accent)}
+  .stat.combo .v{color:var(--warn)}
+  .prompt{text-align:center;padding:14px 8px 8px}
+  .category-tag{display:inline-block;font-size:12px;color:var(--accent2);border:1px solid rgba(52,211,153,.4);border-radius:999px;padding:3px 12px;margin-bottom:14px}
+  .term{font-size:clamp(30px,7vw,52px);font-weight:800;letter-spacing:2px;line-height:1.2}
+  .meaning{color:var(--sub);margin-top:10px;font-size:15px;min-height:22px}
+  .kana{font-size:clamp(20px,4.5vw,30px);letter-spacing:4px;margin:22px 0 8px;font-weight:700}
+  .kana .done{color:var(--accent2)}
+  .kana .cur{color:var(--warn);text-decoration:underline}
+  .kana .todo{color:var(--sub)}
+  .romaji{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:clamp(18px,4vw,26px);letter-spacing:2px;min-height:34px}
+  .romaji .typed{color:var(--accent)}
+  .romaji .rest{color:#475569}
+  .romaji.err{animation:shake .18s}
+  @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+  .bar{height:8px;background:#0b1220;border-radius:999px;overflow:hidden;margin-top:22px;border:1px solid var(--line)}
+  .bar>div{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .2s}
+  .hint{text-align:center;color:var(--sub);font-size:13px;margin-top:16px}
+  kbd{background:#0b1220;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:2px 7px;font-size:12px}
+  .result h2{text-align:center;font-size:26px;margin-bottom:6px}
+  .result .rank{text-align:center;font-size:60px;font-weight:900;margin:6px 0 16px;
+    background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:18px 0}
+  .grid .stat{min-width:0}
+  .center{text-align:center}
+  .hidden{display:none}
+  footer{color:var(--sub);font-size:12px;margin-top:20px;text-align:center}
+  .countdown{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;font-size:120px;font-weight:900;color:var(--accent);background:rgba(2,6,23,.6);backdrop-filter:blur(2px);z-index:50}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}
+  .coins{font-weight:800;font-size:17px;background:#0b1220;border:1px solid var(--line);border-radius:999px;padding:7px 15px;white-space:nowrap}
+  .coins .c{color:var(--warn)}
+  .btn.small{padding:9px 16px;font-size:14px}
+  .shop-item{display:flex;align-items:center;gap:14px;background:#0b1220;border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:10px}
+  .shop-item .ico{font-size:26px;width:34px;text-align:center}
+  .shop-item .info{flex:1;min-width:0}
+  .shop-item .info b{font-size:15px}
+  .shop-item .info p{font-size:12px;color:var(--sub);margin-top:2px}
+  .dots{display:flex;gap:4px;margin-top:7px}
+  .dot{width:20px;height:6px;border-radius:3px;background:#334155}
+  .dot.on{background:var(--accent2)}
+  .shop-item .buy{white-space:nowrap;padding:10px 14px;font-size:13px}
+  .shop-item .buy.maxed{background:transparent;color:var(--accent2);border:1px solid var(--line);cursor:default}
+  .shop-item .buy:disabled{opacity:.35;cursor:not-allowed}
+  .themes{display:flex;flex-wrap:wrap;gap:10px}
+  .theme-sw{border:1px solid var(--line);border-radius:12px;padding:10px;cursor:pointer;text-align:center;min-width:96px;background:#0b1220;transition:.15s}
+  .theme-sw:hover{border-color:var(--accent)}
+  .theme-sw.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(56,189,248,.25) inset}
+  .theme-sw .sw{height:26px;border-radius:8px;margin-bottom:8px}
+  .theme-sw b{font-size:13px;display:block}
+  .theme-sw span{font-size:11px;color:var(--sub)}
+  .earned{text-align:center;font-size:16px;margin:2px 0 14px;color:var(--warn);font-weight:700}
+  .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:#0b1220;border:1px solid var(--accent);color:var(--text);padding:12px 20px;border-radius:12px;font-weight:700;z-index:60;box-shadow:0 10px 30px -10px rgba(0,0,0,.6);animation:pop .2s}
+  @keyframes pop{from{opacity:0;transform:translateX(-50%) translateY(8px)}to{opacity:1}}
+  .guard-badge{display:inline-block;margin-left:6px;font-size:11px;color:var(--accent2)}
+  .mystery-badge{display:inline-block;margin-left:6px;font-size:11px;color:var(--sub);background:#0b1220;border:1px solid var(--line);border-radius:6px;padding:1px 7px}
+  .shop-item.locked{border-style:dashed}
+  .shop-item .info .bio{color:var(--sub)}
+  .shop-item .info .fx{color:var(--accent2);margin-top:4px;font-size:12px}
+  .shop-item .info .fx.hidden-fx{color:var(--sub);font-style:italic}
+  .theme-sw .sw.myst{background:repeating-linear-gradient(45deg,#1e293b 0,#1e293b 6px,#0b1220 6px,#0b1220 12px);display:flex;align-items:center;justify-content:center;color:var(--sub);font-weight:800;font-size:15px}
+  .reveal-ov{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(2,6,23,.72);backdrop-filter:blur(3px);z-index:70;animation:pop .2s;padding:16px}
+  .reveal-card{background:linear-gradient(180deg,#1e293b,#0b1220);border:1px solid var(--accent);border-radius:20px;padding:30px 26px;text-align:center;max-width:340px;box-shadow:0 0 46px -10px var(--accent)}
+  .reveal-ico{font-size:62px;line-height:1;animation:reveal-pop .55s cubic-bezier(.2,1.5,.4,1)}
+  .reveal-name{font-size:23px;font-weight:800;margin-top:10px}
+  .reveal-label{color:var(--accent2);font-weight:700;margin:14px 0 6px;font-size:13px;letter-spacing:2px}
+  .reveal-eff{color:var(--sub);font-size:14px;line-height:1.55}
+  .reveal-val{font-size:22px;font-weight:800;color:var(--warn);margin:10px 0 22px}
+  .reveal-sw{height:34px;border-radius:10px;margin:6px 0 20px}
+  @keyframes reveal-pop{0%{transform:scale(0) rotate(-25deg);opacity:0}70%{transform:scale(1.15) rotate(6deg)}100%{transform:scale(1) rotate(0);opacity:1}}
+  .namebar{display:flex;align-items:center;gap:8px;margin-bottom:16px}
+  .namebar .nblabel{font-size:13px;color:var(--sub);white-space:nowrap}
+  .namebar input{flex:1;min-width:0;background:#0b1220;border:1px solid var(--line);border-radius:10px;padding:9px 12px;color:var(--text);font-size:14px}
+  .namebar input:focus{outline:none;border-color:var(--accent)}
+  .ranklist{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .rankrow{display:flex;align-items:center;gap:10px;background:#0b1220;border:1px solid var(--line);border-radius:10px;padding:8px 12px}
+  .rankrow .pos{font-weight:800;width:26px;text-align:center;font-size:16px}
+  .rankrow .nm{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+  .rankrow .sc{font-variant-numeric:tabular-nums;font-weight:800;color:var(--accent)}
+  .rankrow.me{border-color:var(--accent);box-shadow:0 0 0 1px var(--accent) inset}
+  .rankempty{color:var(--sub);font-size:13px;text-align:center;padding:10px;background:#0b1220;border:1px solid var(--line);border-radius:10px}
+  .myrank{color:var(--warn);font-weight:700;font-size:14px}
+  .plays{display:flex;gap:8px;margin-bottom:20px}
+  .play{flex:1;border:1px solid var(--line);border-radius:14px;padding:14px;cursor:pointer;transition:.15s;background:#0b1220;text-align:center}
+  .play:hover{border-color:var(--accent)}
+  .play.active{border-color:var(--accent);box-shadow:0 0 0 2px rgba(56,189,248,.25) inset}
+  .play b{display:block;font-size:15px;margin-bottom:3px}
+  .play span{font-size:12px;color:var(--sub)}
+  .qhead{text-align:center;color:var(--accent2);font-size:13px;letter-spacing:1px;margin-bottom:10px}
+  .qtext{font-size:clamp(18px,3.4vw,26px);font-weight:700;text-align:center;line-height:1.5;
+         min-height:64px;display:flex;align-items:center;justify-content:center;padding:6px 4px}
+  .choices{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+  .choice{display:flex;align-items:center;gap:10px;background:#0b1220;border:1px solid var(--line);
+          border-radius:12px;padding:13px 14px;cursor:pointer;transition:.12s;text-align:left;color:var(--text);
+          font-size:15px;font-weight:600;font-family:inherit}
+  .choice:hover{border-color:var(--accent)}
+  .choice .num{width:22px;height:22px;flex:none;border-radius:6px;background:#1e293b;color:var(--sub);
+               font-size:12px;display:flex;align-items:center;justify-content:center;font-weight:800}
+  .choice.correct{border-color:var(--accent2);background:rgba(52,211,153,.15)}
+  .choice.correct .num{background:var(--accent2);color:#04222e}
+  .choice.wrong{border-color:var(--miss);background:rgba(248,113,113,.15)}
+  .choice.wrong .num{background:var(--miss);color:#2a0505}
+  .choice:disabled{cursor:default}
+  .qfeed{text-align:center;margin-top:14px;min-height:24px;font-weight:700;font-size:15px}
+  .qfeed .ok{color:var(--accent2)}
+  .qfeed .ng{color:var(--miss)}
+  .qfeed small{display:block;color:var(--sub);font-weight:400;font-size:12px;margin-top:3px}
+  .recall .term{font-size:clamp(16px,2.5vw,23px);letter-spacing:0;line-height:1.5;font-weight:700}
+  .recall .romaji .rest{display:none}
+  .kana .mask{color:#475569}
+  .hintline{text-align:center;margin-top:10px;min-height:26px}
+  .hintbtn{background:transparent;border:1px solid var(--line);color:var(--sub);border-radius:9px;
+           padding:6px 14px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:700}
+  .hintbtn:hover{border-color:var(--warn);color:var(--warn)}
+  .hintshown{color:var(--warn);font-weight:800;font-size:17px}
+  .hintshown small{display:block;color:var(--sub);font-weight:400;font-size:12px;margin-top:2px}
+  .rtabs{display:flex;gap:6px;margin-bottom:10px}
+  .rtab{flex:1;padding:7px;border:1px solid var(--line);border-radius:9px;background:#0b1220;color:var(--sub);
+        cursor:pointer;font-size:12px;text-align:center;font-weight:700;transition:.15s}
+  .rtab.active{border-color:var(--accent);color:var(--text)}
+  @media (max-height: 860px){
+    body{padding:14px 14px}
+    header{margin-bottom:10px}
+    header h1{font-size:clamp(20px,3vw,28px)}
+    header p{font-size:12px;margin-top:3px}
+    .card{padding:18px}
+    .hud{margin-bottom:12px}
+    .stat{padding:8px 10px}
+    .stat .v{font-size:19px}
+    .prompt{padding:6px 4px 2px}
+    .category-tag{margin-bottom:8px}
+    .term{font-size:clamp(26px,5.2vh,46px)}
+    .meaning{margin-top:6px;font-size:14px;min-height:18px}
+    .kana{margin:12px 0 6px}
+    .romaji{min-height:28px}
+    .bar{margin-top:12px}
+    .hint{margin-top:10px}
+    .countdown{font-size:92px}
+  }
+  @media (max-height: 700px){
+    body{padding:8px 12px}
+    header p{display:none}
+    header h1{font-size:22px}
+    .card{padding:12px 16px}
+    .hud{margin-bottom:8px;gap:6px}
+    .stat{padding:6px 8px}
+    .stat .v{font-size:17px}
+    .stat .l{font-size:10px}
+    .category-tag{margin-bottom:5px;padding:2px 10px}
+    .term{font-size:clamp(24px,5vh,38px);letter-spacing:1px}
+    .meaning{margin-top:4px;font-size:13px;min-height:16px}
+    .kana{font-size:clamp(18px,3.2vh,26px);margin:8px 0 4px}
+    .romaji{font-size:clamp(16px,2.6vh,22px);min-height:24px}
+    .bar{margin-top:8px}
+    .hint{margin-top:6px;font-size:12px}
+    footer{margin-top:10px}
+    .countdown{font-size:72px}
+    .qtext{font-size:clamp(15px,2.8vh,20px);min-height:44px;padding:2px}
+    .qhead{margin-bottom:5px}
+    .choices{gap:7px;margin-top:10px}
+    .choice{padding:9px 11px;font-size:13px}
+    .qfeed{margin-top:8px;min-height:20px;font-size:13px}
+  }
+  @media (max-width: 560px){ .choices{grid-template-columns:1fr} }
+  @media (min-width: 720px) and (max-height: 820px){
+    #start, #shop, #result{max-height:calc(100vh - 90px);overflow-y:auto}
+  }
+  @media (hover: none){
+    .chip:hover,.mode:hover,.theme-sw:hover,.btn:hover{transform:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>生物<span class="em">タイピング</span></h1>
+    <p>高校生物の用語をタイピングで覚えよう ｜ ローマ字入力対応</p>
+  </header>
+  <div id="start" class="card">
+    <div class="topbar">
+      <div class="coins">🪙 <span class="c" id="coinBal">0</span> コイン</div>
+      <button id="shopBtn" class="btn ghost small">🛒 ショップ</button>
+    </div>
+    <div class="namebar">
+      <span class="nblabel">なまえ</span>
+      <input id="nameInput" maxlength="12" placeholder="名前を入力（ランキング用）">
+      <button id="nameSave" class="btn small">登録</button>
+    </div>
+    <div class="section-title">あそびかた</div>
+    <div class="plays">
+      <div class="play active" data-play="type"><b>⌨️ タイピング</b><span>用語を見て読み方を打つ</span></div>
+      <div class="play" data-play="quiz"><b>❓ 一問一答クイズ</b><span>説明から用語を4択で答える</span></div>
+      <div class="play" data-play="recall"><b>✍️ 記述クイズ</b><span>説明から用語を思い出して入力</span></div>
+    </div>
+    <div class="section-title">出題カテゴリ</div>
+    <div id="catChips" class="chips"></div>
+    <div class="section-title">モード</div>
+    <div class="modes">
+      <div class="mode active" data-mode="time" data-val="60"><b>タイムアタック</b><span>60秒でどれだけ打てるか</span></div>
+      <div class="mode" data-mode="time" data-val="120"><b>じっくり120秒</b><span>2分でスコアを伸ばす</span></div>
+      <div class="mode" data-mode="count" data-val="15"><b>15問チャレンジ</b><span>15語をクリアするタイム勝負</span></div>
+    </div>
+    <div class="row" style="justify-content:center;margin-top:6px">
+      <button id="startBtn" class="btn">スタート ▶</button>
+    </div>
+    <div class="hint">用語（漢字）と意味を見て、読み方をローマ字で入力します。<br>
+      「し」は <kbd>shi</kbd>/<kbd>si</kbd>、「ん」は <kbd>n</kbd>/<kbd>nn</kbd>、促音「っ」は子音を重ねる（例:<kbd>kekka</kbd>）—どれでもOK。</div>
+    <div class="section-title" style="margin-top:18px">🏆 ランキング TOP5</div>
+    <div class="rtabs">
+      <div class="rtab active" data-rtab="type">⌨️ タイピング</div>
+      <div class="rtab" data-rtab="quiz">❓ 4択</div>
+      <div class="rtab" data-rtab="recall">✍️ 記述</div>
+    </div>
+    <div id="rankStart" class="ranklist"></div>
+  </div>
+  <div id="game" class="card hidden">
+    <div class="hud">
+      <div class="stat timer"><div class="v" id="hTimer">60</div><div class="l">残り(秒)</div></div>
+      <div class="stat"><div class="v" id="hScore">0</div><div class="l">スコア</div></div>
+      <div class="stat combo"><div class="v" id="hCombo">0</div><div class="l">コンボ</div></div>
+      <div class="stat"><div class="v" id="hAcc">100<small style="font-size:12px">%</small></div><div class="l">正確率</div></div>
+      <div class="stat"><div class="v" id="hDone">0</div><div class="l">クリア語数</div></div>
+    </div>
+    <div class="prompt">
+      <div class="category-tag" id="gCat">細胞</div>
+      <div class="term" id="gTerm">細胞膜</div>
+      <div class="meaning" id="gMeaning">意味</div>
+      <div class="kana" id="gKana"></div>
+      <div class="romaji" id="gRomaji"></div>
+    </div>
+    <div class="hintline" id="gHintLine"></div>
+    <div class="bar"><div id="gBar"></div></div>
+    <div class="hint" id="gHelp">ミスタイプはコンボがリセットされます ｜ <kbd>Esc</kbd> でリタイア</div>
+  </div>
+  <div id="quiz" class="card hidden">
+    <div class="hud">
+      <div class="stat timer"><div class="v" id="qTimer">60</div><div class="l">残り(秒)</div></div>
+      <div class="stat"><div class="v" id="qScore">0</div><div class="l">スコア</div></div>
+      <div class="stat combo"><div class="v" id="qCombo">0</div><div class="l">コンボ</div></div>
+      <div class="stat"><div class="v" id="qAcc">100<small style="font-size:12px">%</small></div><div class="l">正解率</div></div>
+      <div class="stat"><div class="v" id="qDone">0</div><div class="l">正解数</div></div>
+    </div>
+    <div class="category-tag" id="qCat" style="display:block;width:fit-content;margin:0 auto 10px">細胞</div>
+    <div class="qhead">次の説明にあてはまる用語は？</div>
+    <div class="qtext" id="qText">説明文</div>
+    <div class="choices" id="qChoices"></div>
+    <div class="qfeed" id="qFeed"></div>
+    <div class="hint"><kbd>1</kbd>〜<kbd>4</kbd> のキーでも答えられます ｜ <kbd>Esc</kbd> でリタイア</div>
+  </div>
+  <div id="result" class="card hidden result">
+    <h2>結果</h2>
+    <div class="rank" id="rRank">A</div>
+    <div class="earned" id="rEarned">🪙 +0 コイン獲得</div>
+    <div class="grid">
+      <div class="stat"><div class="v" id="rScore">0</div><div class="l">スコア</div></div>
+      <div class="stat"><div class="v" id="rDone">0</div><div class="l">クリア語数</div></div>
+      <div class="stat"><div class="v" id="rKpm">0</div><div class="l">打鍵/分 (KPM)</div></div>
+      <div class="stat"><div class="v" id="rAcc">100%</div><div class="l">正確率</div></div>
+      <div class="stat"><div class="v" id="rMax">0</div><div class="l">最大コンボ</div></div>
+      <div class="stat"><div class="v" id="rMiss">0</div><div class="l">ミス</div></div>
+    </div>
+    <div id="nameRegResult" class="namebar hidden">
+      <span class="nblabel">名前未登録</span>
+      <input id="nameInput2" maxlength="12" placeholder="名前を入力">
+      <button id="nameSave2" class="btn small">登録して記録</button>
+    </div>
+    <div class="section-title" style="text-align:center;margin-top:4px">🏆 ランキング TOP5</div>
+    <div id="rankResult" class="ranklist"></div>
+    <div id="myRankLine" class="center myrank" style="margin-bottom:14px"></div>
+    <div class="center row" style="justify-content:center">
+      <button id="againBtn" class="btn">もう一度 ↻</button>
+      <button id="shopBtn2" class="btn ghost">🛒 ショップ</button>
+      <button id="menuBtn" class="btn ghost">メニューへ</button>
+    </div>
+  </div>
+  <div id="shop" class="card hidden">
+    <div class="topbar">
+      <h2 style="font-size:20px">🛒 ショップ</h2>
+      <div class="coins">🪙 <span class="c" id="coinBal2">0</span> コイン</div>
+    </div>
+    <div class="section-title">パワーアップ（買うと永続）</div>
+    <div id="upgradeList"></div>
+    <div class="section-title" style="margin-top:18px">テーマ（見た目だけ・性能に影響なし）</div>
+    <div id="themeList" class="themes"></div>
+    <div class="row" style="justify-content:center;margin-top:22px">
+      <button id="shopBack" class="btn">← もどる</button>
+    </div>
+  </div>
+  <footer>高校生物 用語タイピング — 学習用。読みは一般的な表記に基づきます。</footer>
+</div>
+<script>
+const CATS = ["基礎","細胞","代謝","遺伝","生殖・発生","恒常性","動物の反応","植物の反応","生態","進化"];
+const WORDS = [
+  {c:"基礎", t:"細胞", y:"さいぼう", m:"生物の体をつくる基本単位"},
+  {c:"基礎", t:"生物", y:"せいぶつ", m:"生きているものの総称"},
+  {c:"基礎", t:"個体", y:"こたい", m:"独立して生きる1つの生物体"},
+  {c:"基礎", t:"器官", y:"きかん", m:"いくつかの組織が集まって一定のはたらきをする、体の部分"},
+  {c:"基礎", t:"組織", y:"そしき", m:"同じ働きの細胞の集まり"},
+  {c:"基礎", t:"単細胞生物", y:"たんさいぼうせいぶつ", m:"体が1個の細胞からなる生物"},
+  {c:"基礎", t:"多細胞生物", y:"たさいぼうせいぶつ", m:"多数の細胞からなる生物"},
+  {c:"基礎", t:"真核生物", y:"しんかくせいぶつ", m:"核をもつ細胞からなる生物"},
+  {c:"基礎", t:"ウイルス", y:"ういるす", m:"細胞をもたず単独で増殖できない"},
+  {c:"基礎", t:"代謝", y:"たいしゃ", m:"生体内で起こる化学反応の総称"},
+  {c:"基礎", t:"タンパク質", y:"たんぱくしつ", m:"多数のアミノ酸が結合してできた、生体の主要な構成成分"},
+  {c:"基礎", t:"有機物", y:"ゆうきぶつ", m:"炭素を含む複雑な化合物"},
+  {c:"基礎", t:"無機物", y:"むきぶつ", m:"有機物以外の物質"},
+  {c:"基礎", t:"顕微鏡", y:"けんびきょう", m:"小さな物を拡大して観察する器具"},
+  {c:"基礎", t:"細胞説", y:"さいぼうせつ", m:"生物の体は細胞からできているという考え"},
+  {c:"基礎", t:"対物レンズ", y:"たいぶつれんず", m:"顕微鏡で観察物側にあるレンズ"},
+  {c:"基礎", t:"接眼レンズ", y:"せつがんれんず", m:"顕微鏡で目を当てる側のレンズ"},
+  {c:"基礎", t:"プレパラート", y:"ぷれぱらーと", m:"顕微鏡観察用に作った標本"},
+  {c:"基礎", t:"光学顕微鏡", y:"こうがくけんびきょう", m:"光を使って拡大して観察する顕微鏡"},
+  {c:"基礎", t:"電子顕微鏡", y:"でんしけんびきょう", m:"電子線を使い高倍率で観察する顕微鏡"},
+  {c:"基礎", t:"生命現象", y:"せいめいげんしょう", m:"生物が示すさまざまな働きの総称"},
+  {c:"基礎", t:"炭水化物", y:"たんすいかぶつ", m:"おもにエネルギー源となる有機物"},
+  {c:"基礎", t:"脂質", y:"ししつ", m:"エネルギー貯蔵や生体膜をつくる有機物"},
+  {c:"基礎", t:"水", y:"みず", m:"細胞の多くを占め生命に不可欠な物質"},
+  {c:"基礎", t:"無機塩類", y:"むきえんるい", m:"体の働きに必要な無機物"},
+  {c:"基礎", t:"培養", y:"ばいよう", m:"微生物や細胞を人工的に育てること"},
+  {c:"細胞", t:"細胞膜", y:"さいぼうまく", m:"細胞を包み物質の出入りを調節する膜"},
+  {c:"細胞", t:"核", y:"かく", m:"DNAを含む細胞の中心的な構造"},
+  {c:"細胞", t:"ミトコンドリア", y:"みとこんどりあ", m:"呼吸を行いATPを合成する細胞小器官"},
+  {c:"細胞", t:"葉緑体", y:"ようりょくたい", m:"光合成を行う細胞小器官"},
+  {c:"細胞", t:"リボソーム", y:"りぼそーむ", m:"タンパク質を合成する構造"},
+  {c:"細胞", t:"液胞", y:"えきほう", m:"老廃物や色素・水を貯蔵する"},
+  {c:"細胞", t:"細胞壁", y:"さいぼうへき", m:"植物細胞を保護・支持する丈夫な構造"},
+  {c:"細胞", t:"ゴルジ体", y:"ごるじたい", m:"物質の分泌・輸送に関わる"},
+  {c:"細胞", t:"小胞体", y:"しょうほうたい", m:"物質を輸送する膜の通路"},
+  {c:"細胞", t:"原核生物", y:"げんかくせいぶつ", m:"核をもたない生物"},
+  {c:"細胞", t:"細胞質", y:"さいぼうしつ", m:"核を除いた細胞の内部"},
+  {c:"細胞", t:"核膜", y:"かくまく", m:"核を包む膜"},
+  {c:"細胞", t:"細胞小器官", y:"さいぼうしょうきかん", m:"細胞内で特定の働きをする構造"},
+  {c:"細胞", t:"中心体", y:"ちゅうしんたい", m:"細胞分裂のときに働く構造"},
+  {c:"細胞", t:"拡散", y:"かくさん", m:"物質が濃い方から薄い方へ広がる現象"},
+  {c:"細胞", t:"浸透", y:"しんとう", m:"水が半透膜を通って移動する現象"},
+  {c:"細胞", t:"セルロース", y:"せるろーす", m:"植物の細胞壁の主成分"},
+  {c:"細胞", t:"細胞骨格", y:"さいぼうこっかく", m:"細胞の形を保ち運動に関わる繊維構造"},
+  {c:"細胞", t:"繊毛", y:"せんもう", m:"細胞表面にある多数の短い毛状構造"},
+  {c:"細胞", t:"鞭毛", y:"べんもう", m:"細胞の運動に使う長いむち状の構造"},
+  {c:"細胞", t:"クリステ", y:"くりすて", m:"ミトコンドリア内膜のひだ状構造"},
+  {c:"細胞", t:"チラコイド", y:"ちらこいど", m:"葉緑体内で光合成の反応を行う膜構造"},
+  {c:"細胞", t:"ストロマ", y:"すとろま", m:"葉緑体の内部を満たす基質"},
+  {c:"細胞", t:"能動輸送", y:"のうどうゆそう", m:"エネルギーを使い濃度に逆らって物質を運ぶ"},
+  {c:"細胞", t:"受動輸送", y:"じゅどうゆそう", m:"濃度差に従って物質が移動する現象"},
+  {c:"細胞", t:"濃度勾配", y:"のうどこうばい", m:"場所による濃度の差"},
+  {c:"細胞", t:"原形質", y:"げんけいしつ", m:"細胞の生きている部分の総称"},
+  {c:"細胞", t:"原形質流動", y:"げんけいしつりゅうどう", m:"細胞質が細胞内を流れるように動く現象"},
+  {c:"細胞", t:"間期", y:"かんき", m:"細胞分裂と分裂の間の準備期間"},
+  {c:"細胞", t:"分裂期", y:"ぶんれつき", m:"細胞が実際に分裂する時期"},
+  {c:"細胞", t:"染色分体", y:"せんしょくぶんたい", m:"複製された染色体が縦に分かれた各半分"},
+  {c:"細胞", t:"動物細胞", y:"どうぶつさいぼう", m:"細胞壁や葉緑体をもたない細胞"},
+  {c:"細胞", t:"植物細胞", y:"しょくぶつさいぼう", m:"細胞壁・葉緑体・大きな液胞をもつ細胞"},
+  {c:"細胞", t:"核小体", y:"かくしょうたい", m:"核内にありRNA合成に関わる構造"},
+  {c:"細胞", t:"リソソーム", y:"りそそーむ", m:"分解酵素を含み不要物を処理する構造"},
+  {c:"細胞", t:"粗面小胞体", y:"そめんしょうほうたい", m:"リボソームが付着した小胞体"},
+  {c:"細胞", t:"滑面小胞体", y:"かつめんしょうほうたい", m:"リボソームが付着していない小胞体"},
+  {c:"細胞", t:"アクチンフィラメント", y:"あくちんふぃらめんと", m:"細胞骨格のうち最も細い繊維"},
+  {c:"細胞", t:"微小管", y:"びしょうかん", m:"チューブリンからなる太い管状の細胞骨格"},
+  {c:"細胞", t:"中間径フィラメント", y:"ちゅうかんけいふぃらめんと", m:"細胞の形を保つ中くらいの太さの繊維"},
+  {c:"細胞", t:"アミノ基", y:"あみのき", m:"アミノ酸がもつ窒素を含む基"},
+  {c:"細胞", t:"カルボキシ基", y:"かるぼきしき", m:"アミノ酸がもつ酸性を示す基"},
+  {c:"細胞", t:"ペプチド結合", y:"ぺぷちどけつごう", m:"アミノ酸どうしをつなぐ結合"},
+  {c:"細胞", t:"ポリペプチド", y:"ぽりぺぷちど", m:"多数のアミノ酸がつながった鎖"},
+  {c:"細胞", t:"らせん構造", y:"らせんこうぞう", m:"タンパク質の二次構造で、ポリペプチドがコイル状に巻いた構造"},
+  {c:"細胞", t:"立体構造", y:"りったいこうぞう", m:"タンパク質が折りたたまれてできる形"},
+  {c:"細胞", t:"変性", y:"へんせい", m:"熱などでタンパク質の立体構造が壊れること"},
+  {c:"細胞", t:"活性部位", y:"かっせいぶい", m:"酵素が基質と結合する部分"},
+  {c:"細胞", t:"アロステリック酵素", y:"あろすてりっくこうそ", m:"活性部位以外への結合で働きが変わる酵素"},
+  {c:"細胞", t:"競争的阻害", y:"きょうそうてきそがい", m:"基質と似た物質が活性部位を奪う阻害"},
+  {c:"細胞", t:"非競争的阻害", y:"ひきょうそうてきそがい", m:"活性部位以外に結合して働きを妨げる阻害"},
+  {c:"細胞", t:"選択的透過性", y:"せんたくてきとうかせい", m:"膜が物質を選んで通す性質"},
+  {c:"細胞", t:"チャネル", y:"ちゃねる", m:"特定の物質を通す膜のトンネル"},
+  {c:"細胞", t:"輸送タンパク質", y:"ゆそうたんぱくしつ", m:"チャネルやポンプなど、細胞膜を通した物質の出入りを担うタンパク質の総称"},
+  {c:"細胞", t:"受容体", y:"じゅようたい", m:"ホルモンなどの信号を受け取るタンパク質"},
+  {c:"細胞", t:"標的細胞", y:"ひょうてきさいぼう", m:"特定のホルモンが作用する細胞"},
+  {c:"細胞", t:"原核細胞", y:"げんかくさいぼう", m:"核膜に包まれた核をもたない細胞"},
+  {c:"細胞", t:"真核細胞", y:"しんかくさいぼう", m:"核膜に包まれた核をもつ細胞"},
+  {c:"細胞", t:"モータータンパク質", y:"もーたーたんぱくしつ", m:"ATPのエネルギーを使って細胞骨格上を移動するタンパク質"},
+  {c:"細胞", t:"ダイニン", y:"だいにん", m:"微小管上を移動し、鞭毛や繊毛の運動にかかわるモータータンパク質"},
+  {c:"細胞", t:"キネシン", y:"きねしん", m:"微小管上を移動して小胞などを輸送するモータータンパク質"},
+  {c:"細胞", t:"生体膜", y:"せいたいまく", m:"細胞膜や細胞小器官の膜など、共通の基本構造をもつ膜の総称"},
+  {c:"細胞", t:"リン脂質", y:"りんししつ", m:"親水性の部分と疎水性の部分をもち、二重層をつくる生体膜の主成分"},
+  {c:"細胞", t:"流動モザイクモデル", y:"りゅうどうもざいくもでる", m:"リン脂質二重層にタンパク質が流動的に分布するという生体膜の構造モデル"},
+  {c:"細胞", t:"側鎖", y:"そくさ", m:"アミノ酸の種類を決める部分"},
+  {c:"細胞", t:"一次構造", y:"いちじこうぞう", m:"ポリペプチドのアミノ酸の配列順序"},
+  {c:"細胞", t:"αヘリックス", y:"あるふぁへりっくす", m:"ポリペプチドがらせん状に巻いた二次構造"},
+  {c:"細胞", t:"βシート", y:"べーたしーと", m:"ポリペプチドが並んでジグザグのシート状になった二次構造"},
+  {c:"細胞", t:"酵素-基質複合体", y:"こうそきしつふくごうたい", m:"酵素と基質が結合してできた状態"},
+  {c:"細胞", t:"最適pH", y:"さいてきぴーえいち", m:"酵素の反応速度が最大となるpH"},
+  {c:"細胞", t:"アロステリック部位", y:"あろすてりっくぶい", m:"活性部位以外にあり、調節物質が結合する部位"},
+  {c:"細胞", t:"アクアポリン", y:"あくあぽりん", m:"水分子を選択的に通すチャネル"},
+  {c:"細胞", t:"輸送体", y:"ゆそうたい", m:"特定の物質と結合し、立体構造を変えて物質を運ぶ膜タンパク質"},
+  {c:"細胞", t:"ポンプ", y:"ぽんぷ", m:"ATPのエネルギーを利用して能動輸送を行う膜タンパク質"},
+  {c:"細胞", t:"ナトリウムポンプ", y:"なとりうむぽんぷ", m:"ナトリウムイオンを細胞外へ、カリウムイオンを細胞内へ運ぶポンプ"},
+  {c:"細胞", t:"エキソサイトーシス", y:"えきそさいとーしす", m:"小胞が細胞膜と融合して内容物を細胞外へ放出する現象"},
+  {c:"細胞", t:"エンドサイトーシス", y:"えんどさいとーしす", m:"細胞膜が陥入して物質を小胞として細胞内に取りこむ現象"},
+  {c:"細胞", t:"情報伝達物質", y:"じょうほうでんたつぶっしつ", m:"細胞間で情報を伝えるために放出される物質"},
+  {c:"細胞", t:"細胞接着", y:"さいぼうせっちゃく", m:"細胞どうし、または細胞と細胞外の構造が結合すること"},
+  {c:"細胞", t:"密着結合", y:"みっちゃくけつごう", m:"細胞膜どうしが密着し、細胞間のすきまをふさぐ細胞接着"},
+  {c:"細胞", t:"デスモソーム", y:"ですもそーむ", m:"中間径フィラメントが結合し、細胞どうしを固定する細胞接着"},
+  {c:"細胞", t:"ギャップ結合", y:"ぎゃっぷけつごう", m:"隣接する細胞の細胞質をつなぎ、低分子物質を通す細胞接着"},
+  {c:"代謝", t:"光合成", y:"こうごうせい", m:"光エネルギーで有機物を合成する"},
+  {c:"代謝", t:"呼吸", y:"こきゅう", m:"酸素を用いて有機物を分解しATPを取り出すはたらき"},
+  {c:"代謝", t:"酵素", y:"こうそ", m:"化学反応の触媒として働くタンパク質"},
+  {c:"代謝", t:"基質", y:"きしつ", m:"酵素が作用する相手の物質"},
+  {c:"代謝", t:"同化", y:"どうか", m:"単純な物質から複雑な物質を合成する反応"},
+  {c:"代謝", t:"異化", y:"いか", m:"複雑な物質を分解しエネルギーを得る反応"},
+  {c:"代謝", t:"解糖系", y:"かいとうけい", m:"グルコースをピルビン酸に分解する過程"},
+  {c:"代謝", t:"クエン酸回路", y:"くえんさんかいろ", m:"ピルビン酸が段階的に分解され二酸化炭素が放出される、ミトコンドリア内の反応系"},
+  {c:"代謝", t:"発酵", y:"はっこう", m:"微生物が酸素を使わずに有機物を分解しエネルギーを得るはたらき"},
+  {c:"代謝", t:"活性化エネルギー", y:"かっせいかえねるぎー", m:"反応を始めるのに必要なエネルギー"},
+  {c:"代謝", t:"グルコース", y:"ぐるこーす", m:"呼吸の基質となり、エネルギー源として使われる代表的な単糖"},
+  {c:"代謝", t:"デンプン", y:"でんぷん", m:"グルコースが多数結合した貯蔵物質"},
+  {c:"代謝", t:"二酸化炭素", y:"にさんかたんそ", m:"呼吸で放出され光合成で使われる気体"},
+  {c:"代謝", t:"酸素", y:"さんそ", m:"呼吸に使われ光合成で放出される気体"},
+  {c:"代謝", t:"アミノ酸", y:"あみのさん", m:"タンパク質を構成する単位"},
+  {c:"代謝", t:"クロロフィル", y:"くろろふぃる", m:"光を吸収する緑色の色素"},
+  {c:"代謝", t:"触媒", y:"しょくばい", m:"自身は変化せず反応を促進する物質"},
+  {c:"代謝", t:"電子伝達系", y:"でんしでんたつけい", m:"電子を受け渡してATPを合成する反応系"},
+  {c:"代謝", t:"ピルビン酸", y:"ぴるびんさん", m:"解糖系でグルコースが分解されてできる物質"},
+  {c:"代謝", t:"乳酸発酵", y:"にゅうさんはっこう", m:"グルコースを分解し乳酸をつくる発酵"},
+  {c:"代謝", t:"アルコール発酵", y:"あるこーるはっこう", m:"酵母がエタノールと二酸化炭素をつくる発酵"},
+  {c:"代謝", t:"独立栄養", y:"どくりつえいよう", m:"無機物から有機物を合成する栄養様式"},
+  {c:"代謝", t:"従属栄養", y:"じゅうぞくえいよう", m:"他の生物がつくった有機物に依存する様式"},
+  {c:"代謝", t:"補酵素", y:"ほこうそ", m:"酵素の働きを助ける低分子の物質"},
+  {c:"代謝", t:"最適温度", y:"さいてきおんど", m:"酵素が最もよく働く温度"},
+  {c:"代謝", t:"基質特異性", y:"きしつとくいせい", m:"酵素が特定の基質にだけ作用する性質"},
+  {c:"代謝", t:"失活", y:"しっかつ", m:"熱などで酵素が働きを失うこと"},
+  {c:"代謝", t:"光飽和点", y:"こうほうわてん", m:"光を強めても光合成速度が増えなくなる点"},
+  {c:"代謝", t:"補償点", y:"ほしょうてん", m:"光合成量と呼吸量がつり合う光の強さ"},
+  {c:"代謝", t:"気孔", y:"きこう", m:"葉にあり気体の出入りを行うすきま"},
+  {c:"代謝", t:"蒸散", y:"じょうさん", m:"植物が水を水蒸気として放出する働き"},
+  {c:"代謝", t:"呼吸基質", y:"こきゅうきしつ", m:"呼吸で分解されエネルギー源となる有機物"},
+  {c:"代謝", t:"化学エネルギー", y:"かがくえねるぎー", m:"物質の結合にたくわえられたエネルギー"},
+  {c:"代謝", t:"カルビン回路", y:"かるびんかいろ", m:"光合成で二酸化炭素から有機物を作る反応"},
+  {c:"代謝", t:"光リン酸化", y:"こうりんさんか", m:"光のエネルギーでATPを合成する反応"},
+  {c:"代謝", t:"ATP", y:"えーてぃーぴー", m:"エネルギーの受け渡しを担う物質"},
+  {c:"代謝", t:"ADP", y:"えーでぃーぴー", m:"ATPからリン酸が1つ取れた物質"},
+  {c:"代謝", t:"サイトゾル", y:"さいとぞる", m:"細胞質のうち細胞小器官を除いた液体部分"},
+  {c:"代謝", t:"脱アミノ反応", y:"だつあみのはんのう", m:"アミノ酸からアミノ基を取り除く反応"},
+  {c:"代謝", t:"光合成細菌", y:"こうごうせいさいきん", m:"酸素を出さずに光合成を行う細菌"},
+  {c:"代謝", t:"化学合成", y:"かがくごうせい", m:"無機物の酸化で得た化学エネルギーで有機物を作ること"},
+  {c:"代謝", t:"呼吸商", y:"こきゅうしょう", m:"放出した二酸化炭素と吸収した酸素の体積比"},
+  {c:"代謝", t:"見かけの光合成", y:"みかけのこうごうせい", m:"呼吸量を差し引いて測った光合成量"},
+  {c:"代謝", t:"アデノシン三リン酸", y:"あでのしんさんりんさん", m:"ATPの正式名称"},
+  {c:"代謝", t:"リボース", y:"りぼーす", m:"ATPを構成する糖"},
+  {c:"代謝", t:"高エネルギーリン酸結合", y:"こうえねるぎーりんさんけつごう", m:"ATPのリン酸どうしを結ぶ、多くのエネルギーを蓄えた結合"},
+  {c:"代謝", t:"NAD+", y:"えぬえーでぃーぷらす", m:"呼吸において水素（電子）を受け取って運ぶ補酵素"},
+  {c:"代謝", t:"NADH", y:"えぬえーでぃーえいち", m:"NAD+が水素を受け取った還元型の物質"},
+  {c:"代謝", t:"NADP+", y:"えぬえーでぃーぴーぷらす", m:"光合成において水素（電子）を受け取って運ぶ補酵素"},
+  {c:"代謝", t:"NADPH", y:"えぬえーでぃーぴーえいち", m:"NADP+が水素を受け取った還元型の物質"},
+  {c:"代謝", t:"酸化", y:"さんか", m:"物質が酸素と結びつく、または水素や電子を失う反応"},
+  {c:"代謝", t:"還元", y:"かんげん", m:"物質が酸素を失う、または水素や電子を受け取る反応"},
+  {c:"代謝", t:"マトリックス", y:"まとりっくす", m:"ミトコンドリアの内膜に囲まれた部分で、クエン酸回路の場"},
+  {c:"代謝", t:"アセチルCoA", y:"あせちるこえー", m:"ピルビン酸から生じ、クエン酸回路に入る物質"},
+  {c:"代謝", t:"酸化的リン酸化", y:"さんかてきりんさんか", m:"電子伝達系に共役して行われるATPの合成"},
+  {c:"代謝", t:"ATP合成酵素", y:"えーてぃーぴーごうせいこうそ", m:"水素イオンの濃度勾配を利用してATPを合成する酵素"},
+  {c:"代謝", t:"β酸化", y:"べーたさんか", m:"脂肪酸が分解されてアセチルCoAを生じる過程"},
+  {c:"代謝", t:"解糖", y:"かいとう", m:"筋肉で酸素が不足したときにグリコーゲンから乳酸を生じる反応"},
+  {c:"代謝", t:"グラナ", y:"ぐらな", m:"チラコイドが積み重なった構造"},
+  {c:"代謝", t:"光合成色素", y:"こうごうせいしきそ", m:"光エネルギーを吸収する色素の総称"},
+  {c:"代謝", t:"クロロフィルa", y:"くろろふぃるえー", m:"すべての酸素発生型光合成生物がもつ主要な光合成色素"},
+  {c:"代謝", t:"カロテノイド", y:"かろてのいど", m:"補助的に光を吸収する、黄色や橙色の光合成色素"},
+  {c:"代謝", t:"光化学系I", y:"こうかがくけいいち", m:"NADPHの生成にかかわる光化学系"},
+  {c:"代謝", t:"光化学系II", y:"こうかがくけいに", m:"水を分解して酸素を発生させる光化学系"},
+  {c:"代謝", t:"RuBP", y:"りぶろーすびすりんさん", m:"カルビン回路で二酸化炭素と結合する炭素数5の物質"},
+  {c:"代謝", t:"PGA", y:"ほすほぐりせりんさん", m:"二酸化炭素がRuBPと結合して生じる炭素数3の物質"},
+  {c:"代謝", t:"ルビスコ", y:"るびすこ", m:"二酸化炭素をRuBPに固定する酵素"},
+  {c:"代謝", t:"C4植物", y:"しーよんしょくぶつ", m:"二酸化炭素をまず炭素数4の物質に固定する植物"},
+  {c:"代謝", t:"CAM植物", y:"かむしょくぶつ", m:"夜間に気孔を開いて二酸化炭素を取りこむ、乾燥地に適応した植物"},
+  {c:"代謝", t:"光補償点", y:"こうほしょうてん", m:"光合成速度と呼吸速度が等しくなる光の強さ"},
+  {c:"代謝", t:"バクテリオクロロフィル", y:"ばくてりおくろろふぃる", m:"光合成細菌がもつ光合成色素"},
+  {c:"代謝", t:"硝酸菌", y:"しょうさんきん", m:"亜硝酸イオンを酸化して硝酸イオンにする化学合成細菌"},
+  {c:"代謝", t:"亜硝酸菌", y:"あしょうさんきん", m:"アンモニウムイオンを酸化して亜硝酸イオンにする化学合成細菌"},
+  {c:"代謝", t:"硫黄細菌", y:"いおうさいきん", m:"硫化水素や硫黄を酸化してエネルギーを得る化学合成細菌"},
+  {c:"遺伝", t:"遺伝子", y:"いでんし", m:"遺伝情報の単位となるDNAの領域"},
+  {c:"遺伝", t:"染色体", y:"せんしょくたい", m:"DNAとタンパク質からなる構造"},
+  {c:"遺伝", t:"塩基", y:"えんき", m:"DNAを構成する A・T・G・C"},
+  {c:"遺伝", t:"転写", y:"てんしゃ", m:"DNAからRNAへ情報を写しとる過程"},
+  {c:"遺伝", t:"翻訳", y:"ほんやく", m:"RNAの情報からタンパク質を合成する過程"},
+  {c:"遺伝", t:"複製", y:"ふくせい", m:"DNAが同じ塩基配列をつくること"},
+  {c:"遺伝", t:"突然変異", y:"とつぜんへんい", m:"遺伝情報が変化すること"},
+  {c:"遺伝", t:"ゲノム", y:"げのむ", m:"生物がもつ全遺伝情報"},
+  {c:"遺伝", t:"コドン", y:"こどん", m:"3つの塩基でアミノ酸を指定する暗号"},
+  {c:"遺伝", t:"相補性", y:"そうほせい", m:"AとT、GとCが対をつくる性質"},
+  {c:"遺伝", t:"核酸", y:"かくさん", m:"DNAやRNAの総称"},
+  {c:"遺伝", t:"二重らせん", y:"にじゅうらせん", m:"DNAの立体構造"},
+  {c:"遺伝", t:"ヌクレオチド", y:"ぬくれおちど", m:"DNA・RNAを構成する単位"},
+  {c:"遺伝", t:"遺伝情報", y:"いでんじょうほう", m:"DNAに記録された生命の設計図"},
+  {c:"遺伝", t:"形質", y:"けいしつ", m:"生物が示す形や性質"},
+  {c:"遺伝", t:"顕性", y:"けんせい", m:"雑種第一代で現れる形質（優性）"},
+  {c:"遺伝", t:"潜性", y:"せんせい", m:"雑種第一代で現れない形質（劣性）"},
+  {c:"遺伝", t:"遺伝子型", y:"いでんしがた", m:"遺伝子の組み合わせ"},
+  {c:"遺伝", t:"表現型", y:"ひょうげんがた", m:"外に現れる形質"},
+  {c:"遺伝", t:"純系", y:"じゅんけい", m:"代を重ねても同じ形質が現れる系統"},
+  {c:"遺伝", t:"メンデル", y:"めんでる", m:"遺伝の法則を発見した人物"},
+  {c:"遺伝", t:"分離の法則", y:"ぶんりのほうそく", m:"対立遺伝子が別の配偶子に入る法則"},
+  {c:"遺伝", t:"塩基配列", y:"えんきはいれつ", m:"DNAの塩基の並び順"},
+  {c:"遺伝", t:"アデニン", y:"あでにん", m:"DNA・RNAの塩基の一つ（A）"},
+  {c:"遺伝", t:"チミン", y:"ちみん", m:"DNAの塩基の一つ（T）"},
+  {c:"遺伝", t:"グアニン", y:"ぐあにん", m:"DNA・RNAの塩基の一つ（G）"},
+  {c:"遺伝", t:"シトシン", y:"しとしん", m:"DNA・RNAの塩基の一つ（C）"},
+  {c:"遺伝", t:"ウラシル", y:"うらしる", m:"RNAでチミンの代わりに使われる塩基（U）"},
+  {c:"遺伝", t:"リン酸", y:"りんさん", m:"ヌクレオチドで糖と結びつき、DNA鎖の骨格をつくる酸性の成分"},
+  {c:"遺伝", t:"対立遺伝子", y:"たいりついでんし", m:"同じ形質を支配する対になる遺伝子"},
+  {c:"遺伝", t:"ホモ接合", y:"ほもせつごう", m:"同じ対立遺伝子の組み合わせ"},
+  {c:"遺伝", t:"ヘテロ接合", y:"へてろせつごう", m:"異なる対立遺伝子の組み合わせ"},
+  {c:"遺伝", t:"検定交雑", y:"けんていこうざつ", m:"潜性ホモと交配し遺伝子型を調べる方法"},
+  {c:"遺伝", t:"独立の法則", y:"どくりつのほうそく", m:"別々の形質が互いに影響せず遺伝する法則"},
+  {c:"遺伝", t:"連鎖", y:"れんさ", m:"同じ染色体上の遺伝子が一緒に伝わること"},
+  {c:"遺伝", t:"組換え", y:"くみかえ", m:"減数分裂で遺伝子の組み合わせが変わること"},
+  {c:"遺伝", t:"伴性遺伝", y:"はんせいいでん", m:"性染色体上の遺伝子による遺伝"},
+  {c:"遺伝", t:"セントラルドグマ", y:"せんとらるどぐま", m:"DNA→RNA→タンパク質という情報の流れ"},
+  {c:"遺伝", t:"アンチコドン", y:"あんちこどん", m:"tRNAにありコドンと対合する3塩基"},
+  {c:"遺伝", t:"相同染色体", y:"そうどうせんしょくたい", m:"形・大きさが同じ対になる染色体"},
+  {c:"遺伝", t:"フレームシフト", y:"ふれーむしふと", m:"塩基の挿入や欠失で読み枠がずれる変異"},
+  {c:"遺伝", t:"一塩基多型", y:"いちえんきたけい", m:"1つの塩基が個人で異なる遺伝的な違い"},
+  {c:"遺伝", t:"常染色体", y:"じょうせんしょくたい", m:"性の決定に関わらない染色体"},
+  {c:"遺伝", t:"性染色体", y:"せいせんしょくたい", m:"性の決定に関わる染色体"},
+  {c:"遺伝", t:"生殖細胞", y:"せいしょくさいぼう", m:"子孫をつくるもとになる細胞"},
+  {c:"遺伝", t:"二価染色体", y:"にかせんしょくたい", m:"減数分裂で相同染色体が対合したもの"},
+  {c:"遺伝", t:"乗換え", y:"のりかえ", m:"相同染色体の一部が交換される現象"},
+  {c:"遺伝", t:"遺伝子座", y:"いでんしざ", m:"染色体上で遺伝子が占める位置"},
+  {c:"遺伝", t:"組換え価", y:"くみかえか", m:"組換えの起こる割合を示す数値"},
+  {c:"遺伝", t:"水素結合", y:"すいそけつごう", m:"塩基どうしを結びつける弱い結合"},
+  {c:"遺伝", t:"半保存的複製", y:"はんほぞんてきふくせい", m:"元の鎖を1本ずつ残して複製するしくみ"},
+  {c:"遺伝", t:"プライマー", y:"ぷらいまー", m:"複製の起点となる短いヌクレオチド鎖"},
+  {c:"遺伝", t:"リーディング鎖", y:"りーでぃんぐさ", m:"連続して合成される新しい鎖"},
+  {c:"遺伝", t:"ラギング鎖", y:"らぎんぐさ", m:"断片的に合成される新しい鎖"},
+  {c:"遺伝", t:"岡崎フラグメント", y:"おかざきふらぐめんと", m:"ラギング鎖でできる短いDNA断片"},
+  {c:"遺伝", t:"プロモーター", y:"ぷろもーたー", m:"転写が始まる目印となる塩基配列"},
+  {c:"遺伝", t:"エキソン", y:"えきそん", m:"タンパク質の情報をもつ部分"},
+  {c:"遺伝", t:"イントロン", y:"いんとろん", m:"転写後に取り除かれる部分"},
+  {c:"遺伝", t:"スプライシング", y:"すぷらいしんぐ", m:"イントロンを除きエキソンをつなぐ過程"},
+  {c:"遺伝", t:"選択的スプライシング", y:"せんたくてきすぷらいしんぐ", m:"つなぎ方を変え複数のタンパク質を作ること"},
+  {c:"遺伝", t:"核膜孔", y:"かくまくこう", m:"核膜にあり物質が出入りする穴"},
+  {c:"遺伝", t:"ヒストン", y:"ひすとん", m:"DNAが巻きつくタンパク質"},
+  {c:"遺伝", t:"クロマチン", y:"くろまちん", m:"DNAとヒストンからなる繊維状の構造"},
+  {c:"遺伝", t:"調節タンパク質", y:"ちょうせつたんぱくしつ", m:"遺伝子の発現を調節するタンパク質"},
+  {c:"遺伝", t:"リプレッサー", y:"りぷれっさー", m:"転写を抑制する調節タンパク質"},
+  {c:"遺伝", t:"オペロン", y:"おぺろん", m:"まとめて発現調節される遺伝子のまとまり"},
+  {c:"遺伝", t:"オペレーター", y:"おぺれーたー", m:"リプレッサーが結合する塩基配列"},
+  {c:"遺伝", t:"基本転写因子", y:"きほんてんしゃいんし", m:"転写の開始に必要なタンパク質"},
+  {c:"遺伝", t:"遺伝子組換え", y:"いでんしくみかえ", m:"目的の遺伝子を他の生物に組み込む技術"},
+  {c:"遺伝", t:"プラスミド", y:"ぷらすみど", m:"細菌がもつ小さな環状のDNA"},
+  {c:"遺伝", t:"制限酵素", y:"せいげんこうそ", m:"DNAを特定の配列で切る酵素"},
+  {c:"遺伝", t:"リガーゼ", y:"りがーぜ", m:"DNAの断片をつなぐ酵素"},
+  {c:"遺伝", t:"トランスジェニック生物", y:"とらんすじぇにっくせいぶつ", m:"外来遺伝子を組み込まれた生物"},
+  {c:"遺伝", t:"伝令RNA", y:"でんれいあーるえぬえー", m:"DNAの情報を写しとって運ぶRNA"},
+  {c:"遺伝", t:"運搬RNA", y:"うんぱんあーるえぬえー", m:"アミノ酸をリボソームへ運ぶRNA"},
+  {c:"遺伝", t:"対合", y:"たいごう", m:"減数分裂第一分裂で相同染色体どうしが並んで結合すること"},
+  {c:"遺伝", t:"キアズマ", y:"きあずま", m:"乗換えによって染色体が交差して見える部分"},
+  {c:"遺伝", t:"ホモ接合体", y:"ほもせつごうたい", m:"同じ対立遺伝子を対にしてもつ個体"},
+  {c:"遺伝", t:"ヘテロ接合体", y:"へてろせつごうたい", m:"異なる対立遺伝子を対にしてもつ個体"},
+  {c:"遺伝", t:"独立", y:"どくりつ", m:"2組の対立遺伝子が異なる相同染色体上にある関係"},
+  {c:"遺伝", t:"染色体地図", y:"せんしょくたいちず", m:"組換え価をもとに、遺伝子の相対的な位置関係を示した図"},
+  {c:"遺伝", t:"デオキシリボース", y:"でおきしりぼーす", m:"DNAを構成する糖"},
+  {c:"遺伝", t:"二重らせん構造", y:"にじゅうらせんこうぞう", m:"2本のヌクレオチド鎖がねじれ合ったDNAの立体構造"},
+  {c:"遺伝", t:"5'末端", y:"ごぷらいむまったん", m:"ヌクレオチド鎖のリン酸側の末端"},
+  {c:"遺伝", t:"3'末端", y:"さんぷらいむまったん", m:"ヌクレオチド鎖の糖側の末端"},
+  {c:"遺伝", t:"複製起点", y:"ふくせいきてん", m:"DNAの複製が開始される特定の塩基配列"},
+  {c:"遺伝", t:"DNAヘリカーゼ", y:"でぃーえぬえーへりかーぜ", m:"DNAの二重らせん構造をほどく酵素"},
+  {c:"遺伝", t:"DNAポリメラーゼ", y:"でぃーえぬえーぽりめらーぜ", m:"ヌクレオチドどうしを結合させてDNAを伸長させる酵素"},
+  {c:"遺伝", t:"DNAリガーゼ", y:"でぃーえぬえーりがーぜ", m:"岡崎フラグメントどうしをつなぎ合わせる酵素"},
+  {c:"遺伝", t:"テロメア", y:"てろめあ", m:"真核生物の染色体の末端にある繰り返し配列"},
+  {c:"遺伝", t:"遺伝子発現", y:"いでんしはつげん", m:"遺伝子の情報がタンパク質として現れること"},
+  {c:"遺伝", t:"RNA", y:"あーるえぬえー", m:"糖にリボースを、塩基にウラシルを含む一本鎖の核酸"},
+  {c:"遺伝", t:"mRNA", y:"えむあーるえぬえー", m:"タンパク質のアミノ酸配列を指定する情報を運ぶRNA"},
+  {c:"遺伝", t:"tRNA", y:"てぃーあーるえぬえー", m:"特定のアミノ酸と結合し、リボソームへ運ぶRNA"},
+  {c:"遺伝", t:"rRNA", y:"あーるあーるえぬえー", m:"タンパク質とともにリボソームを構成するRNA"},
+  {c:"遺伝", t:"RNAポリメラーゼ", y:"あーるえぬえーぽりめらーぜ", m:"転写を行い、RNAを合成する酵素"},
+  {c:"遺伝", t:"開始コドン", y:"かいしこどん", m:"翻訳の開始を指定し、メチオニンを指定するコドン"},
+  {c:"遺伝", t:"終止コドン", y:"しゅうしこどん", m:"アミノ酸を指定せず、翻訳の終了を指示するコドン"},
+  {c:"遺伝", t:"遺伝暗号表", y:"いでんあんごうひょう", m:"コドンと指定されるアミノ酸の対応をまとめた表"},
+  {c:"遺伝", t:"転写調節領域", y:"てんしゃちょうせつりょういき", m:"調節タンパク質が結合し、転写を調節するDNAの領域"},
+  {c:"遺伝", t:"調節遺伝子", y:"ちょうせついでんし", m:"調節タンパク質の情報をもつ遺伝子"},
+  {c:"遺伝", t:"ヌクレオソーム", y:"ぬくれおそーむ", m:"ヒストンにDNAが巻きついた基本単位"},
+  {c:"遺伝", t:"ベクター", y:"べくたー", m:"目的の遺伝子を細胞に運び入れる役割をもつDNA"},
+  {c:"遺伝", t:"PCR法", y:"ぴーしーあーるほう", m:"目的のDNA領域を短時間で大量に増幅する方法"},
+  {c:"遺伝", t:"電気泳動法", y:"でんきえいどうほう", m:"DNAに電圧を加え、ゲル中を移動させて大きさで分離する方法"},
+  {c:"遺伝", t:"ゲノム編集", y:"げのむへんしゅう", m:"目的の場所を狙ってDNAを切断し、遺伝子を改変する技術"},
+  {c:"遺伝", t:"GFP", y:"じーえふぴー", m:"紫外線を当てると緑色の蛍光を発するタンパク質"},
+  {c:"遺伝", t:"DNAマイクロアレイ", y:"でぃーえぬえーまいくろあれい", m:"多数のDNA断片を基板に並べ、相補的な結合を利用して遺伝子の発現量を一度に調べる器具"},
+  {c:"遺伝", t:"RNAシーケンシング", y:"あーるえぬえーしーけんしんぐ", m:"細胞内のRNAの塩基配列を網羅的に読み取り発現を調べる方法"},
+  {c:"生殖・発生", t:"減数分裂", y:"げんすうぶんれつ", m:"生殖細胞をつくる特別な細胞分裂"},
+  {c:"生殖・発生", t:"体細胞分裂", y:"たいさいぼうぶんれつ", m:"体をつくる普通の細胞分裂"},
+  {c:"生殖・発生", t:"受精", y:"じゅせい", m:"精子と卵が合体すること"},
+  {c:"生殖・発生", t:"胚", y:"はい", m:"発生初期の個体"},
+  {c:"生殖・発生", t:"分化", y:"ぶんか", m:"細胞が特定の形や働きをもつようになること"},
+  {c:"生殖・発生", t:"胞胚", y:"ほうはい", m:"内部に空所ができた発生段階"},
+  {c:"生殖・発生", t:"原腸胚", y:"げんちょうはい", m:"陥入が起こり胚葉が分かれる段階"},
+  {c:"生殖・発生", t:"形成体", y:"けいせいたい", m:"周囲の細胞の分化を誘導する部分"},
+  {c:"生殖・発生", t:"生殖", y:"せいしょく", m:"子孫をつくるはたらき"},
+  {c:"生殖・発生", t:"無性生殖", y:"むせいせいしょく", m:"配偶子によらない生殖"},
+  {c:"生殖・発生", t:"有性生殖", y:"ゆうせいせいしょく", m:"配偶子の受精による生殖"},
+  {c:"生殖・発生", t:"配偶子", y:"はいぐうし", m:"受精する生殖細胞（精子・卵）"},
+  {c:"生殖・発生", t:"精子", y:"せいし", m:"雄がつくる小さな生殖細胞"},
+  {c:"生殖・発生", t:"卵", y:"らん", m:"雌がつくる大きな生殖細胞"},
+  {c:"生殖・発生", t:"受精卵", y:"じゅせいらん", m:"受精してできた細胞"},
+  {c:"生殖・発生", t:"発生", y:"はっせい", m:"受精卵が個体になっていく過程"},
+  {c:"生殖・発生", t:"細胞分裂", y:"さいぼうぶんれつ", m:"1つの細胞が2つに分かれること"},
+  {c:"生殖・発生", t:"卵割", y:"らんかつ", m:"発生初期に繰り返される細胞分裂"},
+  {c:"生殖・発生", t:"有糸分裂", y:"ゆうしぶんれつ", m:"紡錘糸が現れて染色体を分ける細胞分裂"},
+  {c:"生殖・発生", t:"紡錘体", y:"ぼうすいたい", m:"分裂時に染色体を両極へ引く構造"},
+  {c:"生殖・発生", t:"細胞周期", y:"さいぼうしゅうき", m:"細胞が分裂を繰り返す周期"},
+  {c:"生殖・発生", t:"前期", y:"ぜんき", m:"染色体が現れる分裂の最初の時期"},
+  {c:"生殖・発生", t:"中期", y:"ちゅうき", m:"染色体が赤道面に並ぶ時期"},
+  {c:"生殖・発生", t:"後期", y:"こうき", m:"染色体が両極へ移動する時期"},
+  {c:"生殖・発生", t:"終期", y:"しゅうき", m:"核が再形成され細胞質が分かれる時期"},
+  {c:"生殖・発生", t:"出芽", y:"しゅつが", m:"体の一部が膨らみ新個体になる無性生殖"},
+  {c:"生殖・発生", t:"栄養生殖", y:"えいようせいしょく", m:"植物の根・茎・葉などの栄養器官から新個体ができる無性生殖"},
+  {c:"生殖・発生", t:"胞子", y:"ほうし", m:"単独で新個体になる生殖細胞"},
+  {c:"生殖・発生", t:"重複受精", y:"ちょうふくじゅせい", m:"被子植物で2か所同時に起こる受精"},
+  {c:"生殖・発生", t:"誘導", y:"ゆうどう", m:"ある部分が周囲の細胞の分化を促すこと"},
+  {c:"生殖・発生", t:"神経管", y:"しんけいかん", m:"のちに脳や脊髄になる管状の構造"},
+  {c:"生殖・発生", t:"外胚葉", y:"がいはいよう", m:"表皮や神経になる胚の外側の層"},
+  {c:"生殖・発生", t:"中胚葉", y:"ちゅうはいよう", m:"骨格や筋肉になる胚の中間の層"},
+  {c:"生殖・発生", t:"内胚葉", y:"ないはいよう", m:"消化管などになる胚の内側の層"},
+  {c:"生殖・発生", t:"精原細胞", y:"せいげんさいぼう", m:"精子のもとになる細胞"},
+  {c:"生殖・発生", t:"一次精母細胞", y:"いちじせいぼさいぼう", m:"精原細胞が成長してできた、減数分裂の第一分裂を行う細胞"},
+  {c:"生殖・発生", t:"卵原細胞", y:"らんげんさいぼう", m:"卵のもとになる細胞"},
+  {c:"生殖・発生", t:"一次卵母細胞", y:"いちじらんぼさいぼう", m:"卵原細胞が成長してできた、減数分裂の第一分裂を行う細胞"},
+  {c:"生殖・発生", t:"極体", y:"きょくたい", m:"卵形成で生じる小さな細胞"},
+  {c:"生殖・発生", t:"先体反応", y:"せんたいはんのう", m:"精子が卵のゼリー層に触れ、先体から酵素を放出して先体突起をつくる反応"},
+  {c:"生殖・発生", t:"受精膜", y:"じゅせいまく", m:"多精拒否のため受精後にできる膜"},
+  {c:"生殖・発生", t:"灰色三日月環", y:"はいいろみかづきかん", m:"受精後の卵に現れる背側を決める部分"},
+  {c:"生殖・発生", t:"割球", y:"かっきゅう", m:"卵割によってできた細胞"},
+  {c:"生殖・発生", t:"桑実胚", y:"そうじつはい", m:"割球が集まりクワの実のようになった胚"},
+  {c:"生殖・発生", t:"陥入", y:"かんにゅう", m:"胚の一部が内部へくぼんで入り込むこと"},
+  {c:"生殖・発生", t:"原腸", y:"げんちょう", m:"陥入によってできた将来の消化管"},
+  {c:"生殖・発生", t:"原口", y:"げんこう", m:"陥入が始まる胚の入口"},
+  {c:"生殖・発生", t:"神経胚", y:"しんけいはい", m:"神経管ができる時期の胚"},
+  {c:"生殖・発生", t:"尾芽胚", y:"びがはい", m:"尾のもとが現れた時期の胚"},
+  {c:"生殖・発生", t:"脊索", y:"せきさく", m:"胚の背側にでき体を支える棒状の構造"},
+  {c:"生殖・発生", t:"母性因子", y:"ぼせいいんし", m:"卵にあらかじめ蓄えられた発生を導く物質"},
+  {c:"生殖・発生", t:"中胚葉誘導", y:"ちゅうはいようゆうどう", m:"予定内胚葉が接する予定外胚葉の細胞を中胚葉に分化させるはたらき"},
+  {c:"生殖・発生", t:"眼杯", y:"がんぱい", m:"目の形成でカップ状になる構造"},
+  {c:"生殖・発生", t:"水晶体", y:"すいしょうたい", m:"光を屈折させピントを合わせる構造"},
+  {c:"生殖・発生", t:"角膜", y:"かくまく", m:"眼球の前面をおおう透明な膜"},
+  {c:"生殖・発生", t:"ホメオティック遺伝子", y:"ほめおてぃっくいでんし", m:"体の部分の性質を決める遺伝子"},
+  {c:"生殖・発生", t:"分節遺伝子", y:"ぶんせついでんし", m:"体を節に区切る働きをもつ遺伝子"},
+  {c:"生殖・発生", t:"アポトーシス", y:"あぽとーしす", m:"あらかじめ決まった細胞の死"},
+  {c:"生殖・発生", t:"始原生殖細胞", y:"しげんせいしょくさいぼう", m:"精原細胞や卵原細胞のもとになる細胞"},
+  {c:"生殖・発生", t:"母性効果遺伝子", y:"ぼせいこうかいでんし", m:"母性因子のもとになる遺伝子"},
+  {c:"生殖・発生", t:"ビコイド", y:"びこいど", m:"ショウジョウバエの前後軸の決定にかかわる母性因子"},
+  {c:"生殖・発生", t:"原口背唇部", y:"げんこうはいしんぶ", m:"シュペーマンが形成体としてはたらくことを示した原腸胚の部分"},
+  {c:"生殖・発生", t:"誘導の連鎖", y:"ゆうどうのれんさ", m:"誘導が次々と連続して起こり、複雑な器官が形成されること"},
+  {c:"生殖・発生", t:"ホメオボックス", y:"ほめおぼっくす", m:"ホメオティック遺伝子に共通して見られる塩基配列"},
+  {c:"生殖・発生", t:"ホックス遺伝子", y:"ほっくすいでんし", m:"動物に広く共通して見られるホメオティック遺伝子群"},
+  {c:"恒常性", t:"恒常性", y:"こうじょうせい", m:"体内環境を一定に保つ性質"},
+  {c:"恒常性", t:"ホルモン", y:"ほるもん", m:"内分泌腺でつくられ血液で運ばれて標的器官に働く化学物質"},
+  {c:"恒常性", t:"自律神経", y:"じりつしんけい", m:"意思と無関係に内臓を調節する神経"},
+  {c:"恒常性", t:"免疫", y:"めんえき", m:"病原体から体を守るしくみ"},
+  {c:"恒常性", t:"抗体", y:"こうたい", m:"抗原に特異的に結合するタンパク質"},
+  {c:"恒常性", t:"抗原", y:"こうげん", m:"免疫反応を引き起こす物質"},
+  {c:"恒常性", t:"インスリン", y:"いんすりん", m:"血糖値を下げるホルモン"},
+  {c:"恒常性", t:"肝臓", y:"かんぞう", m:"解毒や血糖調節を行う臓器"},
+  {c:"恒常性", t:"腎臓", y:"じんぞう", m:"血液をろ過し尿をつくる臓器"},
+  {c:"恒常性", t:"ニューロン", y:"にゅーろん", m:"情報を伝える神経細胞"},
+  {c:"恒常性", t:"赤血球", y:"せっけっきゅう", m:"酸素を運ぶ血球"},
+  {c:"恒常性", t:"血糖値", y:"けっとうち", m:"血液中のグルコース濃度"},
+  {c:"恒常性", t:"体液", y:"たいえき", m:"体内を満たす液体（血液・組織液など）"},
+  {c:"恒常性", t:"血液", y:"けつえき", m:"体内を循環し物質を運ぶ体液"},
+  {c:"恒常性", t:"血しょう", y:"けっしょう", m:"血液の液体成分"},
+  {c:"恒常性", t:"血小板", y:"けっしょうばん", m:"血液を固めるはたらきをもつ"},
+  {c:"恒常性", t:"白血球", y:"はっけっきゅう", m:"体を守る免疫にはたらく血球"},
+  {c:"恒常性", t:"ヘモグロビン", y:"へもぐろびん", m:"赤血球に含まれ酸素を運ぶ色素"},
+  {c:"恒常性", t:"心臓", y:"しんぞう", m:"血液を送り出すポンプの器官"},
+  {c:"恒常性", t:"肺", y:"はい", m:"気体を交換する呼吸器官"},
+  {c:"恒常性", t:"神経", y:"しんけい", m:"情報を伝える器官・細胞のつながり"},
+  {c:"恒常性", t:"体温", y:"たいおん", m:"一定に保たれる体の温度"},
+  {c:"恒常性", t:"病原体", y:"びょうげんたい", m:"病気を引き起こす微生物など"},
+  {c:"恒常性", t:"ワクチン", y:"わくちん", m:"免疫を人工的につくらせる製剤"},
+  {c:"恒常性", t:"交感神経", y:"こうかんしんけい", m:"体を活動・興奮の状態にする自律神経"},
+  {c:"恒常性", t:"副交感神経", y:"ふくこうかんしんけい", m:"体を休息の状態にする自律神経"},
+  {c:"恒常性", t:"間脳", y:"かんのう", m:"視床と視床下部からなる脳の一部"},
+  {c:"恒常性", t:"視床下部", y:"ししょうかぶ", m:"自律神経やホルモンを調節する中枢"},
+  {c:"恒常性", t:"脳下垂体", y:"のうかすいたい", m:"多くのホルモンの分泌を調節する器官"},
+  {c:"恒常性", t:"甲状腺", y:"こうじょうせん", m:"チロキシンを分泌する内分泌腺"},
+  {c:"恒常性", t:"チロキシン", y:"ちろきしん", m:"代謝を高める甲状腺ホルモン"},
+  {c:"恒常性", t:"アドレナリン", y:"あどれなりん", m:"血糖値を上げ心臓を活発にするホルモン"},
+  {c:"恒常性", t:"グルカゴン", y:"ぐるかごん", m:"血糖値を上げるすい臓のホルモン"},
+  {c:"恒常性", t:"すい臓", y:"すいぞう", m:"消化液やインスリンを出す器官"},
+  {c:"恒常性", t:"副腎", y:"ふくじん", m:"腎臓の上にある内分泌器官"},
+  {c:"恒常性", t:"フィードバック", y:"ふぃーどばっく", m:"結果が原因側に戻って調節する仕組み"},
+  {c:"恒常性", t:"拒絶反応", y:"きょぜつはんのう", m:"移植された他人の組織を排除する反応"},
+  {c:"恒常性", t:"リンパ球", y:"りんぱきゅう", m:"免疫の中心となる白血球"},
+  {c:"恒常性", t:"食作用", y:"しょくさよう", m:"細胞が異物を取り込んで分解する働き"},
+  {c:"恒常性", t:"マクロファージ", y:"まくろふぁーじ", m:"異物を食べて処理する免疫細胞"},
+  {c:"恒常性", t:"血液凝固", y:"けつえきぎょうこ", m:"血液が固まって出血を止める仕組み"},
+  {c:"恒常性", t:"尿素", y:"にょうそ", m:"肝臓でつくられ尿に排出される老廃物"},
+  {c:"動物の反応", t:"受容器", y:"じゅようき", m:"刺激を受け取る器官"},
+  {c:"動物の反応", t:"効果器", y:"こうかき", m:"命令を受けて実際に働く器官"},
+  {c:"動物の反応", t:"適刺激", y:"てきしげき", m:"それぞれの受容器が受け取れる刺激"},
+  {c:"動物の反応", t:"網膜", y:"もうまく", m:"眼で光を受け取る膜"},
+  {c:"動物の反応", t:"桿体細胞", y:"かんたいさいぼう", m:"弱い光を受け取る視細胞"},
+  {c:"動物の反応", t:"錐体細胞", y:"すいたいさいぼう", m:"強い光で色を区別する視細胞"},
+  {c:"動物の反応", t:"盲斑", y:"もうはん", m:"視神経が集まり光を感じない部分"},
+  {c:"動物の反応", t:"黄斑", y:"おうはん", m:"錐体細胞が密集し最もよく見える部分"},
+  {c:"動物の反応", t:"暗順応", y:"あんじゅんのう", m:"暗い所で目が慣れて見えるようになること"},
+  {c:"動物の反応", t:"明順応", y:"めいじゅんのう", m:"明るい所で目が慣れること"},
+  {c:"動物の反応", t:"うずまき管", y:"うずまきかん", m:"内耳にあり音の振動を受け取る管状の器官"},
+  {c:"動物の反応", t:"コルチ器", y:"こるちき", m:"うずまき管内で音を受容する装置"},
+  {c:"動物の反応", t:"耳小骨", y:"じしょうこつ", m:"鼓膜の振動を伝える小さな骨"},
+  {c:"動物の反応", t:"前庭", y:"ぜんてい", m:"からだの傾きを感じる器官"},
+  {c:"動物の反応", t:"半規管", y:"はんきかん", m:"からだの回転を感じる器官"},
+  {c:"動物の反応", t:"嗅上皮", y:"きゅうじょうひ", m:"においを受け取る鼻の粘膜"},
+  {c:"動物の反応", t:"味覚芽", y:"みかくが", m:"舌にある味を受け取る器官"},
+  {c:"動物の反応", t:"樹状突起", y:"じゅじょうとっき", m:"ニューロンで情報を受け取る短い突起"},
+  {c:"動物の反応", t:"軸索", y:"じくさく", m:"ニューロンで情報を送り出す長い突起"},
+  {c:"動物の反応", t:"髄鞘", y:"ずいしょう", m:"軸索を包む絶縁性のさや"},
+  {c:"動物の反応", t:"有髄神経繊維", y:"ゆうずいしんけいせんい", m:"髄鞘をもつ神経繊維"},
+  {c:"動物の反応", t:"無髄神経繊維", y:"むずいしんけいせんい", m:"髄鞘をもたない神経繊維"},
+  {c:"動物の反応", t:"静止電位", y:"せいしでんい", m:"刺激がないときの膜の電位差"},
+  {c:"動物の反応", t:"活動電位", y:"かつどうでんい", m:"刺激で急激に変化する膜の電位"},
+  {c:"動物の反応", t:"興奮", y:"こうふん", m:"活動電位が発生すること"},
+  {c:"動物の反応", t:"閾値", y:"いきち", m:"興奮を起こすのに必要な最小の刺激の強さ"},
+  {c:"動物の反応", t:"全か無かの法則", y:"ぜんかむかのほうそく", m:"閾値以上なら刺激の強さによらず一定に反応する法則"},
+  {c:"動物の反応", t:"伝導", y:"でんどう", m:"興奮が同じ神経繊維上を伝わること"},
+  {c:"動物の反応", t:"跳躍伝導", y:"ちょうやくでんどう", m:"有髄神経繊維で興奮がとびとびに伝わること"},
+  {c:"動物の反応", t:"伝達", y:"でんたつ", m:"シナプスを介して次の細胞へ興奮が伝わること"},
+  {c:"動物の反応", t:"シナプス", y:"しなぷす", m:"ニューロンどうしのつなぎ目"},
+  {c:"動物の反応", t:"神経伝達物質", y:"しんけいでんたつぶっしつ", m:"シナプスで情報を伝える化学物質"},
+  {c:"動物の反応", t:"中枢神経系", y:"ちゅうすうしんけいけい", m:"脳と脊髄からなる神経系"},
+  {c:"動物の反応", t:"末しょう神経系", y:"まっしょうしんけいけい", m:"中枢から全身へ広がる神経系"},
+  {c:"動物の反応", t:"体性神経系", y:"たいせいしんけいけい", m:"感覚と運動に関わる神経系"},
+  {c:"動物の反応", t:"大脳", y:"だいのう", m:"思考や感覚の中枢となる脳の部分"},
+  {c:"動物の反応", t:"大脳皮質", y:"だいのうひしつ", m:"大脳の表面にある神経細胞が集まる層"},
+  {c:"動物の反応", t:"中脳", y:"ちゅうのう", m:"姿勢や瞳孔の反射の中枢"},
+  {c:"動物の反応", t:"小脳", y:"しょうのう", m:"運動の調節や平衡を保つ中枢"},
+  {c:"動物の反応", t:"延髄", y:"えんずい", m:"呼吸や心拍を調節する中枢"},
+  {c:"動物の反応", t:"脊髄", y:"せきずい", m:"反射の中枢となり脳と体をつなぐ"},
+  {c:"動物の反応", t:"背根", y:"はいこん", m:"脊髄の背側にあり感覚神経が通る"},
+  {c:"動物の反応", t:"腹根", y:"ふくこん", m:"脊髄の腹側にあり運動神経が通る"},
+  {c:"動物の反応", t:"反射", y:"はんしゃ", m:"意識とは無関係に起こる素早い反応"},
+  {c:"動物の反応", t:"反射弓", y:"はんしゃきゅう", m:"反射で興奮が伝わる道すじ"},
+  {c:"動物の反応", t:"筋繊維", y:"きんせんい", m:"筋肉をつくる細長い細胞"},
+  {c:"動物の反応", t:"筋原繊維", y:"きんげんせんい", m:"筋繊維の中にある収縮を行う繊維"},
+  {c:"動物の反応", t:"ミオシン", y:"みおしん", m:"筋収縮にはたらく太いフィラメントをつくるタンパク質"},
+  {c:"動物の反応", t:"アクチン", y:"あくちん", m:"筋収縮にはたらく細いフィラメントをつくるタンパク質"},
+  {c:"動物の反応", t:"サルコメア", y:"さるこめあ", m:"筋原繊維の収縮の単位"},
+  {c:"動物の反応", t:"滑り説", y:"すべりせつ", m:"フィラメントが滑り込んで筋が縮むという説"},
+  {c:"動物の反応", t:"クレアチンリン酸", y:"くれあちんりんさん", m:"筋肉でATPをすばやく補う物質"},
+  {c:"動物の反応", t:"単収縮", y:"たんしゅうしゅく", m:"1回の刺激で起こる短い収縮"},
+  {c:"動物の反応", t:"強縮", y:"きょうしゅく", m:"連続刺激で収縮が重なり持続すること"},
+  {c:"動物の反応", t:"走性", y:"そうせい", m:"刺激の方向に対して決まった向きに移動する行動"},
+  {c:"動物の反応", t:"かぎ刺激", y:"かぎしげき", m:"決まった行動を引き起こす特定の刺激"},
+  {c:"動物の反応", t:"定位", y:"ていい", m:"体を特定の方向に向けること"},
+  {c:"動物の反応", t:"フェロモン", y:"ふぇろもん", m:"同種の個体に情報を伝える化学物質"},
+  {c:"動物の反応", t:"学習", y:"がくしゅう", m:"経験によって行動が変化すること"},
+  {c:"動物の反応", t:"慣れ", y:"なれ", m:"刺激をくり返すと反応が弱まる現象"},
+  {c:"動物の反応", t:"脱慣れ", y:"だつなれ", m:"別の刺激で慣れが解消される現象"},
+  {c:"動物の反応", t:"鋭敏化", y:"えいびんか", m:"弱い刺激にも敏感に反応するようになる現象"},
+  {c:"動物の反応", t:"連合学習", y:"れんごうがくしゅう", m:"2つの出来事を結びつけて覚える学習"},
+  {c:"動物の反応", t:"古典的条件づけ", y:"こてんてきじょうけんづけ", m:"本来無関係な刺激と生得的な反応が結びつく学習。パブロフのイヌが例"},
+  {c:"動物の反応", t:"オペラント条件づけ", y:"おぺらんとじょうけんづけ", m:"自発的な行動と結果を結びつける学習"},
+  {c:"動物の反応", t:"刷込み", y:"すりこみ", m:"生後まもない時期に対象を覚え込む学習"},
+  {c:"動物の反応", t:"視細胞", y:"しさいぼう", m:"網膜にあり、光の刺激を受け取る感覚細胞の総称"},
+  {c:"動物の反応", t:"ロドプシン", y:"ろどぷしん", m:"桿体細胞に含まれる光を吸収する物質"},
+  {c:"動物の反応", t:"遠近調節", y:"えんきんちょうせつ", m:"毛様筋のはたらきで水晶体の厚さを変え、焦点を合わせること"},
+  {c:"動物の反応", t:"平衡石", y:"へいこうせき", m:"前庭にあり、傾きによって動いて感覚毛を刺激する粒"},
+  {c:"動物の反応", t:"細胞体", y:"さいぼうたい", m:"核を含むニューロンの中心部分"},
+  {c:"動物の反応", t:"神経鞘", y:"しんけいしょう", m:"シュワン細胞からなり、髄鞘のさらに外側をおおううすい膜"},
+  {c:"動物の反応", t:"ランビエ絞輪", y:"らんびえこうりん", m:"有髄神経繊維で髄鞘が途切れている部分"},
+  {c:"動物の反応", t:"活動電流", y:"かつどうでんりゅう", m:"興奮部と静止部の間に流れる電流"},
+  {c:"動物の反応", t:"不応期", y:"ふおうき", m:"興奮直後に次の刺激を与えても興奮しない期間"},
+  {c:"動物の反応", t:"シナプス小胞", y:"しなぷすしょうほう", m:"神経伝達物質を含む、軸索末端の小胞"},
+  {c:"動物の反応", t:"アセチルコリン", y:"あせちるこりん", m:"神経筋接合部などではたらく代表的な神経伝達物質"},
+  {c:"動物の反応", t:"興奮性シナプス後電位", y:"こうふんせいしなぷすごでんい", m:"シナプス後細胞に生じる脱分極性の電位変化"},
+  {c:"動物の反応", t:"抑制性シナプス後電位", y:"よくせいせいしなぷすごでんい", m:"シナプス後細胞に生じる過分極性の電位変化"},
+  {c:"動物の反応", t:"自律神経系", y:"じりつしんけいけい", m:"内臓のはたらきを無意識に調節する末しょう神経系"},
+  {c:"動物の反応", t:"大脳新皮質", y:"だいのうしんひしつ", m:"感覚や随意運動、高度な精神活動の中枢がある大脳皮質の部分"},
+  {c:"動物の反応", t:"大脳辺縁皮質", y:"だいのうへんえんひしつ", m:"本能行動や情動、記憶にかかわる大脳皮質の部分"},
+  {c:"動物の反応", t:"膝蓋腱反射", y:"しつがいけんはんしゃ", m:"ひざの下をたたくと足が跳ね上がる反射"},
+  {c:"動物の反応", t:"ミオシンフィラメント", y:"みおしんふぃらめんと", m:"筋原繊維を構成する太い繊維"},
+  {c:"動物の反応", t:"筋小胞体", y:"きんしょうほうたい", m:"カルシウムイオンを貯え、放出して収縮を引き起こす構造"},
+  {c:"動物の反応", t:"トロポニン", y:"とろぽにん", m:"カルシウムイオンと結合して筋収縮を開始させるタンパク質"},
+  {c:"動物の反応", t:"不完全強縮", y:"ふかんぜんきょうしゅく", m:"刺激の間隔がやや長く、収縮の山が残る持続的な収縮"},
+  {c:"動物の反応", t:"完全強縮", y:"かんぜんきょうしゅく", m:"連続した刺激で単収縮が完全に融合した収縮"},
+  {c:"動物の反応", t:"生得的行動", y:"せいとくてきこうどう", m:"生まれつき備わっている行動"},
+  {c:"動物の反応", t:"8の字ダンス", y:"はちのじだんす", m:"ミツバチが蜜源の方向と距離を仲間に伝える行動"},
+  {c:"植物の反応", t:"植物ホルモン", y:"しょくぶつほるもん", m:"植物の成長や反応を調節する物質"},
+  {c:"植物の反応", t:"オーキシン", y:"おーきしん", m:"成長を促し屈性に関わる植物ホルモン"},
+  {c:"植物の反応", t:"インドール酢酸", y:"いんどーるさくさん", m:"天然のオーキシンの本体"},
+  {c:"植物の反応", t:"極性移動", y:"きょくせいいどう", m:"オーキシンが先端から基部へ一方向に移動すること"},
+  {c:"植物の反応", t:"屈性", y:"くっせい", m:"刺激の方向に対して曲がる性質"},
+  {c:"植物の反応", t:"傾性", y:"けいせい", m:"刺激の方向と関係なく決まった向きに動く性質"},
+  {c:"植物の反応", t:"頂芽優勢", y:"ちょうがゆうせい", m:"頂芽が側芽の成長を抑えるしくみ"},
+  {c:"植物の反応", t:"頂端分裂組織", y:"ちょうたんぶんれつそしき", m:"茎や根の先端で細胞分裂する部分"},
+  {c:"植物の反応", t:"根冠", y:"こんかん", m:"根の先端を保護する構造"},
+  {c:"植物の反応", t:"アミロプラスト", y:"あみろぷらすと", m:"重力の向きを感じるデンプン粒を含む構造"},
+  {c:"植物の反応", t:"ジベレリン", y:"じべれりん", m:"茎の伸長や発芽を促す植物ホルモン"},
+  {c:"植物の反応", t:"アブシシン酸", y:"あぶししんさん", m:"気孔を閉じ休眠を促す植物ホルモン"},
+  {c:"植物の反応", t:"エチレン", y:"えちれん", m:"果実の成熟を促す気体の植物ホルモン"},
+  {c:"植物の反応", t:"サイトカイニン", y:"さいとかいにん", m:"細胞分裂を促し老化を抑える植物ホルモン"},
+  {c:"植物の反応", t:"フィトクロム", y:"ふぃとくろむ", m:"赤色光と遠赤色光を受け取る色素タンパク質"},
+  {c:"植物の反応", t:"フォトトロピン", y:"ふぉととろぴん", m:"青色光を受け取り屈性や気孔開閉に関わる"},
+  {c:"植物の反応", t:"光発芽種子", y:"こうはつがしゅし", m:"光が当たると発芽する種子"},
+  {c:"植物の反応", t:"糊粉層", y:"こふんそう", m:"種子で酵素を分泌する胚乳の外側の層"},
+  {c:"植物の反応", t:"胚乳", y:"はいにゅう", m:"種子で発芽の養分をたくわえる部分"},
+  {c:"植物の反応", t:"有胚乳種子", y:"ゆうはいにゅうしゅし", m:"胚乳に養分をたくわえる種子"},
+  {c:"植物の反応", t:"無胚乳種子", y:"むはいにゅうしゅし", m:"子葉に養分をたくわえる種子"},
+  {c:"植物の反応", t:"休眠", y:"きゅうみん", m:"生育に適さない時期に成長を止めること"},
+  {c:"植物の反応", t:"光周性", y:"こうしゅうせい", m:"昼夜の長さの変化に応じて反応する性質"},
+  {c:"植物の反応", t:"長日植物", y:"ちょうじつしょくぶつ", m:"暗期が短くなると花芽をつける植物"},
+  {c:"植物の反応", t:"短日植物", y:"たんじつしょくぶつ", m:"暗期が長くなると花芽をつける植物"},
+  {c:"植物の反応", t:"中性植物", y:"ちゅうせいしょくぶつ", m:"日長に関係なく花芽をつける植物"},
+  {c:"植物の反応", t:"限界暗期", y:"げんかいあんき", m:"花芽形成が切りかわる暗期の長さ"},
+  {c:"植物の反応", t:"光中断", y:"こうちゅうだん", m:"暗期の途中で短時間光を当てて花芽形成に影響を与えること"},
+  {c:"植物の反応", t:"フロリゲン", y:"ふろりげん", m:"花芽の形成を促す物質"},
+  {c:"植物の反応", t:"春化", y:"しゅんか", m:"低温を経験することで花芽形成が促されること"},
+  {c:"植物の反応", t:"花粉管", y:"かふんかん", m:"花粉から伸びて精細胞を運ぶ管"},
+  {c:"植物の反応", t:"雄原細胞", y:"ゆうげんさいぼう", m:"分裂して精細胞になる細胞"},
+  {c:"植物の反応", t:"胚のう", y:"はいのう", m:"めしべの中にある雌の配偶体"},
+  {c:"植物の反応", t:"精細胞", y:"せいさいぼう", m:"花粉管で運ばれる植物の雄の配偶子"},
+  {c:"植物の反応", t:"卵細胞", y:"らんさいぼう", m:"胚のう内にある雌の配偶子"},
+  {c:"植物の反応", t:"中央細胞", y:"ちゅうおうさいぼう", m:"極核をもち受精して胚乳になる細胞"},
+  {c:"植物の反応", t:"孔辺細胞", y:"こうへんさいぼう", m:"気孔を開閉する一対の細胞"},
+  {c:"植物の反応", t:"離層", y:"りそう", m:"落葉のとき葉柄の付け根にできる層"},
+  {c:"植物の反応", t:"アミラーゼ", y:"あみらーぜ", m:"デンプンを糖に分解する酵素"},
+  {c:"植物の反応", t:"暗発芽種子", y:"あんはつがしゅし", m:"光が当たると発芽が抑制される種子"},
+  {c:"植物の反応", t:"PR型", y:"ぴーあーるがた", m:"赤色光を吸収してPFR型に変化するフィトクロムの型"},
+  {c:"植物の反応", t:"PFR型", y:"ぴーえふあーるがた", m:"遠赤色光を吸収してPR型に戻る、発芽を促進する型"},
+  {c:"植物の反応", t:"クリプトクロム", y:"くりぷとくろむ", m:"青色光を受容し、茎の伸長抑制などにかかわる光受容体"},
+  {c:"植物の反応", t:"光屈性", y:"こうくっせい", m:"光の方向に応じて屈曲する性質"},
+  {c:"植物の反応", t:"重力屈性", y:"じゅうりょくくっせい", m:"重力の方向に応じて屈曲する性質"},
+  {c:"植物の反応", t:"FTタンパク質", y:"えふてぃーたんぱくしつ", m:"シロイヌナズナにおけるフロリゲンの本体"},
+  {c:"植物の反応", t:"ABCモデル", y:"えーびーしーもでる", m:"3種類の遺伝子の組み合わせで花の各器官が決まるとするモデル"},
+  {c:"植物の反応", t:"がく片", y:"がくへん", m:"ABCモデルでAクラス遺伝子のみがはたらいて分化する器官"},
+  {c:"植物の反応", t:"花弁", y:"かべん", m:"ABCモデルでAクラスとBクラスがはたらいて分化する器官"},
+  {c:"植物の反応", t:"おしべ", y:"おしべ", m:"ABCモデルでBクラスとCクラスがはたらいて分化する器官"},
+  {c:"植物の反応", t:"めしべ", y:"めしべ", m:"ABCモデルでCクラス遺伝子のみがはたらいて分化する器官"},
+  {c:"植物の反応", t:"花粉四分子", y:"かふんしぶんし", m:"花粉母細胞が減数分裂してできる4個の細胞"},
+  {c:"植物の反応", t:"花粉管細胞", y:"かふんかんさいぼう", m:"花粉管を伸ばす役割をもつ細胞"},
+  {c:"植物の反応", t:"胚のう母細胞", y:"はいのうぼさいぼう", m:"減数分裂を行って胚のう細胞を生じる細胞"},
+  {c:"植物の反応", t:"胚のう細胞", y:"はいのうさいぼう", m:"核分裂を繰り返して胚のうになる細胞"},
+  {c:"植物の反応", t:"単為結実", y:"たんいけつじつ", m:"受精しないまま果実が成長する現象"},
+  {c:"生態", t:"生態系", y:"せいたいけい", m:"生物とそれをとりまく環境のまとまり"},
+  {c:"生態", t:"食物連鎖", y:"しょくもつれんさ", m:"食う食われるのつながり"},
+  {c:"生態", t:"生産者", y:"せいさんしゃ", m:"光合成で有機物をつくる生物"},
+  {c:"生態", t:"消費者", y:"しょうひしゃ", m:"他の生物を食べて有機物を得る生物"},
+  {c:"生態", t:"分解者", y:"ぶんかいしゃ", m:"遺体や排出物を分解する生物"},
+  {c:"生態", t:"個体群", y:"こたいぐん", m:"同じ地域にすむ同種個体の集まり"},
+  {c:"生態", t:"遷移", y:"せんい", m:"植生が時間とともに移り変わること"},
+  {c:"生態", t:"窒素固定", y:"ちっそこてい", m:"大気中の窒素をアンモニウムイオンなどの窒素化合物に変えるはたらき"},
+  {c:"生態", t:"バイオーム", y:"ばいおーむ", m:"気候に対応した生物のまとまり"},
+  {c:"生態", t:"栄養段階", y:"えいようだんかい", m:"食物連鎖上の各段階"},
+  {c:"生態", t:"環境", y:"かんきょう", m:"生物をとりまく外界"},
+  {c:"生態", t:"生物群集", y:"せいぶつぐんしゅう", m:"ある地域のすべての個体群の集まり"},
+  {c:"生態", t:"食物網", y:"しょくもつもう", m:"食物連鎖が網の目状に絡んだもの"},
+  {c:"生態", t:"生物多様性", y:"せいぶつたようせい", m:"生物の種類や生態系の豊かさ"},
+  {c:"生態", t:"外来種", y:"がいらいしゅ", m:"本来生息していない地域に人間によって持ち込まれ定着した生物"},
+  {c:"生態", t:"絶滅", y:"ぜつめつ", m:"ある種が地球上から消えること"},
+  {c:"生態", t:"地球温暖化", y:"ちきゅうおんだんか", m:"温室効果ガス増加による気温上昇"},
+  {c:"生態", t:"炭素循環", y:"たんそじゅんかん", m:"炭素が生物と環境を巡る流れ"},
+  {c:"生態", t:"森林", y:"しんりん", m:"樹木が密に生育する生態系"},
+  {c:"生態", t:"個体群密度", y:"こたいぐんみつど", m:"一定面積あたりの個体数"},
+  {c:"生態", t:"環境収容力", y:"かんきょうしゅうようりょく", m:"その環境が支えられる個体数の上限"},
+  {c:"生態", t:"種内競争", y:"しゅないきょうそう", m:"同じ種の個体どうしの競争"},
+  {c:"生態", t:"種間競争", y:"しゅかんきょうそう", m:"異なる種の間で起こる競争"},
+  {c:"生態", t:"捕食", y:"ほしょく", m:"ある生物が他の生物を食べること"},
+  {c:"生態", t:"共生", y:"きょうせい", m:"異種の生物が互いに関わって生活すること"},
+  {c:"生態", t:"寄生", y:"きせい", m:"一方が利益を得て他方が害を受ける関係"},
+  {c:"生態", t:"極相", y:"きょくそう", m:"遷移が進み安定した状態"},
+  {c:"生態", t:"陽樹", y:"ようじゅ", m:"強い光でよく育つ樹木"},
+  {c:"生態", t:"陰樹", y:"いんじゅ", m:"弱い光でも育つ樹木"},
+  {c:"生態", t:"先駆種", y:"せんくしゅ", m:"遷移の初期に最初に侵入する種"},
+  {c:"生態", t:"一次遷移", y:"いちじせんい", m:"火山跡など土壌がない所から始まる遷移"},
+  {c:"生態", t:"二次遷移", y:"にじせんい", m:"山火事跡など土壌が残る所から始まる遷移"},
+  {c:"生態", t:"生物濃縮", y:"せいぶつのうしゅく", m:"体内に物質が高濃度で蓄積される現象"},
+  {c:"生態", t:"富栄養化", y:"ふえいようか", m:"水中の栄養分が増えすぎる現象"},
+  {c:"生態", t:"温室効果", y:"おんしつこうか", m:"大気が地表の熱を保つ働き"},
+  {c:"生態", t:"区画法", y:"くかくほう", m:"一定面積の区画内の個体数を数えて全体を推定する方法"},
+  {c:"生態", t:"標識再捕法", y:"ひょうしきさいほほう", m:"印をつけ再び捕まえて個体数を推定する方法"},
+  {c:"生態", t:"成長曲線", y:"せいちょうきょくせん", m:"個体数の増え方を表したS字型の曲線"},
+  {c:"生態", t:"密度効果", y:"みつどこうか", m:"個体群密度が成長や繁殖に影響すること"},
+  {c:"生態", t:"相変異", y:"そうへんい", m:"密度によって形や性質が変わる現象"},
+  {c:"生態", t:"孤独相", y:"こどくそう", m:"低密度で育ったバッタなどの型"},
+  {c:"生態", t:"群生相", y:"ぐんせいそう", m:"高密度で育ち移動に適した型"},
+  {c:"生態", t:"齢構成", y:"れいこうせい", m:"個体群内の年齢ごとの個体数の構成"},
+  {c:"生態", t:"年齢ピラミッド", y:"ねんれいぴらみっど", m:"齢構成を図に表したもの"},
+  {c:"生態", t:"生命表", y:"せいめいひょう", m:"各年齢の生存数をまとめた表"},
+  {c:"生態", t:"生存曲線", y:"せいぞんきょくせん", m:"年齢ごとの生存数の変化を示す曲線"},
+  {c:"生態", t:"群れ", y:"むれ", m:"同種の個体が集まって行動する集団"},
+  {c:"生態", t:"縄張り", y:"なわばり", m:"他の個体を排除して占有する空間"},
+  {c:"生態", t:"順位制", y:"じゅんいせい", m:"個体の間に優劣の序列ができること"},
+  {c:"生態", t:"共同繁殖", y:"きょうどうはんしょく", m:"親以外の個体も子育てに関わること"},
+  {c:"生態", t:"生態的地位", y:"せいたいてきちい", m:"生物が生態系で占める位置や役割"},
+  {c:"生態", t:"形質置換", y:"けいしつちかん", m:"競争を避けて形質がずれていく現象"},
+  {c:"生態", t:"すみわけ", y:"すみわけ", m:"生活場所を分けて競争を避けること"},
+  {c:"生態", t:"相利共生", y:"そうりきょうせい", m:"両方の種が利益を得る関係"},
+  {c:"生態", t:"片利共生", y:"へんりきょうせい", m:"一方だけが利益を得る関係"},
+  {c:"生態", t:"かく乱", y:"かくらん", m:"台風や山火事、人間活動などが生態系に与える破壊的な作用"},
+  {c:"生態", t:"中規模かく乱説", y:"ちゅうきぼかくらんせつ", m:"適度なかく乱で多様性が高まるという考え"},
+  {c:"生態", t:"生産構造図", y:"せいさんこうぞうず", m:"植物の葉や茎の高さごとの分布を示す図"},
+  {c:"生態", t:"現存量", y:"げんそんりょう", m:"ある時点で存在する生物体の量"},
+  {c:"生態", t:"総生産量", y:"そうせいさんりょう", m:"生産者が光合成でつくった有機物の総量"},
+  {c:"生態", t:"純生産量", y:"じゅんせいさんりょう", m:"総生産量から呼吸量を引いた量"},
+  {c:"生態", t:"補償深度", y:"ほしょうしんど", m:"光合成量と呼吸量がつり合う水深"},
+  {c:"生態", t:"生産力ピラミッド", y:"せいさんりょくぴらみっど", m:"栄養段階ごとのエネルギー量を示す図"},
+  {c:"生態", t:"窒素同化", y:"ちっそどうか", m:"窒素化合物から有機窒素化合物を作ること"},
+  {c:"生態", t:"硝化菌", y:"しょうかきん", m:"アンモニウムイオンを硝酸イオンに変える細菌"},
+  {c:"生態", t:"脱窒", y:"だっちつ", m:"窒素化合物を窒素に変えて大気へ戻す働き"},
+  {c:"生態", t:"生態系サービス", y:"せいたいけいさーびす", m:"生態系が人にもたらす恵み"},
+  {c:"生態", t:"分断化", y:"ぶんだんか", m:"生息地が分けられ孤立すること"},
+  {c:"生態", t:"里山", y:"さとやま", m:"人の手が適度に入った身近な自然"},
+  {c:"生態", t:"最終収量一定の法則", y:"さいしゅうしゅうりょういっていのほうそく", m:"植物では個体群密度によらず単位面積あたりの収量が一定になる法則"},
+  {c:"生態", t:"晩死型", y:"ばんしがた", m:"親の保護が手厚く、幼齢の死亡率が低い生存曲線の型"},
+  {c:"生態", t:"早死型", y:"そうしがた", m:"産卵数が多く、幼齢の死亡率が高い生存曲線の型"},
+  {c:"生態", t:"順位", y:"じゅんい", m:"個体間の優劣によって決まる序列"},
+  {c:"生態", t:"社会性昆虫", y:"しゃかいせいこんちゅう", m:"複雑な社会組織をつくって生活する昆虫"},
+  {c:"生態", t:"ヘルパー", y:"へるぱー", m:"共同繁殖で、自分は繁殖せず子の世話を手伝う個体"},
+  {c:"生態", t:"血縁選択", y:"けつえんせんたく", m:"血縁者を助けることで自分と同じ遺伝子を残す方向にはたらく自然選択"},
+  {c:"生態", t:"競争的排除", y:"きょうそうてきはいじょ", m:"種間競争の結果、一方の種が排除されること"},
+  {c:"生態", t:"食いわけ", y:"くいわけ", m:"食物を分けることで種間競争を避けること"},
+  {c:"生態", t:"捕食者-被食者相互関係", y:"ほしょくしゃひしょくしゃそうごかんけい", m:"食う食われるの関係にある生物どうしが互いに影響し合う関係"},
+  {c:"生態", t:"キーストーン種", y:"きーすとーんしゅ", m:"生物群集の構造に大きな影響を与える上位の捕食者"},
+  {c:"生態", t:"間接効果", y:"かんせつこうか", m:"直接関係のない種を介して他の種に影響が及ぶこと"},
+  {c:"生態", t:"生産構造", y:"せいさんこうぞう", m:"同化器官と非同化器官の空間的な分布状態"},
+  {c:"生態", t:"広葉型", y:"こうようがた", m:"幅の広い葉が上部に水平につく生産構造の型"},
+  {c:"生態", t:"イネ科型", y:"いねかがた", m:"細長い葉が斜めにつき、光が下層まで届く生産構造の型"},
+  {c:"生態", t:"成長量", y:"せいちょうりょう", m:"純生産量から枯死量と被食量を差し引いたもの"},
+  {c:"生態", t:"同化量", y:"どうかりょう", m:"消費者が摂食量から不消化排出量を差し引いた量"},
+  {c:"生態", t:"生産層", y:"せいさんそう", m:"補償深度より浅い、光合成が呼吸を上回る層"},
+  {c:"生態", t:"生態ピラミッド", y:"せいたいぴらみっど", m:"個体数ピラミッドや生物量ピラミッドなどをまとめてよぶ、栄養段階を積み上げて表した図の総称"},
+  {c:"生態", t:"窒素固定細菌", y:"ちっそこていさいきん", m:"根粒菌やアゾトバクターなど、大気中の窒素をアンモニウムイオンに変えるはたらきをもつ細菌"},
+  {c:"生態", t:"根粒菌", y:"こんりゅうきん", m:"マメ科植物の根に共生して窒素固定を行う細菌"},
+  {c:"生態", t:"脱窒素細菌", y:"だっちっそさいきん", m:"硝酸イオンを窒素に変え、大気中に放出する細菌"},
+  {c:"生態", t:"遺伝的多様性", y:"いでんてきたようせい", m:"同種内で遺伝子が多様であること"},
+  {c:"生態", t:"種多様性", y:"しゅたようせい", m:"生態系を構成する種が多様であること"},
+  {c:"生態", t:"生態系多様性", y:"せいたいけいたようせい", m:"さまざまな種類の生態系が存在すること"},
+  {c:"生態", t:"局所個体群", y:"きょくしょこたいぐん", m:"分断された生息地ごとに存在する小さな個体群"},
+  {c:"生態", t:"近交弱勢", y:"きんこうじゃくせい", m:"近親交配によって有害な遺伝子が現れやすくなり適応度が下がること"},
+  {c:"生態", t:"絶滅の渦", y:"ぜつめつのうず", m:"個体数の減少が加速度的に進み絶滅に向かう現象"},
+  {c:"生態", t:"外来生物", y:"がいらいせいぶつ", m:"人間の活動によって本来の生息地以外に持ちこまれた生物"},
+  {c:"進化", t:"進化", y:"しんか", m:"生物が世代を重ねて変化すること"},
+  {c:"進化", t:"自然選択", y:"しぜんせんたく", m:"環境に適した個体が生き残る過程"},
+  {c:"進化", t:"適応", y:"てきおう", m:"環境に合った形質をもつこと"},
+  {c:"進化", t:"種", y:"しゅ", m:"分類の基本単位"},
+  {c:"進化", t:"相同器官", y:"そうどうきかん", m:"起源が同じで形やはたらきが異なる器官"},
+  {c:"進化", t:"化石", y:"かせき", m:"地層中に残された生物の痕跡"},
+  {c:"進化", t:"系統樹", y:"けいとうじゅ", m:"生物の進化の道すじを表した樹形図"},
+  {c:"進化", t:"遺伝的浮動", y:"いでんてきふどう", m:"偶然によって遺伝子頻度が変化すること"},
+  {c:"進化", t:"生命", y:"せいめい", m:"生きているという現象・状態"},
+  {c:"進化", t:"分類", y:"ぶんるい", m:"生物を共通性でグループ分けすること"},
+  {c:"進化", t:"共通祖先", y:"きょうつうそせん", m:"複数の種のもとになった生物"},
+  {c:"進化", t:"脊椎動物", y:"せきついどうぶつ", m:"背骨をもつ動物"},
+  {c:"進化", t:"無脊椎動物", y:"むせきついどうぶつ", m:"背骨をもたない動物"},
+  {c:"進化", t:"相似器官", y:"そうじきかん", m:"起源は異なるが働きが似た器官"},
+  {c:"進化", t:"痕跡器官", y:"こんせききかん", m:"退化して働きを失った器官"},
+  {c:"進化", t:"生存競争", y:"せいぞんきょうそう", m:"限られた資源をめぐる生物間の争い"},
+  {c:"進化", t:"自然淘汰", y:"しぜんとうた", m:"環境に適した個体が生き残り子を残すこと"},
+  {c:"進化", t:"適者生存", y:"てきしゃせいぞん", m:"環境に適した者が生き残るという考え"},
+  {c:"進化", t:"用不用説", y:"ようふようせつ", m:"よく使う器官が発達するという進化の説"},
+  {c:"進化", t:"獲得形質", y:"かくとくけいしつ", m:"生後に身につけた形質"},
+  {c:"進化", t:"隔離", y:"かくり", m:"集団が分かれて交流できなくなること"},
+  {c:"進化", t:"種分化", y:"しゅぶんか", m:"一つの種から新しい種が生じること"},
+  {c:"進化", t:"始祖鳥", y:"しそちょう", m:"は虫類と鳥類の中間的な特徴をもつ化石"},
+  {c:"進化", t:"分子進化", y:"ぶんししんか", m:"DNAやタンパク質に蓄積する変化"},
+  {c:"進化", t:"中立説", y:"ちゅうりつせつ", m:"多くの分子進化は自然選択に中立という説"},
+  {c:"進化", t:"ダーウィン", y:"だーうぃん", m:"自然選択による進化論を唱えた人物"},
+  {c:"進化", t:"進化論", y:"しんかろん", m:"生物が長い年月をかけて変化し多様化してきたとする考え方"},
+  {c:"進化", t:"五界説", y:"ごかいせつ", m:"生物を5つの界に分ける分類体系"},
+  {c:"進化", t:"ドメイン", y:"どめいん", m:"界よりさらに大きい分類の区分"},
+  {c:"進化", t:"化学進化", y:"かがくしんか", m:"無機物から有機物が生成された過程"},
+  {c:"進化", t:"熱水噴出孔", y:"ねっすいふんしゅつこう", m:"海底で熱水がふき出す場所"},
+  {c:"進化", t:"自己複製", y:"じこふくせい", m:"自分と同じ構造をもつものをつくり出す性質"},
+  {c:"進化", t:"シアノバクテリア", y:"しあのばくてりあ", m:"光合成で酸素を発生した原核生物"},
+  {c:"進化", t:"ストロマトライト", y:"すとろまとらいと", m:"シアノバクテリアが作った層状の岩石"},
+  {c:"進化", t:"細胞内共生", y:"さいぼうないきょうせい", m:"取り込まれた好気性細菌やシアノバクテリアが細胞小器官になったとされる現象"},
+  {c:"進化", t:"オゾン層", y:"おぞんそう", m:"紫外線をさえぎる大気の層"},
+  {c:"進化", t:"エディアカラ生物群", y:"えでぃあからせいぶつぐん", m:"先カンブリア時代末の大型生物の化石群"},
+  {c:"進化", t:"カンブリア紀", y:"かんぶりあき", m:"多様な動物が一気に出現した時代"},
+  {c:"進化", t:"大量絶滅", y:"たいりょうぜつめつ", m:"多くの種が短期間に絶滅すること"},
+  {c:"進化", t:"変異", y:"へんい", m:"同じ種の個体間に見られる形質の違い"},
+  {c:"進化", t:"遺伝子プール", y:"いでんしぷーる", m:"集団がもつ遺伝子全体"},
+  {c:"進化", t:"遺伝子頻度", y:"いでんしひんど", m:"集団内である遺伝子が占める割合"},
+  {c:"進化", t:"共進化", y:"きょうしんか", m:"関わり合う種が互いに影響し合って進化すること"},
+  {c:"進化", t:"地理的隔離", y:"ちりてきかくり", m:"地形などで集団が分けられること"},
+  {c:"進化", t:"生殖的隔離", y:"せいしょくてきかくり", m:"交配しても子孫を残せなくなること"},
+  {c:"進化", t:"異所的種分化", y:"いしょてきしゅぶんか", m:"地理的隔離を経て起こる種分化"},
+  {c:"進化", t:"同所的種分化", y:"どうしょてきしゅぶんか", m:"同じ場所にいながら起こる種分化"},
+  {c:"進化", t:"適応放散", y:"てきおうほうさん", m:"共通祖先から多様な環境へ分かれて進化すること"},
+  {c:"進化", t:"収れん", y:"しゅうれん", m:"異なる系統が似た形質をもつようになること"},
+  {c:"進化", t:"二名法", y:"にめいほう", m:"属名と種小名で学名をつける方法"},
+  {c:"進化", t:"種小名", y:"しゅしょうめい", m:"学名の後半にあたる名前"},
+  {c:"進化", t:"系統", y:"けいとう", m:"生物が進化してきた道すじ"},
+  {c:"進化", t:"分子系統樹", y:"ぶんしけいとうじゅ", m:"DNAなどの違いをもとに作った系統樹"},
+  {c:"進化", t:"リンネ", y:"りんね", m:"二名法を考案した分類学者"},
+  {c:"進化", t:"細菌", y:"さいきん", m:"大腸菌や乳酸菌などを含む、アーキア以外の原核生物からなるドメイン"},
+  {c:"進化", t:"アーキア", y:"あーきあ", m:"古細菌ともよばれる原核生物のドメイン"},
+  {c:"進化", t:"菌類", y:"きんるい", m:"カビやキノコのなかまで分解者となる"},
+  {c:"進化", t:"霊長類", y:"れいちょうるい", m:"サルやヒトを含む哺乳類のなかま"},
+  {c:"進化", t:"拇指対向性", y:"ぼしたいこうせい", m:"親指が他の指と向き合い物をつかめる性質"},
+  {c:"進化", t:"類人猿", y:"るいじんえん", m:"チンパンジーやゴリラなどヒトに近いなかま"},
+  {c:"進化", t:"直立二足歩行", y:"ちょくりつにそくほこう", m:"背骨を立てて二本足で歩くこと"},
+  {c:"進化", t:"アウストラロピテクス", y:"あうすとらろぴてくす", m:"猿人に分類される初期の人類"},
+  {c:"進化", t:"自己複製系", y:"じこふくせいけい", m:"子孫を増やすために必要な、自らと同じものをつくり出すしくみ"},
+  {c:"進化", t:"RNAワールド", y:"あーるえぬえーわーるど", m:"RNAが遺伝情報と触媒作用の両方を担っていたと考えられる初期生命の世界"},
+  {c:"進化", t:"DNAワールド", y:"でぃーえぬえーわーるど", m:"DNAが遺伝情報を、タンパク質が触媒作用を担う現生生物と同じ世界"},
+  {c:"進化", t:"化学合成細菌", y:"かがくごうせいさいきん", m:"無機物の酸化で得た化学エネルギーを使って有機物を合成する細菌"},
+  {c:"進化", t:"しま状鉄鉱層", y:"しまじょうてっこうそう", m:"放出された酸素が鉄イオンと結合し、酸化鉄が海底に沈殿してできた地層"},
+  {c:"進化", t:"好気性細菌", y:"こうきせいさいきん", m:"酸素を利用して有機物を分解し、効率よくエネルギーを取り出す細菌"},
+  {c:"進化", t:"先カンブリア時代", y:"せんかんぶりあじだい", m:"約46億年前から約5億4000万年前までの地質時代"},
+  {c:"進化", t:"カンブリア紀の大爆発", y:"かんぶりあきのだいばくはつ", m:"古生代初期に起こった、爆発的な生物の多様化"},
+  {c:"進化", t:"工業暗化", y:"こうぎょうあんか", m:"工業地帯で暗色型のガの割合が高くなった現象"},
+  {c:"進化", t:"ハーディ・ワインベルグの法則", y:"はーでぃわいんべるぐのほうそく", m:"一定の条件下で遺伝子頻度が世代をこえて変化しないという法則"},
+  {c:"進化", t:"中立進化", y:"ちゅうりつしんか", m:"自然選択に対して有利でも不利でもない変異が集団に広がる進化"},
+  {c:"進化", t:"学名", y:"がくめい", m:"世界共通で用いられる生物の名称"},
+  {c:"進化", t:"分子時計", y:"ぶんしどけい", m:"分子進化の速度がほぼ一定であることを利用して年代を推定する考え方"},
+  {c:"進化", t:"3ドメイン説", y:"さんどめいんせつ", m:"生物を細菌・アーキア・真核生物の3つに分ける説"},
+  {c:"進化", t:"コケ植物", y:"こけしょくぶつ", m:"維管束をもたず、おもに配偶体の世代で生活する植物"},
+  {c:"進化", t:"旧口動物", y:"きゅうこうどうぶつ", m:"発生の過程で原口がそのまま口になる動物"},
+  {c:"進化", t:"新口動物", y:"しんこうどうぶつ", m:"発生の過程で原口またはその付近が肛門になる動物"},
+  {c:"進化", t:"ホモ・エレクトス", y:"ほもえれくとす", m:"火や言語を使ったと考えられる原人"},
+  {c:"進化", t:"ホモ・ネアンデルターレンシス", y:"ほもねあんでるたーれんしす", m:"ヨーロッパを中心に生息していた旧人"},
+  {c:"進化", t:"ホモ・サピエンス", y:"ほもさぴえんす", m:"現生人類の学名"}
+];
+/* ============================================================
+   ローマ字入力エンジン
+   ============================================================ */
+const MAP = {
+  "あ":["a"],"い":["i","yi"],"う":["u","wu","whu"],"え":["e"],"お":["o"],
+  "か":["ka","ca"],"き":["ki"],"く":["ku","cu","qu"],"け":["ke"],"こ":["ko","co"],
+  "が":["ga"],"ぎ":["gi"],"ぐ":["gu"],"げ":["ge"],"ご":["go"],
+  "さ":["sa"],"し":["shi","si","ci"],"す":["su"],"せ":["se"],"そ":["so"],
+  "ざ":["za"],"じ":["ji","zi"],"ず":["zu"],"ぜ":["ze"],"ぞ":["zo"],
+  "た":["ta"],"ち":["chi","ti"],"つ":["tsu","tu"],"て":["te"],"と":["to"],
+  "だ":["da"],"ぢ":["di"],"づ":["du"],"で":["de"],"ど":["do"],
+  "な":["na"],"に":["ni"],"ぬ":["nu"],"ね":["ne"],"の":["no"],
+  "は":["ha"],"ひ":["hi"],"ふ":["fu","hu"],"へ":["he"],"ほ":["ho"],
+  "ば":["ba"],"び":["bi"],"ぶ":["bu"],"べ":["be"],"ぼ":["bo"],
+  "ぱ":["pa"],"ぴ":["pi"],"ぷ":["pu"],"ぺ":["pe"],"ぽ":["po"],
+  "ま":["ma"],"み":["mi"],"む":["mu"],"め":["me"],"も":["mo"],
+  "や":["ya"],"ゆ":["yu"],"よ":["yo"],
+  "ら":["ra"],"り":["ri"],"る":["ru"],"れ":["re"],"ろ":["ro"],
+  "わ":["wa"],"を":["wo","o"],"ゐ":["wi"],"ゑ":["we"],
+  "ぁ":["xa","la"],"ぃ":["xi","li"],"ぅ":["xu","lu"],"ぇ":["xe","le"],"ぉ":["xo","lo"],
+  "ゃ":["xya","lya"],"ゅ":["xyu","lyu"],"ょ":["xyo","lyo"],"ゎ":["xwa","lwa"],
+  "きゃ":["kya"],"きゅ":["kyu"],"きょ":["kyo"],
+  "ぎゃ":["gya"],"ぎゅ":["gyu"],"ぎょ":["gyo"],
+  "しゃ":["sha","sya"],"しゅ":["shu","syu"],"しょ":["sho","syo"],"しぇ":["she","sye"],
+  "じゃ":["ja","jya","zya"],"じゅ":["ju","jyu","zyu"],"じょ":["jo","jyo","zyo"],"じぇ":["je","jye"],
+  "ちゃ":["cha","tya","cya"],"ちゅ":["chu","tyu","cyu"],"ちょ":["cho","tyo","cyo"],"ちぇ":["che","tye"],
+  "にゃ":["nya"],"にゅ":["nyu"],"にょ":["nyo"],
+  "ひゃ":["hya"],"ひゅ":["hyu"],"ひょ":["hyo"],
+  "びゃ":["bya"],"びゅ":["byu"],"びょ":["byo"],
+  "ぴゃ":["pya"],"ぴゅ":["pyu"],"ぴょ":["pyo"],
+  "みゃ":["mya"],"みゅ":["myu"],"みょ":["myo"],
+  "りゃ":["rya"],"りゅ":["ryu"],"りょ":["ryo"],
+  "ふぁ":["fa"],"ふぃ":["fi"],"ふぇ":["fe"],"ふぉ":["fo"],
+  "てぃ":["thi"],"でぃ":["dhi"],"とぅ":["twu"],"どぅ":["dwu"],
+  "ヴ":["vu"],"うぁ":["wha"],"うぃ":["wi"],"うぇ":["we"],"うぉ":["who"],
+};
+const SMALL = new Set(["ゃ","ゅ","ょ","ぁ","ぃ","ぅ","ぇ","ぉ","ゎ"]);
+const VOWELS = new Set(["a","i","u","e","o"]);
+const SAFE = new Set(["k","s","t","c","h","f","m","r","w","g","z","j","d","b","p","v"]);
+function toHira(s){
+  return s.replace(/[ァ-ヶ]/g,ch=>String.fromCharCode(ch.charCodeAt(0)-0x60));
+}
+function splitUnits(yomiRaw){
+  const y = toHira(yomiRaw);
+  const units=[];
+  for(let i=0;i<y.length;i++){
+    const ch=y[i], nx=y[i+1];
+    if(ch==="っ"){ units.push({k:"っ",type:"sok"}); continue; }
+    if(ch==="ん"){ units.push({k:"ん",type:"n"}); continue; }
+    if(ch==="ー"){ units.push({k:"ー",type:"long"}); continue; }
+    if(nx && SMALL.has(nx) && MAP[ch+nx]){ units.push({k:ch+nx,type:"kana"}); i++; continue; }
+    units.push({k:ch,type:"kana"});
+  }
+  return units;
+}
+function optionsFor(units,i){
+  const u=units[i];
+  if(u.type==="kana"){
+    let opts = MAP[u.k] ? MAP[u.k].slice() : [u.k];
+    if(u.k.length===2){
+      const b=u.k[0], s=u.k[1];
+      if(MAP[b]&&MAP[s]) for(const bo of MAP[b]) for(const so of MAP[s]){ const c=bo+so; if(!opts.includes(c)) opts.push(c); }
+    }
+    return opts;
+  }
+  if(u.type==="long"){
+    const opts=["-"];
+    if(i>0){ const p=optionsFor(units,i-1); for(const o of p){const lv=o[o.length-1]; if(VOWELS.has(lv)&&!opts.includes(lv))opts.push(lv);} }
+    return opts;
+  }
+  if(u.type==="sok"){
+    const opts=["xtu","ltu","xtsu","ltsu"];
+    const nx=units[i+1];
+    if(nx){ const nopts=(nx.type==="n")?["nn"]:optionsFor(units,i+1);
+      for(const o of nopts){ const c=o[0]; if(!VOWELS.has(c) && !opts.includes(c)) opts.push(c); } }
+    return opts;
+  }
+  if(u.type==="n"){
+    const opts=["nn","xn"];
+    const nx=units[i+1];
+    let single=false;
+    if(nx){
+      const nopts=(nx.type==="n"||nx.type==="sok")?["n"]:optionsFor(units,i+1);
+      single = nopts.every(o=>SAFE.has(o[0]));
+    }
+    if(single) opts.unshift("n");
+    return opts;
+  }
+  return [u.k];
+}
+function step(state, ch){
+  if(state.ui>=state.units.length) return {status:"miss"};
+  const opts=optionsFor(state.units,state.ui);
+  const want=state.buf+ch;
+  const viable=opts.filter(o=>o.startsWith(want));
+  if(viable.length>0){
+    state.buf=want;
+    if(opts.includes(want) && !viable.some(o=>o.length>want.length)){
+      state.ui++; state.buf="";
+      if(state.ui>=state.units.length) return {status:"clear"};
+    }
+    return {status:"ok"};
+  }
+  if(state.buf!=="" && opts.includes(state.buf)){
+    state.ui++; state.buf="";
+    if(state.ui>=state.units.length) return {status:"miss"};
+    return step(state, ch);
+  }
+  return {status:"miss"};
+}
+function canonical(units,i,prefix){
+  const opts=optionsFor(units,i);
+  if(prefix){ const m=opts.find(o=>o.startsWith(prefix)); if(m) return m; }
+  return opts[0];
+}
+/* ============================================================
+   ゲーム状態
+   ============================================================ */
+const $=id=>document.getElementById(id);
+const el={
+  start:$("start"),game:$("game"),result:$("result"),
+  catChips:$("catChips"),startBtn:$("startBtn"),
+  hTimer:$("hTimer"),hScore:$("hScore"),hCombo:$("hCombo"),hAcc:$("hAcc"),hDone:$("hDone"),
+  gCat:$("gCat"),gTerm:$("gTerm"),gMeaning:$("gMeaning"),gKana:$("gKana"),gRomaji:$("gRomaji"),gBar:$("gBar"),
+  rRank:$("rRank"),rScore:$("rScore"),rDone:$("rDone"),rKpm:$("rKpm"),rAcc:$("rAcc"),rMax:$("rMax"),rMiss:$("rMiss"),
+  againBtn:$("againBtn"),menuBtn:$("menuBtn"),
+};
+let selCats=new Set(["ALL"]);
+let mode={type:"time",val:60};
+let playMode="type";
+let rankTab="type";
+let G=null;
+let lastResult=null;
+/* ============================================================
+   プレイヤー名 / ランキング
+   ============================================================ */
+const PLAYER_KEY="seibutuTypePlayer";
+function getPlayer(){ try{return localStorage.getItem(PLAYER_KEY)||"";}catch(e){return "";} }
+function setPlayer(n){ try{localStorage.setItem(PLAYER_KEY,n);}catch(e){} }
+function hasServer(){ return typeof google!=="undefined" && google.script && google.script.run; }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c])); }
+function renderRankList(container, top, myName){
+  if(!container) return;
+  if(!top || !top.length){ container.innerHTML='<div class="rankempty">まだ記録がありません。1番乗りをねらおう！</div>'; return; }
+  container.innerHTML = top.map((r,i)=>{
+    const icon = i===0?"🥇":i===1?"🥈":i===2?"🥉":String(i+1);
+    const me = (myName && r.name===myName)?" me":"";
+    return `<div class="rankrow${me}"><div class="pos">${icon}</div>`+
+           `<div class="nm">${escapeHtml(r.name)}</div>`+
+           `<div class="sc">${r.score}</div></div>`;
+  }).join("");
+}
+function loadRankingInto(container, md){
+  if(!container) return;
+  md = md || "type";
+  if(!hasServer()){ container.innerHTML='<div class="rankempty">🌐 みんなで競うランキングは、先生が配布するウェブアプリ版で使えます</div>'; return; }
+  container.innerHTML='<div class="rankempty">読み込み中…</div>';
+  google.script.run
+    .withSuccessHandler(res=>renderRankList(container,res.top,getPlayer()))
+    .withFailureHandler(()=>{ container.innerHTML='<div class="rankempty">ランキングを取得できませんでした</div>'; })
+    .getRanking(getPlayer(), md);
+}
+function submitAndShow(payload){
+  const rl=$("rankResult"), myLine=$("myRankLine");
+  google.script.run
+    .withSuccessHandler(res=>{
+      renderRankList(rl,res.top,getPlayer());
+      if(res.myRank>0) myLine.textContent=`あなたは ${res.myRank}位 / ${res.total}人（ベスト ${res.my.score}点）`;
+      else myLine.textContent=`今回 ${payload.score}点（あと少しでTOP5！）`;
+    })
+    .withFailureHandler(()=>{ rl.innerHTML='<div class="rankempty">記録の送信に失敗しました</div>'; })
+    .submitScore(payload);
+}
+/* ============================================================
+   セーブ / ショップ
+   ============================================================ */
+const SAVE_KEY="seibutuTypeSave_v2";
+const DEFAULT_SAVE={coins:0,
+  up:{atp:0, mito:0, chloro:0, membrane:0, ribosome:0, synapse:0, homeo:0, stemcell:0, hemo:0},
+  themes:["ocean"], theme:"ocean"};
+function loadSave(){
+  try{
+    const raw=JSON.parse(localStorage.getItem(SAVE_KEY)||"{}");
+    return {...DEFAULT_SAVE, ...raw, up:{...DEFAULT_SAVE.up, ...(raw.up||{})},
+            themes: raw.themes && raw.themes.length? raw.themes : DEFAULT_SAVE.themes.slice()};
+  }catch(e){ return JSON.parse(JSON.stringify(DEFAULT_SAVE)); }
+}
+let SAVE=loadSave();
+function persist(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(SAVE)); }catch(e){} }
+const UPGRADES=[
+  {key:"atp",      ico:"⚡", name:"ATP",           bio:"生体のエネルギー通貨。分解時にエネルギーを放出し、生命活動に使われる。", desc:"打鍵ごとの得点がアップ", max:3, costs:[150,350,700], eff:l=>`得点+${l*10}%`},
+  {key:"mito",     ico:"🔋", name:"ミトコンドリア", bio:"呼吸を行い、有機物を分解してATPを合成する細胞小器官。",             desc:"タイム制モードの制限時間が増える", max:3, costs:[120,300,600], eff:l=>`+${l*5}秒`},
+  {key:"chloro",   ico:"🌿", name:"葉緑体",         bio:"光合成を行い、光エネルギーで有機物を合成する細胞小器官。",           desc:"獲得コインが増える", max:3, costs:[150,350,700], eff:l=>`コイン+${l*10}%`},
+  {key:"membrane", ico:"🛡", name:"細胞膜",         bio:"細胞を包み、物質の出入りを調節する膜。細胞を守る境界。",             desc:"序盤のミスでコンボが切れない", max:2, costs:[250,600],     eff:l=>`ガード${l}回`},
+  {key:"ribosome", ico:"🧬", name:"リボソーム",     bio:"mRNAの情報をもとにアミノ酸をつなぎ、タンパク質を合成する。",         desc:"語クリア時のボーナス得点が増える", max:3, costs:[130,300,600], eff:l=>`+${l*15}点/語`},
+  {key:"synapse",  ico:"🔗", name:"シナプス",       bio:"ニューロン同士の接続部。神経伝達物質で情報を次の細胞へ伝える。",     desc:"コンボボーナスの伸びが強くなる", max:3, costs:[180,400,800], eff:l=>`連鎖強化+${l}`},
+  {key:"homeo",    ico:"💧", name:"恒常性",         bio:"体内環境を一定に保とうとする性質（ホメオスタシス）。",             desc:"語クリアごとに制限時間が回復", max:2, costs:[300,700],     eff:l=>`+${l}秒/語`},
+  {key:"stemcell", ico:"🌱", name:"幹細胞",         bio:"さまざまな細胞に分化できる能力をもつ、未分化の細胞。",             desc:"開始時にボーナス得点を持てる", max:3, costs:[100,250,500], eff:l=>`開始+${l*100}点`},
+  {key:"hemo",     ico:"🩸", name:"ヘモグロビン",   bio:"赤血球に含まれ、酸素と結合して全身へ運ぶ色素タンパク質。",           desc:"正確率100%クリアで追加コイン", max:3, costs:[200,450,900], eff:l=>`100%で+${l*15}🪙`},
+];
+const THEMES=[
+  {key:"ocean",    name:"海洋",       cost:0,   a:"#38bdf8", b:"#34d399"},
+  {key:"chloro",   name:"葉緑体",     cost:150, a:"#4ade80", b:"#a3e635"},
+  {key:"hemo",     name:"血流",       cost:150, a:"#f87171", b:"#fb7185"},
+  {key:"nucleus",  name:"細胞核",     cost:200, a:"#a78bfa", b:"#f472b6"},
+  {key:"coral",    name:"サンゴ礁",   cost:200, a:"#fb923c", b:"#f472b6"},
+  {key:"pollen",   name:"花粉",       cost:200, a:"#fbbf24", b:"#facc15"},
+  {key:"abyss",    name:"深海",       cost:250, a:"#60a5fa", b:"#818cf8"},
+  {key:"culture",  name:"培地",       cost:250, a:"#84cc16", b:"#22d3ee"},
+  {key:"neuron",   name:"神経",       cost:300, a:"#22d3ee", b:"#a78bfa"},
+  {key:"dna",      name:"二重らせん", cost:300, a:"#2dd4bf", b:"#38bdf8"},
+  {key:"melanin",  name:"メラニン",   cost:350, a:"#d6a06a", b:"#f59e0b"},
+  {key:"magma",    name:"マグマ",     cost:400, a:"#ef4444", b:"#f59e0b"},
+  {key:"aurora",   name:"オーロラ",   cost:500, a:"#34d399", b:"#a78bfa"},
+  {key:"golden",   name:"黄金比",     cost:600, a:"#fbbf24", b:"#fde68a"},
+];
+function applyTheme(){
+  const t=THEMES.find(x=>x.key===SAVE.theme)||THEMES[0];
+  document.documentElement.style.setProperty("--accent", t.a);
+  document.documentElement.style.setProperty("--accent2", t.b);
+}
+function refreshCoins(){
+  const s=String(SAVE.coins);
+  const b1=$("coinBal"), b2=$("coinBal2");
+  if(b1)b1.textContent=s; if(b2)b2.textContent=s;
+}
+function toast(msg){
+  const t=document.createElement("div"); t.className="toast"; t.textContent=msg;
+  document.body.appendChild(t);
+  setTimeout(()=>{ t.style.transition="opacity .3s"; t.style.opacity="0"; setTimeout(()=>t.remove(),300); },1100);
+}
+function showReveal(html){
+  const ov=document.createElement("div"); ov.className="reveal-ov";
+  ov.innerHTML=`<div class="reveal-card">${html}
+     <button class="btn reveal-close">なるほど！</button></div>`;
+  document.body.appendChild(ov);
+  const close=()=>ov.remove();
+  ov.querySelector(".reveal-close").onclick=close;
+  ov.addEventListener("click",e=>{ if(e.target===ov) close(); });
+}
+function renderShop(){
+  refreshCoins();
+  const ul=$("upgradeList"); ul.innerHTML="";
+  for(const u of UPGRADES){
+    const lv=SAVE.up[u.key];
+    const revealed=lv>0;
+    const maxed=lv>=u.max;
+    const cost=maxed?null:u.costs[lv];
+    const dots=Array.from({length:u.max},(_,i)=>`<span class="dot ${i<lv?"on":""}"></span>`).join("");
+    const item=document.createElement("div"); item.className="shop-item"+(revealed?"":" locked");
+    const badge = revealed ? `<span class="guard-badge">現在 ${u.eff(lv)}</span>` : `<span class="mystery-badge">❓ ゲーム効果は入手で判明</span>`;
+    const fx = revealed
+      ? `<p class="fx">⚙️ ${u.desc}</p>`
+      : `<p class="fx hidden-fx">🔬 ゲーム効果は入手すると解析（名前がヒント）</p>`;
+    item.innerHTML=`
+      <div class="ico">${u.ico}</div>
+      <div class="info">
+        <b>${u.name}</b> ${badge}
+        <p class="bio">📖 ${u.bio}</p>
+        ${fx}
+        <div class="dots">${dots}</div>
+      </div>`;
+    const btn=document.createElement("button"); btn.className="btn buy";
+    if(maxed){ btn.classList.add("maxed"); btn.textContent="MAX"; btn.disabled=true; }
+    else{
+      btn.textContent=`🪙 ${cost}`;
+      btn.disabled = SAVE.coins < cost;
+      btn.onclick=()=>{
+        if(SAVE.coins<cost) return;
+        const wasLocked=lv===0;
+        SAVE.coins-=cost; SAVE.up[u.key]=lv+1; persist();
+        if(wasLocked){
+          showReveal(`<div class="reveal-ico">${u.ico}</div>
+            <div class="reveal-name">${u.name}</div>
+            <div class="reveal-eff" style="margin-top:8px">📖 ${u.bio}</div>
+            <div class="reveal-label">🔬 ゲーム効果 判明！</div>
+            <div class="reveal-eff">${u.desc}</div>
+            <div class="reveal-val">${u.eff(1)}</div>`);
+        }else{
+          toast(`${u.name} を ${u.eff(lv+1)} にパワーアップ！`);
+        }
+        renderShop();
+      };
+    }
+    item.appendChild(btn); ul.appendChild(item);
+  }
+  const tl=$("themeList"); tl.innerHTML="";
+  for(const t of THEMES){
+    const owned=SAVE.themes.includes(t.key);
+    const active=SAVE.theme===t.key;
+    const sw=document.createElement("div"); sw.className="theme-sw"+(active?" active":"");
+    const swatch = owned
+      ? `<div class="sw" style="background:linear-gradient(90deg,${t.a},${t.b})"></div>`
+      : `<div class="sw myst">？</div>`;
+    sw.innerHTML=`${swatch}<b>${t.name}</b><span>${active?"使用中":owned?"タップで使用":"🪙 "+t.cost}</span>`;
+    sw.onclick=()=>{
+      if(active) return;
+      if(owned){ SAVE.theme=t.key; persist(); applyTheme(); renderShop(); }
+      else{
+        if(SAVE.coins<t.cost){ toast("コインが足りません"); return; }
+        SAVE.coins-=t.cost; SAVE.themes.push(t.key); SAVE.theme=t.key;
+        persist(); applyTheme(); renderShop();
+        showReveal(`<div class="reveal-ico">🎨</div>
+          <div class="reveal-name">${t.name}</div>
+          <div class="reveal-label">🎨 配色 解放！</div>
+          <div class="reveal-sw" style="background:linear-gradient(90deg,${t.a},${t.b})"></div>
+          <div class="reveal-eff">この配色を適用しました</div>`);
+      }
+    };
+    tl.appendChild(sw);
+  }
+}
+(function buildChips(){
+  const mk=(label,key,count)=>{
+    const d=document.createElement("div");
+    d.className="chip"+(key==="ALL"?" active":"");
+    d.dataset.key=key;
+    d.innerHTML=label+(count!=null?`<small>${count}</small>`:"");
+    d.onclick=()=>toggleCat(key,d);
+    return d;
+  };
+  el.catChips.appendChild(mk("全範囲","ALL",WORDS.length));
+  for(const c of CATS){
+    const n=WORDS.filter(w=>w.c===c).length;
+    el.catChips.appendChild(mk(c,c,n));
+  }
+})();
+function toggleCat(key,node){
+  const chips=[...el.catChips.children];
+  if(key==="ALL"){ selCats=new Set(["ALL"]); }
+  else{
+    selCats.delete("ALL");
+    if(selCats.has(key)) selCats.delete(key); else selCats.add(key);
+    if(selCats.size===0) selCats=new Set(["ALL"]);
+  }
+  chips.forEach(ch=>ch.classList.toggle("active",
+    selCats.has("ALL") ? ch.dataset.key==="ALL" : selCats.has(ch.dataset.key)));
+}
+document.querySelectorAll(".mode").forEach(m=>{
+  m.onclick=()=>{
+    document.querySelectorAll(".mode").forEach(x=>x.classList.remove("active"));
+    m.classList.add("active");
+    mode={type:m.dataset.mode,val:+m.dataset.val};
+  };
+});
+function pool(){
+  const arr = selCats.has("ALL") ? WORDS.slice() : WORDS.filter(w=>selCats.has(w.c));
+  return arr.length?arr:WORDS.slice();
+}
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];} return a; }
+function show(scr){ for(const s of ["start","game","quiz","result","shop"]) $(s).classList.toggle("hidden",s!==scr); }
+document.querySelectorAll(".play").forEach(p=>{
+  p.onclick=()=>{
+    document.querySelectorAll(".play").forEach(x=>x.classList.remove("active"));
+    p.classList.add("active");
+    playMode=p.dataset.play;
+  };
+});
+document.querySelectorAll(".rtab").forEach(t=>{
+  t.onclick=()=>{
+    document.querySelectorAll(".rtab").forEach(x=>x.classList.remove("active"));
+    t.classList.add("active");
+    rankTab=t.dataset.rtab;
+    loadRankingInto($("rankStart"), rankTab);
+  };
+});
+el.startBtn.onclick=()=>countdownStart();
+el.againBtn.onclick=()=>countdownStart();
+let shopFrom="start";
+$("shopBtn").onclick=()=>{ shopFrom="start"; renderShop(); show("shop"); };
+$("shopBtn2").onclick=()=>{ shopFrom="result"; renderShop(); show("shop"); };
+$("shopBack").onclick=()=>{ refreshCoins(); show(shopFrom); };
+function countdownStart(){
+  show(playMode==="quiz" ? "quiz" : "game");
+  let n=3;
+  const ov=document.createElement("div");
+  ov.className="countdown"; ov.textContent=n;
+  document.body.appendChild(ov);
+  const iv=setInterval(()=>{
+    n--;
+    if(n<=0){
+      clearInterval(iv); ov.remove();
+      if(playMode==="quiz") beginQuiz();
+      else if(playMode==="recall") beginRecall();
+      else beginGame();
+    }
+    else ov.textContent=n;
+  },700);
+}
+function timerNodes(){ return [el.hTimer, $("qTimer")].filter(Boolean); }
+function setTimerText(v){ timerNodes().forEach(e=>e.textContent=v); }
+function setTimerLabel(s){ timerNodes().forEach(e=>{ const l=e.parentElement&&e.parentElement.querySelector(".l"); if(l) l.textContent=s; }); }
+function setupRun(){
+  const timeBonus = SAVE.up.mito*5;
+  G={
+    queue: shuffle(pool()), idx:0,
+    score: SAVE.up.stemcell*100,
+    combo:0, maxCombo:0,
+    correct:0, miss:0, done:0,
+    guardLeft: SAVE.up.membrane,
+    regen: SAVE.up.homeo,
+    timeLeft: mode.type==="time"? mode.val+timeBonus : 0,
+    targetCount: mode.type==="count"?mode.val:0,
+    startAt: performance.now(),
+    running:true, timerId:null, locked:false,
+    units:[], ui:0, buf:"", typedStr:"",
+  };
+  if(mode.type==="time"){
+    setTimerLabel("残り(秒)"); setTimerText(G.timeLeft);
+    G.timerId=setInterval(()=>{
+      G.timeLeft--; setTimerText(G.timeLeft);
+      if(G.timeLeft<=0) endGame();
+    },1000);
+  }else{
+    setTimerLabel("経過(秒)"); setTimerText("0");
+    G.timerId=setInterval(()=>{
+      setTimerText(((performance.now()-G.startAt)/1000).toFixed(0));
+    },250);
+  }
+}
+function beginGame(){
+  setupRun();
+  G.recall=false;
+  $("game").classList.remove("recall");
+  $("gHelp").innerHTML='ミスタイプはコンボがリセットされます ｜ <kbd>Esc</kbd> でリタイア';
+  loadWord();
+  updateHUD();
+}
+function beginRecall(){
+  setupRun();
+  G.recall=true;
+  $("game").classList.add("recall");
+  $("gHelp").innerHTML='読み方をローマ字で入力 ｜ <kbd>Tab</kbd> でヒント ｜ <kbd>Esc</kbd> でリタイア';
+  loadWord();
+  updateHUD();
+}
+function showHint(){
+  if(!G || !G.running || !G.recall || G.hinted) return;
+  G.hinted=true;
+  $("gHintLine").innerHTML=`<span class="hintshown">💡 ${escapeHtml(G.cur.t)}<small>ヒントを使うとボーナス点が減ります</small></span>`;
+}
+function beginQuiz(){
+  setupRun();
+  $("qFeed").innerHTML="";
+  loadQuestion();
+  updateHUD();
+}
+function loadQuestion(){
+  if(G.idx>=G.queue.length){ G.queue=shuffle(pool()); G.idx=0; }
+  const w=G.queue[G.idx];
+  G.cur=w; G.locked=false;
+  const others=WORDS.filter(x=>x.t!==w.t);
+  const same=shuffle(others.filter(x=>x.c===w.c));
+  const rest=shuffle(others.filter(x=>x.c!==w.c));
+  const distract=same.concat(rest).slice(0,3);
+  G.choices=shuffle([w].concat(distract));
+  $("qCat").textContent=w.c;
+  $("qText").textContent=w.m;
+  $("qFeed").innerHTML="";
+  const box=$("qChoices"); box.innerHTML="";
+  G.choices.forEach((c,i)=>{
+    const b=document.createElement("button");
+    b.className="choice";
+    b.innerHTML=`<span class="num">${i+1}</span><span>${escapeHtml(c.t)}</span>`;
+    b.onclick=()=>answerQuiz(i);
+    box.appendChild(b);
+  });
+}
+function answerQuiz(i){
+  if(!G || !G.running || G.locked) return;
+  const btns=[...$("qChoices").children];
+  if(i<0 || i>=G.choices.length) return;
+  G.locked=true;
+  const picked=G.choices[i], correct=G.cur;
+  const ok = picked.t===correct.t;
+  const ci = G.choices.findIndex(c=>c.t===correct.t);
+  btns.forEach(b=>b.disabled=true);
+  btns[ci].classList.add("correct");
+  if(ok){
+    G.correct++; G.done++;
+    G.combo++; if(G.combo>G.maxCombo)G.maxCombo=G.combo;
+    const comboBonus = G.combo*(2+SAVE.up.synapse);
+    const wordBonus  = 50 + SAVE.up.ribosome*15;
+    G.score += Math.round((wordBonus+comboBonus)*(1+SAVE.up.atp*0.1));
+    $("qFeed").innerHTML=`<span class="ok">⭕ 正解！</span><small>${escapeHtml(correct.t)}（${escapeHtml(correct.y)}）</small>`;
+    if(mode.type==="time" && G.regen>0){ G.timeLeft+=G.regen; setTimerText(G.timeLeft); }
+  }else{
+    btns[i].classList.add("wrong");
+    G.miss++;
+    if(G.guardLeft>0){ G.guardLeft--; toast("🛡 ミスガード発動！コンボ継続"); }
+    else{ G.combo=0; }
+    $("qFeed").innerHTML=`<span class="ng">❌ 正解は「${escapeHtml(correct.t)}」</span><small>${escapeHtml(correct.y)}</small>`;
+  }
+  updateHUD();
+  G.idx++;
+  if(mode.type==="count" && G.done>=G.targetCount){ setTimeout(()=>endGame(),700); return; }
+  setTimeout(()=>{ if(G && G.running) loadQuestion(); }, ok?550:1100);
+}
+function loadWord(){
+  if(G.idx>=G.queue.length){ G.queue=shuffle(pool()); G.idx=0; }
+  const w=G.queue[G.idx];
+  G.cur=w;
+  G.units=splitUnits(w.y);
+  G.ui=0; G.buf=""; G.typedStr=""; G.hinted=false;
+  el.gCat.textContent=w.c;
+  if(G.recall){
+    el.gTerm.textContent=w.m;
+    el.gMeaning.textContent="↓ あてはまる用語を入力しよう";
+    $("gHintLine").innerHTML='<button class="hintbtn" id="hintBtn">💡 ヒント（Tab）</button>';
+    const hb=$("hintBtn"); if(hb) hb.onclick=showHint;
+  }else{
+    el.gTerm.textContent=w.t;
+    el.gMeaning.textContent=w.m;
+    $("gHintLine").innerHTML="";
+  }
+  renderWord();
+}
+function renderWord(){
+  let html="";
+  for(let i=0;i<G.units.length;i++){
+    const k=G.units[i].k;
+    if(i<G.ui) html+=`<span class="done">${k}</span>`;
+    else if(G.recall) html+=`<span class="mask">○</span>`;
+    else if(i===G.ui) html+=`<span class="cur">${k}</span>`;
+    else html+=`<span class="todo">${k}</span>`;
+  }
+  el.gKana.innerHTML=html;
+  let rest="";
+  if(G.ui<G.units.length){
+    rest += canonical(G.units,G.ui,G.buf).slice(G.buf.length);
+    for(let i=G.ui+1;i<G.units.length;i++) rest+=canonical(G.units,i,"");
+  }
+  el.gRomaji.innerHTML=`<span class="typed">${G.typedStr}</span><span class="rest">${rest}</span>`;
+  const prog = G.units.length? (G.ui/G.units.length) : 0;
+  el.gBar.style.width=(prog*100).toFixed(1)+"%";
+}
+function updateHUD(){
+  const tot=G.correct+G.miss;
+  const acc=tot? Math.round(G.correct/tot*100):100;
+  const accHtml=acc+'<small style="font-size:12px">%</small>';
+  const set=(id,v,html)=>{ const n=$(id); if(n){ if(html) n.innerHTML=v; else n.textContent=v; } };
+  set("hScore",G.score); set("hCombo",G.combo); set("hDone",G.done); set("hAcc",accHtml,true);
+  set("qScore",G.score); set("qCombo",G.combo); set("qDone",G.done); set("qAcc",accHtml,true);
+}
+document.addEventListener("keydown",e=>{
+  if(!$("quiz").classList.contains("hidden") && G && G.running){
+    if(e.key==="Escape"){ endGame(); return; }
+    const n=parseInt(e.key,10);
+    if(n>=1 && n<=4){ e.preventDefault(); answerQuiz(n-1); }
+    return;
+  }
+  if(el.game.classList.contains("hidden")||!G||!G.running) return;
+  if(e.key==="Escape"){ endGame(); return; }
+  if(e.key==="Tab"){ e.preventDefault(); if(G.recall) showHint(); return; }
+  let ch=e.key;
+  if(ch==="-"){ }
+  else if(ch.length!==1) return;
+  else ch=ch.toLowerCase();
+  if(!/[a-z\-]/.test(ch)) return;
+  e.preventDefault();
+  handleKey(ch);
+});
+function handleKey(ch){
+  const r=step(G, ch);
+  if(r.status==="miss"){
+    G.miss++;
+    if(G.guardLeft>0){ G.guardLeft--; toast("🛡 ミスガード発動！コンボ継続"); }
+    else{ G.combo=0; }
+    el.gRomaji.classList.remove("err"); void el.gRomaji.offsetWidth;
+    el.gRomaji.classList.add("err");
+    updateHUD();
+    return;
+  }
+  G.typedStr+=ch;
+  G.correct++;
+  G.combo++; if(G.combo>G.maxCombo)G.maxCombo=G.combo;
+  const comboBonus = Math.floor(G.combo/5)*(2+SAVE.up.synapse);
+  G.score += Math.round((10 + comboBonus)*(1 + SAVE.up.atp*0.1));
+  if(r.status==="clear"){ wordCleared(); return; }
+  updateHUD();
+  renderWord();
+}
+function wordCleared(){
+  G.done++; G.idx++;
+  let wb = 50 + SAVE.up.ribosome*15;
+  if(G.recall) wb = Math.round(wb * (G.hinted ? 1.0 : 1.8));
+  G.score += wb;
+  if(mode.type==="time" && G.regen>0){
+    G.timeLeft += G.regen; setTimerText(G.timeLeft);
+    toast(`💧 恒常性 +${G.regen}秒`);
+  }
+  updateHUD();
+  if(mode.type==="count" && G.done>=G.targetCount){ endGame(); return; }
+  loadWord();
+}
+function endGame(){
+  if(!G||!G.running) return;
+  G.running=false;
+  clearInterval(G.timerId);
+  const isQuiz = playMode==="quiz";
+  const isRecall = playMode==="recall";
+  const elapsedMin = Math.max((performance.now()-G.startAt)/60000, 1/60);
+  const kpm = Math.round(G.correct/elapsedMin);
+  const tot=G.correct+G.miss;
+  const acc = tot? Math.round(G.correct/tot*100):100;
+  let rank="C";
+  if(isQuiz){
+    const rs = G.score*0.6 + acc*4 + G.done*25;
+    if(acc>=100 && G.done>=20) rank="SS";
+    else if(rs>=1600) rank="S";
+    else if(rs>=1100) rank="A";
+    else if(rs>=700) rank="B";
+  }else if(isRecall){
+    const rs = G.score*0.6 + acc*3 + G.done*40;
+    if(acc>=97 && G.done>=12) rank="SS";
+    else if(rs>=1300) rank="S";
+    else if(rs>=900) rank="A";
+    else if(rs>=550) rank="B";
+  }else{
+    const rs = G.score*0.6 + kpm*2 + acc*3 + G.done*20;
+    if(acc>=97 && kpm>=240) rank="SS";
+    else if(rs>=1400) rank="S";
+    else if(rs>=1000) rank="A";
+    else if(rs>=650) rank="B";
+  }
+  const lab=(id,txt)=>{ const n=$(id); if(n&&n.parentElement){const l=n.parentElement.querySelector(".l"); if(l) l.textContent=txt;} };
+  lab("rDone", (isQuiz||isRecall)?"正解数":"クリア語数");
+  lab("rKpm",  isQuiz?"正解/分":(isRecall?"打鍵/分":"打鍵/分 (KPM)"));
+  lab("rAcc",  (isQuiz||isRecall)?"正解率":"正確率");
+  lab("rMiss", (isQuiz||isRecall)?"まちがい":"ミス");
+  el.rRank.textContent=rank;
+  el.rScore.textContent=G.score;
+  el.rDone.textContent=G.done;
+  el.rKpm.textContent=kpm;
+  el.rAcc.textContent=acc+"%";
+  el.rMax.textContent=G.maxCombo;
+  el.rMiss.textContent=G.miss;
+  const base = Math.floor(G.score/50) + G.done + Math.floor(G.maxCombo/10);
+  let earned = Math.round(base * (1 + SAVE.up.chloro*0.1));
+  const hemoBonus = (acc>=100 && G.correct>0) ? SAVE.up.hemo*15 : 0;
+  earned += hemoBonus;
+  SAVE.coins += earned; persist(); refreshCoins();
+  const notes=[];
+  if(SAVE.up.chloro>0) notes.push(`葉緑体+${SAVE.up.chloro*10}%`);
+  if(hemoBonus>0) notes.push(`ヘモグロビン+${hemoBonus}`);
+  $("rEarned").innerHTML = `🪙 +${earned} コイン獲得` + (notes.length?`（${notes.join("・")}）`:"");
+  lastResult={score:G.score, done:G.done, kpm:kpm, acc:acc, mode:isQuiz?"quiz":(isRecall?"recall":"type")};
+  const rl=$("rankResult"), myLine=$("myRankLine"), reg=$("nameRegResult");
+  myLine.textContent="";
+  if(hasServer()){
+    if(getPlayer()){
+      reg.classList.add("hidden");
+      rl.innerHTML='<div class="rankempty">記録を送信中…</div>';
+      submitAndShow({name:getPlayer(), score:lastResult.score, done:lastResult.done, kpm:lastResult.kpm, acc:lastResult.acc, mode:lastResult.mode});
+    }else{
+      reg.classList.remove("hidden");
+      loadRankingInto(rl, lastResult.mode);
+      myLine.textContent="名前を登録すると記録が残ります";
+    }
+  }else{
+    reg.classList.add("hidden");
+    rl.innerHTML='<div class="rankempty">🌐 みんなで競うランキングは、先生が配布するウェブアプリ版で使えます</div>';
+  }
+  show("result");
+}
+(function(){
+  const ni=$("nameInput");
+  if(ni){
+    ni.value=getPlayer();
+    $("nameSave").onclick=()=>{
+      const v=ni.value.trim().slice(0,12);
+      if(!v){ toast("名前を入力してください"); return; }
+      setPlayer(v); toast(`「${v}」で登録しました`);
+      loadRankingInto($("rankStart"), rankTab);
+    };
+    ni.addEventListener("keydown",e=>{ if(e.key==="Enter") $("nameSave").click(); });
+  }
+  const ns2=$("nameSave2");
+  if(ns2){
+    ns2.onclick=()=>{
+      const v=$("nameInput2").value.trim().slice(0,12);
+      if(!v){ toast("名前を入力してください"); return; }
+      setPlayer(v); if($("nameInput")) $("nameInput").value=v;
+      $("nameRegResult").classList.add("hidden");
+      toast(`「${v}」で登録しました`);
+      if(hasServer() && lastResult){
+        submitAndShow({name:v, score:lastResult.score, done:lastResult.done, kpm:lastResult.kpm, acc:lastResult.acc, mode:lastResult.mode});
+      }
+    };
+    $("nameInput2").addEventListener("keydown",e=>{ if(e.key==="Enter") ns2.click(); });
+  }
+})();
+el.menuBtn.onclick=()=>{ show("start"); loadRankingInto($("rankStart"), rankTab); };
+applyTheme();
+refreshCoins();
+loadRankingInto($("rankStart"), rankTab);
+</script>
+</body>
+</html>
