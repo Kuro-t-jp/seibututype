@@ -1146,10 +1146,12 @@ function optionsFor(units,i){
     return opts;
   }
   if(u.type==="sok"){
-    const opts=["xtu","ltu","xtsu","ltsu"];
+    // 子音を重ねる打ち方を先頭に置き、ガイド表示を kekka 形にする（xtu 形も受理する）
+    const opts=[];
     const nx=units[i+1];
     if(nx){ const nopts=(nx.type==="n")?["nn"]:optionsFor(units,i+1);
       for(const o of nopts){ const c=o[0]; if(!VOWELS.has(c) && !opts.includes(c)) opts.push(c); } }
+    for(const o of ["xtu","ltu","xtsu","ltsu"]) if(!opts.includes(o)) opts.push(o);
     return opts;
   }
   if(u.type==="n"){
