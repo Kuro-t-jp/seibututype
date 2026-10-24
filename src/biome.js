@@ -44,7 +44,8 @@ const integer=v=>Number.isSafeInteger(v)&&v>=0?v:0;
 const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
 const species=id=>SPECIES.find(s=>s.id===id);
 // Twelve game milestones; biological life stages remain species-specific.
-const GROWTH={observation:[0,1,2,3,5,7,10,13,17,21,26,32],plant:[0,1,2,3,5,7,10,13,17,21,26,32],animal:[0,1,2,4,6,9,12,16,20,25,31,38],tree:[0,1,3,5,8,12,17,23,30,38,47,58]};
+const PREVIOUS_GROWTH={observation:[0,1,2,3,5,7,10,13,17,21,26,32],plant:[0,1,2,3,5,7,10,13,17,21,26,32],animal:[0,1,2,4,6,9,12,16,20,25,31,38],tree:[0,1,3,5,8,12,17,23,30,38,47,58]};
+const GROWTH={observation:[0,1,3,6,10,16,24,36,52,76,108,160],plant:[0,1,3,6,10,16,24,36,52,76,108,160],animal:[0,1,4,8,14,22,34,50,72,100,140,200],tree:[0,1,4,10,20,36,56,84,120,168,224,300]};
 const AGES=[0,1,1,2,3,3,4,4,5,5,5,6],LEGACY_STEPS=[0,1,3,4,6,9,11];
 const growthSteps=id=>{const c=species(id);return GROWTH[c.tree?'tree':c.kind];};
 function validItem(v){
@@ -64,15 +65,22 @@ function normalize(raw={}){
  const legacyEnvironment=environment(raw.environment)?raw.environment:'canyon';
  const environmentsOwned=[...new Set(['canyon',...(Array.isArray(raw.environmentsOwned)?raw.environmentsOwned.filter(id=>environment(id)):[legacyEnvironment])])];
  const activeEnvironment=environmentsOwned.includes(legacyEnvironment)?legacyEnvironment:'canyon';
- const slots=(key,count,kind)=>Array.from({length:count},(_,i)=>{const x=validItem(raw[key]?.[i]);return x&&species(x.id).kind===kind?x:null;});
- const plants=slots('plants',6,'plant'),animals=slots('animals',4,'animal'),observations=slots('observations',4,'observation'),reserve=Array.isArray(raw.reserve)?raw.reserve.map(validItem).filter(Boolean):[];
+ // Saves before v6 used the shorter curve. Preserve stage and within-stage progress once.
+ const migrateItem=v=>{
+  if(raw.version>=6||!v||!species(v.id)||!Number.isSafeInteger(v.growth)||v.growth<0)return validItem(v);
+  const c=species(v.id),old=PREVIOUS_GROWTH[c.tree?'tree':c.kind],marks=growthSteps(v.id),g=clamp(v.growth,0,old[11]),step=old.filter(n=>g>=n).length-1;
+  const growth=step===11?marks[11]:marks[step]+Math.ceil((g-old[step])*(marks[step+1]-marks[step])/(old[step+1]-old[step]));
+  return validItem({...v,growth});
+ };
+ const slots=(key,count,kind)=>Array.from({length:count},(_,i)=>{const x=migrateItem(raw[key]?.[i]);return x&&species(x.id).kind===kind?x:null;});
+ const plants=slots('plants',6,'plant'),animals=slots('animals',4,'animal'),observations=slots('observations',4,'observation'),reserve=Array.isArray(raw.reserve)?raw.reserve.map(migrateItem).filter(Boolean):[];
  // Preserve the collection after moving or recycling an individual. Migrate existing holdings.
  const speciesKnown=[...new Set(['grass',...(Array.isArray(raw.speciesKnown)?raw.speciesKnown.filter(id=>species(id)):[]),...[...plants,...animals,...observations,...reserve].filter(Boolean).map(p=>p.id),...SPECIES.filter(c=>raw.checked?.[c.id]===true).map(c=>c.id)])];
  // Only received organisms count. Recover the best known tier from old holdings;
  // pending discoveries never contribute. Retain this record after recycling.
  const speciesBestTier=Object.fromEntries(speciesKnown.map(id=>[id,clamp(integer(raw.speciesBestTier?.[id]),0,2)]));
  for(const item of [...plants,...animals,...observations,...reserve].filter(Boolean))speciesBestTier[item.id]=Math.max(speciesBestTier[item.id],item.tier);
- return {version:5,speciesKnown,speciesBestTier,environment:activeEnvironment,environmentsOwned,environmentPending:environment(raw.environmentPending)&&raw.environmentPending!=='canyon'?raw.environmentPending:null,environmentDraws:integer(raw.environmentDraws),xp:integer(raw.xp),day:integer(raw.day),study:integer(raw.study)%5,moisture:clamp(Number.isFinite(raw.moisture)?raw.moisture:15,8,100),soil:clamp(Number.isFinite(raw.soil)?raw.soil:10,0,100),weather:WEATHER[raw.weather]?raw.weather:'rain',plants,animals,observations,reserve,pending:validItem(raw.pending),draws:integer(raw.draws),starter:!!raw.starter,checked:Object.fromEntries(SPECIES.filter(s=>raw.checked?.[s.id]===true).map(s=>[s.id,true])),log:Array.isArray(raw.log)?raw.log.filter(s=>typeof s==='string').slice(-6):[]};
+ return {version:6,speciesKnown,speciesBestTier,environment:activeEnvironment,environmentsOwned,environmentPending:environment(raw.environmentPending)&&raw.environmentPending!=='canyon'?raw.environmentPending:null,environmentDraws:integer(raw.environmentDraws),xp:integer(raw.xp),day:integer(raw.day),study:integer(raw.study)%5,moisture:clamp(Number.isFinite(raw.moisture)?raw.moisture:15,8,100),soil:clamp(Number.isFinite(raw.soil)?raw.soil:10,0,100),weather:WEATHER[raw.weather]?raw.weather:'rain',plants,animals,observations,reserve,pending:migrateItem(raw.pending),draws:integer(raw.draws),starter:!!raw.starter,checked:Object.fromEntries(SPECIES.filter(s=>raw.checked?.[s.id]===true).map(s=>[s.id,true])),log:Array.isArray(raw.log)?raw.log.filter(s=>typeof s==='string').slice(-6):[]};
 }
 function collectionScore(raw){
  const s=normalize(raw),groups={plant:0,animal:0,observation:0,environment:0};
@@ -135,9 +143,9 @@ function tick(raw){
 function learn(raw,count){
  let s=normalize(raw);count=integer(count);s.xp+=count;s.study+=count;
  const days=Math.floor(s.study/5);s.study%=5;
- // All growth reaches its cap within 58 eligible days; allow extra time for soil and chained habitat dependencies.
- for(let i=0;i<Math.min(days,200);i++)s=tick(s);
- if(days>200)s.day+=days-200;
+ // All growth reaches its cap within 300 eligible days; allow extra time for soil and chained habitat dependencies.
+ for(let i=0;i<Math.min(days,600);i++)s=tick(s);
+ if(days>600)s.day+=days-600;
  if(days)log(s,`学習 ${count} 問が景色の時間を ${days} 日進めました。`);
  return s;
 }

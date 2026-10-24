@@ -12,11 +12,11 @@ for(const c of rows.concat(require('../data/biome-extra-expansion.json'),require
  const snapshot=JSON.stringify(s);s=B.learn(s,4);assert.equal(s[key][slot].growth,0);s=B.learn(s,1);assert.equal(B.progress(s[key][slot],s).step,2);
  s=B.check(s,c.id);assert.throws(()=>B.check(s,c.id));
  s=B.remove(s,c.kind,slot);assert.equal(s.reserve.length,1);s=B.place(s,10,c.id,slot).state;assert.equal(B.progress(s[key][slot],s).step,2);
- s=B.learn(s,c.tree?285:155);assert(B.progress(s[key][slot],s).done);assert.deepEqual(B.normalize(JSON.parse(JSON.stringify(s))),s);
+ s=B.learn(s,c.tree?1495:c.kind==='animal'?995:795);assert(B.progress(s[key][slot],s).done);assert.deepEqual(B.normalize(JSON.parse(JSON.stringify(s))),s);
  s=B.remove(s,c.kind,slot);s=B.recycleReserve(s,0).state;assert(s.speciesKnown.includes(c.id));assert.equal(s.reserve.length,0);
  assert.equal(JSON.parse(snapshot).xp,35);
 }
 let s=B.normalize({plants:[{id:'grass',age:4}],animals:[{id:'hopper',age:3}],xp:123});assert.equal(s.observations.length,4);assert.equal(s.xp,123);assert.equal(s.plants[0].age,4);
 assert.throws(()=>B.remove(s,'invalid',0));
-s=B.normalize({observations:[{id:'ecoli',age:0}],weather:'sun',moisture:8});s=B.learn(s,160);assert(B.progress(s.observations[0],s).done);assert.equal(B.scenery(s).cover,0);
+s=B.normalize({observations:[{id:'ecoli',age:0}],weather:'sun',moisture:8});s=B.learn(s,800);assert(B.progress(s.observations[0],s).done);assert.equal(B.scenery(s).cover,0);
 console.log('PASS 60 school organisms: cards, stock/placement, 12-step pace, observation independence, bonus, recycling, migration');

@@ -2,7 +2,7 @@ const assert=require('node:assert/strict'),B=require('../src/biome.js');
 const points=s=>B.collectionScore(s).total;
 assert.equal(points({}),200);assert.equal(B.collectionScore({}).next.remaining,300);
 let s=B.normalize({version:4,speciesKnown:['grass','pea','pea','bad'],plants:[{id:'pea',tier:1}],reserve:[{id:'pea',tier:2},{id:'octopus',tier:1}],pending:{id:'mimosa',tier:2},environmentsOwned:['canyon','coast','coast','bad']});
-assert.equal(s.speciesBestTier.pea,2);assert.equal(s.speciesBestTier.octopus,1);assert.equal(s.speciesBestTier.mimosa,undefined);assert.equal(points(s),860);assert.equal(B.collectionGain(s,'species'),300);assert.equal(s.version,5);
+assert.equal(s.speciesBestTier.pea,2);assert.equal(s.speciesBestTier.octopus,1);assert.equal(s.speciesBestTier.mimosa,undefined);assert.equal(points(s),860);assert.equal(B.collectionGain(s,'species'),300);assert.equal(s.version,6);
 assert.deepEqual(B.normalize(JSON.parse(JSON.stringify(s))),s);
 const receive=(state,id,tier)=>B.resolve({...state,pending:{id,tier}},true).state;
 s=receive({},'pea',0);assert.equal(points(s),300);
