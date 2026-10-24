@@ -1,0 +1,185 @@
+{
+  "pythonTests": 52,
+  "jsSuites": [
+    {
+      "test": "balance.cjs",
+      "exit": 0,
+      "seconds": 2.8
+    },
+    {
+      "test": "biome-art.cjs",
+      "exit": 0,
+      "seconds": 0.0
+    },
+    {
+      "test": "biome-classroom-ui.cjs",
+      "exit": 0,
+      "seconds": 25.5
+    },
+    {
+      "test": "biome-classroom.cjs",
+      "exit": 0,
+      "seconds": 0.0
+    },
+    {
+      "test": "biome-discovery.cjs",
+      "exit": 0,
+      "seconds": 9.6
+    },
+    {
+      "test": "biome-economy.cjs",
+      "exit": 0,
+      "seconds": 0.1
+    },
+    {
+      "test": "biome-environments.cjs",
+      "exit": 0,
+      "seconds": 0.0
+    },
+    {
+      "test": "biome-extra-ui.cjs",
+      "exit": 0,
+      "seconds": 1.5
+    },
+    {
+      "test": "biome-first-discovery.cjs",
+      "exit": 0,
+      "seconds": 13.1
+    },
+    {
+      "test": "biome-growth-ui.cjs",
+      "exit": 0,
+      "seconds": 2.2
+    },
+    {
+      "test": "biome-plant-cards-ui.cjs",
+      "exit": 0,
+      "seconds": 7.4
+    },
+    {
+      "test": "biome-plant-cards.cjs",
+      "exit": 0,
+      "seconds": 0.0
+    },
+    {
+      "test": "biome-school-ui.cjs",
+      "exit": 0,
+      "seconds": 23.6
+    },
+    {
+      "test": "biome-school.cjs",
+      "exit": 0,
+      "seconds": 0.1
+    },
+    {
+      "test": "biome-secrets-ui.cjs",
+      "exit": 0,
+      "seconds": 3.5
+    },
+    {
+      "test": "biome-secrets.cjs",
+      "exit": 0,
+      "seconds": 0.0
+    },
+    {
+      "test": "biome-simple-ui.cjs",
+      "exit": 0,
+      "seconds": 2.5
+    },
+    {
+      "test": "biome-ui.cjs",
+      "exit": 0,
+      "seconds": 6.0
+    },
+    {
+      "test": "biome.cjs",
+      "exit": 0,
+      "seconds": 0.1
+    },
+    {
+      "test": "content-ui.cjs",
+      "exit": 0,
+      "seconds": 3.4
+    },
+    {
+      "test": "entrance-ui.cjs",
+      "exit": 0,
+      "seconds": 5.4
+    },
+    {
+      "test": "five-ui.cjs",
+      "exit": 0,
+      "seconds": 117.5
+    },
+    {
+      "test": "gas-assets.cjs",
+      "exit": 0,
+      "seconds": 0.1
+    },
+    {
+      "test": "gas-server.cjs",
+      "exit": 0,
+      "seconds": 0.0
+    },
+    {
+      "test": "gas-ui.cjs",
+      "exit": 0,
+      "seconds": 2.0
+    },
+    {
+      "test": "inquiry-ui.cjs",
+      "exit": 0,
+      "seconds": 3.3
+    },
+    {
+      "test": "learning-edges.cjs",
+      "exit": 0,
+      "seconds": 0.7
+    },
+    {
+      "test": "learning-ui.cjs",
+      "exit": 0,
+      "seconds": 8.0
+    },
+    {
+      "test": "learning.cjs",
+      "exit": 0,
+      "seconds": 0.0
+    },
+    {
+      "test": "privacy.cjs",
+      "exit": 0,
+      "seconds": 0.0
+    },
+    {
+      "test": "storage-integrity.cjs",
+      "exit": 0,
+      "seconds": 1.5
+    },
+    {
+      "test": "study-navigator.cjs",
+      "exit": 0,
+      "seconds": 2.1
+    },
+    {
+      "test": "super-challenge.cjs",
+      "exit": 0,
+      "seconds": 12.5
+    },
+    {
+      "test": "thinking.cjs",
+      "exit": 0,
+      "seconds": 18.1
+    },
+    {
+      "test": "typing-completion.cjs",
+      "exit": 0,
+      "seconds": 0.8
+    },
+    {
+      "test": "ui-navigation.cjs",
+      "exit": 0,
+      "seconds": 7.2
+    }
+  ]
+}
