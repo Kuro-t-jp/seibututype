@@ -36,6 +36,8 @@ const ENVIRONMENT_ODDS=[[80,16,3.5,.5],[78,17.5,3.8,.7],[76,19,4.1,.9],[74,20.5,
 const ENVIRONMENTS=catalog.environments.map(e=>({...e,grade:ENVIRONMENT_GROUPS.findIndex(g=>g.includes(e.id))}));
 const environment=id=>ENVIRONMENTS.find(e=>e.id===id);
 const COST=24,XP=[6,12,24],TIERS=['小さな発見','うれしい発見','大きな発見'];
+const SPECIES_POINTS=[100,180,300],ENVIRONMENT_POINTS=[100,180,300,500];
+const COLLECTION_RANKS=[[0,'はじまりの観察者'],[500,'芽吹きの収集家'],[1500,'小さな探究者'],[4000,'自然の探検家'],[10000,'いのちの研究家'],[25000,'発見の達人']];
 const THRESHOLDS=[0,25,70,150,280,460],ODDS=[[86,13,1],[84,14.5,1.5],[82,16,2],[80,17.5,2.5],[78,19,3],[76,20,4]];
 const WEATHER={sun:{name:'晴れ',icon:'☀️',water:-6,temp:26},cloud:{name:'くもり',icon:'☁️',water:4,temp:22},rain:{name:'雨',icon:'🌧️',water:22,temp:20}};
 const integer=v=>Number.isSafeInteger(v)&&v>=0?v:0;
@@ -66,7 +68,26 @@ function normalize(raw={}){
  const plants=slots('plants',6,'plant'),animals=slots('animals',4,'animal'),observations=slots('observations',4,'observation'),reserve=Array.isArray(raw.reserve)?raw.reserve.map(validItem).filter(Boolean):[];
  // Preserve the collection after moving or recycling an individual. Migrate existing holdings.
  const speciesKnown=[...new Set(['grass',...(Array.isArray(raw.speciesKnown)?raw.speciesKnown.filter(id=>species(id)):[]),...[...plants,...animals,...observations,...reserve].filter(Boolean).map(p=>p.id),...SPECIES.filter(c=>raw.checked?.[c.id]===true).map(c=>c.id)])];
- return {version:4,speciesKnown,environment:activeEnvironment,environmentsOwned,environmentPending:environment(raw.environmentPending)&&raw.environmentPending!=='canyon'?raw.environmentPending:null,environmentDraws:integer(raw.environmentDraws),xp:integer(raw.xp),day:integer(raw.day),study:integer(raw.study)%5,moisture:clamp(Number.isFinite(raw.moisture)?raw.moisture:15,8,100),soil:clamp(Number.isFinite(raw.soil)?raw.soil:10,0,100),weather:WEATHER[raw.weather]?raw.weather:'rain',plants,animals,observations,reserve,pending:validItem(raw.pending),draws:integer(raw.draws),starter:!!raw.starter,checked:Object.fromEntries(SPECIES.filter(s=>raw.checked?.[s.id]===true).map(s=>[s.id,true])),log:Array.isArray(raw.log)?raw.log.filter(s=>typeof s==='string').slice(-6):[]};
+ // Only received organisms count. Recover the best known tier from old holdings;
+ // pending discoveries never contribute. Retain this record after recycling.
+ const speciesBestTier=Object.fromEntries(speciesKnown.map(id=>[id,clamp(integer(raw.speciesBestTier?.[id]),0,2)]));
+ for(const item of [...plants,...animals,...observations,...reserve].filter(Boolean))speciesBestTier[item.id]=Math.max(speciesBestTier[item.id],item.tier);
+ return {version:5,speciesKnown,speciesBestTier,environment:activeEnvironment,environmentsOwned,environmentPending:environment(raw.environmentPending)&&raw.environmentPending!=='canyon'?raw.environmentPending:null,environmentDraws:integer(raw.environmentDraws),xp:integer(raw.xp),day:integer(raw.day),study:integer(raw.study)%5,moisture:clamp(Number.isFinite(raw.moisture)?raw.moisture:15,8,100),soil:clamp(Number.isFinite(raw.soil)?raw.soil:10,0,100),weather:WEATHER[raw.weather]?raw.weather:'rain',plants,animals,observations,reserve,pending:validItem(raw.pending),draws:integer(raw.draws),starter:!!raw.starter,checked:Object.fromEntries(SPECIES.filter(s=>raw.checked?.[s.id]===true).map(s=>[s.id,true])),log:Array.isArray(raw.log)?raw.log.filter(s=>typeof s==='string').slice(-6):[]};
+}
+function collectionScore(raw){
+ const s=normalize(raw),groups={plant:0,animal:0,observation:0,environment:0};
+ for(const id of s.speciesKnown)groups[species(id).kind]+=SPECIES_POINTS[s.speciesBestTier[id]];
+ for(const id of s.environmentsOwned)groups.environment+=ENVIRONMENT_POINTS[environment(id).grade];
+ const total=Object.values(groups).reduce((a,b)=>a+b,0),maximum=SPECIES.length*SPECIES_POINTS[2]+ENVIRONMENTS.reduce((n,e)=>n+ENVIRONMENT_POINTS[e.grade],0);
+ const ranks=[...COLLECTION_RANKS,[maximum,'図鑑のマイスター']],rankIndex=ranks.filter(([at])=>total>=at).length-1;
+ const [floor,rank]=ranks[rankIndex],next=ranks[rankIndex+1];
+ return {total,groups,maximum,rank,rankIndex,next:next?{at:next[0],name:next[1],remaining:next[0]-total}:null,progress:next?Math.floor((total-floor)*100/(next[0]-floor)):100};
+}
+function collectionGain(raw,kind){
+ const s=normalize(raw);
+ if(kind==='environment'){const e=environment(s.environmentPending);return e&&!s.environmentsOwned.includes(e.id)?ENVIRONMENT_POINTS[e.grade]:0;}
+ if(kind!=='species')throw Error('獲得の種類を確認してください。');
+ const p=s.pending;return p?Math.max(0,SPECIES_POINTS[p.tier]-(s.speciesKnown.includes(p.id)?SPECIES_POINTS[s.speciesBestTier[p.id]]:0)):0;
 }
 function level(s){return THRESHOLDS.filter(n=>s.xp>=n).length;}
 function stage(item){return item.age===0?0:item.age<3?1:item.age<6?2:3;}
@@ -188,7 +209,7 @@ function resolveEnvironment(raw,keep){
 function resolve(raw,keep){
  const s=normalize(raw);if(!s.pending)throw Error('未整理の発見はありません。');
  const item=s.pending,gained=keep?0:XP[item.tier];
- if(keep){s.reserve.push(item);if(!s.speciesKnown.includes(item.id))s.speciesKnown.push(item.id);}s.xp+=gained;s.pending=null;
+ if(keep){s.reserve.push(item);if(!s.speciesKnown.includes(item.id))s.speciesKnown.push(item.id);s.speciesBestTier[item.id]=Math.max(s.speciesBestTier[item.id]??0,item.tier);}s.xp+=gained;s.pending=null;
  log(s,keep?`${species(item.id).name}をストックしました。好きな場所に配置できます。`:`発見の記録を次の育成へ。+${gained} XP。`);
  return {state:s,gained};
 }
@@ -204,6 +225,6 @@ function check(raw,id){
  if(!species(id)||s.checked[id]||![...s.plants,...s.animals,...s.observations,...s.reserve].some(x=>x?.id===id))throw Error('この確認ボーナスは受け取れません。');
  s.checked[id]=true;s.xp+=2;return s;
 }
-const api={slotKey,SPECIES,QUESTIONS,ENVIRONMENTS,ENVIRONMENT_GRADES,ENVIRONMENT_ODDS,ENVIRONMENT_XP,ENVIRONMENT_COST,environment,chooseEnvironment,drawEnvironment,resolveEnvironment,COST,XP,TIERS,THRESHOLDS,ODDS,WEATHER,GROWTH,species,normalize,level,stage,progress,requirements,tick,learn,scenery,place,remove,tend,draw,resolve,recycleReserve,check};
+const api={collectionScore,collectionGain,SPECIES_POINTS,ENVIRONMENT_POINTS,slotKey,SPECIES,QUESTIONS,ENVIRONMENTS,ENVIRONMENT_GRADES,ENVIRONMENT_ODDS,ENVIRONMENT_XP,ENVIRONMENT_COST,environment,chooseEnvironment,drawEnvironment,resolveEnvironment,COST,XP,TIERS,THRESHOLDS,ODDS,WEATHER,GROWTH,species,normalize,level,stage,progress,requirements,tick,learn,scenery,place,remove,tend,draw,resolve,recycleReserve,check};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.Biome=api;
 })(typeof globalThis==='object'?globalThis:this);

@@ -41,7 +41,7 @@ for(const [id,total] of [['grass',160],['pine',290],['hopper',190]]){
 }
 for(const c of B.SPECIES)for(let age=0;age<=6;age++){
  const state=B.normalize({version:2,reserve:[{id:c.id,age,tier:2}],pending:{id:c.id,age,tier:1},xp:32,day:5,study:3});
- assert.equal(state.version,4);assert.equal(state.reserve[0].age,age);assert.equal(state.pending.age,age);
+ assert.equal(state.version,5);assert.equal(state.reserve[0].age,age);assert.equal(state.pending.age,age);
  assert.equal(B.stage(state.reserve[0]),age===0?0:age<3?1:age<6?2:3);
  assert.deepEqual(B.normalize(state),state);assert.equal(state.study,3);assert.equal(state.xp,32);
 }
