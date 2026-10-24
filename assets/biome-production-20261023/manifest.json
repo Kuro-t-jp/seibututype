@@ -2,8 +2,8 @@
   "generator": "Built-in image_gen",
   "date": "2026-10-23",
   "status": "Integrated game artwork; classroom expansion has reviewed silhouettes, stage labels and source-linked learning cards. Not identification plates.",
-  "sheetCount": 140,
-  "frameCount": 432,
+  "sheetCount": 152,
+  "frameCount": 456,
   "scientificScope": "Game illustrations, not identification plates or examination diagrams. Stages are representative forms with independent magnification, not a scale chart. Backgrounds depict local ground-cover change, not universal succession from desert to forest. Detailed morphology and sprite-edge review remain necessary before production integration.",
   "sources": [
     "https://www.cgr.mlit.go.jp/ootagawa/Bio/terrest/index158.htm",
@@ -27,6 +27,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Miscanthus sinensis (Japanese silvergrass), a GRASS, never bamboo. Top left: one small tan elongated grass seed with a few delicate hairs. Top right: a tiny seedling with two narrow linear green blades on a very small earth tuft. Bottom left: compact young bunch of long arching linear leaves, pale midribs, no inflorescence. Bottom right: mature tussock of arching thin leaves and several elegant feathery silver-tan panicles on tall slender stalks. Whole panicles in frame.",
       "file": "species-grass-v2.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-45f3f007-5e23-4285-b0ef-24d16a5aacab.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": "Edit this existing transparent four-stage sprite sheet ONLY to fix layout and spacing. Preserve exactly the same four subjects, their biological appearance, medium, colors and reading order. Canvas stays square with four equal quadrants. SHRINK EACH OF THE FOUR COMPLETE SUBJECTS BY 30%, then center each within its own quadrant. Each entire subject including every leaf, root, stem and seed hair must fit inside the box for its quadrant: top left x8%-42%,y8%-42%; top right x58%-92%,y8%-42%; bottom left x8%-42%,y58%-92%; bottom right x58%-92%,y58%-92%. A wide transparent cross must separate the four subjects. Absolutely no leaves or stems cross the x50% or y50% lines. No new objects, no text, no border, no grid, no background. Keep real transparent alpha.",
       "category": "植物",
       "width": 1254,
@@ -47,6 +48,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Brassica rapa, field mustard. Top left: one tiny round dark brown seed. Top right: a young seedling with two opposite rounded heart/kidney-shaped cotyledons, short stem, a tiny soil tuft. Bottom left: a leafy rosette with broad slightly wrinkled green true leaves, no flowers. Bottom right: upright leafy plant with clusters of small vivid yellow CRUCIFORM flowers, each visible flower exactly four petals; no daisies. Do not substitute a rapeseed oil bottle or cultivated cabbage head.",
       "file": "species-rape-v2.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-8776654a-717e-411e-bbe9-f8116ceafee0.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": "Edit this existing transparent four-stage sprite sheet ONLY to fix layout and spacing. Preserve exactly the same four subjects, their biological appearance, medium, colors and reading order. Canvas stays square with four equal quadrants. SHRINK EACH OF THE FOUR COMPLETE SUBJECTS BY 30%, then center each within its own quadrant. Each entire subject including every leaf, root, stem and seed hair must fit inside the box for its quadrant: top left x8%-42%,y8%-42%; top right x58%-92%,y8%-42%; bottom left x8%-42%,y58%-92%; bottom right x58%-92%,y58%-92%. A wide transparent cross must separate the four subjects. Absolutely no leaves or stems cross the x50% or y50% lines. No new objects, no text, no border, no grid, no background. Keep real transparent alpha.",
       "category": "植物",
       "width": 1254,
@@ -67,6 +69,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Trifolium repens, white clover. Top left: one small yellow-brown kidney-shaped seed. Top right: tiny seedling with two simple oval cotyledons and a small emerging trifoliate true leaf. Bottom left: low creeping clump with several TRIFOLIATE leaves, three rounded leaflets per leaf with pale chevron marks. Bottom right: spreading low clover clump, correctly trifoliate leaves and several small round white flower HEADS made of many tiny florets on slender stalks. No four-leaf lucky clovers; no large daisy flowers.",
       "file": "species-clover.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-931e0708-ca53-4074-8712-e324d6d0631d.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "植物",
       "width": 1254,
@@ -87,6 +90,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Pinus densiflora, Japanese red pine. Top left: a single small dark seed with a delicate translucent papery wing. Top right: tiny germinated pine seedling with a whorl of slender green cotyledons above a small earth tuft. Bottom left: young red pine sapling with short side branches and slender needles in pairs where resolvable; no broad leaves. Bottom right: full miniature adult tree with reddish-orange upper trunk bark, branching trunk and airy irregular green canopy of needle clusters, needles paired, a few small brown cones. No Christmas-tree spruce silhouette. Each whole tree fits its quadrant.",
       "file": "species-pine.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-aabb093d-5907-470f-8644-cac9809740e1.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "植物",
       "width": 1254,
@@ -107,6 +111,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Quercus serrata, Japanese konara oak. Top left: one slender brown acorn seated in a shallow scaly cup. Top right: sprouting acorn with short stem and two small emerging elongated leaves, acorn still near soil. Bottom left: thin young sapling with OBLONG TO OBOVATE leaves, pointed tips and sharply SERRATED edges. Bottom right: complete mature miniature deciduous tree, branching grey-brown trunk, rounded airy canopy of elongated serrated green leaves. CRITICAL leaves are NOT deeply rounded-lobed English-oak leaves, no maple leaves. Whole crown and trunk fit quadrant.",
       "file": "species-oak-v2.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-4746227e-4ff3-4407-ae36-ce1e6fd03477.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": "Edit this existing transparent four-stage sprite sheet ONLY to fix layout and spacing. Preserve exactly the same four subjects, their biological appearance, medium, colors and reading order. Canvas stays square with four equal quadrants. SHRINK EACH OF THE FOUR COMPLETE SUBJECTS BY 30%, then center each within its own quadrant. Each entire subject including every leaf, root, stem and seed hair must fit inside the box for its quadrant: top left x8%-42%,y8%-42%; top right x58%-92%,y8%-42%; bottom left x8%-42%,y58%-92%; bottom right x58%-92%,y58%-92%. A wide transparent cross must separate the four subjects. Absolutely no leaves or stems cross the x50% or y50% lines. No new objects, no text, no border, no grid, no background. Keep real transparent alpha.",
       "category": "植物",
       "width": 1254,
@@ -127,6 +132,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Pieris rapae, cabbage white butterfly. Top left: ONE pale yellow upright elongated conical egg, fine longitudinal ribs, on a small brassica leaf fragment. Top right: one slender soft green caterpillar with subtle yellowish dorsal line, natural small head, thoracic legs and abdominal prolegs, on small leaf fragment. Bottom left: ONE angular green chrysalis attached vertically to a short slender stem, silk girdle at middle, pointed front, no caterpillar and no cocoon. Bottom right: ONE white adult butterfly, two forewings and two hindwings naturally paired, charcoal forewing tips with small dark spots, slender body and clubbed antennae, no vivid blue or orange markings. Anatomically plausible distinct complete metamorphosis. Important layout: leave a broad EMPTY TRANSPARENT CROSS through center of sheet, 12% canvas width, separating all four subjects; keep every subject entirely inside its own quadrant with no intrusion. Maximum subject bounding box is 35% of whole canvas width and height.",
       "file": "species-butterfly.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-2c2354ec-36ef-443e-998e-aa06cb183eaf.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "動物",
       "width": 1254,
@@ -147,6 +153,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Acrida cinerea, oriental longheaded grasshopper, green color form. Top left: tiny cutaway earth tuft revealing a small compact pod of slender tan rice-grain-shaped eggs embedded in soil, NOT exposed white bird eggs. Top right: small wingless green nymph with long pointed conical head, short flattened sword-shaped antennae, six legs and enlarged long hind legs. Bottom left: larger late-stage nymph, same species and long pointed head, small developing wing pads but no full wings. Bottom right: slender adult with long pointed head, six legs, folded long narrow wings along abdomen and long hind legs. No pupa, no butterfly, no round cricket head, no long katydid antennae. Important layout: leave a broad EMPTY TRANSPARENT CROSS through center of sheet, 12% canvas width, separating all four subjects; keep every subject entirely inside its own quadrant with no intrusion. Maximum subject bounding box is 35% of whole canvas width and height.",
       "file": "species-hopper.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-ee3e4e84-a4fc-49ce-9a47-2f872d4b3aab.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "動物",
       "width": 1254,
@@ -167,6 +174,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Japanese tree frog, Dryophytes japonicus. Top left: small cluster of round transparent jelly eggs with dark central embryos, visually aquatic with a small soft blue water accent confined inside quadrant. Top right: one brownish olive tadpole, rounded body with long translucent finned tail, no legs yet, small blue water accent. Bottom left: a small recently metamorphosed green froglet with FOUR legs and a short remnant tail, crouched naturally. Bottom right: adult bright green Japanese tree frog with pale belly, distinct dark stripe through eye, rounded toe pads, four limbs, no tail, side three-quarter crouching pose. Natural frog anatomy, no human smile. Do not draw a frog with fish gills. Important layout: leave a broad EMPTY TRANSPARENT CROSS through center of sheet, 12% canvas width, separating all four subjects; keep every subject entirely inside its own quadrant with no intrusion. Maximum subject bounding box is 35% of whole canvas width and height.",
       "file": "species-frog.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-12ebcf5f-e9c5-450a-a735-86412c58114e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "動物",
       "width": 1254,
@@ -187,6 +195,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Parus minor, Japanese tit. Top left: small altricial downy nestling with closed or barely open eyes and pale gape flanges, sparse grey down, curled naturally in a small twig nest. Top right: newly fledged juvenile, fluffy dull grey-olive plumage, short tail, pale yellowish gape corners, perched on a very short twig, no chick-from-egg cartoon. Bottom left: more developed juvenile with muted blackish cap, off-white cheeks and dull olive back, longer tail, perched naturally. Bottom right: adult with black cap and throat, prominent white cheeks, whitish belly with black central stripe, muted olive back, grey-blue wings with white wing bar, two feet on short twig. No vivid yellow belly. No chicken, no human smile, no extra wings or feet. Important layout: leave a broad EMPTY TRANSPARENT CROSS through center of sheet, 12% canvas width, separating all four subjects; keep every subject entirely inside its own quadrant with no intrusion. Maximum subject bounding box is 35% of whole canvas width and height.",
       "file": "species-bird.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-0094ca9e-2aaf-4b84-b6b1-ec94df09fb46.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "動物",
       "width": 1254,
@@ -207,6 +216,7 @@
       "transparent": true,
       "prompt": "Use case: scientific-educational. Asset type: transparent four-frame growth sprite sheet for a Japanese high-school biology learning game. Square canvas, exactly FOUR equal quadrants (2 columns x 2 rows). Reading order TOP LEFT, TOP RIGHT, BOTTOM LEFT, BOTTOM RIGHT. Each quadrant contains exactly one separate stage of the SAME species. Center each subject within its own quadrant with at least 10% transparent padding on ALL sides; no overlap between quadrants; no divider lines. Keep whole subjects uncut. Real transparent alpha background, no checkerboard or white backdrop. Sophisticated hand-painted gouache with crisp silhouettes and delicate natural textures, warm daylight from upper left. Stylized but recognizable biology, no anthropomorphic faces, no cartoon eyes. No text, numbers, arrows, labels, UI, pots or frame. The four stages are representative biological forms, not twelve invented biological stages. Different stages can be magnified independently for legibility. Sciurus lis, Japanese squirrel. Top left: very young dependent squirrel pup, eyes closed, sparse soft grey-brown fur, short thin tail, curled safely in a tiny soft nest of dry grass. Top right: eyes-open young squirrel pup with developing brown fur, small rounded body, modestly furred tail; on small branch. Bottom left: juvenile squirrel with alert natural posture, longer tail beginning to become bushy, warm brown back and cream belly. Bottom right: adult Japanese squirrel with natural proportions, rich brown fur, creamy white underside and long full bushy tail arching behind, holding a small pine cone in two forepaws. Each has correct four-limbed mammalian anatomy; no stripes, no red panda, no oversized cartoon eyes. Important layout: leave a broad EMPTY TRANSPARENT CROSS through center of sheet, 12% canvas width, separating all four subjects; keep every subject entirely inside its own quadrant with no intrusion. Maximum subject bounding box is 35% of whole canvas width and height.",
       "file": "species-squirrel.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-5a13dbf6-30b6-461d-abd9-a621e2263a21.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "動物",
       "width": 1254,
@@ -226,6 +236,7 @@
       "transparent": false,
       "prompt": "Use case: stylized-concept. Asset type: three-frame landscape atlas for educational habitat game. Portrait 2:3 image. EXACTLY THREE equal horizontal panels stacked vertically edge to edge, no gaps, borders, text or labels. Every panel is SAME exact camera and terrain, slightly elevated view; horizon at upper quarter, broad open flat foreground in lower two thirds, SMALL pond basin at x84% y72% of each panel. Sophisticated hand-painted gouache and watercolor grain, warm inviting natural colors. Top: bare mineral ground, empty pond basin, no plants. Middle: same terrain, sparse LOW grass patches, shallow small pond. Bottom: same terrain, LOW green meadow cover, small clear pond. No trees, shrubs, flowers, animals or people in ANY frame because selectable organisms are rendered separately. Preserve horizon, stone positions, pond position, scale and camera exactly between frames. This is a fictional cared-for game plot, not a universal natural succession sequence. Warm red sandstone canyon walls, low rounded crimson cliffs to far sides, broad flat ochre foreground and pale blue sky; distant cliffs remain arid in all frames.",
       "file": "environment-canyon.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-aa3c6597-79bc-43ab-bd70-17958f9643e6.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "環境",
       "width": 1024,
@@ -245,6 +256,7 @@
       "transparent": false,
       "prompt": "Use case: stylized-concept. Asset type: three-frame landscape atlas for educational habitat game. Portrait 2:3 image. EXACTLY THREE equal horizontal panels stacked vertically edge to edge, no gaps, borders, text or labels. Every panel is SAME exact camera and terrain, slightly elevated view; horizon at upper quarter, broad open flat foreground in lower two thirds, SMALL pond basin at x84% y72% of each panel. Sophisticated hand-painted gouache and watercolor grain, warm inviting natural colors. Top: bare mineral ground, empty pond basin, no plants. Middle: same terrain, sparse LOW grass patches, shallow small pond. Bottom: same terrain, LOW green meadow cover, small clear pond. No trees, shrubs, flowers, animals or people in ANY frame because selectable organisms are rendered separately. Preserve horizon, stone positions, pond position, scale and camera exactly between frames. This is a fictional cared-for game plot, not a universal natural succession sequence. Flat river floodplain, distant wide blue lake along horizon and low misty hills, dark sand and river stones at edges. The far lake remains in every frame; small foreground pond is distinct from lake. Sage green and soft blue palette.",
       "file": "environment-waterside.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-c5316610-f773-4fc8-b200-59ba5aa55a8e.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "環境",
       "width": 1024,
@@ -264,6 +276,7 @@
       "transparent": false,
       "prompt": "Use case: stylized-concept. Asset type: three-frame landscape atlas for educational habitat game. Portrait 2:3 image. EXACTLY THREE equal horizontal panels stacked vertically edge to edge, no gaps, borders, text or labels. Every panel is SAME exact camera and terrain, slightly elevated view; horizon at upper quarter, broad open flat foreground in lower two thirds, SMALL pond basin at x84% y72% of each panel. Sophisticated hand-painted gouache and watercolor grain, warm inviting natural colors. Top: bare mineral ground, empty pond basin, no plants. Middle: same terrain, sparse LOW grass patches, shallow small pond. Bottom: same terrain, LOW green meadow cover, small clear pond. No trees, shrubs, flowers, animals or people in ANY frame because selectable organisms are rendered separately. Preserve horizon, stone positions, pond position, scale and camera exactly between frames. This is a fictional cared-for game plot, not a universal natural succession sequence. Flat plateau with grey granite rocks around edges, layered blue mountains with distant snowy peaks, pale sky, no snow on foreground. Slate-grey gravel turns to low fresh green grass. Open peaceful highland atmosphere.",
       "file": "environment-highland.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-a4cf9f38-57f3-4b50-ab0a-714f5cfc17dc.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "環境",
       "width": 1024,
@@ -283,6 +296,7 @@
       "transparent": false,
       "prompt": "Use case: stylized-concept. Asset type: three-frame landscape atlas for educational habitat game. Portrait 2:3 image. EXACTLY THREE equal horizontal panels stacked vertically edge to edge, no gaps, borders, text or labels. Every panel is SAME exact camera and terrain, slightly elevated view; horizon at upper quarter, broad open flat foreground in lower two thirds, SMALL pond basin at x84% y72% of each panel. Sophisticated hand-painted gouache and watercolor grain, warm inviting natural colors. Top: bare mineral ground, empty pond basin, no plants. Middle: same terrain, sparse LOW grass patches, shallow small pond. Bottom: same terrain, LOW green meadow cover, small clear pond. No trees, shrubs, flowers, animals or people in ANY frame because selectable organisms are rendered separately. Preserve horizon, stone positions, pond position, scale and camera exactly between frames. This is a fictional cared-for game plot, not a universal natural succession sequence. Sheltered flat sandy basin, sweeping golden dunes in distance, a few pale limestone outcrops, turquoise sky. Grass grows only in central foreground pocket; distant dunes remain bare and golden in all frames. No palms or cacti.",
       "file": "environment-oasis.png",
+      "sourceHint": "Generated images are saved to /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5 as /Users/tk/.codex/generated_images/01a0b6ba-9a1f-7403-a5bc-f4a50e61bce5/exec-b5e5c225-d0b2-4bc9-981e-9ddca7521cc5.png by default.\nIf you need to use a generated image at another path, copy it and leave the original in place unless the user explicitly asks you to delete it.\nThe generated image is already displayed to the user. There is no need to render it in the final response as a Markdown image or file link.",
       "revisionPrompt": null,
       "category": "環境",
       "width": 1024,
@@ -3235,8 +3249,318 @@
       "width": 1254,
       "height": 1254,
       "artMode": "portrait"
+    },
+    {
+      "id": "species-mimosa",
+      "title": "オジギソウ",
+      "stages": [
+        "芽生え",
+        "若い株",
+        "葉を広げる株",
+        "花のある株"
+      ],
+      "columns": 2,
+      "rows": 2,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-mimosa.png",
+      "category": "植物",
+      "prompt": "Scientific educational game asset: four-stage botanical sprite sheet of Mimosa pudica sensitive plant with delicate bipinnate leaves and small spherical pink flowers. Four distinct stages in reading order: tiny seedling with first leaves; juvenile leafy plant; mature branched plant with fully spread bipinnate leaves; mature plant bearing pink puffball flowers. Refined natural history watercolor with precise soft ink, biologically plausible. Exactly 2 by 2 grid of four isolated whole plants, broad completely empty transparent vertical and horizontal gutters, no overlap. Each plant including roots confined to its own quadrant with 15 percent clear padding. True transparent background, no ground scenery, no pots, no labels, no text, no border. Attractive coherent collectible illustration, readable small.",
+      "revisionPrompt": "Correct the leaves throughout all four plants: Mimosa pudica has BIPINNATE leaves. Each long petiole terminates in TWO PAIRS of narrow featherlike pinnae radiating like four fingers. Each pinna bears MANY tiny closely spaced oblong leaflets in opposite rows, not large broad leaves. Keep 2x2 four separate stages, pink puffball flowers only on mature bottom-right plant. Generous transparent central gutters and margins. No text.",
+      "width": 1261,
+      "height": 1247,
+      "frameAspectRatio": 1,
+      "runtimePacking": [
+        {
+          "left": 0,
+          "top": 0,
+          "width": 647,
+          "height": 590
+        },
+        {
+          "left": 647,
+          "top": 0,
+          "width": 600,
+          "height": 590
+        },
+        {
+          "left": 0,
+          "top": 590,
+          "width": 647,
+          "height": 657
+        },
+        {
+          "left": 647,
+          "top": 590,
+          "width": 614,
+          "height": 657
+        }
+      ]
+    },
+    {
+      "id": "species-chrysanthemum",
+      "title": "キク",
+      "stages": [
+        "さし芽の苗",
+        "若い株",
+        "つぼみのある株",
+        "花のある株"
+      ],
+      "columns": 2,
+      "rows": 2,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-chrysanthemum.png",
+      "category": "植物",
+      "prompt": "Scientific educational game asset: four-stage botanical sprite sheet of Chrysanthemum morifolium garden chrysanthemum, simple natural yellow flowers and lobed green leaves. Four distinct stages in reading order: young rooted cutting with two leaves; small leafy plant; mature plant with unopened flower buds; mature plant with several yellow composite flower heads. Refined natural history watercolor with precise soft ink, biologically plausible. Exactly 2 by 2 grid of four isolated whole plants, broad completely empty transparent vertical and horizontal gutters, no overlap. Each plant including roots confined to its own quadrant with 15 percent clear padding. True transparent background, no ground scenery, no pots, no labels, no text, no border. Attractive coherent collectible illustration, readable small.",
+      "width": 1207,
+      "height": 1303,
+      "frameAspectRatio": 1,
+      "runtimePacking": [
+        {
+          "left": 0,
+          "top": 0,
+          "width": 609,
+          "height": 594
+        },
+        {
+          "left": 609,
+          "top": 9,
+          "width": 597,
+          "height": 613
+        },
+        {
+          "left": 0,
+          "top": 594,
+          "width": 609,
+          "height": 709
+        },
+        {
+          "left": 609,
+          "top": 622,
+          "width": 588,
+          "height": 681
+        }
+      ]
+    },
+    {
+      "id": "species-spinach",
+      "title": "ホウレンソウ",
+      "stages": [
+        "芽生え",
+        "若い葉",
+        "葉の茂る株",
+        "抽だいした株"
+      ],
+      "columns": 2,
+      "rows": 2,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-spinach.png",
+      "category": "植物",
+      "prompt": "Scientific educational game asset: four-stage botanical sprite sheet of Spinacia oleracea spinach with smooth dark green arrow-shaped leaves. Four distinct stages in reading order: seedling with two narrow cotyledons; small rosette with true leaves; full leafy rosette; bolted adult with upright elongated stalk and tiny green flowers, not large showy flowers. Refined natural history watercolor with precise soft ink, biologically plausible. Exactly 2 by 2 grid of four isolated whole plants, broad completely empty transparent vertical and horizontal gutters, no overlap. Each plant including roots confined to its own quadrant with 15 percent clear padding. True transparent background, no ground scenery, no pots, no labels, no text, no border. Attractive coherent collectible illustration, readable small.",
+      "width": 1222,
+      "height": 1287,
+      "frameAspectRatio": 1,
+      "runtimePacking": [
+        {
+          "left": 0,
+          "top": 21,
+          "width": 656,
+          "height": 576
+        },
+        {
+          "left": 656,
+          "top": 17,
+          "width": 561,
+          "height": 530
+        },
+        {
+          "left": 17,
+          "top": 597,
+          "width": 639,
+          "height": 690
+        },
+        {
+          "left": 656,
+          "top": 564,
+          "width": 544,
+          "height": 723
+        }
+      ]
+    },
+    {
+      "id": "species-azuki",
+      "title": "アズキ",
+      "stages": [
+        "芽生え",
+        "若い株",
+        "花のある株",
+        "さやのある株"
+      ],
+      "columns": 2,
+      "rows": 2,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-azuki.png",
+      "category": "植物",
+      "prompt": "Scientific educational game asset: four-stage botanical sprite sheet of Vigna angularis azuki bean plant with characteristic trifoliate leaves. Four distinct stages in reading order: germinating seed with root and emerging shoot; juvenile plant with first leaves; adult green plant with yellow flowers; adult with slender mature brown pods and a few reddish azuki beans near base. Refined natural history watercolor with precise soft ink, biologically plausible. Exactly 2 by 2 grid of four isolated whole plants, broad completely empty transparent vertical and horizontal gutters, no overlap. Each plant including roots confined to its own quadrant with 15 percent clear padding. True transparent background, no ground scenery, no pots, no labels, no text, no border. Attractive coherent collectible illustration, readable small.",
+      "revisionPrompt": "Correct the first two stages to true azuki (Vigna angularis) hypogeal germination. At top-left show a tiny sprout with two simple first leaves, its red seed and cotyledons at the ROOT BASE near the root crown, NOT carried halfway up the stem. At top-right show a young plant with first simple leaves and developing trifoliate leaf above, NO aerial cotyledons. Keep bottom adult flowering and pod stages, 2x2 clear transparent gutters, no text.",
+      "width": 1227,
+      "height": 1282,
+      "frameAspectRatio": 1,
+      "runtimePacking": [
+        {
+          "left": 0,
+          "top": 0,
+          "width": 610,
+          "height": 579
+        },
+        {
+          "left": 610,
+          "top": 0,
+          "width": 601,
+          "height": 596
+        },
+        {
+          "left": 0,
+          "top": 579,
+          "width": 610,
+          "height": 703
+        },
+        {
+          "left": 610,
+          "top": 599,
+          "width": 601,
+          "height": 671
+        }
+      ]
+    },
+    {
+      "id": "species-moonjelly",
+      "title": "ミズクラゲ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-moonjelly.png",
+      "category": "観察生物",
+      "prompt": "Scientific educational collectible portrait. Subject: one moon jellyfish Aurelia, translucent saucer-shaped bell seen obliquely from above, four distinct horseshoe-shaped purple gonads visible inside bell, fine short marginal tentacles and four folded oral arms beneath, anatomically plausible, no face. Refined natural history watercolor with precise soft ink, scientifically plausible anatomy, elegant attractive detail. Single isolated specimen centered in square composition with generous transparent margins, true transparent background. No text, labels, frames, scenery or watermark.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-stonycoral",
+      "title": "イシサンゴの仲間",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-stonycoral.png",
+      "category": "観察生物",
+      "prompt": "Scientific educational collectible portrait. Subject: one small living branching stony coral colony Acropora, warm brown and pale cream branch tips, many tiny corallite cups with delicate sixfold radial tentacles on some polyps, clearly a coral colony with mineral skeleton, no fish or extra scenery. Refined natural history watercolor with precise soft ink, scientifically plausible anatomy, elegant attractive detail. Single isolated specimen centered in square composition with generous transparent margins, true transparent background. No text, labels, frames, scenery or watermark.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-sponge",
+      "title": "カイメンの仲間",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-sponge.png",
+      "category": "観察生物",
+      "prompt": "Scientific educational collectible portrait. Subject: one natural marine tube sponge cluster, ochre yellow porous walls, three irregular tubular lobes each with a clearly visible large opening at the top, tiny pores across surface, attached to a very small neutral rock base, no coral polyps or tentacles. Refined natural history watercolor with precise soft ink, scientifically plausible anatomy, elegant attractive detail. Single isolated specimen centered in square composition with generous transparent margins, true transparent background. No text, labels, frames, scenery or watermark.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-octopus",
+      "title": "マダコ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-octopus.png",
+      "category": "観察生物",
+      "prompt": "Scientific educational collectible portrait. Subject: one Japanese common octopus Octopus sinensis, warm reddish brown mottled skin, oval mantle and realistic eyes, EXACTLY EIGHT separate arms visibly countable arranged gracefully and without obscuring each other, each arm tapers and has two rows of suckers, no extra limbs or cartoon face. Refined natural history watercolor with precise soft ink, scientifically plausible anatomy, elegant attractive detail. Single isolated specimen centered in square composition with generous transparent margins, true transparent background. No text, labels, frames, scenery or watermark.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-vorticella",
+      "title": "ツリガネムシ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-vorticella.png",
+      "category": "観察生物",
+      "prompt": "Scientific educational collectible portrait. Subject: Vorticella, one microscopic translucent bell-shaped ciliate on a long slender unbranched stalk attached at its base, ring of many fine cilia surrounding its broad oral rim, visible curved macronucleus and food vacuoles, no green chloroplasts, no animal face. Refined natural history watercolor with precise soft ink, biologically plausible, beautiful crisp small-scale details. Single isolated specimen centered in square composition with generous transparent margins, true transparent background. No text, labels, frames, scenery or watermark. Morphological features must be coherent rather than decorative.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-stentor",
+      "title": "ラッパムシ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-stentor.png",
+      "category": "観察生物",
+      "prompt": "Scientific educational collectible portrait. Subject: Stentor coeruleus, one trumpet-shaped elongated freshwater ciliate, broad flared oral end with delicate ring of cilia and a narrow holdfast end, pale blue transparent cytoplasm, fine longitudinal stripes and a chain of bead-shaped macronuclear nodes visible inside, microscopic natural history illustration. Refined natural history watercolor with precise soft ink, biologically plausible, beautiful crisp small-scale details. Single isolated specimen centered in square composition with generous transparent margins, true transparent background. No text, labels, frames, scenery or watermark. Morphological features must be coherent rather than decorative.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-closterium",
+      "title": "ミカヅキモ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-closterium.png",
+      "category": "観察生物",
+      "prompt": "Scientific educational collectible portrait. Subject: Closterium, a single symmetrical gently curved crescent-shaped desmid cell with tapered rounded ends, clear cell wall, two large green chloroplasts one in each cell half separated by a small clear central area containing one nucleus, tiny round pyrenoids within the chloroplasts; no eyes or mouth, microscopic portrait. Refined natural history watercolor with precise soft ink, biologically plausible, beautiful crisp small-scale details. Single isolated specimen centered in square composition with generous transparent margins, true transparent background. No text, labels, frames, scenery or watermark. Morphological features must be coherent rather than decorative.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-pediastrum",
+      "title": "クンショウモ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-more-20261024/species-pediastrum.png",
+      "category": "観察生物",
+      "prompt": "Scientific educational collectible portrait. Subject: Pediastrum, a single flat circular colony of 16 polygonal green algal cells, cells clearly connected in ONE CELL THICK plane, outer cells each with two short hornlike projections, interior cells polygonal with clear walls and small natural intercellular gaps, chloroplasts green, exact natural microscopy-inspired geometry, no animal features. Refined natural history watercolor with precise soft ink, biologically plausible, beautiful crisp small-scale details. Single isolated specimen centered in square composition with generous transparent margins, true transparent background. No text, labels, frames, scenery or watermark. Morphological features must be coherent rather than decorative.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
     }
   ],
-  "speciesCount": 120,
+  "speciesCount": 132,
   "environmentCount": 20
 }

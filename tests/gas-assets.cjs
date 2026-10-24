@@ -4,8 +4,8 @@ vm.createContext(context);vm.runInContext(fs.readFileSync('Code.gs','utf8'),cont
 assert(delivered.includes('const ART='),'compressed HTML must survive GAS comment removal and restore the application');
 const local=fs.readFileSync('index.html','utf8');
 const images=html=>JSON.parse(html.match(/const ART=(\{.*?\});/s)[1]);
-assert.deepEqual(images(delivered),images(local));assert.equal(Object.keys(images(delivered)).length,140);
+assert.deepEqual(images(delivered),images(local));assert.equal(Object.keys(images(delivered)).length,152);
 assert.equal(delivered.replace(/const ART=\{.*?\};/s,'const ART={};'),local.replace(/const ART=\{.*?\};/s,'const ART={};'));
 assert(!delivered.includes('/*BIOME_ART_DATA*/'));
-console.log('PASS GAS asset assembly: 140 images, complete HTML equivalent to locally tested app');
+console.log('PASS GAS asset assembly: 152 images, complete HTML equivalent to locally tested app');
 module.exports={delivered};

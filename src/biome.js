@@ -27,7 +27,7 @@ const QUESTIONS={
 };
 const catalog=typeof module==='object'&&module.exports?require('./biome-catalog.js'):root.BiomeCatalog;
 SPECIES.push(...catalog.species);Object.assign(QUESTIONS,catalog.questions);
-const school=typeof module==='object'&&module.exports?require('../data/biome-school-expansion.json').concat(require('../data/biome-extra-expansion.json')):root.BiomeSchoolExpansion;
+const school=typeof module==='object'&&module.exports?require('../data/biome-school-expansion.json').concat(require('../data/biome-extra-expansion.json'),require('../data/biome-more-expansion.json')):root.BiomeSchoolExpansion;
 for(const {question,answers,explanation,card,...item} of school){SPECIES.push(item);QUESTIONS[item.id]={q:question,answers,explanation};}
 const slotKey=kind=>{const key={plant:'plants',animal:'animals',observation:'observations'}[kind];if(!key)throw Error('種類を確認してください。');return key;};
 const ENVIRONMENT_GROUPS=[['canyon','waterside','highland','rivergravel','satoyama'],['oasis','coast','limestone','stream','deciduousfloor'],['volcanic','peat','coniferfloor','evergreenfloor','savanna'],['tidalflat','rainforestfloor','mangrovecoast','tundra','snowmelt']];

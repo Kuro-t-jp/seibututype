@@ -134,13 +134,14 @@ def main():
     ]:
         source = (ROOT / 'src' / filename).read_text()
         if filename == 'biome.js':
-            school = json.loads((ROOT / 'data/biome-school-expansion.json').read_text()) + json.loads((ROOT / 'data/biome-extra-expansion.json').read_text())
+            school = sum([json.loads((ROOT / f'data/biome-{part}-expansion.json').read_text()) for part in ('school', 'extra', 'more')], [])
             school = [{k:v for k,v in row.items() if k != 'card'} for row in school]
             source = (ROOT / 'src/biome-catalog.js').read_text() + '\nwindow.BiomeSchoolExpansion=' + json.dumps(school, ensure_ascii=False) + ';\n' + source
         if filename == 'biome-ui.js':
             plant_cards = json.loads((ROOT / 'data/biome-plant-cards.json').read_text())
             plant_cards.update({row['id']:row['card'] for row in json.loads((ROOT / 'data/biome-school-expansion.json').read_text())})
             plant_cards.update({row['id']:row['card'] for row in json.loads((ROOT / 'data/biome-extra-expansion.json').read_text())})
+            plant_cards.update({row['id']:row['card'] for row in json.loads((ROOT / 'data/biome-more-expansion.json').read_text())})
             source = source.replace('const PLANT_CARDS={};', 'const PLANT_CARDS=' + json.dumps(plant_cards, ensure_ascii=False) + ';', 1)
             art = {}
             manifest = json.loads((ROOT / 'assets/biome-production-20261023/manifest.json').read_text())
@@ -171,8 +172,8 @@ def main():
             print(f'{key}: 画像の挿入位置が一致しません', file=sys.stderr)
             return 1
     css = (ROOT / 'src/visual-refresh.css').read_text()
-    habitat_image = base64.b64encode((ROOT / 'assets/biome-landscape.jpg').read_bytes()).decode('ascii')
-    css = css.replace('__HABITAT_IMAGE__', 'data:image/jpeg;base64,' + habitat_image)
+    habitat_image = base64.b64encode((ROOT / 'assets/biome-landscape.webp').read_bytes()).decode('ascii')
+    css = css.replace('__HABITAT_IMAGE__', 'data:image/webp;base64,' + habitat_image)
     html, css_n = re.subn(r'/\* VISUAL REFRESH START \*/.*?/\* VISUAL REFRESH END \*/', lambda _: '/* VISUAL REFRESH START */\n' + css + '\n/* VISUAL REFRESH END */', html, flags=re.S)
     if css_n != 1:
         print('画像・デザインの挿入位置が見つかりません', file=sys.stderr)
