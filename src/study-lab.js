@@ -10,8 +10,9 @@ try{
   if(note||star)studyNotebook[q.id]={note,star,updated:Number.isFinite(r.updated)?Math.max(0,r.updated):0};
  }}
 }catch(e){notebookStorageOK=false;}
+let notebookSnapshot=JSON.stringify(studyNotebook);
 function persistNotebook(){
- try{localStorage.setItem(NOTEBOOK_KEY,JSON.stringify(studyNotebook));notebookStorageOK=true;}catch(e){notebookStorageOK=false;}
+ try{const latest=JSON.parse(localStorage.getItem(NOTEBOOK_KEY)||'{}');if(!latest||typeof latest!=='object'||Array.isArray(latest))throw Error('Invalid notes');const next=mergeRecordChanges(latest,JSON.parse(notebookSnapshot),studyNotebook),text=JSON.stringify(next);localStorage.setItem(NOTEBOOK_KEY,text);studyNotebook=next;notebookSnapshot=text;notebookStorageOK=true;}catch(e){notebookStorageOK=false;}
  $('notebookSaveStatus').textContent=notebookStorageOK?'このブラウザに保存しました。':'保存できません。今の画面では使えますが、再読み込みすると変更が失われます。';
  $('questionBookmarkStatus').textContent=notebookStorageOK?'このブラウザに保存しました。':'保存できません。再読み込みすると変更が失われます。';
 }
@@ -21,7 +22,7 @@ function setNotebookEntry(q,change){
  row.note=String(row.note).slice(0,500);
  if(Object.hasOwn(change,'note'))delete notebookDrafts[q.id];
  if(row.note||row.star)studyNotebook[q.id]=row;else delete studyNotebook[q.id];
- persistNotebook();refreshQuestionBookmark();renderNotebook();
+ persistNotebook();if(!notebookStorageOK)showSaveProblem('ノートが未保存です。この画面を閉じずに保存を再試行してください。');refreshQuestionBookmark();renderNotebook();
 }
 function refreshQuestionBookmark(){
  const q=T?.running?T.items[T.index]:null,star=!!studyNotebook[q?.id]?.star;

@@ -1,6 +1,6 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict');
 (async()=>{
- const b=await chromium.launch(),p=await b.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto('http://127.0.0.1:8766/');await p.locator('#thinkingLaunch').click();
+ const b=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL||'chrome'}),p=await b.newPage({viewport:{width:390,height:844}}),errors=[];p.on('pageerror',e=>errors.push(e.message));await p.goto('http://127.0.0.1:8766/');await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));await p.locator('#thinkingLaunch').click();
  await p.locator('#thinkCollection').selectOption('entrance-2026-09');assert.equal(await p.evaluate(()=>thinkingPool().length),24);
  for(const [subject,n] of [['生物基礎',8],['生物',16]]){await p.locator('#thinkSubject').selectOption(subject);assert.equal(await p.evaluate(()=>thinkingPool().length),n);}
  await p.locator('#thinkKind').selectOption('graph');assert.equal(await p.locator('#thinkBegin').isDisabled(),true);assert.equal(await p.evaluate(()=>thinkingPool().length),0);await p.locator('#thinkKind').selectOption('all');await p.locator('#thinkSubject').selectOption('all');

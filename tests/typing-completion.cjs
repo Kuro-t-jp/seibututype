@@ -1,6 +1,6 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict');
 (async()=>{
- const browser=await chromium.launch(),p=await browser.newPage();await p.goto('http://127.0.0.1:8766/');
+ const browser=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL||'chrome'}),p=await browser.newPage();await p.goto('http://127.0.0.1:8766/');await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));
  await p.clock.install();await p.clock.pauseAt(new Date());
  await p.locator('#startBtn').click();await p.locator('#typingInput').waitFor();
  for(const [term,reading,kind] of [['細胞','saibou','type'],['インスリン','insurinn','type'],['細胞','saibou','recall']]){

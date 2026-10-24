@@ -1887,16 +1887,73 @@ const SAVE_KEY="seibutuTypeSave_v2";
 const DEFAULT_SAVE={coins:0,
   up:{atp:0, mito:0, chloro:0, membrane:0, ribosome:0, synapse:0, homeo:0, stemcell:0, hemo:0},
   badges:[], badge:"", themes:["forest","ocean"], theme:"forest"};
-function loadSave(){
-  try{
-    const raw=JSON.parse(localStorage.getItem(SAVE_KEY)||"{}");
-    return {...DEFAULT_SAVE, ...raw, up:{...DEFAULT_SAVE.up, ...(raw.up||{})},
-            badges:Array.isArray(raw.badges)?raw.badges:[], badge:typeof raw.badge==="string"?raw.badge:"",
-            themes: raw.themes && raw.themes.length? raw.themes : DEFAULT_SAVE.themes.slice()};
-  }catch(e){ return JSON.parse(JSON.stringify(DEFAULT_SAVE)); }
+function decodeSave(text){
+  const raw=JSON.parse(text||"{}");
+  if(!raw||typeof raw!=="object"||Array.isArray(raw))throw Error('保存データの形式を確認できません');
+  const up={};for(const key of Object.keys(DEFAULT_SAVE.up))up[key]=Math.max(0,Math.min(['membrane','homeo'].includes(key)?2:3,Math.floor(Number(raw.up?.[key])||0)));
+  return {...DEFAULT_SAVE,...raw,coins:Math.max(0,Math.min(Number.MAX_SAFE_INTEGER,Math.floor(Number(raw.coins)||0))),up,
+    badges:Array.isArray(raw.badges)?raw.badges.filter(x=>typeof x==='string'):[],badge:typeof raw.badge==='string'?raw.badge:'',
+    themes:Array.isArray(raw.themes)?[...new Set([...DEFAULT_SAVE.themes,...raw.themes.filter(x=>typeof x==='string')])]:DEFAULT_SAVE.themes.slice(),
+    theme:typeof raw.theme==='string'?raw.theme:DEFAULT_SAVE.theme};
 }
-let SAVE=loadSave();
-function persist(){ try{ localStorage.setItem(SAVE_KEY, JSON.stringify(SAVE)); }catch(e){} }
+// Apply only changes made in this tab; preserve unrelated records saved elsewhere.
+function mergeRecordChanges(latest,before,after){
+  if(JSON.stringify(before)===JSON.stringify(after))return latest;
+  const object=x=>x&&typeof x==='object'&&!Array.isArray(x);
+  if(!object(before)||!object(after)||!object(latest))return after;
+  const next={...latest};
+  for(const key of new Set([...Object.keys(before),...Object.keys(after)])){
+    if(JSON.stringify(before[key])===JSON.stringify(after[key]))continue;
+    if(!Object.hasOwn(after,key))delete next[key];
+    else next[key]=mergeRecordChanges(latest[key],before[key],after[key]);
+  }
+  return next;
+}
+function loadSave(){try{return decodeSave(localStorage.getItem(SAVE_KEY));}catch(e){return JSON.parse(JSON.stringify(DEFAULT_SAVE));}}
+let SAVE=loadSave(), savedSnapshot=JSON.stringify(SAVE);
+const pendingRewards=[];
+function showSaveProblem(message){
+  let box=document.getElementById('saveProblem');
+  if(!box){box=document.createElement('aside');box.id='saveProblem';box.setAttribute('role','alert');box.style.cssText='position:fixed;bottom:12px;left:12px;right:12px;z-index:10000;margin:auto;max-width:720px;padding:16px;border:2px solid #b45309;border-radius:12px;background:#fff7ed;color:#7c2d12;box-shadow:0 8px 32px #0003';document.body.appendChild(box);}
+  box.replaceChildren(document.createTextNode(message));
+  if(pendingRewards.length||window.hasPendingStudyRecords?.()){const button=document.createElement('button');button.className='btn';button.textContent='未保存の記録・報酬を保存し直す';button.onclick=flushRewards;box.appendChild(button);}
+  else {const button=document.createElement('button');button.className='btn ghost';button.textContent='閉じる';button.onclick=()=>box.remove();box.appendChild(button);}
+}
+function persist(){
+  try{
+    const latest=decodeSave(localStorage.getItem(SAVE_KEY));
+    if(JSON.stringify(latest)!==savedSnapshot){
+      SAVE=latest;savedSnapshot=JSON.stringify(latest);
+      showSaveProblem('別のタブで記録が更新されました。購入・変更は行わず、最新の記録に戻しました。もう一度操作してください。');return false;
+    }
+    const text=JSON.stringify(SAVE);localStorage.setItem(SAVE_KEY,text);savedSnapshot=text;return true;
+  }catch(e){
+    SAVE=JSON.parse(savedSnapshot);showSaveProblem('このブラウザに保存できませんでした。購入・変更は確定していません。ブラウザの保存設定や空き容量を確認してください。');return false;
+  }
+}
+function saveRunReward(rows,kind,coins){
+  pendingRewards.push({rows:rows.map(r=>({ok:r.ok,incomplete:r.incomplete,revealed:r.revealed})),kind,coins});
+  flushRewards();return pendingRewards.length===0;
+}
+function flushRewards(){
+  const learningSaved=window.flushLearningAnswers?.()!==false,thinkingSaved=window.flushThinkingAnswers?.()!==false,auxSaved=window.flushAuxRecords?.()!==false;
+  while(pendingRewards.length){
+    const reward=pendingRewards[0];
+    try{SAVE=decodeSave(localStorage.getItem(SAVE_KEY));savedSnapshot=JSON.stringify(SAVE);}catch(e){break;}
+    SAVE.coins=Math.min(Number.MAX_SAFE_INTEGER,SAVE.coins+reward.coins);
+    window.advanceBiomeLearning?.(reward.rows,reward.kind);
+    if(!persist())break;
+    pendingRewards.shift();
+  }
+  refreshCoins();
+  if(pendingRewards.length||!learningSaved||!thinkingSaved||!auxSaved){
+    if(pendingRewards.length)document.querySelectorAll('.habitat-result').forEach(e=>e.remove());
+    showSaveProblem(`学習記録またはコイン・育成の報酬が未保存です（報酬 ${pendingRewards.length} 件）。この画面を閉じずに、保存を再試行してください。`);return false;
+  }
+  document.getElementById('saveProblem')?.remove();
+  document.querySelectorAll('[data-reward-unsaved]').forEach(e=>{e.textContent=e.textContent.replace('（未保存・再試行待ち）','');delete e.dataset.rewardUnsaved;});return true;
+}
+window.addEventListener('beforeunload',e=>{if(pendingRewards.length||window.hasPendingStudyRecords?.()){e.preventDefault();e.returnValue='';}});
 const UPGRADES=[
   {key:"atp",      ico:"⚡", name:"ATP",           bio:"生体のエネルギー通貨。分解時にエネルギーを放出し、生命活動に使われる。", desc:"クリア得点が増える（最大15%）", max:3, costs:[45, 110, 220], eff:l=>`得点+${l*5}%`},
   {key:"mito",     ico:"🔋", name:"ミトコンドリア", bio:"呼吸を行い、有機物を分解してATPを合成する細胞小器官。",             desc:"タイム制の開始時間を延長（最大9秒）", max:3, costs:[60, 140, 280], eff:l=>`+${l*3}秒`},
@@ -1969,7 +2026,7 @@ function renderBadges(){
         if(SAVE.coins<b.cost)return;
         SAVE.coins-=b.cost;SAVE.badges.push(b.key);
       }
-      SAVE.badge=b.key;persist();applyBadge();refreshCoins();renderShop();
+      SAVE.badge=b.key;if(!persist()){renderShop();return;}applyBadge();refreshCoins();renderShop();
       toast(`${b.ico} ${b.name}を身につけました`);
       $("removeBadge").focus({preventScroll:true});
     };
@@ -2113,7 +2170,7 @@ function renderShop(){
       btn.onclick=()=>{
         if(SAVE.coins<cost) return;
         const wasLocked=lv===0;
-        SAVE.coins-=cost; SAVE.up[u.key]=lv+1; persist();
+        SAVE.coins-=cost; SAVE.up[u.key]=lv+1; if(!persist()){renderShop();return;}
         if(wasLocked){
           showReveal(`<div class="reveal-ico">${u.ico}</div>
             <div class="reveal-name">${u.name}</div>
@@ -2138,11 +2195,11 @@ function renderShop(){
     sw.innerHTML=`${swatch}<b>${t.name}</b><span>${active?"使用中":owned?"タップで使用":"🪙 "+t.cost}</span>`;
     sw.onclick=()=>{
       if(active) return;
-      if(owned){ SAVE.theme=t.key; persist(); applyTheme(); renderShop(); }
+      if(owned){ SAVE.theme=t.key; if(!persist()){renderShop();return;} applyTheme(); renderShop(); }
       else{
         if(SAVE.coins<t.cost){ toast("コインが足りません"); return; }
         SAVE.coins-=t.cost; SAVE.themes.push(t.key); SAVE.theme=t.key;
-        persist(); applyTheme(); renderShop();
+        if(!persist()){renderShop();return;} applyTheme(); renderShop();
         showReveal(`<div class="reveal-ico">🎨</div>
           <div class="reveal-name">${t.name}</div>
           <div class="reveal-label">🎨 配色 解放！</div>
@@ -2526,8 +2583,9 @@ function endGame(reason="quit"){
   el.rMiss.textContent=G.miss;
   const reward=coinReward(G,playMode,completed,SAVE.up);
   const earned=reward.total;
-  SAVE.coins += earned; window.advanceBiomeLearning?.(G.review,playMode); persist(); refreshCoins();
+  const rewardSaved=saveRunReward(G.review,playMode,earned);
   $("rEarned").textContent=`🪙 +${earned} コイン獲得（問題 ${reward.base}・完走 ${reward.finish}・葉緑体 ${reward.growth}・ノーミス ${reward.perfect}）`;
+  if(!rewardSaved){$("rEarned").textContent+="（未保存・再試行待ち）";$("rEarned").dataset.rewardUnsaved="true";}
   renderReview();renderLearningResult();
   show("result");
   $("resultTitle").focus({preventScroll:true});
@@ -2555,7 +2613,7 @@ function updateSelection(){
 }
 function renderReview(){
   const rows=G.review;
-  if(rows.length){STUDY.terms=[...new Set([...STUDY.terms,...rows.map(r=>r.word.t)])];STUDY.sessions++;try{localStorage.setItem(STUDY_KEY,JSON.stringify(STUDY));}catch(e){}}
+  if(rows.length){try{const latest=JSON.parse(localStorage.getItem(STUDY_KEY)||"{}");STUDY.terms=[...new Set([...STUDY.terms,...(Array.isArray(latest.terms)?latest.terms.map(canonicalTerm).filter(Boolean):[])])];STUDY.sessions=Math.max(STUDY.sessions,Number(latest.sessions)||0);}catch(e){}STUDY.terms=[...new Set([...STUDY.terms,...rows.map(r=>r.word.t)])];STUDY.sessions++;try{localStorage.setItem(STUDY_KEY,JSON.stringify(STUDY));}catch(e){}}
   $("reviewCount").textContent=`${rows.length}問`;
   const mistakes=rows.filter(r=>!r.ok||r.hinted||r.uncertain).length;
   $("resultMessage").textContent=!rows.length?"まずは一語。自分のペースで、もう一度。":mistakes?`${rows.length}問に挑戦しました。気になった用語を、ここでおさらい。`:`${rows.length}問、ヒントなし・ミスなし！ この調子で続けよう。`;
@@ -2577,9 +2635,19 @@ document.querySelectorAll(".finish-run").forEach(b=>b.onclick=()=>endGame());
 const LEARNING_KEY='seibutuLearning_v1';
 let LEARNING={}, learningStorageOK=true, practiceTerms=null;
 try{LEARNING=Learning.sanitize(JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}'),WORDS);}catch(e){learningStorageOK=false;}
+const pendingLearningAnswers=[];
+function flushLearningAnswers(){
+  if(!pendingLearningAnswers.length)return true;
+  try{
+    let next=Learning.sanitize(JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}'),WORDS);
+    for(const r of pendingLearningAnswers)next=Learning.record(next,r.term,r.kind,r.row,r.at);
+    localStorage.setItem(LEARNING_KEY,JSON.stringify(next));LEARNING=next;pendingLearningAnswers.length=0;learningStorageOK=true;return true;
+  }catch(e){learningStorageOK=false;return false;}
+}
+window.flushLearningAnswers=flushLearningAnswers;
 function saveLearningAnswer(row){
-  LEARNING=Learning.record(LEARNING,row.word.t,playMode,row);
-  try{localStorage.setItem(LEARNING_KEY,JSON.stringify(LEARNING));learningStorageOK=true;}catch(e){learningStorageOK=false;}
+  const at=Date.now();pendingLearningAnswers.push({term:row.word.t,kind:playMode,row,at});
+  LEARNING=Learning.record(LEARNING,row.word.t,playMode,row,at);flushLearningAnswers();
   window.recordSuperWord?.(row);
 }
 function scopedWords(){return Learning.filter(WORDS,CURRICULUM,{subject:$('learnSubject').value,unit:$('learnUnit').value,cats:[...selCats]});}
@@ -2660,7 +2728,7 @@ document.body.dataset.screen="start";
 updateSelection();
 applyTheme();
 applyBadge();
-$("removeBadge").onclick=()=>{SAVE.badge="";persist();applyBadge();renderBadges();filterShop();};
+$("removeBadge").onclick=()=>{SAVE.badge="";if(!persist()){renderShop();return;}applyBadge();renderBadges();filterShop();};
 refreshCoins();
 </script>
 <!-- THINKING MODULE START -->
@@ -2758,7 +2826,7 @@ function submitThinking(){
  if(T.selected.length!==answers.length)return;T.locked=true;$('thinkMeter').value=T.index+1;
  const picked=[...T.selected],ok=picked.every(x=>answers.includes(x)),uncertain=$('thinkUncertain').checked;
  T.review.push({id:q.id,ok,hinted:false,picked,uncertain,order:[...T.order],memo:$('thinkMemo').value,seconds:Math.round((Date.now()-T.questionStarted)/1000)});if(!ok)T.miss++;
- thinkingHistory[q.id]={ok,uncertain,last:Date.now(),attempts:(thinkingHistory[q.id]?.attempts||0)+1};try{localStorage.setItem(THINK_KEY,JSON.stringify(thinkingHistory));}catch(e){}
+ recordThinkingHistory(q.id,ok,uncertain);
  window.captureQuestionNote?.(q,$('thinkMemo').value);
  window.recordSuperThinking?.(q,T.review[T.review.length-1]);
  [...$('thinkChoices').children].forEach((btn,idx)=>{btn.disabled=true;if(T.mode!=='practice'){if(answers.includes(T.order[idx]))btn.classList.add('correct');else if(picked.includes(T.order[idx]))btn.classList.add('wrong');}});
@@ -2766,13 +2834,30 @@ function submitThinking(){
  $('thinkFeedback').innerHTML=T.mode==='practice'?'<h3>回答を記録しました</h3><p>正誤と解説は最後にまとめて確認します。</p>':`${answerReaction(ok)}${uncertain?'<p>正誤にかかわらず復習に登録しました。</p>':''}${thinkingExplanation(q,T.order)}`;
  $('thinkNext').textContent=T.index+1===T.items.length?'結果を見る（Enter）':'次の問題へ（Enter）';$('thinkNext').classList.remove('hidden');$('thinkFeedback').focus({preventScroll:true});revealAnswerReaction('thinkFeedback');
 }
+const pendingThinkingAnswers=[];
+function flushThinkingAnswers(){
+ if(!pendingThinkingAnswers.length)return true;
+ try{
+  const raw=JSON.parse(localStorage.getItem(THINK_KEY)||'{}'),next={};
+  for(const q of [...THINKING,...FIVE])if(typeof raw?.[q.id]?.ok==='boolean')next[q.id]=raw[q.id];
+  for(const r of pendingThinkingAnswers)next[r.id]={ok:r.ok,uncertain:r.uncertain,last:r.last,attempts:(Number(next[r.id]?.attempts)||0)+1};
+  localStorage.setItem(THINK_KEY,JSON.stringify(next));thinkingHistory=next;pendingThinkingAnswers.length=0;return true;
+ }catch(e){return false;}
+}
+window.flushThinkingAnswers=flushThinkingAnswers;
+window.hasPendingStudyRecords=()=>pendingLearningAnswers.length>0||pendingThinkingAnswers.length>0;
+function recordThinkingHistory(id,ok,uncertain){
+ const last=Date.now();pendingThinkingAnswers.push({id,ok,uncertain,last});
+ thinkingHistory[id]={ok,uncertain,last,attempts:(thinkingHistory[id]?.attempts||0)+1};flushThinkingAnswers();
+}
 function finishThinking(completed){
  if(!T?.running)return;T.running=false;
- const r=coinReward(T,'quiz',completed,T.up);SAVE.coins+=r.total;window.advanceBiomeLearning?.(T.review,'quiz');persist();refreshCoins();
+ const r=coinReward(T,'quiz',completed,T.up);const rewardSaved=saveRunReward(T.review,'quiz',r.total);
  $('thinkRun').classList.add('hidden');$('thinkResult').classList.remove('hidden');
  const correct=T.review.filter(x=>x.ok).length,seconds=Math.round((Date.now()-T.started)/1000);
  $('thinkOutcome').textContent=`${completed?'学習完了':'ここまでの結果'}：${correct} / ${T.review.length}問正解 · ${Math.floor(seconds/60)}分${seconds%60}秒（経過時間）`;
  $('thinkReward').textContent=`+${r.total} コイン（問題 ${r.base}・完走 ${r.finish}・葉緑体 ${r.growth}・ノーミス ${r.perfect}）`;
+ if(!rewardSaved){$('thinkReward').textContent+='（未保存・再試行待ち）';$('thinkReward').dataset.rewardUnsaved='true';}
  $('thinkReview').replaceChildren();
  const breakdown=document.createElement('p');breakdown.id='thinkBreakdown';breakdown.textContent=Object.entries(T.five?fiveFamilies:thinkingSkills).map(([id,name])=>{const rows=T.review.filter(row=>(T.five?FIVE.find(q=>q.id===row.id).family:THINKING.find(q=>q.id===row.id).competency)===id);return rows.length?`${name} ${rows.filter(r=>r.ok).length}/${rows.length}`:'';}).filter(Boolean).join(' ／ ');$('thinkReview').appendChild(breakdown);
  for(const row of T.review){const q=(T.five?FIVE:THINKING).find(q=>q.id===row.id),d=document.createElement('details');d.open=!row.ok||row.uncertain;d.innerHTML=`<summary>${row.ok?'✓':'復習'} ${escapeHtml(q.title)}${row.uncertain?' · 自信なし':''} · ${row.seconds}秒</summary><p>${escapeHtml(q.passage)}</p>${q.materials?q.materials.map(m=>`<h4>${escapeHtml(m.title)}</h4>${thinkingMaterial(m)}`).join(''):thinkingMaterial(q)}<p>${escapeHtml(q.question)}</p><p>あなたの回答：${row.picked.map(i=>escapeHtml(q.options[i].text)).join(' ／ ')}</p><p>${T.five?'選ぶべき選択肢':'正解'}：${thinkingAnswers(q).map(i=>escapeHtml(q.options[i].text)).join(' ／ ')}</p>${thinkingExplanation(q,row.order)}${row.memo?`<p><b>あなたの根拠メモ</b><br>${escapeHtml(row.memo)}</p>`:''}`;window.appendQuestionBookmark?.(d,q);$('thinkReview').appendChild(d);}
@@ -2867,8 +2952,9 @@ try{
   if(note||star)studyNotebook[q.id]={note,star,updated:Number.isFinite(r.updated)?Math.max(0,r.updated):0};
  }}
 }catch(e){notebookStorageOK=false;}
+let notebookSnapshot=JSON.stringify(studyNotebook);
 function persistNotebook(){
- try{localStorage.setItem(NOTEBOOK_KEY,JSON.stringify(studyNotebook));notebookStorageOK=true;}catch(e){notebookStorageOK=false;}
+ try{const latest=JSON.parse(localStorage.getItem(NOTEBOOK_KEY)||'{}');if(!latest||typeof latest!=='object'||Array.isArray(latest))throw Error('Invalid notes');const next=mergeRecordChanges(latest,JSON.parse(notebookSnapshot),studyNotebook),text=JSON.stringify(next);localStorage.setItem(NOTEBOOK_KEY,text);studyNotebook=next;notebookSnapshot=text;notebookStorageOK=true;}catch(e){notebookStorageOK=false;}
  $('notebookSaveStatus').textContent=notebookStorageOK?'このブラウザに保存しました。':'保存できません。今の画面では使えますが、再読み込みすると変更が失われます。';
  $('questionBookmarkStatus').textContent=notebookStorageOK?'このブラウザに保存しました。':'保存できません。再読み込みすると変更が失われます。';
 }
@@ -2878,7 +2964,7 @@ function setNotebookEntry(q,change){
  row.note=String(row.note).slice(0,500);
  if(Object.hasOwn(change,'note'))delete notebookDrafts[q.id];
  if(row.note||row.star)studyNotebook[q.id]=row;else delete studyNotebook[q.id];
- persistNotebook();refreshQuestionBookmark();renderNotebook();
+ persistNotebook();if(!notebookStorageOK)showSaveProblem('ノートが未保存です。この画面を閉じずに保存を再試行してください。');refreshQuestionBookmark();renderNotebook();
 }
 function refreshQuestionBookmark(){
  const q=T?.running?T.items[T.index]:null,star=!!studyNotebook[q?.id]?.star;
@@ -2984,27 +3070,41 @@ for(const [course,subject] of Object.entries(SUPER_SUBJECTS)){
  superCatalog[course]={type:words,quiz:words.filter(w=>QUIZ_CHOICES[w.t]),recall:words,thinking:THINKING.filter(inScope),five:FIVE.filter(inScope)};
 }
 const superKey=(kind,item)=>kind+':'+(item.t||item.id);
-let superProgress={},superStorageOK=true;
-try{
- const raw=JSON.parse(localStorage.getItem(SUPER_KEY)||'{}');
+function sanitizeSuperProgress(raw){
+ const next={};
  for(const course of Object.keys(SUPER_SUBJECTS)){
   const old=raw?.[course],answers={};
   for(const [kind,items] of Object.entries(superCatalog[course]))for(const item of items){
    const key=superKey(kind,item),r=old?.answers?.[key];
    if(r&&typeof r.clean==='boolean')answers[key]={clean:r.clean};
   }
-  superProgress[course]={round:Number.isSafeInteger(old?.round)&&old.round>0?old.round:1,lastKind:Object.hasOwn(SUPER_KINDS,old?.lastKind)?old.lastKind:'type',answers};
+  next[course]={round:Number.isSafeInteger(old?.round)&&old.round>0?old.round:1,lastKind:Object.hasOwn(SUPER_KINDS,old?.lastKind)?old.lastKind:'type',answers};
  }
-}catch(e){superStorageOK=false;}
-for(const course of Object.keys(SUPER_SUBJECTS))superProgress[course]??={round:1,lastKind:'type',answers:{}};
+ return next;
+}
+let superProgress=sanitizeSuperProgress({}),superStorageOK=true;
+try{superProgress=sanitizeSuperProgress(JSON.parse(localStorage.getItem(SUPER_KEY)||'{}'));}catch(e){superStorageOK=false;}
 function superStats(course){
  const answers=superProgress[course].answers;
  const phases=Object.entries(superCatalog[course]).map(([kind,items])=>({kind,items,left:items.filter(q=>!answers[superKey(kind,q)]),weak:items.filter(q=>answers[superKey(kind,q)]?.clean===false)}));
  const total=phases.reduce((n,p)=>n+p.items.length,0),left=phases.reduce((n,p)=>n+p.left.length,0),weak=phases.reduce((n,p)=>n+p.weak.length,0);
  return {phases,total,done:total-left,left,weak};
 }
+let superSnapshot=JSON.stringify(superProgress);
 function saveSuperProgress(){
- try{localStorage.setItem(SUPER_KEY,JSON.stringify(superProgress));superStorageOK=true;}catch(e){superStorageOK=false;}
+ try{
+  const raw=JSON.parse(localStorage.getItem(SUPER_KEY)||'{}'),before=JSON.parse(superSnapshot);
+  if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('Invalid progress');
+  const latest=sanitizeSuperProgress(raw);
+  if(!latest||typeof latest!=='object'||Array.isArray(latest))throw Error('Invalid progress');
+  const next=mergeRecordChanges(latest,before,superProgress);
+  for(const course of Object.keys(SUPER_SUBJECTS)){
+    if((latest[course]?.round||1)>superProgress[course].round)throw Error('別のタブで次の周回が始まっています。学習を中断して再読み込みしてください。');
+    if(superProgress[course].round>before[course].round)next[course]=superProgress[course];
+    next[course]??=superProgress[course];
+  }
+  const text=JSON.stringify(next);localStorage.setItem(SUPER_KEY,text);superProgress=next;superSnapshot=text;superStorageOK=true;
+ }catch(e){superStorageOK=false;showSaveProblem('超挑戦の進捗が未保存です。'+(e.message.startsWith('別のタブ')?e.message:'この画面を閉じずに保存を再試行してください。'));}
  renderSuperLive();
 }
 function activeSuperRun(){return G?.running&&G.superChallenge?G:T?.running&&T.superChallenge?T:null;}
@@ -3093,6 +3193,13 @@ function renderSuperDashboard(){
 window.refreshSuperChallenge=renderSuperDashboard;
 $('superPause').onclick=()=>{const run=activeSuperRun();if(!run)return;if(run===G)endGame();else finishThinking(false);};
 renderSuperDashboard();
+
+window.flushAuxRecords=()=>{
+ if(!notebookStorageOK)persistNotebook();
+ if(!superStorageOK)saveSuperProgress();
+ return notebookStorageOK&&superStorageOK;
+};
+window.hasPendingStudyRecords=()=>pendingLearningAnswers.length>0||pendingThinkingAnswers.length>0||!notebookStorageOK||!superStorageOK;
 
 </script>
 <!-- SUPER CHALLENGE END -->
@@ -3376,7 +3483,7 @@ function commit(change){
  try{
   if(stable(loadSave())!==stable(SAVE))throw Error('別の画面で記録が更新されています。再読み込みしてから続けてください。');
   const next=JSON.parse(JSON.stringify(SAVE));next.biome=B.normalize(next.biome);change(next);
-  localStorage.setItem(SAVE_KEY,JSON.stringify(next));SAVE=next;refreshCoins();return true;
+  SAVE=next;if(!persist()){notice='保存できなかったため、この操作は確定していません。';render();return false;}refreshCoins();return true;
  }catch(e){notice=`保存を中止しました：${e.message}。コインは消費していません。`;render();return false;}
 }
 function transaction(fn,message){if(commit(n=>{const r=fn(n.biome,n.coins);n.biome=r.state;n.coins=r.coins;})){notice=message;render();return true;}return false;}

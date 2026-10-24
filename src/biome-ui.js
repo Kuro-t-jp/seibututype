@@ -12,7 +12,7 @@ function commit(change){
  try{
   if(stable(loadSave())!==stable(SAVE))throw Error('別の画面で記録が更新されています。再読み込みしてから続けてください。');
   const next=JSON.parse(JSON.stringify(SAVE));next.biome=B.normalize(next.biome);change(next);
-  localStorage.setItem(SAVE_KEY,JSON.stringify(next));SAVE=next;refreshCoins();return true;
+  SAVE=next;if(!persist()){notice='保存できなかったため、この操作は確定していません。';render();return false;}refreshCoins();return true;
  }catch(e){notice=`保存を中止しました：${e.message}。コインは消費していません。`;render();return false;}
 }
 function transaction(fn,message){if(commit(n=>{const r=fn(n.biome,n.coins);n.biome=r.state;n.coins=r.coins;})){notice=message;render();return true;}return false;}

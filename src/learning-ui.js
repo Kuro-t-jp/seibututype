@@ -1,9 +1,19 @@
 const LEARNING_KEY='seibutuLearning_v1';
 let LEARNING={}, learningStorageOK=true, practiceTerms=null;
 try{LEARNING=Learning.sanitize(JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}'),WORDS);}catch(e){learningStorageOK=false;}
+const pendingLearningAnswers=[];
+function flushLearningAnswers(){
+  if(!pendingLearningAnswers.length)return true;
+  try{
+    let next=Learning.sanitize(JSON.parse(localStorage.getItem(LEARNING_KEY)||'{}'),WORDS);
+    for(const r of pendingLearningAnswers)next=Learning.record(next,r.term,r.kind,r.row,r.at);
+    localStorage.setItem(LEARNING_KEY,JSON.stringify(next));LEARNING=next;pendingLearningAnswers.length=0;learningStorageOK=true;return true;
+  }catch(e){learningStorageOK=false;return false;}
+}
+window.flushLearningAnswers=flushLearningAnswers;
 function saveLearningAnswer(row){
-  LEARNING=Learning.record(LEARNING,row.word.t,playMode,row);
-  try{localStorage.setItem(LEARNING_KEY,JSON.stringify(LEARNING));learningStorageOK=true;}catch(e){learningStorageOK=false;}
+  const at=Date.now();pendingLearningAnswers.push({term:row.word.t,kind:playMode,row,at});
+  LEARNING=Learning.record(LEARNING,row.word.t,playMode,row,at);flushLearningAnswers();
   window.recordSuperWord?.(row);
 }
 function scopedWords(){return Learning.filter(WORDS,CURRICULUM,{subject:$('learnSubject').value,unit:$('learnUnit').value,cats:[...selCats]});}

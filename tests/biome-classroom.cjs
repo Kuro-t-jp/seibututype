@@ -1,5 +1,5 @@
 const assert=require('node:assert/strict'),fs=require('node:fs'),B=require('../src/biome.js'),rows=require('../data/biome-classroom.json');
-assert.equal(rows.length,12);assert.equal(B.SPECIES.filter(x=>x.classroom).length,12);
+assert.equal(rows.length,12);assert.equal(B.SPECIES.filter(x=>x.classroom).length,60);
 for(const c of rows){
  assert(B.species(c.id));assert.equal(c.stages.length,4);assert.equal(B.QUESTIONS[c.id].answers.length,3);
  assert.equal(new Set(B.QUESTIONS[c.id].answers).size,3);assert(B.QUESTIONS[c.id].explanation);
@@ -11,4 +11,4 @@ for(const c of rows){
 }
 assert.equal(B.species('marchantia').stages[0],'無性芽');assert.equal(B.species('elodea').stages[0],'茎の断片');
 assert.match(B.species('silkworm').stages[2],/まゆ/);
-console.log('PASS 12 classroom species, stages, source-linked learning, quizzes, placement, complete growth and bonus');
+console.log('PASS 12 original classroom species, stages, source-linked learning, quizzes, placement, complete growth and bonus');

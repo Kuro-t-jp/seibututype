@@ -1,5 +1,5 @@
 const{chromium}=require('playwright'),assert=require('node:assert/strict');
-(async()=>{const b=await chromium.launch(),p=await b.newPage();await p.goto('http://127.0.0.1:8766');
+(async()=>{const b=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL||'chrome'}),p=await b.newPage();await p.goto('http://127.0.0.1:8766');
 // A fixed session must survive exhausting the live new/due pool.
 await p.evaluate(()=>{playMode='quiz';mode={type:'count',val:15};$('learnFocus').value='new';beginQuiz();G.queue=[G.cur];G.idx=0;answerQuiz(G.choices.findIndex(w=>w.t===G.cur.t));clearTimeout(G.nextId);$('learnUnit').value=G.cur.unit;LEARNING=Object.fromEntries(WORDS.map(w=>[w.t,{quiz:{attempts:1,successes:1,stage:1,due:Date.now()+86400000,last:Date.now(),lastOk:true}}]));loadQuestion();});
 assert.equal(await p.evaluate(()=>!!G.cur),true);await p.evaluate(()=>endGame());

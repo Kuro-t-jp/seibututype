@@ -2,7 +2,7 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict');
 (async()=>{
  const b=await chromium.launch({channel:'chrome'}),p=await b.newPage({viewport:{width:1280,height:1000},reducedMotion:'reduce'}),errors=[];p.on('pageerror',e=>errors.push(e.message));
  await p.goto(require('node:url').pathToFileURL(require('node:path').resolve('index.html')).href);
- await p.evaluate(()=>{SAVE.up={...DEFAULT_SAVE.up};SAVE.coins=123;mode={type:'count',val:15};playMode='type';show('game');beginGame();});
+ await p.evaluate(()=>{SAVE.up={...DEFAULT_SAVE.up};SAVE.coins=123;persist();mode={type:'count',val:15};playMode='type';show('game');beginGame();});
  for(let i=0;i<15;i++){
   const answer=await p.evaluate(()=>G.units.map((_,i)=>canonical(G.units,i,'')).join(''));
   await p.locator('#typingInput').pressSequentially(answer);

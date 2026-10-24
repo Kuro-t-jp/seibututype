@@ -1,5 +1,5 @@
 const {chromium}=require('playwright');const assert=require('node:assert/strict');
-(async()=>{const b=await chromium.launch();const p=await b.newPage();await p.goto('http://127.0.0.1:8766');
+(async()=>{const b=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL||'chrome'});const p=await b.newPage();await p.goto('http://127.0.0.1:8766');
 assert.match(await p.locator('#thinkingCount').textContent(),/108問/);
 await p.evaluate(()=>{playMode='quiz';updateSelection()});assert.match(await p.locator('#playGuide').textContent(),/769語.*850語/);
 await p.evaluate(()=>{openThinking();$('thinkMode').value='practice';beginThinking();T.items=[THINKING.find(q=>q.id==='a15')];T.index=0;loadThinking()});

@@ -1,7 +1,7 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=require('node:fs');
 (async()=>{
- const browser=await chromium.launch(); const p=await browser.newPage({viewport:{width:1366,height:1000}}),errors=[];
- p.on('pageerror',e=>errors.push(e.message));await p.goto('http://127.0.0.1:8766');
+ const browser=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL||'chrome'}); const p=await browser.newPage({viewport:{width:1366,height:1000}}),errors=[];
+ p.on('pageerror',e=>errors.push(e.message));await p.goto('http://127.0.0.1:8766');await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));
  assert.equal(await p.locator('#learnSubject').count(),1,'subject filter is available');
  await p.locator('#learnSubject').selectOption('生物基礎');await p.locator('#learnUnit').selectOption('B2b');
  assert.equal(await p.evaluate(()=>pool().every(w=>w.unit==='B2b')),true);
@@ -11,7 +11,7 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict'),fs=r
  await p.waitForTimeout(1800);assert.equal(await p.evaluate(()=>G.cur.t),first,'feedback waits for learner');
  assert.equal(await p.locator('#qNext').isVisible(),true);assert.match(await p.locator('#qFeed').textContent(),/復習/);
  await p.locator('#qNext').click();await p.locator('#quiz .finish-run').click();
- assert.equal(await p.locator('#retryWeak').isVisible(),true);await p.reload();
+ assert.equal(await p.locator('#retryWeak').isVisible(),true);await p.reload();await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));
  assert.equal(await p.evaluate(t=>Learning.lane(LEARNING,t,'quiz').uncertain,first),true);
  await p.locator('[data-play="quiz"]').click();await p.locator('#learnFocus').selectOption('due');
  assert.equal(await p.evaluate(()=>pool().length),1);await p.locator('#startBtn').click();await p.locator('#qChoices button').first().waitFor();

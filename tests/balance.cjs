@@ -23,7 +23,7 @@ const fs=require('node:fs');const vm=require('node:vm');
  for(const r of results.rows){assert.equal(r.base,r.kind==='type'?r.n*2+4:r.n*4+8);assert.ok(r.max/r.base<1.4)}
  console.log('PASS rewards: typing halved; quiz/recall unchanged, bounded growth, no partial/quit/rounded-accuracy bonus',results.rows);
  const run=await p.evaluate(()=>{
-   SAVE.up=Object.fromEntries(UPGRADES.map(u=>[u.key,u.max]));mode={type:'time',val:60};playMode='quiz';show('quiz');beginQuiz();
+   SAVE.up=Object.fromEntries(UPGRADES.map(u=>[u.key,u.max]));persist();mode={type:'time',val:60};playMode='quiz';show('quiz');beginQuiz();
    const initial=G.timeLeft;
    for(let i=0;i<100;i++){answerQuiz(G.choices.findIndex(w=>w.t===G.cur.t));clearTimeout(G.nextId);G.idx=0;loadQuestion();}
    const data={initial,time:G.timeLeft,regen:G.regenUsed,score:G.score,combo:G.combo};endGame();return data;

@@ -1,8 +1,8 @@
 const {chromium}=require('playwright'),assert=require('node:assert/strict');
 (async()=>{
- const browser=await chromium.launch(),p=await browser.newPage(),errors=[];
+ const browser=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL||'chrome'}),p=await browser.newPage(),errors=[];
  p.on('pageerror',e=>errors.push(e.message));
- await p.goto('http://127.0.0.1:8766/');
+ await p.goto('http://127.0.0.1:8766/');await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));
  // Quick start has explicit typing/untimed semantics and preserves the subject.
  await p.locator('#learnSubject').selectOption('生物基礎');
  await p.locator('[data-play="quiz"]').click();

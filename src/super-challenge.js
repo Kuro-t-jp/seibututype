@@ -9,27 +9,41 @@ for(const [course,subject] of Object.entries(SUPER_SUBJECTS)){
  superCatalog[course]={type:words,quiz:words.filter(w=>QUIZ_CHOICES[w.t]),recall:words,thinking:THINKING.filter(inScope),five:FIVE.filter(inScope)};
 }
 const superKey=(kind,item)=>kind+':'+(item.t||item.id);
-let superProgress={},superStorageOK=true;
-try{
- const raw=JSON.parse(localStorage.getItem(SUPER_KEY)||'{}');
+function sanitizeSuperProgress(raw){
+ const next={};
  for(const course of Object.keys(SUPER_SUBJECTS)){
   const old=raw?.[course],answers={};
   for(const [kind,items] of Object.entries(superCatalog[course]))for(const item of items){
    const key=superKey(kind,item),r=old?.answers?.[key];
    if(r&&typeof r.clean==='boolean')answers[key]={clean:r.clean};
   }
-  superProgress[course]={round:Number.isSafeInteger(old?.round)&&old.round>0?old.round:1,lastKind:Object.hasOwn(SUPER_KINDS,old?.lastKind)?old.lastKind:'type',answers};
+  next[course]={round:Number.isSafeInteger(old?.round)&&old.round>0?old.round:1,lastKind:Object.hasOwn(SUPER_KINDS,old?.lastKind)?old.lastKind:'type',answers};
  }
-}catch(e){superStorageOK=false;}
-for(const course of Object.keys(SUPER_SUBJECTS))superProgress[course]??={round:1,lastKind:'type',answers:{}};
+ return next;
+}
+let superProgress=sanitizeSuperProgress({}),superStorageOK=true;
+try{superProgress=sanitizeSuperProgress(JSON.parse(localStorage.getItem(SUPER_KEY)||'{}'));}catch(e){superStorageOK=false;}
 function superStats(course){
  const answers=superProgress[course].answers;
  const phases=Object.entries(superCatalog[course]).map(([kind,items])=>({kind,items,left:items.filter(q=>!answers[superKey(kind,q)]),weak:items.filter(q=>answers[superKey(kind,q)]?.clean===false)}));
  const total=phases.reduce((n,p)=>n+p.items.length,0),left=phases.reduce((n,p)=>n+p.left.length,0),weak=phases.reduce((n,p)=>n+p.weak.length,0);
  return {phases,total,done:total-left,left,weak};
 }
+let superSnapshot=JSON.stringify(superProgress);
 function saveSuperProgress(){
- try{localStorage.setItem(SUPER_KEY,JSON.stringify(superProgress));superStorageOK=true;}catch(e){superStorageOK=false;}
+ try{
+  const raw=JSON.parse(localStorage.getItem(SUPER_KEY)||'{}'),before=JSON.parse(superSnapshot);
+  if(!raw||typeof raw!=='object'||Array.isArray(raw))throw Error('Invalid progress');
+  const latest=sanitizeSuperProgress(raw);
+  if(!latest||typeof latest!=='object'||Array.isArray(latest))throw Error('Invalid progress');
+  const next=mergeRecordChanges(latest,before,superProgress);
+  for(const course of Object.keys(SUPER_SUBJECTS)){
+    if((latest[course]?.round||1)>superProgress[course].round)throw Error('別のタブで次の周回が始まっています。学習を中断して再読み込みしてください。');
+    if(superProgress[course].round>before[course].round)next[course]=superProgress[course];
+    next[course]??=superProgress[course];
+  }
+  const text=JSON.stringify(next);localStorage.setItem(SUPER_KEY,text);superProgress=next;superSnapshot=text;superStorageOK=true;
+ }catch(e){superStorageOK=false;showSaveProblem('超挑戦の進捗が未保存です。'+(e.message.startsWith('別のタブ')?e.message:'この画面を閉じずに保存を再試行してください。'));}
  renderSuperLive();
 }
 function activeSuperRun(){return G?.running&&G.superChallenge?G:T?.running&&T.superChallenge?T:null;}
@@ -118,3 +132,10 @@ function renderSuperDashboard(){
 window.refreshSuperChallenge=renderSuperDashboard;
 $('superPause').onclick=()=>{const run=activeSuperRun();if(!run)return;if(run===G)endGame();else finishThinking(false);};
 renderSuperDashboard();
+
+window.flushAuxRecords=()=>{
+ if(!notebookStorageOK)persistNotebook();
+ if(!superStorageOK)saveSuperProgress();
+ return notebookStorageOK&&superStorageOK;
+};
+window.hasPendingStudyRecords=()=>pendingLearningAnswers.length>0||pendingThinkingAnswers.length>0||!notebookStorageOK||!superStorageOK;

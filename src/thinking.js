@@ -91,7 +91,7 @@ function submitThinking(){
  if(T.selected.length!==answers.length)return;T.locked=true;$('thinkMeter').value=T.index+1;
  const picked=[...T.selected],ok=picked.every(x=>answers.includes(x)),uncertain=$('thinkUncertain').checked;
  T.review.push({id:q.id,ok,hinted:false,picked,uncertain,order:[...T.order],memo:$('thinkMemo').value,seconds:Math.round((Date.now()-T.questionStarted)/1000)});if(!ok)T.miss++;
- thinkingHistory[q.id]={ok,uncertain,last:Date.now(),attempts:(thinkingHistory[q.id]?.attempts||0)+1};try{localStorage.setItem(THINK_KEY,JSON.stringify(thinkingHistory));}catch(e){}
+ recordThinkingHistory(q.id,ok,uncertain);
  window.captureQuestionNote?.(q,$('thinkMemo').value);
  window.recordSuperThinking?.(q,T.review[T.review.length-1]);
  [...$('thinkChoices').children].forEach((btn,idx)=>{btn.disabled=true;if(T.mode!=='practice'){if(answers.includes(T.order[idx]))btn.classList.add('correct');else if(picked.includes(T.order[idx]))btn.classList.add('wrong');}});
@@ -99,13 +99,30 @@ function submitThinking(){
  $('thinkFeedback').innerHTML=T.mode==='practice'?'<h3>回答を記録しました</h3><p>正誤と解説は最後にまとめて確認します。</p>':`${answerReaction(ok)}${uncertain?'<p>正誤にかかわらず復習に登録しました。</p>':''}${thinkingExplanation(q,T.order)}`;
  $('thinkNext').textContent=T.index+1===T.items.length?'結果を見る（Enter）':'次の問題へ（Enter）';$('thinkNext').classList.remove('hidden');$('thinkFeedback').focus({preventScroll:true});revealAnswerReaction('thinkFeedback');
 }
+const pendingThinkingAnswers=[];
+function flushThinkingAnswers(){
+ if(!pendingThinkingAnswers.length)return true;
+ try{
+  const raw=JSON.parse(localStorage.getItem(THINK_KEY)||'{}'),next={};
+  for(const q of [...THINKING,...FIVE])if(typeof raw?.[q.id]?.ok==='boolean')next[q.id]=raw[q.id];
+  for(const r of pendingThinkingAnswers)next[r.id]={ok:r.ok,uncertain:r.uncertain,last:r.last,attempts:(Number(next[r.id]?.attempts)||0)+1};
+  localStorage.setItem(THINK_KEY,JSON.stringify(next));thinkingHistory=next;pendingThinkingAnswers.length=0;return true;
+ }catch(e){return false;}
+}
+window.flushThinkingAnswers=flushThinkingAnswers;
+window.hasPendingStudyRecords=()=>pendingLearningAnswers.length>0||pendingThinkingAnswers.length>0;
+function recordThinkingHistory(id,ok,uncertain){
+ const last=Date.now();pendingThinkingAnswers.push({id,ok,uncertain,last});
+ thinkingHistory[id]={ok,uncertain,last,attempts:(thinkingHistory[id]?.attempts||0)+1};flushThinkingAnswers();
+}
 function finishThinking(completed){
  if(!T?.running)return;T.running=false;
- const r=coinReward(T,'quiz',completed,T.up);SAVE.coins+=r.total;window.advanceBiomeLearning?.(T.review,'quiz');persist();refreshCoins();
+ const r=coinReward(T,'quiz',completed,T.up);const rewardSaved=saveRunReward(T.review,'quiz',r.total);
  $('thinkRun').classList.add('hidden');$('thinkResult').classList.remove('hidden');
  const correct=T.review.filter(x=>x.ok).length,seconds=Math.round((Date.now()-T.started)/1000);
  $('thinkOutcome').textContent=`${completed?'学習完了':'ここまでの結果'}：${correct} / ${T.review.length}問正解 · ${Math.floor(seconds/60)}分${seconds%60}秒（経過時間）`;
  $('thinkReward').textContent=`+${r.total} コイン（問題 ${r.base}・完走 ${r.finish}・葉緑体 ${r.growth}・ノーミス ${r.perfect}）`;
+ if(!rewardSaved){$('thinkReward').textContent+='（未保存・再試行待ち）';$('thinkReward').dataset.rewardUnsaved='true';}
  $('thinkReview').replaceChildren();
  const breakdown=document.createElement('p');breakdown.id='thinkBreakdown';breakdown.textContent=Object.entries(T.five?fiveFamilies:thinkingSkills).map(([id,name])=>{const rows=T.review.filter(row=>(T.five?FIVE.find(q=>q.id===row.id).family:THINKING.find(q=>q.id===row.id).competency)===id);return rows.length?`${name} ${rows.filter(r=>r.ok).length}/${rows.length}`:'';}).filter(Boolean).join(' ／ ');$('thinkReview').appendChild(breakdown);
  for(const row of T.review){const q=(T.five?FIVE:THINKING).find(q=>q.id===row.id),d=document.createElement('details');d.open=!row.ok||row.uncertain;d.innerHTML=`<summary>${row.ok?'✓':'復習'} ${escapeHtml(q.title)}${row.uncertain?' · 自信なし':''} · ${row.seconds}秒</summary><p>${escapeHtml(q.passage)}</p>${q.materials?q.materials.map(m=>`<h4>${escapeHtml(m.title)}</h4>${thinkingMaterial(m)}`).join(''):thinkingMaterial(q)}<p>${escapeHtml(q.question)}</p><p>あなたの回答：${row.picked.map(i=>escapeHtml(q.options[i].text)).join(' ／ ')}</p><p>${T.five?'選ぶべき選択肢':'正解'}：${thinkingAnswers(q).map(i=>escapeHtml(q.options[i].text)).join(' ／ ')}</p>${thinkingExplanation(q,row.order)}${row.memo?`<p><b>あなたの根拠メモ</b><br>${escapeHtml(row.memo)}</p>`:''}`;window.appendQuestionBookmark?.(d,q);$('thinkReview').appendChild(d);}
