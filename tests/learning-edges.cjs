@@ -9,11 +9,6 @@ assert.equal(await p.evaluate(()=>G.running),false);assert.equal(await p.evaluat
 await p.evaluate(()=>{playMode='recall';mode={type:'learn',val:10};show('game');beginRecall();});await p.locator('#typingInput').focus();await p.keyboard.press('Tab');assert.equal(await p.evaluate(()=>G.hinted),false);
 await p.evaluate(()=>endGame());
 const grade=await p.evaluate(()=>performanceGrade({done:10,miss:0,review:Array.from({length:10},()=>({ok:true,uncertain:true}))},'quiz',true,100));assert.notEqual(grade,'SS');
-// The new scope keys must isolate subjects on the Apps Script server.
-const fs=require('node:fs'),vm=require('node:vm'),sandbox={};vm.createContext(sandbox);vm.runInContext(fs.readFileSync('Code.gs','utf8'),sandbox);
-const keys=await p.evaluate(()=>{mode={type:'time',val:60};$('learnFocus').value='all';return ['all','生物基礎','生物'].map(v=>{$('learnSubject').value=v;return rankingContext('quiz');});});
-assert.equal(new Set(keys.map(k=>sandbox.rankKey_('quiz',k))).size,3);
-assert.equal(typeof sandbox.resetRanking,'undefined');
-assert.equal(typeof sandbox.archiveRankings_,'function');
-await b.close();console.log('PASS edge cases: exhausted live pools, revealed answer counts, keyboard hints, confidence grade, server ranking scope');
+assert.equal(await p.locator('#nameInput').count(),0);
+await b.close();console.log('PASS edge cases: exhausted live pools, revealed answer counts, keyboard hints, confidence grade, browser-only UI');
 })().catch(e=>{console.error(e);process.exit(1)});
