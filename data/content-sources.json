@@ -133,5 +133,10 @@
     "url": "https://openstax.org/books/biology-2e/pages/14-3-basics-of-dna-replication",
     "role": "概念・解説の確認。設問・数値は独自作成。",
     "checked_on": "2026-09-19"
+  },
+  "photoperiod-control": {
+    "title": "UMass Amherst：光周期の制御と開花",
+    "url": "https://www.umass.edu/agriculture-food-environment/greenhouse-floriculture/fact-sheets/photoperiod-control-systems-for-greenhouse-crops",
+    "role": "連続暗期と光中断の概念を確認。比較条件と数値は独自作成。"
   }
 }
