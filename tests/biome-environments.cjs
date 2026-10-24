@@ -1,0 +1,14 @@
+const assert=require('node:assert/strict'),B=require('../src/biome.js');
+let s=B.normalize();assert.deepEqual(s.environmentsOwned,['canyon']);assert.equal(s.environmentPending,null);
+assert.throws(()=>B.chooseEnvironment(s,'tundra'),/獲得/);
+let old=B.normalize({environment:'tundra',plants:[{id:'grass',age:3}],xp:77});assert.deepEqual(old.environmentsOwned,['canyon','tundra']);assert.equal(old.environment,'tundra');assert.equal(old.plants[0].age,3);assert.equal(old.xp,77);
+assert.equal(B.normalize({...s,environment:'tundra'}).environment,'canyon');assert.deepEqual(B.normalize({environmentsOwned:['bad','tundra','tundra']}).environmentsOwned,['canyon','tundra']);
+for(const odds of B.ENVIRONMENT_ODDS)assert.equal(odds.reduce((a,b)=>a+b),100);
+for(let lv=0;lv<6;lv++){let sum=0;for(let g=0;g<4;g++){const odds=B.ENVIRONMENT_ODDS[lv],pool=B.ENVIRONMENTS.filter(e=>e.grade===g&&e.id!=='canyon');for(let n=0;n<pool.length;n++){let calls=0;const r=B.drawEnvironment({xp:B.THRESHOLDS[lv]},48,()=>calls++?(n+.5)/pool.length:(sum+.001)/100);assert.equal(r.state.environmentPending,pool[n].id);assert.equal(r.coins,24);assert.equal(r.state.environmentDraws,1);assert.equal(B.normalize(JSON.parse(JSON.stringify(r.state))).environmentPending,pool[n].id);}sum+=odds[g];}}
+for(const [roll,grade] of [[0,0],[.799999,0],[.80,1],[.959999,1],[.96,2],[.994999,2],[.995,3],[.999999,3]]){let n=0;const r=B.drawEnvironment(s,24,()=>n++?0:roll);assert.equal(B.environment(r.state.environmentPending).grade,grade);}
+for(const bad of [-.1,1,NaN,Infinity])assert.throws(()=>B.drawEnvironment(s,24,()=>bad),/抽選/);
+assert.throws(()=>B.drawEnvironment(s,23),/コイン/);assert.throws(()=>B.drawEnvironment(s,NaN),/コイン/);
+let n=0,r=B.drawEnvironment(s,48,()=>n++?.1:.999);assert.throws(()=>B.draw(r.state,48),/先に/);assert.throws(()=>B.drawEnvironment(r.state,48),/先に/);assert.throws(()=>B.drawEnvironment(B.draw(s,24,()=>0).state,48),/先に/);
+const id=r.state.environmentPending,kept=B.resolveEnvironment(r.state,true);assert(kept.state.environmentsOwned.includes(id));assert.equal(kept.gained,0);assert.equal(kept.state.environmentPending,null);assert.equal(B.chooseEnvironment(kept.state,id).environment,id);assert.throws(()=>B.resolveEnvironment(kept.state,true),/未整理/);
+let dupe=B.normalize({...kept.state,environmentPending:id});let x=B.resolveEnvironment(dupe,true);assert.equal(x.gained,40);assert.equal(x.state.environmentsOwned.length,2);assert.equal(dupe.environmentPending,id);assert.equal(dupe.xp,0);assert.equal(B.resolveEnvironment(r.state,false).state.environmentsOwned.length,1);assert.equal(B.resolveEnvironment(r.state,false).gained,40);assert.equal(s.environmentDraws,0);
+console.log('PASS background grades, all 19 collectible backgrounds at 6 levels, exact boundaries, coin conservation, pending recovery, duplicate XP, locked selection, legacy migration');

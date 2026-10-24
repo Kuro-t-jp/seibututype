@@ -1,0 +1,122 @@
+{
+  "basis": "高等学校学習指導要領（平成30年告示）解説 理科編・理数編",
+  "url": "https://www.mext.go.jp/component/a_menu/education/micro_detail/__icsFiles/afieldfile/2019/11/22/1407073_06_1_2.pdf",
+  "checked_on": "2026-09-13",
+  "note": "単元対応は教材編集上の主な対応先。文部科学省が個々の用語を必修指定・認定した一覧ではない。生物基礎・生物と、その理解に必要な既習事項・探究方法を扱う。",
+  "units": {
+    "B1a": {
+      "subject": "生物基礎",
+      "section": "(1)ア(ア)",
+      "title": "生物の特徴",
+      "pages": "116–118"
+    },
+    "B1b": {
+      "subject": "生物基礎",
+      "section": "(1)ア(イ)",
+      "title": "遺伝子とその働き",
+      "pages": "118–120"
+    },
+    "B2a": {
+      "subject": "生物基礎",
+      "section": "(2)ア(ア)",
+      "title": "神経系と内分泌系による調節",
+      "pages": "120–122"
+    },
+    "B2b": {
+      "subject": "生物基礎",
+      "section": "(2)ア(イ)",
+      "title": "免疫",
+      "pages": "122"
+    },
+    "B3a": {
+      "subject": "生物基礎",
+      "section": "(3)ア(ア)",
+      "title": "植生と遷移",
+      "pages": "123–124"
+    },
+    "B3b": {
+      "subject": "生物基礎",
+      "section": "(3)ア(イ)",
+      "title": "生態系とその保全",
+      "pages": "124–125"
+    },
+    "A1a": {
+      "subject": "生物",
+      "section": "(1)ア(ア)",
+      "title": "生命の起源と細胞の進化",
+      "pages": "130–131"
+    },
+    "A1b": {
+      "subject": "生物",
+      "section": "(1)ア(イ)",
+      "title": "遺伝子の変化と進化の仕組み",
+      "pages": "131–133"
+    },
+    "A1c": {
+      "subject": "生物",
+      "section": "(1)ア(ウ)",
+      "title": "生物の系統と進化",
+      "pages": "133–134"
+    },
+    "A2a": {
+      "subject": "生物",
+      "section": "(2)ア(ア)",
+      "title": "細胞と分子",
+      "pages": "134–136"
+    },
+    "A2b": {
+      "subject": "生物",
+      "section": "(2)ア(イ)",
+      "title": "代謝",
+      "pages": "136–137"
+    },
+    "A3a": {
+      "subject": "生物",
+      "section": "(3)ア(ア)",
+      "title": "遺伝情報とその発現",
+      "pages": "137–138"
+    },
+    "A3b": {
+      "subject": "生物",
+      "section": "(3)ア(イ)",
+      "title": "発生と遺伝子発現",
+      "pages": "138–140"
+    },
+    "A3c": {
+      "subject": "生物",
+      "section": "(3)ア(ウ)",
+      "title": "遺伝子を扱う技術",
+      "pages": "140"
+    },
+    "A4a": {
+      "subject": "生物",
+      "section": "(4)ア(ア)",
+      "title": "動物の反応と行動",
+      "pages": "141–142"
+    },
+    "A4b": {
+      "subject": "生物",
+      "section": "(4)ア(イ)",
+      "title": "植物の環境応答",
+      "pages": "142–143"
+    },
+    "A5a": {
+      "subject": "生物",
+      "section": "(5)ア(ア)",
+      "title": "個体群と生物群集",
+      "pages": "143–144"
+    },
+    "A5b": {
+      "subject": "生物",
+      "section": "(5)ア(イ)",
+      "title": "生態系",
+      "pages": "144–145"
+    },
+    "P": {
+      "subject": "生物基礎・生物",
+      "section": "内容の取扱い(1)イ",
+      "title": "科学的に探究する方法",
+      "pages": "126・146"
+    }
+  }
+}

@@ -1,4 +1,11 @@
 node_modules/
-package.json
-package-lock.json
+__pycache__/
+*.pyc
 .DS_Store
+dist/
+artifacts/
+0923335/
+_to_delete/
+.clasp.json
+.env
+.env.*

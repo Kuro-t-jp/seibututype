@@ -1,0 +1,458 @@
+[
+  {
+    "id": "pea",
+    "name": "エンドウ",
+    "kind": "plant",
+    "stages": [
+      "種子",
+      "発芽",
+      "若い株",
+      "花とさや"
+    ],
+    "term": "分離の法則",
+    "topic": "遺伝の法則",
+    "fact": "メンデルが交配実験に用いた植物。対立遺伝子は配偶子形成の際に分離します。丸い種子としわのある種子などの形質が手がかりです。",
+    "question": "遺伝子型Aaのエンドウがつくる配偶子の遺伝子は？",
+    "answers": [
+      "Aまたはa",
+      "すべてAa",
+      "AAまたはaa"
+    ],
+    "explanation": "対立遺伝子Aとaは配偶子形成時に分離します。通常、それぞれの配偶子の割合は1：1です。",
+    "sourceUrl": "https://www.jst.go.jp/nbdc/bird/jinzai/literacy/streaming/h21_2_1.pdf",
+    "sourceLabel": "JST：メンデルの遺伝の法則",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 8,
+    "tree": false,
+    "aquatic": false,
+    "group": "other",
+    "icon": "🌿",
+    "icons": [
+      "∙",
+      "🌱",
+      "🌿",
+      "🌿"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "arabidopsis",
+    "name": "シロイヌナズナ",
+    "kind": "plant",
+    "stages": [
+      "種子",
+      "芽生え",
+      "ロゼット",
+      "開花・結実"
+    ],
+    "term": "モデル生物",
+    "topic": "遺伝子の働き",
+    "fact": "遺伝子の働きを調べるモデル植物。地表近くに葉が広がるロゼットをつくり、花茎が伸びて小さな白い花を咲かせます。",
+    "question": "モデル生物を用いる研究の利点は？",
+    "answers": [
+      "蓄積された遺伝子や系統の情報を活用できる",
+      "すべての生物と全く同じ性質をもつ",
+      "実験条件をそろえる必要がない"
+    ],
+    "explanation": "研究の蓄積や実験系統を共有できることが強みです。得られた知見が他種にも当てはまるかは別に確かめます。",
+    "sourceUrl": "https://nbrp.jp/resource/arabidopsis-culture-gene/",
+    "sourceLabel": "NBRP：シロイヌナズナ",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 8,
+    "tree": false,
+    "aquatic": false,
+    "group": "other",
+    "icon": "🌿",
+    "icons": [
+      "∙",
+      "🌱",
+      "🌿",
+      "🌿"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "rice",
+    "name": "イネ",
+    "kind": "plant",
+    "stages": [
+      "もみ",
+      "発芽",
+      "分げつした株",
+      "穂が実る株"
+    ],
+    "term": "光合成",
+    "topic": "C₃植物とC₄植物",
+    "fact": "イネはC₃植物の代表例。カルビン・ベンソン回路でCO₂を取り込んだ結果、最初に生じる安定な化合物は炭素数3の化合物です。",
+    "question": "イネなどのC₃植物で、CO₂固定後に最初に生じる安定な化合物の炭素数は？",
+    "answers": [
+      "3",
+      "4",
+      "6"
+    ],
+    "explanation": "C₃植物では3-ホスホグリセリン酸が生じます。トウモロコシなどのC₄植物との違いを比べよう。",
+    "sourceUrl": "https://www.jstage.jst.go.jp/article/kagakutoseibutsu1962/36/2/36_2_89/_pdf/-char/en",
+    "sourceLabel": "日本農芸化学会：C3植物とC4植物",
+    "classroom": true,
+    "cost": 0,
+    "water": 55,
+    "soil": 8,
+    "tree": false,
+    "aquatic": true,
+    "group": "other",
+    "icon": "🌿",
+    "icons": [
+      "∙",
+      "🌱",
+      "🌿",
+      "🌿"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "maize",
+    "name": "トウモロコシ",
+    "kind": "plant",
+    "stages": [
+      "種子",
+      "発芽",
+      "若い株",
+      "雄穂と雌穂"
+    ],
+    "term": "光合成",
+    "topic": "C₃植物とC₄植物",
+    "fact": "C₄植物の代表例。CO₂をいったん炭素数4の化合物に取り込み、維管束鞘細胞でカルビン・ベンソン回路に供給します。",
+    "question": "トウモロコシがもつC₄経路の働きは？",
+    "answers": [
+      "カルビン・ベンソン回路の周囲にCO₂を濃縮する",
+      "光を使わず有機物をつくり続ける",
+      "カルビン・ベンソン回路を使わない"
+    ],
+    "explanation": "C₄経路はCO₂を濃縮して光呼吸を抑えるのに役立ちます。カルビン・ベンソン回路も働きます。",
+    "sourceUrl": "https://www.jstage.jst.go.jp/article/kagakutoseibutsu1962/36/2/36_2_89/_pdf/-char/en",
+    "sourceLabel": "日本農芸化学会：C3植物とC4植物",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 8,
+    "tree": false,
+    "aquatic": false,
+    "group": "other",
+    "icon": "🌿",
+    "icons": [
+      "∙",
+      "🌱",
+      "🌿",
+      "🌿"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "onion",
+    "name": "タマネギ",
+    "kind": "plant",
+    "stages": [
+      "種子",
+      "発芽",
+      "若い株",
+      "りん茎が育つ"
+    ],
+    "term": "体細胞分裂",
+    "topic": "細胞周期・観察実験",
+    "fact": "根の先端近くにある分裂組織は、体細胞分裂の観察材料です。分裂する細胞と、その後に伸長する細胞を区別して考えます。",
+    "question": "体細胞分裂の観察に根端付近を使う主な理由は？",
+    "answers": [
+      "細胞分裂が盛んな組織があるから",
+      "すべての細胞が同時に中期になるから",
+      "葉緑体が特に多いから"
+    ],
+    "explanation": "根端分裂組織では分裂中の細胞を見つけやすくなります。各細胞が同じ時期にそろっているわけではありません。",
+    "sourceUrl": "https://www.rib.okayama-u.ac.jp/nucleus/hajimete/1-2.html",
+    "sourceLabel": "岡山大学：植物の細胞分裂",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 8,
+    "tree": false,
+    "aquatic": false,
+    "group": "other",
+    "icon": "🌿",
+    "icons": [
+      "∙",
+      "🌱",
+      "🌿",
+      "🌿"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "elodea",
+    "name": "オオカナダモ",
+    "kind": "plant",
+    "stages": [
+      "茎の断片",
+      "発根した茎",
+      "伸びた茎",
+      "枝分かれした株"
+    ],
+    "term": "原形質流動",
+    "topic": "細胞の観察・光合成",
+    "fact": "水中に生育する被子植物。葉の細胞は葉緑体や原形質流動の観察材料になります。この育成では茎の断片からの栄養生殖を描きます。",
+    "question": "葉緑体が細胞内を移動して見える現象と関係が深いのは？",
+    "answers": [
+      "原形質流動",
+      "染色体の両極への移動",
+      "葉緑体が細胞壁を通り抜ける現象"
+    ],
+    "explanation": "細胞質の流動に伴って葉緑体などが移動します。葉緑体そのものが泳いでいるわけではありません。",
+    "sourceUrl": "https://jspp.org/hiroba/q_and_a/detail.html?id=2212",
+    "sourceLabel": "日本植物生理学会：原形質流動",
+    "classroom": true,
+    "cost": 0,
+    "water": 55,
+    "soil": 8,
+    "tree": false,
+    "aquatic": true,
+    "group": "other",
+    "icon": "🌿",
+    "icons": [
+      "∙",
+      "🌱",
+      "🌿",
+      "🌿"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "ginkgo",
+    "name": "イチョウ",
+    "kind": "plant",
+    "stages": [
+      "種子",
+      "芽生え",
+      "若木",
+      "成木"
+    ],
+    "term": "裸子植物",
+    "topic": "植物の系統・種子",
+    "fact": "扇形の葉をもつ裸子植物。胚珠は子房に包まれません。「ぎんなん」は種子で、被子植物の果実とは区別します。",
+    "question": "イチョウを裸子植物に分類する根拠は？",
+    "answers": [
+      "胚珠が子房に包まれていない",
+      "葉の形が必ず針状である",
+      "種子をつくらず胞子だけでふえる"
+    ],
+    "explanation": "分類の根拠は胚珠と子房の関係です。イチョウの葉は扇形でも、裸子植物です。",
+    "sourceUrl": "https://hosho.ees.hokudai.ac.jp/tsuyu/top/plt/gymno-j.html",
+    "sourceLabel": "北海道大学：裸子植物",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 20,
+    "tree": true,
+    "aquatic": false,
+    "group": "other",
+    "icon": "🌿",
+    "icons": [
+      "∙",
+      "🌱",
+      "🌿",
+      "🌿"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "marchantia",
+    "name": "ゼニゴケ",
+    "kind": "plant",
+    "stages": [
+      "無性芽",
+      "伸び始めた葉状体",
+      "若い葉状体",
+      "杯状体のある葉状体"
+    ],
+    "term": "無性生殖",
+    "topic": "植物の系統・生殖",
+    "fact": "コケ植物の仲間。杯状体の中の無性芽から、新しい葉状体が育ちます。ここでは無性芽によるふえ方を描き、有性生殖の生活環とは区別します。",
+    "question": "ゼニゴケの無性芽から新しい葉状体が育つふえ方は？",
+    "answers": [
+      "無性生殖",
+      "受粉による種子形成",
+      "配偶子の合体による受精"
+    ],
+    "explanation": "無性芽によるふえ方には受精がありません。ゼニゴケは有性生殖も行いますが、この4コマは無性芽からの成長です。",
+    "sourceUrl": "https://www.osaka-kyoiku.ac.jp/~deno/lib/sa/zenigoke.html",
+    "sourceLabel": "大阪教育大学：ゼニゴケ",
+    "classroom": true,
+    "cost": 0,
+    "water": 45,
+    "soil": 8,
+    "tree": false,
+    "aquatic": false,
+    "group": "other",
+    "icon": "🌿",
+    "icons": [
+      "∙",
+      "🌱",
+      "🌿",
+      "🌿"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "fruitfly",
+    "name": "キイロショウジョウバエ",
+    "kind": "animal",
+    "stages": [
+      "卵",
+      "幼虫",
+      "囲蛹",
+      "成虫"
+    ],
+    "term": "伴性遺伝",
+    "topic": "遺伝・モデル生物",
+    "fact": "短い世代時間などの特徴から、遺伝研究に使われるモデル動物。白眼の遺伝などは、遺伝子と染色体の関係を考える題材です。",
+    "question": "X染色体上の遺伝子による形質の遺伝で、着目するのは？",
+    "answers": [
+      "子の性別と形質の現れ方の関係",
+      "親の体の大きさだけ",
+      "すべての子で同じ形質になること"
+    ],
+    "explanation": "性染色体の組合せと遺伝子型を合わせて追うのがポイントです。伴性遺伝では性別によって形質の現れ方が異なる場合があります。",
+    "sourceUrl": "https://nbrp.jp/resource/drosophila/",
+    "sourceLabel": "NBRP：ショウジョウバエ",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 8,
+    "tree": false,
+    "aquatic": false,
+    "group": "insect",
+    "icon": "🔬",
+    "icons": [
+      "🥚",
+      "∙",
+      "∙",
+      "🔬"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "silkworm",
+    "name": "カイコ",
+    "kind": "animal",
+    "stages": [
+      "卵",
+      "幼虫",
+      "まゆ（中で蛹化）",
+      "成虫"
+    ],
+    "term": "完全変態",
+    "topic": "昆虫の発生・変態",
+    "fact": "幼虫が糸を吐いてまゆをつくり、その中で蛹化する完全変態の昆虫。まゆは糸でできた覆いで、さなぎそのものではありません。",
+    "question": "カイコの「まゆ」と「さなぎ」の関係は？",
+    "answers": [
+      "まゆは糸の覆いで、その中にさなぎができる",
+      "まゆは成虫の別名である",
+      "まゆが卵になってから幼虫が出る"
+    ],
+    "explanation": "卵→幼虫→さなぎ→成虫と変化します。絵はさなぎを包むまゆの外観を示しています。",
+    "sourceUrl": "https://nbrp.jp/resource/silkworm/",
+    "sourceLabel": "NBRP：カイコ",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 8,
+    "tree": false,
+    "aquatic": false,
+    "group": "insect",
+    "icon": "🔬",
+    "icons": [
+      "🥚",
+      "∙",
+      "∙",
+      "🔬"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "daphnia",
+    "name": "オオミジンコ",
+    "kind": "animal",
+    "stages": [
+      "卵",
+      "幼体",
+      "若い個体",
+      "成体"
+    ],
+    "term": "単為生殖",
+    "topic": "生殖・水界の食物網",
+    "fact": "動物プランクトンとして学ぶ甲殻類。条件によって、受精せずに卵から個体が発生する単為生殖を行います。触角で泳ぎます。",
+    "question": "単為生殖の説明として適切なのは？",
+    "answers": [
+      "受精せずに卵から新個体が発生する",
+      "必ず雌雄の配偶子が合体する",
+      "成体が花粉をつくる"
+    ],
+    "explanation": "単為生殖では受精を経ずに卵が発生します。ミジンコ類の生殖様式は、種類や環境条件によって異なります。",
+    "sourceUrl": "https://www.nies.go.jp/pr/publications/kankyogi/38/04-09.html",
+    "sourceLabel": "国立環境研究所：ミジンコの生殖",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 8,
+    "tree": false,
+    "aquatic": true,
+    "group": "other",
+    "icon": "🔬",
+    "icons": [
+      "🥚",
+      "∙",
+      "∙",
+      "🔬"
+    ],
+    "habitat": "学習コレクション"
+  },
+  {
+    "id": "zebrafish",
+    "name": "ゼブラフィッシュ",
+    "kind": "animal",
+    "stages": [
+      "受精卵",
+      "卵黄のある仔魚",
+      "稚魚",
+      "成魚"
+    ],
+    "term": "発生",
+    "topic": "発生・モデル生物",
+    "fact": "胚が透明で発生を観察しやすいモデル動物。受精卵から体がつくられる過程を調べる研究に使われます。",
+    "question": "初期胚を観察するうえで、透明な胚の利点は？",
+    "answers": [
+      "体の内部の発生過程を観察しやすい",
+      "細胞分裂を行わなくなる",
+      "遺伝子をもたなくなる"
+    ],
+    "explanation": "透明さは内部の細胞や組織を観察する助けになります。細胞分裂や遺伝子の働きが不要になるわけではありません。",
+    "sourceUrl": "https://nbrp.jp/resource/zebrafish/",
+    "sourceLabel": "NBRP：ゼブラフィッシュ",
+    "classroom": true,
+    "cost": 0,
+    "water": 25,
+    "soil": 8,
+    "tree": false,
+    "aquatic": true,
+    "group": "other",
+    "icon": "🔬",
+    "icons": [
+      "🥚",
+      "∙",
+      "∙",
+      "🔬"
+    ],
+    "habitat": "学習コレクション"
+  }
+]

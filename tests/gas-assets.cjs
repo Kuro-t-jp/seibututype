@@ -1,0 +1,11 @@
+const fs=require('fs'),vm=require('vm'),assert=require('node:assert/strict');
+let delivered='';const context={Utilities:{base64Decode:s=>Buffer.from(s,'base64'),newBlob:(bytes,type,name)=>({bytes,type,name}),ungzip:blob=>({getDataAsString:encoding=>{assert.equal(encoding,'UTF-8');assert.equal(blob.type,'application/gzip');return require('node:zlib').gunzipSync(blob.bytes).toString('utf8')}})},HtmlService:{createTemplateFromFile(name){return {getRawContent:()=>fs.readFileSync(`dist/gas/${name}.html`,'utf8')}},createHtmlOutputFromFile(name){return {getContent:()=>fs.readFileSync(`dist/gas/${name}.html`,'utf8').replace(/<!--[\s\S]*?-->/g,'').replace('const ART={};','const ART= {};')}},createHtmlOutput(html){delivered=html;return {setTitle(){return this},addMetaTag(){return this}}}}};
+vm.createContext(context);vm.runInContext(fs.readFileSync('Code.gs','utf8'),context);context.doGet();
+assert(delivered.includes('const ART='),'compressed HTML must survive GAS comment removal and restore the application');
+const local=fs.readFileSync('index.html','utf8');
+const images=html=>JSON.parse(html.match(/const ART=(\{.*?\});/s)[1]);
+assert.deepEqual(images(delivered),images(local));assert.equal(Object.keys(images(delivered)).length,140);
+assert.equal(delivered.replace(/const ART=\{.*?\};/s,'const ART={};'),local.replace(/const ART=\{.*?\};/s,'const ART={};'));
+assert(!delivered.includes('/*BIOME_ART_DATA*/'));
+console.log('PASS GAS asset assembly: 140 images, complete HTML equivalent to locally tested app');
+module.exports={delivered};

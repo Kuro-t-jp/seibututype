@@ -1,0 +1,31 @@
+const {chromium}=require('playwright'),assert=require('node:assert/strict');
+(async()=>{
+ const browser=await chromium.launch(),p=await browser.newPage(),errors=[];
+ p.on('pageerror',e=>errors.push(e.message));
+ await p.goto('http://127.0.0.1:8766/');
+ // Quick start has explicit typing/untimed semantics and preserves the subject.
+ await p.locator('#learnSubject').selectOption('生物基礎');
+ await p.locator('[data-play="quiz"]').click();
+ await p.locator('[data-mode="time"][data-val="60"]').click();
+ await p.locator('#quickTypeStart').click();
+ assert.deepEqual(await p.evaluate(()=>[playMode,mode.type,mode.val]),['type','learn',10]);
+ assert.equal(await p.locator('#learnSubject').inputValue(),'生物基礎');
+ assert.equal(await p.evaluate(()=>G.queue.every(w=>CURRICULUM[w.unit].subject==='生物基礎'||w.unit==='P')),true);
+ await p.keyboard.press('Escape');await p.locator('#menuBtn').click();
+ await p.locator('#fiveLaunch').click();await p.locator('#thinkBegin').click();
+ await p.evaluate(()=>{T.items=[FIVE.find(q=>q.id==='fk01')];T.index=0;loadThinking()});
+ assert.equal(await p.locator('#thinkNotice').isVisible(),false);
+ assert.equal(await p.locator('#thinkMeter').evaluate(e=>e.value),0);
+ const correct=await p.evaluate(()=>T.order.indexOf(T.items[0].answer));
+ await p.locator('#thinkUncertain').check();await p.locator('#thinkChoices button').nth(correct).click();await p.locator('#thinkConfirm').click();
+ assert.equal(await p.locator('#thinkMeter').evaluate(e=>e.value),1);
+ await p.locator('#thinkNext').click();await p.locator('#thinkReviewWeak').click();
+ assert.equal(await p.locator('#thinkMistakes').isChecked(),true);
+ assert.deepEqual(await p.evaluate(()=>thinkingPool().map(q=>q.id)),['fk01']);
+ await p.locator('#thinkBegin').click();
+ const again=await p.evaluate(()=>T.order.indexOf(T.items[0].answer));
+ await p.locator('#thinkChoices button').nth(again).click();await p.locator('#thinkConfirm').click();await p.locator('#thinkNext').click();
+ assert.equal(await p.locator('#thinkReviewWeak').isVisible(),false,'confident correct clears review action');
+ assert.deepEqual(errors,[]);await browser.close();
+ console.log('PASS quick typing start preserves subject; progress; uncertain-correct review shortcut and confident completion');
+})().catch(e=>{console.error(e);process.exit(1)});

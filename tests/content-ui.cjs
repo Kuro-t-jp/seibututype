@@ -1,0 +1,8 @@
+const {chromium}=require('playwright');const assert=require('node:assert/strict');
+(async()=>{const b=await chromium.launch();const p=await b.newPage();await p.goto('http://127.0.0.1:8766');
+assert.match(await p.locator('#thinkingCount').textContent(),/108問/);
+await p.evaluate(()=>{playMode='quiz';updateSelection()});assert.match(await p.locator('#playGuide').textContent(),/769語.*850語/);
+await p.evaluate(()=>{openThinking();$('thinkMode').value='practice';beginThinking();T.items=[THINKING.find(q=>q.id==='a15')];T.index=0;loadThinking()});
+await p.locator('#thinkMemo').fill('摂食量から不消化排出量を引き、さらに呼吸量を引く。');await p.setViewportSize({width:390,height:844});assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await p.screenshot({path:'/tmp/bio-new-mobile.png',fullPage:true});
+await p.locator('#thinkRevealChoices').click();const indices=await p.evaluate(()=>thinkingAnswers(T.items[0]).map(i=>T.order.indexOf(i)));for(const i of indices)await p.locator('#thinkChoices button').nth(i).click();await p.locator('#thinkConfirm').click();assert.doesNotMatch(await p.locator('#thinkFeedback').textContent(),/解答例|120|30/);await p.locator('#thinkNext').click();assert.match(await p.locator('#thinkReview').textContent(),/解答例/);assert.match(await p.locator('#thinkReview').textContent(),/摂食量から不消化排出量/);
+await p.locator('#thinkReview details').first().evaluate(el=>el.open=true);await p.setViewportSize({width:1200,height:950});await p.screenshot({path:'/tmp/bio-new-feedback.png',fullPage:true});console.log('PASS new recall: mobile, keyboard gating, delayed model answer, retained memo; dynamic 108/769/850 counts');await b.close()})().catch(e=>{console.error(e);process.exit(1)});
