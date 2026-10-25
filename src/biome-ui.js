@@ -101,6 +101,33 @@ function actor(item,kind,i,s){
  const positions=kind==='plant'?[[17,52],[42,48],[68,51],[13,78],[39,79],[66,79]]:[[20,65],[46,69],[83,77],[75,43]];
  return `<button class="habitat-actor ${kind} ${item.id} stage-${step}" data-inspect="${kind}:${i}" style="--x:${positions[i][0]}%;--y:${positions[i][1]}%;--actor-size:${size}px" aria-label="${c.name}、${c.stages[step]}。観察する">${sprite(item.id,step,'actor-image')}<span class="actor-label">${c.name}<small>${c.stages[step]} · ${detail.step}/12</small></span></button>`;
 }
+function openPlacement(kind,slot){
+ if(document.getElementById('habitatPlacementDialog'))return;
+ const s=B.normalize(SAVE.biome),key=B.slotKey(kind),label=kind==='plant'?'植物':kind==='animal'?'動物':'観察生物';
+ if(!Number.isInteger(slot)||slot<0||slot>=s[key].length||s[key][slot]){notice='その場所は空いていません。別の空き場所を選んでください。';render();focus('biomeNotice');return;}
+ const ids=[...new Set(s.reserve.filter(item=>B.species(item.id).kind===kind).map(item=>item.id))];
+ if(kind==='plant'&&!s.starter&&!ids.includes('grass'))ids.unshift('grass');
+ const opener=document.activeElement,dialog=document.createElement('dialog');dialog.id='habitatPlacementDialog';dialog.className='placement-dialog';dialog.setAttribute('aria-labelledby','placementTitle');
+ dialog.innerHTML=`<header><div><small>空き場所を選択中</small><h3 id="placementTitle">${label}の場所 ${slot+1} に置く</h3></div><button type="button" class="placement-close" aria-label="配置をやめる">×</button></header><p class="placement-intro">持っている${label}から選んでください。配置にコインは使いません。</p><div class="placement-options">${ids.map(id=>{const c=B.species(id),item=s.reserve.find(x=>x.id===id)||{id,growth:0,tier:0},needs=B.requirements(s,id),blocked=kind==='animal'&&needs.length,count=s.reserve.filter(x=>x.id===id).length;return `<article>${sprite(id,B.stage(item))}<div><h4>${esc(c.name)}</h4><small>${count?`未配置 ${count} 体 · ${B.progress(item,s).step}/12 段階`:'最初のススキ・無料'}</small>${needs.length?`<p>${blocked?'配置に必要':'配置後の成長に必要'}：${esc(needs.join('・'))}</p>`:''}<button type="button" class="btn" data-place-owned="${id}" ${blocked?'disabled':''}>${blocked?'環境が整うと置けます':'ここに置く（無料）'}</button></div></article>`;}).join('')}</div>${!ids.length?`<p class="placement-empty">まだ置ける${label}を持っていません。「コインで獲得」で出会った生物を受け取ると、ここに表示されます。</p>`:''}<p id="placementError" role="alert"></p><footer>${ids.some(id=>kind==='animal'&&B.requirements(s,id).length)?'<button type="button" class="btn ghost" id="placementEnvironment">環境設定を見る</button>':''}<button type="button" class="btn ghost" id="placementExplore">生物の獲得画面へ</button><button type="button" class="btn ghost placement-cancel">やめる</button></footer>`;
+ document.body.append(dialog);
+ let restoreFocus=true;const close=()=>dialog.close();
+ dialog.addEventListener('close',()=>{dialog.remove();if(restoreFocus&&opener?.isConnected)opener.focus({preventScroll:true});});
+ dialog.querySelector('.placement-close').onclick=close;dialog.querySelector('.placement-cancel').onclick=close;
+ dialog.querySelector('#placementExplore').onclick=()=>{restoreFocus=false;close();setBiomeView('explore');focus('biomePanel-explore');};
+ dialog.querySelector('#placementEnvironment')?.addEventListener('click',()=>{restoreFocus=false;close();focus('habitatWater');});
+ dialog.querySelectorAll('[data-place-owned]').forEach(button=>button.onclick=()=>{
+  const id=button.dataset.placeOwned;showOrigin=false;
+  if(transaction((state,coins)=>B.place(state,coins,id,slot),`${B.species(id).name}を${label}の場所 ${slot+1} に配置しました。次は「育てる」ボタンで学習しましょう。`)){
+   restoreFocus=false;close();const target=host.querySelector(`[data-inspect="${kind}:${slot}"]`);if(kind==='observation')focus('observationShelf');target?.focus();
+  }else dialog.querySelector('#placementError').textContent=notice;
+ });
+ dialog.showModal();
+}
+function vacancyTools(s){
+ const plants=s.plants.filter(p=>!p).length;
+ return `<div class="habitat-vacancies" id="habitatVacancies"><p><strong>植物の空き ${plants}/6</strong><span>${plants?'景色の「＋ 空き」を押して植える':'植物の場所はいっぱいです'}</span></p><div>${['animal','observation'].map(kind=>{const slots=s[B.slotKey(kind)],empty=slots.findIndex(p=>!p),label=kind==='animal'?'動物':'観察生物';return `<button type="button" class="btn ghost small" data-empty-kind="${kind}" data-empty-slot="${empty}" ${empty<0?'disabled':''}>${label}を置く <small>${empty<0?'満員':`空き ${slots.filter(p=>!p).length}/${slots.length}`}</small></button>`;}).join('')}</div></div>`;
+}
+
 function mysteryArt(kind){return `<span class="mystery-art ${kind}" aria-hidden="true"><span>?</span></span>`;}
 function classroomCard(c){
  if(!c.classroom)return '';
@@ -152,7 +179,7 @@ function organizeBiome(s,openFolds){
  const move=(parent,...nodes)=>nodes.filter(Boolean).forEach(n=>parent.append(n));
  const fold=(key,label,parent,nodes,initial=false)=>{const d=document.createElement('details');d.className='biome-fold';d.dataset.fold=key;d.open=openFolds.has(key)||initial;const summary=document.createElement('summary');summary.textContent=label;d.append(summary);move(d,...nodes);parent.append(d);return d;};
  const world=take('#habitatWorld'),observation=take('#habitatObservation'),guide=take('#growthGuide');
- move(panels.grow,guide,world,observation);
+ move(panels.grow,guide,world,take('#habitatVacancies'),observation);
  const manage=fold('manage','生物の追加・環境設定',panels.grow,[],![...s.plants,...s.animals,...s.observations].some(Boolean));
  const stockGuide=guide.querySelector('.growth-stock'),rules=guide.querySelector('.growth-rules');
  if(stockGuide){stockGuide.open=true;stockGuide.querySelector('summary').textContent=`持っている生物を置く（未配置 ${s.reserve.length} 体）`;}
@@ -213,10 +240,11 @@ function render(){
   <div class="habitat-world-title"><span>${showOrigin?'0 日目 / 最初の景色':`${s.day} 日目 / ${B.WEATHER[s.weather].icon} ${B.WEATHER[s.weather].name}`}</span><h4>${env.name} · ${showOrigin?'はじまりの景色':scene.cover<15?'芽生えを待つ景色':scene.cover<50?'緑が広がる景色':'育ってきた景色'}</h4></div><button id="habitatCompare" class="habitat-compare">${showOrigin?'今の景色へ':'はじめと比べる'}</button>
   <div class="habitat-pond ${s.moisture>=45?'pond-full':''}" aria-hidden="true"></div>
   <div class="habitat-rain" aria-hidden="true">${Array.from({length:15},(_,i)=>`<i style="left:${i*7}%;animation-delay:${i*.13}s"></i>`).join('')}</div>
-  ${s.plants.map((p,i)=>p?actor(p,'plant',i,s):`<button class="habitat-plot ${tab==='plant'&&plot===i?'selected':''}" style="--x:${[[17,52],[42,48],[68,51],[13,78],[39,79],[66,79]][i][0]}%;--y:${[[17,52],[42,48],[68,51],[13,78],[39,79],[66,79]][i][1]}%" data-plot="${i}" aria-label="植える場所 ${i+1}" aria-pressed="${tab==='plant'&&plot===i}">＋<small>${i+1}</small></button>`).join('')}
+  ${s.plants.map((p,i)=>p?actor(p,'plant',i,s):`<button class="habitat-plot" style="--x:${[[17,52],[42,48],[68,51],[13,78],[39,79],[66,79]][i][0]}%;--y:${[[17,52],[42,48],[68,51],[13,78],[39,79],[66,79]][i][1]}%" data-plot="${i}" aria-label="植物の空き場所 ${i+1}。持っている植物を選んで配置" aria-haspopup="dialog"><b aria-hidden="true">＋</b><small>空き ${i+1}</small></button>`).join('')}
   ${s.animals.map((p,i)=>p?actor(p,'animal',i,s):'').join('')}
   <div class="habitat-world-footer">植物 ${s.plants.filter(Boolean).length}/6 区画 · 動物 ${s.animals.filter(Boolean).length}/4 枠 <span>生き物を押すと観察</span></div>
  </div>
+ ${vacancyTools(s)}
  <section class="observation-shelf" id="observationShelf"><header><div><small>OBSERVATION COLLECTION</small><h4>🔬 小さな世界、広がる発見</h4></div><span>${s.observations.filter(Boolean).length} / 4 枠</span></header><p>微生物や海の動物を観察する、図鑑の展示棚。学習で観察進度が進みます。</p><div class="observation-slots">${s.observations.map((item,i)=>item?`<button data-inspect="observation:${i}">${sprite(item.id)}<b>${esc(B.species(item.id).name)}</b><small>観察 ${B.progress(item,s).step}/12</small></button>`:`<div class="observation-empty"><span>?</span><small>次の発見のために</small></div>`).join('')}</div></section>
  ${collectionBook(s)}
  ${environmentCollection(s)}
@@ -268,7 +296,8 @@ function render(){
  host.querySelectorAll('[data-habitat-tab]').forEach(btn=>btn.onclick=()=>{tab=btn.dataset.habitatTab;selection=B.SPECIES.find(c=>c.kind===tab&&(!classroomOnly||c.classroom)).id;plot=0;render();});
  host.querySelectorAll('[data-classroom]').forEach(btn=>btn.onclick=()=>{classroomOnly=btn.dataset.classroom==='lesson';if(classroomOnly&&!B.species(selection).classroom)selection=B.SPECIES.find(c=>c.kind===tab&&c.classroom).id;render();host.querySelector(`[data-classroom="${classroomOnly?'lesson':'all'}"]`)?.focus({preventScroll:true});});
  host.querySelectorAll('[data-species]').forEach(btn=>btn.onclick=()=>{selection=btn.dataset.species;render();});
- host.querySelectorAll('[data-plot]').forEach(btn=>btn.onclick=()=>{plot=Number(btn.dataset.plot);if(tab!=='plant'){tab='plant';selection=classroomOnly?B.SPECIES.find(c=>c.kind==='plant'&&c.classroom).id:'grass';}render();focus('habitatSelection');});
+ host.querySelectorAll('[data-plot]').forEach(btn=>btn.onclick=()=>openPlacement('plant',Number(btn.dataset.plot)));
+ host.querySelectorAll('[data-empty-kind]').forEach(btn=>btn.onclick=()=>openPlacement(btn.dataset.emptyKind,Number(btn.dataset.emptySlot)));
  host.querySelectorAll('[data-inspect]').forEach(btn=>btn.onclick=()=>{inspected=btn.dataset.inspect;quizFeedback='';renderObservation();focus('habitatObservation');});
  host.querySelector('#habitatPlace').onclick=()=>{showOrigin=false;transaction((state,coins)=>B.place(state,coins,selection,plot),`${selected.name}を${tab==='plant'?'植えました':'迎えました'}。学習で成長を見守ろう。`);focus(tab==='observation'?'observationShelf':'habitatWorld');};
  host.querySelector('#habitatCompare').onclick=()=>{showOrigin=!showOrigin;render();};
