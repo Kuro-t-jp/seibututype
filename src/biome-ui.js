@@ -152,15 +152,15 @@ function organizeBiome(s,openFolds){
  const move=(parent,...nodes)=>nodes.filter(Boolean).forEach(n=>parent.append(n));
  const fold=(key,label,parent,nodes,initial=false)=>{const d=document.createElement('details');d.className='biome-fold';d.dataset.fold=key;d.open=openFolds.has(key)||initial;const summary=document.createElement('summary');summary.textContent=label;d.append(summary);move(d,...nodes);parent.append(d);return d;};
  const world=take('#habitatWorld'),observation=take('#habitatObservation'),guide=take('#growthGuide');
- const acquire=document.createElement('section');acquire.className='biome-acquire';acquire.setAttribute('aria-label','コインで生物を獲得');
- const pending=!!(s.pending||s.environmentPending),short=Math.max(0,B.COST-SAVE.coins);
- acquire.innerHTML=`<div><h4>コインで生物を獲得</h4><p id="biomeAcquireHelp">${pending?'前回の発見が未受取です。追加のコインは使いません。':`植物・動物・観察生物からランダムに1体。押すと ${B.COST} コイン消費します。`}</p></div><div class="biome-acquire-action"><button type="button" id="biomeAcquire" aria-describedby="biomeAcquireHelp" ${!pending&&short?'disabled':''}>${pending?'未受取の生物・背景を確認':`${B.COST}コインで生物を1体獲得`}</button>${!pending&&short?`<small>あと ${short} コイン必要です</small><button class="btn ghost small" id="biomeAcquireStudy">学習してコインを貯める</button>`:''}</div>`;
- acquire.querySelector('#biomeAcquire').onclick=()=>{setBiomeView('explore');if(s.pending)focus('biome-keep');else if(s.environmentPending)focus('environmentKeep');else host.querySelector('#biomeDraw')?.click();};
- acquire.querySelector('#biomeAcquireStudy')?.addEventListener('click',()=>host.querySelector('#habitatStudy').click());
- move(panels.grow,guide,world,observation,acquire);
- fold('environment','環境を整える',panels.grow,[take('.habitat-meters'),take('.habitat-weather'),take('.habitat-care'),take('.habitat-environment')]);
+ move(panels.grow,guide,world,observation);
+ const manage=fold('manage','生物の追加・環境設定',panels.grow,[],![...s.plants,...s.animals,...s.observations].some(Boolean));
+ const stockGuide=guide.querySelector('.growth-stock'),rules=guide.querySelector('.growth-rules');
+ if(stockGuide){stockGuide.open=true;stockGuide.querySelector('summary').textContent=`持っている生物を置く（未配置 ${s.reserve.length} 体）`;}
+ move(manage,stockGuide);
+ fold('environment','水分・土・天気を変える',manage,[take('.habitat-meters'),take('.habitat-weather'),take('.habitat-care')]);
+ const backgroundSelect=take('.habitat-environment');
  const selectionNode=take('#habitatSelection'),tabs=take('.habitat-tabs'),filter=take('.habitat-collection-filter'),species=take('.habitat-species');
- const placement=fold('placement','生き物を配置する',panels.grow,[tabs],!s.starter);
+ const placement=fold('placement','場所を選んで配置する',manage,[tabs]);
  fold('species','生き物を選ぶ',placement,[filter,species]);
  placement.append(selectionNode);
  const dossier=selectionNode.querySelector('.plant-dossier');
@@ -170,8 +170,8 @@ function organizeBiome(s,openFolds){
   const content=dossier.parentElement;
   fold('field-guide','特徴・くわしい解説を読む',content,[dossier,content.querySelector('.plant-game-label'),content.querySelector('.habitat-life')]);
  }
- fold('observations',`観察棚 · ${s.observations.filter(Boolean).length}/4`,panels.grow,[take('#observationShelf')]);
- move(panels.grow,take('.habitat-journal'));
+ fold('observations',`観察棚 · ${s.observations.filter(Boolean).length}/4`,manage,[take('#observationShelf')]);
+ move(manage,rules);
  const surface=selector=>{const old=take(selector),section=document.createElement('section');section.className=old.className;section.append(...old.childNodes);const summary=section.querySelector(':scope > summary'),title=document.createElement('h4');title.append(...summary.childNodes);summary.replaceWith(title);old.replaceWith(section);return section;};
  const expedition=surface('.habitat-expedition'),environment=surface('.environment-collection');
  const grid=environment.querySelector('.environment-grid');
@@ -183,7 +183,9 @@ function organizeBiome(s,openFolds){
  const pendingHint=document.createElement('p');pendingHint.className='biome-explore-hint';pendingHint.textContent=s.pending||s.environmentPending?'未受取の発見があります。受け取るか、経験へ変えると次の探索ができます。':'学習で貯めたコインを使います。未発見の名前や姿は、出会ってからのお楽しみ。';panels.explore.prepend(pendingHint);
  const book=take('#collectionBook');move(panels.book,book);
  fold('stamps','図鑑の達成スタンプ',book,[book.querySelector('.collection-stamps')]);
- fold('backgrounds','獲得した景色を選ぶ',panels.book,[grid,gridNote]);
+ const backgrounds=fold('backgrounds','獲得した景色を選ぶ',panels.book,[grid,gridNote]);
+ fold('background-select','一覧から景色を選ぶ',backgrounds,[backgroundSelect]);
+ move(panels.book,take('.habitat-journal'));
  fold('connections','生き物どうしのつながり',panels.book,[take('.habitat-connections')]);
  move(panels.book,take('.habitat-notes'));
  nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{setBiomeView(b.dataset.biomeView);b.focus({preventScroll:true});});
@@ -244,7 +246,7 @@ function render(){
  host.querySelector('#growthStockPlace')?.addEventListener('click',()=>{
   const id=host.querySelector('#growthStock').value,c=B.species(id),empty=s[B.slotKey(c.kind)].findIndex(p=>!p);
   if(empty<0){notice=`${c.kind==='plant'?'植物':c.kind==='animal'?'動物':'観察棚'}の場所がいっぱいです。景色や観察棚の生物を押して「控えへ移す」と、空きができます。`;render();focus('biomeNotice');return;}
-  if(c.kind==='animal'&&B.requirements(s,id).length){notice=`${c.name}を配置するには、${B.requirements(s,id).join('・')}が必要です。「環境を整える」で確認してください。`;render();focus('biomeNotice');return;}
+  if(c.kind==='animal'&&B.requirements(s,id).length){notice=`${c.name}を配置するには、${B.requirements(s,id).join('・')}が必要です。「生物の追加・環境設定」で確認してください。`;render();focus('biomeNotice');return;}
   showOrigin=false;
   if(transaction((state,coins)=>B.place(state,coins,id,empty),`${c.name}を配置しました（コイン消費なし）。学習すると、条件を満たす生物が一緒に育ちます。`))focus('growthGuide');
  });
@@ -299,8 +301,7 @@ window.advanceBiomeLearning=function(rows,kind){
  const count=rows.filter(r=>!r.incomplete&&!r.revealed&&(kind==='type'||r.ok)).length;
  document.querySelectorAll('.habitat-result').forEach(e=>e.remove());
  if(!count)return;const before=B.normalize(SAVE.biome);SAVE.biome=B.learn(before,count);
- const days=SAVE.biome.day-before.day;
- const all=[...SAVE.biome.plants,...SAVE.biome.animals,...SAVE.biome.observations],old=[...before.plants,...before.animals,...before.observations];
+  const all=[...SAVE.biome.plants,...SAVE.biome.animals,...SAVE.biome.observations],old=[...before.plants,...before.animals,...before.observations];
  const milestones=all.filter((p,i)=>p&&old[i]&&B.progress(p,SAVE.biome).step>B.progress(old[i],before).step);
  const next=nextGrowing(SAVE.biome),p=next&&B.progress(next,SAVE.biome);
  const text=`🌱 今回の ${count} 問分を育成に反映しました${milestones.length?` · ${milestones.map(x=>`${B.species(x.id).name} ${B.progress(x,SAVE.biome).step}/12`).join('、')} に成長！`:''}${next?` · ${B.species(next.id).name}：${p.paused?'環境を整えると再開':`次の小さな成長まであと ${p.questions} 問`}`:' · 学習の成果を育成経験に保存しました。'}`;

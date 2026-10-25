@@ -413,3 +413,29 @@ body:is([data-screen="game"],[data-screen="quiz"]) footer,body[data-screen="thin
 .growth-guide>.growth-actions{margin:16px 0 10px}.growth-guide>.growth-actions .btn{font-size:16px;min-height:52px}.growth-direct{font-size:16px;line-height:1.7;margin:8px 0 16px}.growth-direct strong{color:#205a38}.growth-direct small{font-size:12px;color:#526a5c}.growth-rules{font-size:13px;line-height:1.6;margin:12px 0 16px}.growth-rules summary{cursor:pointer;color:#526a5c}.growth-rules p{margin-bottom:0}.habitat-result .btn{margin-top:10px}
 
 .growth-primary{width:100%;min-height:56px;font-size:17px;white-space:normal;line-height:1.5;margin:10px 0 0}.growth-target{display:flex;align-items:center;gap:14px;margin:12px 0}.growth-target .bio-sprite{flex:none;width:70px;height:70px}.growth-target strong{display:block;font-size:18px;line-height:1.5}.growth-target small{display:block;color:#526a5c;font-size:12px;margin-top:5px}.growth-caption{font-size:13px;line-height:1.7;margin:8px 0 14px;color:#526a5c}.growth-rules:last-child{margin-bottom:0}.growth-blocked summary{cursor:pointer;font-weight:700}@media(max-width:600px){.growth-primary{font-size:15px}.growth-target strong{font-size:16px}.growth-target .bio-sprite{width:56px;height:56px}.growth-caption{font-size:12px}}
+
+/* One navigation row; growth, acquisition and collection have separate homes. */
+#shop[data-active-shelf="biome"]>.shop-nav{display:block;margin:22px 0 0;border-top:1px solid #d7e1d8;padding-top:12px}
+#shop[data-active-shelf="biome"]>.shop-nav>[data-shelf="biome"]{display:none}
+#shop[data-active-shelf="biome"] #shopExtras{border:0;background:transparent}
+#shop[data-active-shelf="biome"] #shopExtras>summary{padding:12px 4px;min-height:0;color:#647369;font-size:12px}
+#biomeShelf .habitat-heading>div:first-child{display:none}
+#biomeShelf .habitat-heading{padding:10px 0 14px;margin:0;justify-content:flex-end}
+#biomeShelf .habitat-heading-stats{width:100%;justify-content:space-between;align-items:center}
+#biomeShelf .collection-score-link{padding:6px 10px;display:flex;align-items:center;gap:8px;border-radius:8px;background:transparent;border-color:transparent}
+#biomeShelf .collection-score-link strong{font-size:17px}
+#biomeShelf .biome-level{display:flex;flex-direction:row;gap:8px;align-items:center}
+#biomeShelf .biome-level strong{font-size:14px}
+#biomeShelf .biome-level span{font-size:11px}
+#biomeShelf .growth-guide{margin-bottom:14px;padding:18px}
+#biomeShelf .growth-guide h4{font-size:20px;margin:4px 0}
+#biomeShelf .growth-guide header>small{display:none}
+#biomeShelf .growth-target{margin:8px 0}
+#biomeShelf .growth-target .bio-sprite{width:48px;height:48px}
+#biomeShelf .growth-target strong{font-size:16px}
+#biomeShelf .growth-caption{margin-bottom:0}
+#biomePanel-grow .habitat-plot{display:none}
+#biomePanel-grow:has([data-fold="manage"][open] [data-fold="placement"][open]) .habitat-plot{display:flex}
+#biomePanel-grow>[data-fold="manage"]>.growth-stock{border:0;margin:0 0 14px;padding-top:0}
+#biomePanel-grow>[data-fold="manage"]>.growth-rules{border-top:1px solid #d7e1d8;padding-top:14px}
+@media(max-width:600px){#shop[data-active-shelf="biome"]>.topbar{flex-wrap:nowrap}#shop[data-active-shelf="biome"]>.topbar h2{flex-basis:auto;font-size:19px!important}#shop[data-active-shelf="biome"]>.topbar .coins{font-size:12px;white-space:nowrap;padding:8px 10px}#biomeShelf .collection-score-link{padding-left:0;gap:6px}#biomeShelf .collection-score-link strong{font-size:14px}#biomeShelf .biome-level span{font-size:10px}#biomeShelf .growth-guide{padding:14px}.biome-view-nav{margin-bottom:12px}}
