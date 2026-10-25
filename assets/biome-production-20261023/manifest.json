@@ -2,8 +2,8 @@
   "generator": "Built-in image_gen",
   "date": "2026-10-23",
   "status": "Integrated game artwork; classroom expansion has reviewed silhouettes, stage labels and source-linked learning cards. Not identification plates.",
-  "sheetCount": 152,
-  "frameCount": 456,
+  "sheetCount": 176,
+  "frameCount": 480,
   "scientificScope": "Game illustrations, not identification plates or examination diagrams. Stages are representative forms with independent magnification, not a scale chart. Backgrounds depict local ground-cover change, not universal succession from desert to forest. Detailed morphology and sprite-edge review remain necessary before production integration.",
   "sources": [
     "https://www.cgr.mlit.go.jp/ootagawa/Bio/terrest/index158.htm",
@@ -3559,8 +3559,392 @@
       "width": 1254,
       "height": 1254,
       "artMode": "portrait"
+    },
+    {
+      "id": "species-hamahirugao",
+      "title": "ハマヒルガオ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-hamahirugao.png",
+      "category": "植物",
+      "prompt": "Scientific educational game collectible: one isolated Calystegia soldanella (beach morning glory, ハマヒルガオ), creeping short vine with thick glossy kidney-shaped green leaves and two pink funnel-shaped flowers. Refined natural history watercolor with precise soft ink, biologically plausible. Centered square composition, full specimen, generous empty margins, actual transparent background. No scenery, text, label, border or watermark. One representative mature plant portrait, not a growth sequence.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-kobomugi",
+      "title": "コウボウムギ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-kobomugi.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Carex kobomugi, Japanese coastal sedge, dense tuft of stiff long narrow arching green leaves with several stout brown oval spikes on short upright stems, sand-binding rhizomes. Refined natural history watercolor with precise soft ink, biologically plausible. One representative mature specimen centered in square composition with generous transparent margins, full silhouette, true transparent background. No text, labels, frames, scenery, decoration or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-hamago",
+      "title": "ハマゴウ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-hamago.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Vitex rotundifolia, low creeping coastal shrub, rounded gray-green leaves in opposite pairs and small violet-blue flowers in terminal clusters. Refined natural history watercolor with precise soft ink, biologically plausible. One representative mature specimen centered in square composition with generous transparent margins, full silhouette, true transparent background. No text, labels, frames, scenery, decoration or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-kuromatsu",
+      "title": "クロマツ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-kuromatsu.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Pinus thunbergii Japanese black pine, entire compact tree with dark rugged bark, irregular spreading crown, paired long dark-green needles and small woody cones. Refined natural history watercolor with precise soft ink, biologically plausible. One representative mature specimen centered in square composition with generous transparent margins, full silhouette, true transparent background. No text, labels, frames, scenery, decoration or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-hamanasu",
+      "title": "ハマナス",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-hamanasu.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Rosa rugosa, compact thorny coastal rose shrub with deeply wrinkled pinnate leaves, five-petalled magenta flowers with yellow stamens and round orange-red rose hips. Refined natural history watercolor with precise soft ink, biologically plausible. One representative mature specimen centered in square composition with generous transparent margins, full silhouette, true transparent background. No text, labels, frames, scenery, decoration or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-ohirugi",
+      "title": "オヒルギ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-ohirugi.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Bruguiera gymnorhiza mangrove, compact entire tree with glossy opposite elliptic leaves, a few small knee-shaped root loops at base and hanging long propagules; not stilt roots. Refined natural history watercolor with precise soft ink, biologically plausible. One representative mature specimen centered in square composition with generous transparent margins, full silhouette, true transparent background. No text, labels, frames, scenery, decoration or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-mehirugi",
+      "title": "メヒルギ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-mehirugi.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Kandelia obovata mangrove, compact whole tree with opposite glossy elliptic leaves, white flowers and slender hanging green propagules, ordinary spreading roots at base, no tall stilt roots. Refined natural history watercolor with precise soft ink, biologically plausible. One representative mature specimen centered in square composition with generous transparent margins, full silhouette, true transparent background. No text, labels, frames, scenery, decoration or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-sphagnum",
+      "title": "ミズゴケの仲間",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-sphagnum.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Sphagnum moss, small dense pale-green cushion with tiny star-like clustered branch heads and hanging side branches, no flowers, no mushrooms. Refined natural history watercolor with precise soft ink, biologically plausible. One representative mature specimen centered in square composition with generous transparent margins, full silhouette, true transparent background. No text, labels, frames, scenery, decoration or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-sundew",
+      "title": "モウセンゴケ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-sundew.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Drosera rotundifolia round-leaved sundew, low rosette of round green leaves with fine reddish glandular tentacles tipped in shiny sticky droplets; a single thin flowering stalk, no teeth. Refined natural history watercolor with precise soft ink, biologically plausible. One representative mature specimen centered in square composition with generous transparent margins, full silhouette, true transparent background. No text, labels, frames, scenery, decoration or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-cottongrass",
+      "title": "ワタスゲ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-cottongrass.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Eriophorum vaginatum tussock cottongrass, a tuft of narrow green leaves and slender upright stalks each topped by one fluffy white cottony seed head. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-haimatsu",
+      "title": "ハイマツ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-haimatsu.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Pinus pumila Japanese dwarf stone pine, low spreading prostrate woody shrub with dense tufts of short needles in bundles of five and a few small purple-brown cones, wider than tall. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-kokemomo",
+      "title": "コケモモ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-kokemomo.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Vaccinium vitis-idaea lingonberry, low woody plant with small oval glossy evergreen leaves, a few pale pink bell-shaped flowers and bright red berries. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-dryas",
+      "title": "チョウノスケソウ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-dryas.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Dryas octopetala alpine dwarf shrub, low mat of small scalloped oval green leaves with deeply marked veins and a few white eight-petalled flowers with yellow centers. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-ezomatsu",
+      "title": "エゾマツ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-ezomatsu.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Picea jezoensis Ezo spruce, whole narrow conical evergreen tree, short needles densely lining twigs, drooping slender brown cones. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-todomatsu",
+      "title": "トドマツ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-todomatsu.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Abies sachalinensis Sakhalin fir, whole conical evergreen tree, flat short needles, several upright dark purple cones on upper branches, upright cones not hanging. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-tabunoki",
+      "title": "タブノキ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-tabunoki.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Machilus thunbergii Japanese bay tree, whole evergreen broadleaf tree with rounded crown, thick glossy elliptic leaves with smooth unlobed margins, some reddish new leaves. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-arakashi",
+      "title": "アラカシ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-arakashi.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Quercus glauca evergreen oak, whole broadleaf evergreen tree with leathery pointed oval leaves serrated toward their upper halves and a few acorns in shallow ringed cups. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-acacia",
+      "title": "アカシア・トルティリス",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-acacia.png",
+      "category": "植物",
+      "prompt": "Scientific educational collectible portrait. Subject: Vachellia tortilis umbrella thorn acacia, whole tree with flat wide umbrella crown, fine bipinnate leaves, thorny branch tips and a few coiled seed pods, no large leaves. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-sunagani",
+      "title": "スナガニ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-sunagani.png",
+      "category": "動物",
+      "prompt": "Scientific educational collectible portrait. Subject: Ocypode stimpsoni Japanese sand ghost crab, pale sandy-colored squarish carapace, two upright dark-tipped eyestalks, four pairs of long walking legs and one pair of claws, one larger than the other. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-yamatoosagani",
+      "title": "ヤマトオサガニ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-yamatoosagani.png",
+      "category": "動物",
+      "prompt": "Scientific educational collectible portrait. Subject: Macrophthalmus japonicus mudflat crab, broad low rectangular gray-brown carapace, long horizontal eyestalks, four pairs of sideways walking legs and one pair of modest claws. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-asari",
+      "title": "アサリ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-asari.png",
+      "category": "動物",
+      "prompt": "Scientific educational collectible portrait. Subject: Ruditapes philippinarum Manila clam, one intact closed bivalve, obliquely oval shell with fine intersecting radial and concentric ridges and natural cream brown mottled pattern, no eyes or legs. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-shirochidori",
+      "title": "シロチドリ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-shirochidori.png",
+      "category": "動物",
+      "prompt": "Scientific educational collectible portrait. Subject: Kentish plover Anarhynchus alexandrinus, one small shorebird standing in profile, sandy brown back, white belly, short thin black bill, slender black legs, dark patches on sides of upper breast, no complete black breast ring. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-raicho",
+      "title": "ライチョウ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-raicho.png",
+      "category": "動物",
+      "prompt": "Scientific educational collectible portrait. Subject: Japanese rock ptarmigan Lagopus muta japonica, one adult in summer plumage, mottled brown gray upperparts, white belly and wings, short dark bill, feathered feet, modest red eyebrow. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
+    },
+    {
+      "id": "species-pika",
+      "title": "エゾナキウサギ",
+      "stages": [
+        "代表的な姿"
+      ],
+      "columns": 1,
+      "rows": 1,
+      "transparent": true,
+      "file": "../biome-habitat-20261025/species-pika.png",
+      "category": "動物",
+      "prompt": "Scientific educational collectible portrait. Subject: Ochotona hyperborea yesoensis Ezo pika, one compact gray-brown mammal with small rounded ears, short limbs, no visible tail, dark eyes, whiskers, not a long-eared rabbit. Refined natural history watercolor with precise soft ink, biologically plausible anatomy. One representative mature specimen centered in square composition with generous transparent margins, entire silhouette, true transparent background. No text, labels, frames, scenery or watermark. Not a life-cycle diagram.",
+      "width": 1254,
+      "height": 1254,
+      "artMode": "portrait"
     }
   ],
-  "speciesCount": 132,
+  "speciesCount": 156,
   "environmentCount": 20
 }

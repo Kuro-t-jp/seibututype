@@ -30,3 +30,5 @@
 - `node tests/gas-server.cjs`：サーバーはHTML配信のみで、旧ランキング関数がないこと
 - `node tests/gas-assets.cjs`：圧縮復元と全140画像の一致
 - `node tests/gas-ui.cjs`：Pages/GAS相当の画面で送信0件、実入力による報酬、保存・再読込、旧名前ありの移行、スマートフォン表示
+
+画像追加に対応するため、追加コレクションの画像（biome-art-5）は既存の公開GitHub Pagesから読み込みます。オンライン接続が必要です。画像は原版と同じWebPで、内容ハッシュ付きURLを使用します。先にPagesへ画像を公開してからGASを更新してください。学習記録は各ブラウザの保存のままです。

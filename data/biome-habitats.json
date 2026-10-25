@@ -1,0 +1,690 @@
+{
+  "environments": {
+    "canyon": {
+      "label": "乾いた岩礫地",
+      "description": "乾燥・日なた。淡水池や海水域ではありません。"
+    },
+    "waterside": {
+      "label": "淡水の池と岸辺",
+      "description": "淡水・止水と周辺の草地。海水の生物は置けません。"
+    },
+    "highland": {
+      "label": "冷涼な山地・高山",
+      "description": "冷涼な草地や岩場。寒冷な場所の生物を中心に配置します。"
+    },
+    "rivergravel": {
+      "label": "淡水の河原",
+      "description": "流れる淡水と礫地・岸辺。海岸の砂浜とは区別します。"
+    },
+    "satoyama": {
+      "label": "温帯の里山・田畑",
+      "description": "林縁・畑・田んぼや淡水の小池を含みます。栽培・飼育の学習種もここで扱います。"
+    },
+    "oasis": {
+      "label": "温暖な乾燥地と淡水",
+      "description": "乾燥した陸地と暖かい淡水の小さな水場。海水ではありません。"
+    },
+    "coast": {
+      "label": "海岸の砂浜・砂丘",
+      "description": "潮風・砂地。淡水池ではなく、海浜植物と砂浜の動物の場所です。"
+    },
+    "limestone": {
+      "label": "温帯の石灰岩地",
+      "description": "日なたの岩地と草地・疎林を含みます。"
+    },
+    "stream": {
+      "label": "冷涼な淡水の渓流",
+      "description": "流水と湿った岸辺。池や海とは異なる環境です。"
+    },
+    "deciduousfloor": {
+      "label": "温帯の落葉広葉樹林",
+      "description": "林床から林縁・林冠のすき間までを含めた森林として扱います。"
+    },
+    "volcanic": {
+      "label": "温帯の火山性荒原",
+      "description": "日なたの岩礫地。陸上の遷移の初期を考える場所です。"
+    },
+    "peat": {
+      "label": "泥炭湿原",
+      "description": "冷涼で湿った貧栄養の湿原。土を豊かにするほどよいとは限りません。"
+    },
+    "coniferfloor": {
+      "label": "亜寒帯・亜高山の針葉樹林",
+      "description": "冷涼な針葉樹林。林床・林縁も含みます。"
+    },
+    "evergreenfloor": {
+      "label": "暖温帯の照葉樹林",
+      "description": "暖かく湿潤な常緑広葉樹林。林床・林縁も含みます。"
+    },
+    "savanna": {
+      "label": "熱帯・亜熱帯の疎林",
+      "description": "乾季のある草原とまばらな樹木の景観です。"
+    },
+    "rainforestfloor": {
+      "label": "熱帯・亜熱帯の湿潤林",
+      "description": "暖かく湿潤な林。温帯や寒冷地の樹種とは区別します。"
+    },
+    "mangrovecoast": {
+      "label": "暖かい沿岸の潮間帯",
+      "description": "潮汐と塩分の影響を受ける泥地。淡水の池とは区別します。"
+    },
+    "tidalflat": {
+      "label": "海水・汽水の干潟",
+      "description": "潮汐で水に浸かったり干出したりする砂泥底。ヨシは陸寄りの汽水域として扱います。"
+    },
+    "tundra": {
+      "label": "寒冷地のツンドラ",
+      "description": "高木の森林が成立しにくい寒冷地。低い植物を中心にします。"
+    },
+    "snowmelt": {
+      "label": "冷涼な雪解けの谷",
+      "description": "高山の草地や岩場、湿った場所。暖地の生物は置けません。"
+    }
+  },
+  "species": {
+    "grass": [
+      "canyon",
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "volcanic",
+      "limestone"
+    ],
+    "rape": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "highland"
+    ],
+    "clover": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "highland"
+    ],
+    "dandelion": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "highland"
+    ],
+    "mugwort": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "highland"
+    ],
+    "plantain": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "highland"
+    ],
+    "sunflower": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "highland"
+    ],
+    "morningglory": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "highland"
+    ],
+    "pine": [
+      "canyon",
+      "volcanic",
+      "limestone",
+      "satoyama",
+      "deciduousfloor"
+    ],
+    "oak": [
+      "satoyama",
+      "deciduousfloor"
+    ],
+    "azalea": [
+      "satoyama",
+      "deciduousfloor"
+    ],
+    "cherry": [
+      "satoyama",
+      "deciduousfloor"
+    ],
+    "birch": [
+      "highland",
+      "deciduousfloor"
+    ],
+    "beech": [
+      "highland",
+      "deciduousfloor"
+    ],
+    "castanopsis": [
+      "evergreenfloor",
+      "satoyama"
+    ],
+    "cedar": [
+      "satoyama",
+      "evergreenfloor",
+      "deciduousfloor",
+      "stream"
+    ],
+    "cypress": [
+      "satoyama",
+      "evergreenfloor",
+      "deciduousfloor",
+      "stream"
+    ],
+    "lotus": [
+      "waterside",
+      "satoyama"
+    ],
+    "cattail": [
+      "waterside",
+      "satoyama"
+    ],
+    "waterlily": [
+      "waterside",
+      "satoyama"
+    ],
+    "rice": [
+      "waterside",
+      "satoyama"
+    ],
+    "elodea": [
+      "waterside",
+      "satoyama"
+    ],
+    "reed": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "tidalflat"
+    ],
+    "opuntia": [
+      "canyon",
+      "oasis"
+    ],
+    "aloe": [
+      "canyon",
+      "oasis"
+    ],
+    "mangrove": [
+      "mangrovecoast"
+    ],
+    "banyan": [
+      "rainforestfloor"
+    ],
+    "butterfly": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "hopper": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "ladybird": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "locust": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "cricket": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "mantis": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "pale-grass-blue": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "lizard": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "sparrow": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "swallow": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "hare": [
+      "waterside",
+      "highland",
+      "rivergravel",
+      "satoyama",
+      "limestone"
+    ],
+    "rhino": [
+      "satoyama",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "stag": [
+      "satoyama",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "honeybee": [
+      "satoyama",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "ant": [
+      "satoyama",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "black-swallowtail": [
+      "satoyama",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "swallowtail": [
+      "satoyama",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "gecko": [
+      "satoyama",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "bird": [
+      "satoyama",
+      "deciduousfloor",
+      "coniferfloor"
+    ],
+    "squirrel": [
+      "satoyama",
+      "deciduousfloor",
+      "coniferfloor"
+    ],
+    "frog": [
+      "waterside",
+      "satoyama"
+    ],
+    "skimmer": [
+      "waterside",
+      "satoyama"
+    ],
+    "darter": [
+      "waterside",
+      "satoyama"
+    ],
+    "divingbeetle": [
+      "waterside",
+      "satoyama"
+    ],
+    "medaka": [
+      "waterside",
+      "satoyama"
+    ],
+    "carp": [
+      "waterside",
+      "satoyama"
+    ],
+    "crucian": [
+      "waterside",
+      "satoyama"
+    ],
+    "loach": [
+      "waterside",
+      "satoyama"
+    ],
+    "pondfrog": [
+      "waterside",
+      "satoyama"
+    ],
+    "newt": [
+      "waterside",
+      "satoyama"
+    ],
+    "daphnia": [
+      "waterside",
+      "satoyama"
+    ],
+    "firefly": [
+      "stream"
+    ],
+    "freshwatercrab": [
+      "stream"
+    ],
+    "kingfisher": [
+      "waterside",
+      "rivergravel",
+      "satoyama",
+      "stream"
+    ],
+    "snail": [
+      "waterside",
+      "satoyama",
+      "stream",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "earthworm": [
+      "waterside",
+      "satoyama",
+      "stream",
+      "deciduousfloor",
+      "evergreenfloor"
+    ],
+    "pea": [
+      "satoyama"
+    ],
+    "arabidopsis": [
+      "satoyama"
+    ],
+    "maize": [
+      "satoyama"
+    ],
+    "onion": [
+      "satoyama"
+    ],
+    "ginkgo": [
+      "satoyama"
+    ],
+    "oat": [
+      "satoyama"
+    ],
+    "wheat": [
+      "satoyama"
+    ],
+    "broadbean": [
+      "satoyama"
+    ],
+    "potato": [
+      "satoyama"
+    ],
+    "strawberry": [
+      "satoyama"
+    ],
+    "tomato": [
+      "satoyama"
+    ],
+    "barley": [
+      "satoyama"
+    ],
+    "soybean": [
+      "satoyama"
+    ],
+    "chrysanthemum": [
+      "satoyama"
+    ],
+    "spinach": [
+      "satoyama"
+    ],
+    "azuki": [
+      "satoyama"
+    ],
+    "fruitfly": [
+      "satoyama"
+    ],
+    "silkworm": [
+      "satoyama"
+    ],
+    "zebrafish": [
+      "oasis"
+    ],
+    "marchantia": [
+      "stream",
+      "deciduousfloor",
+      "evergreenfloor",
+      "coniferfloor"
+    ],
+    "fern": [
+      "stream",
+      "deciduousfloor",
+      "evergreenfloor",
+      "coniferfloor"
+    ],
+    "moss": [
+      "stream",
+      "deciduousfloor",
+      "evergreenfloor",
+      "coniferfloor"
+    ],
+    "horsetail": [
+      "waterside",
+      "rivergravel",
+      "satoyama"
+    ],
+    "cycad": [
+      "evergreenfloor",
+      "satoyama"
+    ],
+    "mimosa": [
+      "rainforestfloor"
+    ],
+    "urchin": [],
+    "starfish": [],
+    "hydra": [],
+    "planarian": [],
+    "amphioxus": [],
+    "ascidian": [],
+    "xenopus": [],
+    "axolotl": [],
+    "nematode": [],
+    "mouse": [],
+    "chicken": [],
+    "squid": [],
+    "ecoli": [],
+    "bacillus": [],
+    "buddingyeast": [],
+    "fissionyeast": [],
+    "lactic": [],
+    "rhizobium": [],
+    "nitrifier": [],
+    "nostoc": [],
+    "euglena": [],
+    "paramecium": [],
+    "chlamydomonas": [],
+    "volvox": [],
+    "amoeba": [],
+    "spirogyra": [],
+    "acetabularia": [],
+    "diatom": [],
+    "chlorella": [],
+    "oscillatoria": [],
+    "neurospora": [],
+    "penicillium": [],
+    "koji": [],
+    "anemone": [],
+    "mussel": [],
+    "crayfish": [],
+    "moonjelly": [],
+    "stonycoral": [],
+    "sponge": [],
+    "octopus": [],
+    "vorticella": [],
+    "stentor": [],
+    "closterium": [],
+    "pediastrum": [],
+    "hamahirugao": [
+      "coast"
+    ],
+    "kobomugi": [
+      "coast"
+    ],
+    "hamago": [
+      "coast"
+    ],
+    "kuromatsu": [
+      "coast",
+      "satoyama"
+    ],
+    "hamanasu": [
+      "coast"
+    ],
+    "ohirugi": [
+      "mangrovecoast"
+    ],
+    "mehirugi": [
+      "mangrovecoast"
+    ],
+    "sphagnum": [
+      "peat"
+    ],
+    "sundew": [
+      "peat"
+    ],
+    "cottongrass": [
+      "peat",
+      "tundra",
+      "snowmelt"
+    ],
+    "haimatsu": [
+      "highland",
+      "snowmelt"
+    ],
+    "kokemomo": [
+      "highland",
+      "coniferfloor",
+      "tundra",
+      "snowmelt"
+    ],
+    "dryas": [
+      "highland",
+      "tundra",
+      "snowmelt"
+    ],
+    "ezomatsu": [
+      "coniferfloor"
+    ],
+    "todomatsu": [
+      "coniferfloor"
+    ],
+    "tabunoki": [
+      "evergreenfloor",
+      "satoyama"
+    ],
+    "arakashi": [
+      "evergreenfloor",
+      "satoyama",
+      "limestone"
+    ],
+    "acacia": [
+      "savanna",
+      "oasis",
+      "canyon"
+    ],
+    "sunagani": [
+      "coast"
+    ],
+    "yamatoosagani": [
+      "tidalflat"
+    ],
+    "asari": [
+      "tidalflat"
+    ],
+    "shirochidori": [
+      "coast",
+      "tidalflat"
+    ],
+    "raicho": [
+      "highland",
+      "snowmelt"
+    ],
+    "pika": [
+      "highland",
+      "snowmelt"
+    ]
+  },
+  "sources": [
+    {
+      "label": "神奈川県：海浜自然生態園",
+      "url": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html"
+    },
+    {
+      "label": "石狩市：石狩浜のハマナス",
+      "url": "https://www.city.ishikari.hokkaido.jp/museum/1001801/1004573/1004701.html"
+    },
+    {
+      "label": "環境省：マングローブ学習教材",
+      "url": "https://kyushu.env.go.jp/okinawa/coral_reef_study/mangrove/index.html"
+    },
+    {
+      "label": "環境省：羅臼湖の植生調査",
+      "url": "https://shiretokodata-center.env.go.jp/data/research/report/h25/H25rausuko_monitoring.pdf"
+    },
+    {
+      "label": "環境省：高層湿原のモウセンゴケ",
+      "url": "https://hokkaido.env.go.jp/blog/2020/08/post-536.html"
+    },
+    {
+      "label": "環境省：山梨県生物多様性調査",
+      "url": "https://www.biodic.go.jp/reports2/7th/todouhuken/yamanashi/h17/h17_yamanashi.pdf"
+    },
+    {
+      "label": "森林総合研究所：北方の針葉樹",
+      "url": "https://www.ffpri.go.jp/hokuiku/research/kaihatu.html"
+    },
+    {
+      "label": "環境省：自然観察ガイド",
+      "url": "https://www.env.go.jp/nature/nats/kansatsu/guide/guide.pdf"
+    },
+    {
+      "label": "南アフリカ国立生物多様性研究所：Vachellia tortilis",
+      "url": "https://pza.sanbi.org/vachellia-tortilis"
+    },
+    {
+      "label": "福岡市：スナガニ",
+      "url": "https://seibutsutayousei.city.fukuoka.lg.jp/learning/3297/"
+    },
+    {
+      "label": "環境省：干潟で見られる生きもの",
+      "url": "https://www.env.go.jp/water/heisa/heisa_net/setouchiNet/seto/g1/g1chapter4/g1chapter4-2/higataikimono.html"
+    },
+    {
+      "label": "金沢市：海浜の自然",
+      "url": "https://www4.city.kanazawa.lg.jp/soshikikarasagasu/kankyoseisakuka/gyomuannai/shizenhogo/kanazawasnature/flowerslandscapehighlights/shousai/7530.html"
+    },
+    {
+      "label": "環境省：ライチョウ",
+      "url": "https://www.env.go.jp/nature/kisho/hogozoushoku/raicho.html"
+    },
+    {
+      "label": "国土交通省：エゾナキウサギ",
+      "url": "https://www.mlit.go.jp/tagengo-db/R4-00346%2Chtml"
+    }
+  ]
+}

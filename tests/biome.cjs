@@ -1,6 +1,6 @@
 const assert=require('node:assert/strict');
 const B=require('../src/biome.js');
-let s=B.normalize();assert.equal(B.scenery(s).cover,0);assert.equal(B.scenery(s).name,'はじまりの荒原');
+let s=B.normalize({environment:'satoyama'});assert.equal(B.scenery(s).cover,0);assert.equal(B.scenery(s).name,'はじまりの荒原');
 let placed=B.place(s,0,'grass',0);s=placed.state;assert.equal(placed.coins,0);assert.equal(s.starter,true);assert.equal(s.plants[0].age,0);
 assert.throws(()=>B.place(s,0,'grass',1),/探索/);assert.throws(()=>B.place(s,100,'pine',0),/場所/);
 let before=JSON.stringify(s);let learning=B.learn(s,4);assert.equal(learning.day,0);assert.equal(learning.study,4);assert.equal(JSON.stringify(s),before);
@@ -27,7 +27,7 @@ console.log('PASS biome: growth thresholds, habitat dependencies, no mutation, s
 // Pace, all twelve milestones, partial progress, and legacy data preservation.
 for(const [id,total] of [['grass',800],['pine',1500],['hopper',1000]]){
  const key=B.species(id).kind==='plant'?'plants':'animals';
- let state=B.normalize({version:3,moisture:100,soil:100,plants:[{id:'grass',age:6,tier:0}]});
+ let state=B.normalize({environment:'satoyama',version:3,moisture:100,soil:100,plants:[{id:'grass',age:6,tier:0}]});
  state[key][key==='plants'?1:0]={id,age:0,growth:0,tier:0};
  const index=key==='plants'?1:0, seen=new Set([1]);
  for(let q=1;q<=total;q++){
@@ -41,15 +41,15 @@ for(const [id,total] of [['grass',800],['pine',1500],['hopper',1000]]){
 }
 for(const c of B.SPECIES)for(let age=0;age<=6;age++){
  const state=B.normalize({version:2,reserve:[{id:c.id,age,tier:2}],pending:{id:c.id,age,tier:1},xp:32,day:5,study:3});
- assert.equal(state.version,6);assert.equal(state.reserve[0].age,age);assert.equal(state.pending.age,age);
+ assert.equal(state.version,7);assert.equal(state.reserve[0].age,age);assert.equal(state.pending.age,age);
  assert.equal(B.stage(state.reserve[0]),age===0?0:age<3?1:age<6?2:3);
  assert.deepEqual(B.normalize(state),state);assert.equal(state.study,3);assert.equal(state.xp,32);
 }
 let fast=B.normalize({plants:[{id:'grass',age:0,growth:0,tier:2}],day:2,study:4});
 assert.equal(B.progress(fast.plants[0],fast).questions,1);fast=B.learn(fast,1);assert.equal(fast.plants[0].growth,2);
-let dry=B.normalize({plants:[{id:'rape',age:0,growth:0,tier:0}],moisture:8,weather:'sun'});
+let dry=B.normalize({environment:'satoyama',plants:[{id:'rape',age:0,growth:0,tier:0}],moisture:8,weather:'sun'});
 assert.ok(B.progress(dry.plants[0],dry).paused);dry=B.learn(dry,50);assert.equal(dry.plants[0].growth,0);
-let seed=B.normalize({soil:0,plants:[{id:'pine',growth:0,tier:0}],animals:[{id:'squirrel',growth:0,tier:0}]});
+let seed=B.normalize({environment:'satoyama',soil:0,plants:[{id:'pine',growth:0,tier:0}],animals:[{id:'squirrel',growth:0,tier:0}]});
 let chunked=seed;for(let i=0;i<600;i++)chunked=B.learn(chunked,5);
 let bulk=B.learn(seed,3000);assert.deepEqual(bulk.plants,chunked.plants);assert.deepEqual(bulk.animals,chunked.animals);assert.equal(bulk.animals[0].age,6);
 let one=B.learn(B.place(B.normalize(),0,'grass',0).state,17);let saved=B.normalize(JSON.parse(JSON.stringify(one)));assert.deepEqual(saved,one);

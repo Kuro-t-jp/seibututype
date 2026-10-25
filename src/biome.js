@@ -27,13 +27,14 @@ const QUESTIONS={
 };
 const catalog=typeof module==='object'&&module.exports?require('./biome-catalog.js'):root.BiomeCatalog;
 SPECIES.push(...catalog.species);Object.assign(QUESTIONS,catalog.questions);
-const school=typeof module==='object'&&module.exports?require('../data/biome-school-expansion.json').concat(require('../data/biome-extra-expansion.json'),require('../data/biome-more-expansion.json')):root.BiomeSchoolExpansion;
+const school=typeof module==='object'&&module.exports?require('../data/biome-school-expansion.json').concat(require('../data/biome-extra-expansion.json'),require('../data/biome-more-expansion.json'),require('../data/biome-habitat-expansion.json')):root.BiomeSchoolExpansion;
 for(const {question,answers,explanation,card,...item} of school){SPECIES.push(item);QUESTIONS[item.id]={q:question,answers,explanation};}
+const HABITATS=typeof module==='object'&&module.exports?require('../data/biome-habitats.json'):root.BiomeHabitats;
 const slotKey=kind=>{const key={plant:'plants',animal:'animals',observation:'observations'}[kind];if(!key)throw Error('種類を確認してください。');return key;};
 const ENVIRONMENT_GROUPS=[['canyon','waterside','highland','rivergravel','satoyama'],['oasis','coast','limestone','stream','deciduousfloor'],['volcanic','peat','coniferfloor','evergreenfloor','savanna'],['tidalflat','rainforestfloor','mangrovecoast','tundra','snowmelt']];
 const ENVIRONMENT_GRADES=['C · ノーマル','B · レア','A · スーパーレア','S · スペシャル'];
 const ENVIRONMENT_ODDS=[[80,16,3.5,.5],[78,17.5,3.8,.7],[76,19,4.1,.9],[74,20.5,4.4,1.1],[72,22,4.7,1.3],[70,23,5.5,1.5]],ENVIRONMENT_XP=[6,12,24,40],ENVIRONMENT_COST=24;
-const ENVIRONMENTS=catalog.environments.map(e=>({...e,grade:ENVIRONMENT_GROUPS.findIndex(g=>g.includes(e.id))}));
+const ENVIRONMENTS=catalog.environments.map(e=>({...e,...HABITATS.environments[e.id],grade:ENVIRONMENT_GROUPS.findIndex(g=>g.includes(e.id))}));
 const environment=id=>ENVIRONMENTS.find(e=>e.id===id);
 const COST=24,XP=[6,12,24],TIERS=['小さな発見','うれしい発見','大きな発見'];
 const SPECIES_POINTS=[100,180,300],ENVIRONMENT_POINTS=[100,180,300,500];
@@ -80,7 +81,9 @@ function normalize(raw={}){
  // pending discoveries never contribute. Retain this record after recycling.
  const speciesBestTier=Object.fromEntries(speciesKnown.map(id=>[id,clamp(integer(raw.speciesBestTier?.[id]),0,2)]));
  for(const item of [...plants,...animals,...observations,...reserve].filter(Boolean))speciesBestTier[item.id]=Math.max(speciesBestTier[item.id],item.tier);
- return {version:6,speciesKnown,speciesBestTier,environment:activeEnvironment,environmentsOwned,environmentPending:environment(raw.environmentPending)&&raw.environmentPending!=='canyon'?raw.environmentPending:null,environmentDraws:integer(raw.environmentDraws),xp:integer(raw.xp),day:integer(raw.day),study:integer(raw.study)%5,moisture:clamp(Number.isFinite(raw.moisture)?raw.moisture:15,8,100),soil:clamp(Number.isFinite(raw.soil)?raw.soil:10,0,100),weather:WEATHER[raw.weather]?raw.weather:'rain',plants,animals,observations,reserve,pending:migrateItem(raw.pending),draws:integer(raw.draws),starter:!!raw.starter,checked:Object.fromEntries(SPECIES.filter(s=>raw.checked?.[s.id]===true).map(s=>[s.id,true])),log:Array.isArray(raw.log)?raw.log.filter(s=>typeof s==='string').slice(-6):[]};
+ const habitatNotice=Array.isArray(raw.habitatNotice)?raw.habitatNotice.filter(id=>species(id)):[];
+ for(const slots of [plants,animals])for(let i=0;i<slots.length;i++){const item=slots[i];if(item&&!habitatInfo({environment:activeEnvironment},item.id).fits){reserve.push(item);slots[i]=null;if(!habitatNotice.includes(item.id))habitatNotice.push(item.id);}}
+ return {version:7,habitatNotice,speciesKnown,speciesBestTier,environment:activeEnvironment,environmentsOwned,environmentPending:environment(raw.environmentPending)&&raw.environmentPending!=='canyon'?raw.environmentPending:null,environmentDraws:integer(raw.environmentDraws),xp:integer(raw.xp),day:integer(raw.day),study:integer(raw.study)%5,moisture:clamp(Number.isFinite(raw.moisture)?raw.moisture:15,8,100),soil:clamp(Number.isFinite(raw.soil)?raw.soil:10,0,100),weather:WEATHER[raw.weather]?raw.weather:'rain',plants,animals,observations,reserve,pending:migrateItem(raw.pending),draws:integer(raw.draws),starter:!!raw.starter,checked:Object.fromEntries(SPECIES.filter(s=>raw.checked?.[s.id]===true).map(s=>[s.id,true])),log:Array.isArray(raw.log)?raw.log.filter(s=>typeof s==='string').slice(-6):[]};
 }
 function collectionScore(raw){
  const s=normalize(raw),groups={plant:0,animal:0,observation:0,environment:0};
@@ -100,8 +103,14 @@ function collectionGain(raw,kind){
 function level(s){return THRESHOLDS.filter(n=>s.xp>=n).length;}
 function stage(item){return item.age===0?0:item.age<3?1:item.age<6?2:3;}
 function has(s,id,age=1){return s.plants.some(p=>p&&p.id===id&&p.age>=age);}
+function habitatInfo(s,id){
+ const c=species(id);if(!c)throw Error('種類が見つかりません。');
+ const allowed=HABITATS.species[id]||[],fits=c.kind==='observation'||allowed.includes(s.environment);
+ return {fits,allowed,label:c.kind==='observation'?'観察棚（飼育・野外への配置ではありません）':allowed.map(id=>environment(id).label).join('・'),reason:fits?'':`この景色では生息・生育環境が合いません。適する環境：${allowed.map(id=>environment(id).label).join('・')}`};
+}
+function placementNeeds(s,id){const c=species(id);return c.kind==='animal'?requirements(s,id):habitatInfo(s,id).fits?[]:[habitatInfo(s,id).reason];}
 function requirements(s,id){
- const c=species(id),needs=[];
+ const c=species(id),needs=habitatInfo(s,id).fits?[]:[habitatInfo(s,id).reason];
  if(!c)throw Error('種類が見つかりません。');
  if(c.kind==='plant'){
   if(s.moisture<c.water)needs.push(`水分 ${c.water} 以上`);
@@ -161,7 +170,7 @@ function place(raw,coins,id,slot){
  const key=slotKey(c.kind);
  if(!Number.isInteger(slot)||slot<0||slot>=s[key].length||s[key][slot])throw Error('空いている場所を選んでください。');
  // Seeds may be planted while dry, but animals need a habitat before arrival.
- if(c.kind==='animal'&&requirements(s,id).length)throw Error('先に必要な生息環境を整えよう。');
+ if(placementNeeds(s,id).length)throw Error('配置に必要な環境：'+placementNeeds(s,id).join('・'));
  const stock=s.reserve.findIndex(x=>x.id===id);
  const free=id==='grass'&&!s.starter;
  if(stock<0&&!free)throw Error('探索で出会った生物をストックしてから配置しよう。');
@@ -188,13 +197,13 @@ function draw(raw,coins,rng=Math.random){
  if(coins<COST)throw Error('コインが足りません。');
  const random=()=>{const n=rng();if(!Number.isFinite(n)||n<0||n>=1)throw Error('抽選をやり直してください。');return n;};
  const odds=ODDS[level(s)-1],r=random()*100,tier=r<odds[0]?0:r<odds[0]+odds[1]?1:2;
- const candidates=SPECIES.filter(c=>c.kind==='plant'||!requirements(s,c.id).length);
+ const candidates=SPECIES.filter(c=>habitatInfo(s,c.id).fits&&(c.kind!=='animal'||!requirements(s,c.id).length));
  s.pending=validItem({id:candidates[Math.floor(random()*candidates.length)].id,age:tier===1?1:0,tier});s.draws++;
  return {state:s,coins:coins-COST};
 }
 function chooseEnvironment(raw,id){
  const s=normalize(raw);if(!environment(id)||!s.environmentsOwned.includes(id))throw Error('景色の探索で獲得してから選ぼう。');
- s.environment=id;return s;
+ return normalize({...s,environment:id,habitatNotice:[]});
 }
 function drawEnvironment(raw,coins,rng=Math.random){
  const s=normalize(raw);if(s.pending||s.environmentPending)throw Error('先に発見を受け取るか、経験に変えてください。');
@@ -233,6 +242,6 @@ function check(raw,id){
  if(!species(id)||s.checked[id]||![...s.plants,...s.animals,...s.observations,...s.reserve].some(x=>x?.id===id))throw Error('この確認ボーナスは受け取れません。');
  s.checked[id]=true;s.xp+=2;return s;
 }
-const api={collectionScore,collectionGain,SPECIES_POINTS,ENVIRONMENT_POINTS,slotKey,SPECIES,QUESTIONS,ENVIRONMENTS,ENVIRONMENT_GRADES,ENVIRONMENT_ODDS,ENVIRONMENT_XP,ENVIRONMENT_COST,environment,chooseEnvironment,drawEnvironment,resolveEnvironment,COST,XP,TIERS,THRESHOLDS,ODDS,WEATHER,GROWTH,species,normalize,level,stage,progress,requirements,tick,learn,scenery,place,remove,tend,draw,resolve,recycleReserve,check};
+const api={HABITATS,habitatInfo,placementNeeds,collectionScore,collectionGain,SPECIES_POINTS,ENVIRONMENT_POINTS,slotKey,SPECIES,QUESTIONS,ENVIRONMENTS,ENVIRONMENT_GRADES,ENVIRONMENT_ODDS,ENVIRONMENT_XP,ENVIRONMENT_COST,environment,chooseEnvironment,drawEnvironment,resolveEnvironment,COST,XP,TIERS,THRESHOLDS,ODDS,WEATHER,GROWTH,species,normalize,level,stage,progress,requirements,tick,learn,scenery,place,remove,tend,draw,resolve,recycleReserve,check};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.Biome=api;
 })(typeof globalThis==='object'?globalThis:this);

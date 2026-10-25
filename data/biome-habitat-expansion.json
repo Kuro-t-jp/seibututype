@@ -1,0 +1,1435 @@
+[
+  {
+    "id": "hamahirugao",
+    "name": "ハマヒルガオ",
+    "kind": "plant",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "海浜植物",
+    "habitats": [
+      "coast"
+    ],
+    "topic": "海浜植物",
+    "term": "海浜植物",
+    "fact": "砂浜に茎を伸ばし、厚い葉と淡紅色の花をつける海浜植物です。砂地・潮風という条件と植物の分布を結び付けて観察します。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "海浜植物の分布を考える際、特に確認すべき条件は？",
+    "answers": [
+      "潮風・砂の移動・水分条件",
+      "花の色だけ",
+      "月の満ち欠けだけ"
+    ],
+    "explanation": "砂浜に茎を伸ばし、厚い葉と淡紅色の花をつける海浜植物です。砂地・潮風という条件と植物の分布を結び付けて観察します。",
+    "sourceUrl": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html",
+    "sourceLabel": "神奈川県：海浜自然生態園",
+    "card": {
+      "topic": "海浜植物",
+      "signature": "海浜植物を学ぶ",
+      "appearance": "厚い腎臓形の葉と、淡紅色の漏斗状の花。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "砂浜に茎を伸ばし、厚い葉と淡紅色の花をつける海浜植物です。砂地・潮風という条件と植物の分布を結び付けて観察します。",
+      "learning": "生物の分布は、温度だけでなく塩分・風・底質などの非生物的環境にも左右されます。",
+      "misconception": "海浜植物は、海水中に沈んで生活する海草とは異なります。",
+      "question": "海浜植物の分布を考える際、特に確認すべき条件は？",
+      "answer": "潮風・砂の移動・水分条件。生物の分布は、温度だけでなく塩分・風・底質などの非生物的環境にも左右されます。",
+      "group": "被子植物・ヒルガオ科",
+      "sources": [
+        {
+          "label": "神奈川県：海浜自然生態園",
+          "url": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "kobomugi",
+    "name": "コウボウムギ",
+    "kind": "plant",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "群落",
+    "habitats": [
+      "coast"
+    ],
+    "topic": "群落",
+    "term": "群落",
+    "fact": "砂丘に生育するカヤツリグサ科の多年草です。地下茎で広がる植物の群落は、砂の移動とも関わります。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "コウボウムギの分類として適切なのは？",
+    "answers": [
+      "カヤツリグサ科の被子植物",
+      "ムギという名なので必ずイネ科",
+      "胞子だけでふえるコケ植物"
+    ],
+    "explanation": "砂丘に生育するカヤツリグサ科の多年草です。地下茎で広がる植物の群落は、砂の移動とも関わります。",
+    "sourceUrl": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html",
+    "sourceLabel": "神奈川県：海浜自然生態園",
+    "card": {
+      "topic": "群落",
+      "signature": "群落を学ぶ",
+      "appearance": "細長い葉が株をつくり、穂状の花序をつけます。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "砂丘に生育するカヤツリグサ科の多年草です。地下茎で広がる植物の群落は、砂の移動とも関わります。",
+      "learning": "地下茎による広がりは栄養生殖の例です。個体数を数える際には、地上の株と遺伝的な個体を区別する視点も大切です。",
+      "misconception": "名前にムギとありますが、イネ科ではなくカヤツリグサ科です。",
+      "question": "コウボウムギの分類として適切なのは？",
+      "answer": "カヤツリグサ科の被子植物。地下茎による広がりは栄養生殖の例です。個体数を数える際には、地上の株と遺伝的な個体を区別する視点も大切です。",
+      "group": "被子植物・カヤツリグサ科",
+      "sources": [
+        {
+          "label": "神奈川県：海浜自然生態園",
+          "url": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hamago",
+    "name": "ハマゴウ",
+    "kind": "plant",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "環境への適応",
+    "habitats": [
+      "coast"
+    ],
+    "topic": "環境への適応",
+    "term": "環境への適応",
+    "fact": "海岸の砂地に広がる背の低い木本です。丸みのある葉と青紫色の小花をもちます。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "ハマゴウのような低木と草本を区別するときに着目するのは？",
+    "answers": [
+      "茎の木化などの性質",
+      "背が低ければすべて草本",
+      "花が紫ならすべて草本"
+    ],
+    "explanation": "海岸の砂地に広がる背の低い木本です。丸みのある葉と青紫色の小花をもちます。",
+    "sourceUrl": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html",
+    "sourceLabel": "神奈川県：海浜自然生態園",
+    "card": {
+      "topic": "環境への適応",
+      "signature": "環境への適応を学ぶ",
+      "appearance": "地表近くに伸びる枝と、青紫色の小花。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "海岸の砂地に広がる背の低い木本です。丸みのある葉と青紫色の小花をもちます。",
+      "learning": "同じ海岸でも、砂の移動や塩分の影響の違いによって成立する群落が変わります。",
+      "misconception": "背が低い植物がすべて草本とは限りません。ハマゴウは木本です。",
+      "question": "ハマゴウのような低木と草本を区別するときに着目するのは？",
+      "answer": "茎の木化などの性質。同じ海岸でも、砂の移動や塩分の影響の違いによって成立する群落が変わります。",
+      "group": "被子植物・シソ科",
+      "sources": [
+        {
+          "label": "神奈川県：海浜自然生態園",
+          "url": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "kuromatsu",
+    "name": "クロマツ",
+    "kind": "plant",
+    "tree": true,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "海岸林",
+    "habitats": [
+      "coast",
+      "satoyama"
+    ],
+    "topic": "海岸林",
+    "term": "海岸林",
+    "fact": "海岸の砂防林などで見られる常緑針葉樹です。潮風を受ける海岸林と、内陸の森林を比べる材料になります。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "クロマツなどの裸子植物の特徴は？",
+    "answers": [
+      "胚珠が子房に包まれていない",
+      "種子をつくらない",
+      "すべて落葉樹である"
+    ],
+    "explanation": "海岸の砂防林などで見られる常緑針葉樹です。潮風を受ける海岸林と、内陸の森林を比べる材料になります。",
+    "sourceUrl": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html",
+    "sourceLabel": "神奈川県：海浜自然生態園",
+    "card": {
+      "topic": "海岸林",
+      "signature": "海岸林を学ぶ",
+      "appearance": "針状の葉と不規則に広がる枝。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "海岸の砂防林などで見られる常緑針葉樹です。潮風を受ける海岸林と、内陸の森林を比べる材料になります。",
+      "learning": "裸子植物と被子植物は、胚珠が子房に包まれるかどうかで区別できます。",
+      "misconception": "クロマツにも種子はできますが、被子植物のような子房由来の果実はつくりません。",
+      "question": "クロマツなどの裸子植物の特徴は？",
+      "answer": "胚珠が子房に包まれていない。裸子植物と被子植物は、胚珠が子房に包まれるかどうかで区別できます。",
+      "group": "裸子植物・マツ科",
+      "sources": [
+        {
+          "label": "神奈川県：海浜自然生態園",
+          "url": "https://www.pref.kanagawa.jp/docs/ex5/saborin/seitaien.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "hamanasu",
+    "name": "ハマナス",
+    "kind": "plant",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "海浜植物",
+    "habitats": [
+      "coast"
+    ],
+    "topic": "海浜植物",
+    "term": "海浜植物",
+    "fact": "北方系の海浜植物で、低い樹形と発達した地下茎をもちます。しわのある葉、紅紫色の花、赤い果実が目印です。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "海岸の強い風の影響を小さくする性質として考えられるのは？",
+    "answers": [
+      "地面に近い低い樹形",
+      "必ず高木になること",
+      "葉緑体を失うこと"
+    ],
+    "explanation": "北方系の海浜植物で、低い樹形と発達した地下茎をもちます。しわのある葉、紅紫色の花、赤い果実が目印です。",
+    "sourceUrl": "https://www.city.ishikari.hokkaido.jp/museum/1001801/1004573/1004701.html",
+    "sourceLabel": "石狩市：石狩浜のハマナス",
+    "card": {
+      "topic": "海浜植物",
+      "signature": "海浜植物を学ぶ",
+      "appearance": "しわの目立つ葉、紅紫色の花、赤い実。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "北方系の海浜植物で、低い樹形と発達した地下茎をもちます。しわのある葉、紅紫色の花、赤い果実が目印です。",
+      "learning": "海岸の植物を比べると、風や砂地などの環境と生育形の関係を考えられます。",
+      "misconception": "この図の花と実は特徴をまとめた表現で、すべてが同時に見られるとは限りません。",
+      "question": "海岸の強い風の影響を小さくする性質として考えられるのは？",
+      "answer": "地面に近い低い樹形。海岸の植物を比べると、風や砂地などの環境と生育形の関係を考えられます。",
+      "group": "被子植物・バラ科",
+      "sources": [
+        {
+          "label": "石狩市：石狩浜のハマナス",
+          "url": "https://www.city.ishikari.hokkaido.jp/museum/1001801/1004573/1004701.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ohirugi",
+    "name": "オヒルギ",
+    "kind": "plant",
+    "tree": true,
+    "water": 60,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "呼吸根",
+    "habitats": [
+      "mangrovecoast"
+    ],
+    "topic": "呼吸根",
+    "term": "呼吸根",
+    "fact": "暖かい地域の潮間帯に生育するマングローブ植物です。泥から出る膝状の呼吸根が特徴で、ヤエヤマヒルギの支柱根と比較できます。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "水を含む泥中で根の呼吸が制限されやすい理由は？",
+    "answers": [
+      "酸素が供給されにくいから",
+      "根は呼吸をしないから",
+      "海水には必ず酸素が全くないから"
+    ],
+    "explanation": "暖かい地域の潮間帯に生育するマングローブ植物です。泥から出る膝状の呼吸根が特徴で、ヤエヤマヒルギの支柱根と比較できます。",
+    "sourceUrl": "https://kyushu.env.go.jp/okinawa/coral_reef_study/mangrove/index.html",
+    "sourceLabel": "環境省：マングローブ学習教材",
+    "card": {
+      "topic": "呼吸根",
+      "signature": "呼吸根を学ぶ",
+      "appearance": "光沢のある葉と、地表から膝状に出る根。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "暖かい地域の潮間帯に生育するマングローブ植物です。泥から出る膝状の呼吸根が特徴で、ヤエヤマヒルギの支柱根と比較できます。",
+      "learning": "水を多く含む泥中では酸素が供給されにくくなります。根の構造と呼吸の関係を考えましょう。",
+      "misconception": "オヒルギの膝状の根と、ヤエヤマヒルギの支柱根は同じ形ではありません。",
+      "question": "水を含む泥中で根の呼吸が制限されやすい理由は？",
+      "answer": "酸素が供給されにくいから。水を多く含む泥中では酸素が供給されにくくなります。根の構造と呼吸の関係を考えましょう。",
+      "group": "被子植物・ヒルギ科",
+      "sources": [
+        {
+          "label": "環境省：マングローブ学習教材",
+          "url": "https://kyushu.env.go.jp/okinawa/coral_reef_study/mangrove/index.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "mehirugi",
+    "name": "メヒルギ",
+    "kind": "plant",
+    "tree": true,
+    "water": 60,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "マングローブ",
+    "habitats": [
+      "mangrovecoast"
+    ],
+    "topic": "マングローブ",
+    "term": "マングローブ",
+    "fact": "潮汐の影響を受ける暖かい沿岸に育つマングローブ植物です。親木についたまま伸びる胚軸が見られます。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "マングローブという語が示すものは？",
+    "answers": [
+      "潮間帯などに発達する森林・そこを構成する植物群",
+      "一つの動物種",
+      "淡水域だけの針葉樹林"
+    ],
+    "explanation": "潮汐の影響を受ける暖かい沿岸に育つマングローブ植物です。親木についたまま伸びる胚軸が見られます。",
+    "sourceUrl": "https://kyushu.env.go.jp/okinawa/coral_reef_study/mangrove/index.html",
+    "sourceLabel": "環境省：マングローブ学習教材",
+    "card": {
+      "topic": "マングローブ",
+      "signature": "マングローブを学ぶ",
+      "appearance": "白い花と、親木上で伸びる胚軸。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "潮汐の影響を受ける暖かい沿岸に育つマングローブ植物です。親木についたまま伸びる胚軸が見られます。",
+      "learning": "潮間帯の植物では、塩分だけでなく冠水時間や泥中の酸素条件も重要です。",
+      "misconception": "マングローブは一つの種の名前ではなく、森林やそれを構成する植物群を指します。",
+      "question": "マングローブという語が示すものは？",
+      "answer": "潮間帯などに発達する森林・そこを構成する植物群。潮間帯の植物では、塩分だけでなく冠水時間や泥中の酸素条件も重要です。",
+      "group": "被子植物・ヒルギ科",
+      "sources": [
+        {
+          "label": "環境省：マングローブ学習教材",
+          "url": "https://kyushu.env.go.jp/okinawa/coral_reef_study/mangrove/index.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "sphagnum",
+    "name": "ミズゴケの仲間",
+    "kind": "plant",
+    "tree": false,
+    "water": 60,
+    "soil": 0,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "泥炭",
+    "habitats": [
+      "peat"
+    ],
+    "topic": "泥炭",
+    "term": "泥炭",
+    "fact": "湿原で群落をつくるコケ植物です。湿原では植物の遺体が分解されにくい条件が重なると泥炭が蓄積します。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "泥炭の蓄積で重要なのは？",
+    "answers": [
+      "植物遺体の供給と分解のつり合い",
+      "岩石が直接葉に変わること",
+      "分解が常に完全に止まること"
+    ],
+    "explanation": "湿原で群落をつくるコケ植物です。湿原では植物の遺体が分解されにくい条件が重なると泥炭が蓄積します。",
+    "sourceUrl": "https://shiretokodata-center.env.go.jp/data/research/report/h25/H25rausuko_monitoring.pdf",
+    "sourceLabel": "環境省：羅臼湖の植生調査",
+    "card": {
+      "topic": "泥炭",
+      "signature": "泥炭を学ぶ",
+      "appearance": "細かな枝葉が密集した、緑色のクッション状の群落。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "湿原で群落をつくるコケ植物です。湿原では植物の遺体が分解されにくい条件が重なると泥炭が蓄積します。",
+      "learning": "生態系の物質循環では、植物遺体の供給量と分解速度の関係が有機物の蓄積に関わります。",
+      "misconception": "湿原なら必ず同じ速さで泥炭ができるわけではありません。水位・温度などで分解条件が変わります。",
+      "question": "泥炭の蓄積で重要なのは？",
+      "answer": "植物遺体の供給と分解のつり合い。生態系の物質循環では、植物遺体の供給量と分解速度の関係が有機物の蓄積に関わります。",
+      "group": "コケ植物・ミズゴケ類",
+      "sources": [
+        {
+          "label": "環境省：羅臼湖の植生調査",
+          "url": "https://shiretokodata-center.env.go.jp/data/research/report/h25/H25rausuko_monitoring.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "sundew",
+    "name": "モウセンゴケ",
+    "kind": "plant",
+    "tree": false,
+    "water": 60,
+    "soil": 0,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "食虫植物",
+    "habitats": [
+      "peat"
+    ],
+    "topic": "食虫植物",
+    "term": "食虫植物",
+    "fact": "湿原に育ち、葉の粘液で小動物を捕らえて無機養分を補います。食虫植物でも光合成で有機物をつくります。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "モウセンゴケの栄養の得方として正しいのは？",
+    "answers": [
+      "光合成を行い、捕虫で無機養分も補う",
+      "光合成は一切行わない",
+      "土の粒をそのまま糖にする"
+    ],
+    "explanation": "湿原に育ち、葉の粘液で小動物を捕らえて無機養分を補います。食虫植物でも光合成で有機物をつくります。",
+    "sourceUrl": "https://hokkaido.env.go.jp/blog/2020/08/post-536.html",
+    "sourceLabel": "環境省：高層湿原のモウセンゴケ",
+    "card": {
+      "topic": "食虫植物",
+      "signature": "食虫植物を学ぶ",
+      "appearance": "赤い腺毛と、粘液の滴をつけた丸い葉。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "湿原に育ち、葉の粘液で小動物を捕らえて無機養分を補います。食虫植物でも光合成で有機物をつくります。",
+      "learning": "光合成による有機物の生産と、窒素などの無機養分の獲得は区別して考えましょう。",
+      "misconception": "虫を捕らえるからといって、光合成をしないわけではありません。",
+      "question": "モウセンゴケの栄養の得方として正しいのは？",
+      "answer": "光合成を行い、捕虫で無機養分も補う。光合成による有機物の生産と、窒素などの無機養分の獲得は区別して考えましょう。",
+      "group": "被子植物・モウセンゴケ科",
+      "sources": [
+        {
+          "label": "環境省：高層湿原のモウセンゴケ",
+          "url": "https://hokkaido.env.go.jp/blog/2020/08/post-536.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "cottongrass",
+    "name": "ワタスゲ",
+    "kind": "plant",
+    "tree": false,
+    "water": 60,
+    "soil": 0,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "湿原植生",
+    "habitats": [
+      "peat",
+      "tundra",
+      "snowmelt"
+    ],
+    "topic": "湿原植生",
+    "term": "湿原植生",
+    "fact": "寒冷な湿原などに生育するカヤツリグサ科の植物です。果実の時期には白い綿毛のような花被片が目立ちます。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "ワタスゲの果実の時期に目立つ白い綿毛状の部分は？",
+    "answers": [
+      "伸びた花被片",
+      "白い花弁だけ",
+      "菌類の菌糸"
+    ],
+    "explanation": "寒冷な湿原などに生育するカヤツリグサ科の植物です。果実の時期には白い綿毛のような花被片が目立ちます。",
+    "sourceUrl": "https://shiretokodata-center.env.go.jp/data/research/report/h25/H25rausuko_monitoring.pdf",
+    "sourceLabel": "環境省：羅臼湖の植生調査",
+    "card": {
+      "topic": "湿原植生",
+      "signature": "湿原植生を学ぶ",
+      "appearance": "果実の時期に白い綿毛状の花被片が目立ちます。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "寒冷な湿原などに生育するカヤツリグサ科の植物です。果実の時期には白い綿毛のような花被片が目立ちます。",
+      "learning": "湿原の植物は、水分条件・低温・養分条件などの組合せと関連づけて理解しましょう。",
+      "misconception": "白い綿毛状の部分は、白い花弁ではありません。",
+      "question": "ワタスゲの果実の時期に目立つ白い綿毛状の部分は？",
+      "answer": "伸びた花被片。湿原の植物は、水分条件・低温・養分条件などの組合せと関連づけて理解しましょう。",
+      "group": "被子植物・カヤツリグサ科",
+      "sources": [
+        {
+          "label": "環境省：羅臼湖の植生調査",
+          "url": "https://shiretokodata-center.env.go.jp/data/research/report/h25/H25rausuko_monitoring.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "haimatsu",
+    "name": "ハイマツ",
+    "kind": "plant",
+    "tree": true,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "森林限界",
+    "habitats": [
+      "highland",
+      "snowmelt"
+    ],
+    "topic": "森林限界",
+    "term": "森林限界",
+    "fact": "高山帯で地をはうような低い樹形をつくる常緑針葉樹です。日本の高山帯ではライチョウの生息場所にもなります。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "高山帯のハイマツ群落を考える際に重要なのは？",
+    "answers": [
+      "低温や風雪などの環境条件",
+      "植物の高さは環境と無関係",
+      "海水の塩分だけ"
+    ],
+    "explanation": "高山帯で地をはうような低い樹形をつくる常緑針葉樹です。日本の高山帯ではライチョウの生息場所にもなります。",
+    "sourceUrl": "https://www.biodic.go.jp/reports2/7th/todouhuken/yamanashi/h17/h17_yamanashi.pdf",
+    "sourceLabel": "環境省：山梨県生物多様性調査",
+    "card": {
+      "topic": "森林限界",
+      "signature": "森林限界を学ぶ",
+      "appearance": "地をはうように広がる枝と針状の葉。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "高山帯で地をはうような低い樹形をつくる常緑針葉樹です。日本の高山帯ではライチョウの生息場所にもなります。",
+      "learning": "森林限界付近の植生は、気温だけでなく風雪などの影響も受けます。",
+      "misconception": "高山帯でも植物がすべてなくなるわけではなく、低木や草本の群落があります。",
+      "question": "高山帯のハイマツ群落を考える際に重要なのは？",
+      "answer": "低温や風雪などの環境条件。森林限界付近の植生は、気温だけでなく風雪などの影響も受けます。",
+      "group": "裸子植物・マツ科",
+      "sources": [
+        {
+          "label": "環境省：山梨県生物多様性調査",
+          "url": "https://www.biodic.go.jp/reports2/7th/todouhuken/yamanashi/h17/h17_yamanashi.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "kokemomo",
+    "name": "コケモモ",
+    "kind": "plant",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "高山植生",
+    "habitats": [
+      "highland",
+      "coniferfloor",
+      "tundra",
+      "snowmelt"
+    ],
+    "topic": "高山植生",
+    "term": "高山植生",
+    "fact": "寒冷地や高山などに育つ背の低い常緑小低木です。小さな葉と赤い果実をもち、コケという名前でも種子植物です。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "コケモモは名前にコケとあるが、どの仲間？",
+    "answers": [
+      "花や種子をつくる被子植物",
+      "コケ植物",
+      "菌類"
+    ],
+    "explanation": "寒冷地や高山などに育つ背の低い常緑小低木です。小さな葉と赤い果実をもち、コケという名前でも種子植物です。",
+    "sourceUrl": "https://www.biodic.go.jp/reports2/7th/todouhuken/yamanashi/h17/h17_yamanashi.pdf",
+    "sourceLabel": "環境省：山梨県生物多様性調査",
+    "card": {
+      "topic": "高山植生",
+      "signature": "高山植生を学ぶ",
+      "appearance": "小さく厚い葉と、赤い果実をつける低い枝。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "寒冷地や高山などに育つ背の低い常緑小低木です。小さな葉と赤い果実をもち、コケという名前でも種子植物です。",
+      "learning": "植物の分類は名前の印象ではなく、花・種子・維管束などの特徴から考えます。",
+      "misconception": "コケモモはコケ植物ではなく、ツツジ科の被子植物です。",
+      "question": "コケモモは名前にコケとあるが、どの仲間？",
+      "answer": "花や種子をつくる被子植物。植物の分類は名前の印象ではなく、花・種子・維管束などの特徴から考えます。",
+      "group": "被子植物・ツツジ科",
+      "sources": [
+        {
+          "label": "環境省：山梨県生物多様性調査",
+          "url": "https://www.biodic.go.jp/reports2/7th/todouhuken/yamanashi/h17/h17_yamanashi.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "dryas",
+    "name": "チョウノスケソウ",
+    "kind": "plant",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "高山植物",
+    "habitats": [
+      "highland",
+      "tundra",
+      "snowmelt"
+    ],
+    "topic": "高山植物",
+    "term": "高山植物",
+    "fact": "高山の風衝地などに生育する背の低い木本です。寒さや強い風と、植物の生育形の関係を学べます。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "高山の風衝地とはどのような場所？",
+    "answers": [
+      "強い風の影響を受ける場所",
+      "常に海水に沈む場所",
+      "必ず無風の場所"
+    ],
+    "explanation": "高山の風衝地などに生育する背の低い木本です。寒さや強い風と、植物の生育形の関係を学べます。",
+    "sourceUrl": "https://www.biodic.go.jp/reports2/7th/todouhuken/yamanashi/h17/h17_yamanashi.pdf",
+    "sourceLabel": "環境省：山梨県生物多様性調査",
+    "card": {
+      "topic": "高山植物",
+      "signature": "高山植物を学ぶ",
+      "appearance": "白い花と小さな葉をつける、地面近くに広がる枝。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "高山の風衝地などに生育する背の低い木本です。寒さや強い風と、植物の生育形の関係を学べます。",
+      "learning": "風衝地の低い生育形は、環境条件と形態の関係を考える例になります。",
+      "misconception": "名前にソウとあっても、草本とは限りません。",
+      "question": "高山の風衝地とはどのような場所？",
+      "answer": "強い風の影響を受ける場所。風衝地の低い生育形は、環境条件と形態の関係を考える例になります。",
+      "group": "被子植物・バラ科",
+      "sources": [
+        {
+          "label": "環境省：山梨県生物多様性調査",
+          "url": "https://www.biodic.go.jp/reports2/7th/todouhuken/yamanashi/h17/h17_yamanashi.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "ezomatsu",
+    "name": "エゾマツ",
+    "kind": "plant",
+    "tree": true,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "針葉樹林",
+    "habitats": [
+      "coniferfloor"
+    ],
+    "topic": "針葉樹林",
+    "term": "針葉樹林",
+    "fact": "北海道などの森林を構成する常緑針葉樹です。亜寒帯の植生を考える代表的な樹種の一つです。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "エゾマツが代表例として扱われる植生は？",
+    "answers": [
+      "針葉樹林",
+      "マングローブ林",
+      "海草藻場"
+    ],
+    "explanation": "北海道などの森林を構成する常緑針葉樹です。亜寒帯の植生を考える代表的な樹種の一つです。",
+    "sourceUrl": "https://www.ffpri.go.jp/hokuiku/research/kaihatu.html",
+    "sourceLabel": "森林総合研究所：北方の針葉樹",
+    "card": {
+      "topic": "針葉樹林",
+      "signature": "針葉樹林を学ぶ",
+      "appearance": "針状の葉と、下向きにつく球果。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "北海道などの森林を構成する常緑針葉樹です。亜寒帯の植生を考える代表的な樹種の一つです。",
+      "learning": "亜寒帯針葉樹林は、気候と植生の関係を学ぶ代表的なバイオームです。",
+      "misconception": "針葉樹がすべて寒冷地にだけ分布するわけではありません。",
+      "question": "エゾマツが代表例として扱われる植生は？",
+      "answer": "針葉樹林。亜寒帯針葉樹林は、気候と植生の関係を学ぶ代表的なバイオームです。",
+      "group": "裸子植物・マツ科",
+      "sources": [
+        {
+          "label": "森林総合研究所：北方の針葉樹",
+          "url": "https://www.ffpri.go.jp/hokuiku/research/kaihatu.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "todomatsu",
+    "name": "トドマツ",
+    "kind": "plant",
+    "tree": true,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "針葉樹林",
+    "habitats": [
+      "coniferfloor"
+    ],
+    "topic": "針葉樹林",
+    "term": "針葉樹林",
+    "fact": "北海道の森林で見られるモミ属の常緑針葉樹です。トウヒ属のエゾマツと同じ種ではありません。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "トドマツとエゾマツの関係として正しいのは？",
+    "answers": [
+      "どちらも針葉樹だが異なる種である",
+      "同じ種の季節による呼び名",
+      "どちらも被子植物である"
+    ],
+    "explanation": "北海道の森林で見られるモミ属の常緑針葉樹です。トウヒ属のエゾマツと同じ種ではありません。",
+    "sourceUrl": "https://www.ffpri.go.jp/hokuiku/research/kaihatu.html",
+    "sourceLabel": "森林総合研究所：北方の針葉樹",
+    "card": {
+      "topic": "針葉樹林",
+      "signature": "針葉樹林を学ぶ",
+      "appearance": "常緑の針状の葉と、上向きにつく球果。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "北海道の森林で見られるモミ属の常緑針葉樹です。トウヒ属のエゾマツと同じ種ではありません。",
+      "learning": "同じ針葉樹林を構成していても、複数の異なる種が共存します。",
+      "misconception": "エゾマツはトウヒ属、トドマツはモミ属で、同じ種の別名ではありません。",
+      "question": "トドマツとエゾマツの関係として正しいのは？",
+      "answer": "どちらも針葉樹だが異なる種である。同じ針葉樹林を構成していても、複数の異なる種が共存します。",
+      "group": "裸子植物・マツ科",
+      "sources": [
+        {
+          "label": "森林総合研究所：北方の針葉樹",
+          "url": "https://www.ffpri.go.jp/hokuiku/research/kaihatu.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "tabunoki",
+    "name": "タブノキ",
+    "kind": "plant",
+    "tree": true,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "照葉樹林",
+    "habitats": [
+      "evergreenfloor",
+      "satoyama"
+    ],
+    "topic": "照葉樹林",
+    "term": "照葉樹林",
+    "fact": "厚く光沢のある葉をもつ常緑広葉樹です。暖温帯の照葉樹林を学ぶ際の例になります。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "タブノキのような照葉樹の葉でよく見られる特徴は？",
+    "answers": [
+      "厚く光沢がある",
+      "すべて針状である",
+      "葉緑体をもたない"
+    ],
+    "explanation": "厚く光沢のある葉をもつ常緑広葉樹です。暖温帯の照葉樹林を学ぶ際の例になります。",
+    "sourceUrl": "https://www.env.go.jp/nature/nats/kansatsu/guide/guide.pdf",
+    "sourceLabel": "環境省：自然観察ガイド",
+    "card": {
+      "topic": "照葉樹林",
+      "signature": "照葉樹林を学ぶ",
+      "appearance": "厚く光沢のある葉と、枝先にまとまる葉。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "厚く光沢のある葉をもつ常緑広葉樹です。暖温帯の照葉樹林を学ぶ際の例になります。",
+      "learning": "照葉樹林の代表例を、暖温帯という気候条件と結び付けましょう。",
+      "misconception": "常緑樹も葉を落としますが、樹冠が一斉に落葉して裸になる季節を通常はもちません。",
+      "question": "タブノキのような照葉樹の葉でよく見られる特徴は？",
+      "answer": "厚く光沢がある。照葉樹林の代表例を、暖温帯という気候条件と結び付けましょう。",
+      "group": "被子植物・クスノキ科",
+      "sources": [
+        {
+          "label": "環境省：自然観察ガイド",
+          "url": "https://www.env.go.jp/nature/nats/kansatsu/guide/guide.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "arakashi",
+    "name": "アラカシ",
+    "kind": "plant",
+    "tree": true,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "照葉樹林",
+    "habitats": [
+      "evergreenfloor",
+      "satoyama",
+      "limestone"
+    ],
+    "topic": "照葉樹林",
+    "term": "照葉樹林",
+    "fact": "光沢のある葉をもつ常緑広葉樹です。同じブナ科でも、落葉樹のコナラなどと葉の季節変化が異なります。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "アラカシとコナラを比較する観点として適切なのは？",
+    "answers": [
+      "常緑性と落葉性",
+      "どちらも必ずコケ植物",
+      "葉の有無は一年中すべて同じ"
+    ],
+    "explanation": "光沢のある葉をもつ常緑広葉樹です。同じブナ科でも、落葉樹のコナラなどと葉の季節変化が異なります。",
+    "sourceUrl": "https://www.env.go.jp/nature/nats/kansatsu/guide/guide.pdf",
+    "sourceLabel": "環境省：自然観察ガイド",
+    "card": {
+      "topic": "照葉樹林",
+      "signature": "照葉樹林を学ぶ",
+      "appearance": "光沢のある葉と、殻斗を伴うどんぐり。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "光沢のある葉をもつ常緑広葉樹です。同じブナ科でも、落葉樹のコナラなどと葉の季節変化が異なります。",
+      "learning": "同じブナ科に常緑樹と落葉樹が含まれることから、分類と生活上の性質を区別して考えられます。",
+      "misconception": "どんぐりをつくる樹木がすべて落葉樹とは限りません。",
+      "question": "アラカシとコナラを比較する観点として適切なのは？",
+      "answer": "常緑性と落葉性。同じブナ科に常緑樹と落葉樹が含まれることから、分類と生活上の性質を区別して考えられます。",
+      "group": "被子植物・ブナ科",
+      "sources": [
+        {
+          "label": "環境省：自然観察ガイド",
+          "url": "https://www.env.go.jp/nature/nats/kansatsu/guide/guide.pdf"
+        }
+      ]
+    }
+  },
+  {
+    "id": "acacia",
+    "name": "アカシア・トルティリス",
+    "kind": "plant",
+    "tree": true,
+    "water": 8,
+    "soil": 0,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "サバンナ",
+    "habitats": [
+      "savanna",
+      "oasis",
+      "canyon"
+    ],
+    "topic": "サバンナ",
+    "term": "サバンナ",
+    "fact": "アフリカなどの乾燥した疎林に見られるマメ科の樹木です。広がった樹冠と小さな複葉をもち、旧学名Acacia tortilisでも知られます。",
+    "icon": "🌿",
+    "icons": [
+      "🌱",
+      "🌱",
+      "🌱",
+      "🌱"
+    ],
+    "stages": [
+      "定着",
+      "生育初期",
+      "生育中",
+      "生育達成"
+    ],
+    "artMode": "portrait",
+    "question": "サバンナの景観として一般的なのは？",
+    "answers": [
+      "草原に樹木がまばらに生える",
+      "海水中に森林が沈む",
+      "一年中氷だけで植物がない"
+    ],
+    "explanation": "アフリカなどの乾燥した疎林に見られるマメ科の樹木です。広がった樹冠と小さな複葉をもち、旧学名Acacia tortilisでも知られます。",
+    "sourceUrl": "https://pza.sanbi.org/vachellia-tortilis",
+    "sourceLabel": "南アフリカ国立生物多様性研究所：Vachellia tortilis",
+    "card": {
+      "topic": "サバンナ",
+      "signature": "サバンナを学ぶ",
+      "appearance": "傘状に広がる樹冠、小さな複葉、曲がった莢。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "アフリカなどの乾燥した疎林に見られるマメ科の樹木です。広がった樹冠と小さな複葉をもち、旧学名Acacia tortilisでも知られます。",
+      "learning": "サバンナは草本が優占し、樹木が疎らに生える景観です。降水の季節性などと関連づけます。",
+      "misconception": "サバンナを単に砂漠が成長した段階と捉えないようにしましょう。気候条件が異なります。",
+      "question": "サバンナの景観として一般的なのは？",
+      "answer": "草原に樹木がまばらに生える。サバンナは草本が優占し、樹木が疎らに生える景観です。降水の季節性などと関連づけます。",
+      "group": "被子植物・マメ科",
+      "sources": [
+        {
+          "label": "南アフリカ国立生物多様性研究所：Vachellia tortilis",
+          "url": "https://pza.sanbi.org/vachellia-tortilis"
+        }
+      ]
+    }
+  },
+  {
+    "id": "sunagani",
+    "name": "スナガニ",
+    "kind": "animal",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "生息場所",
+    "habitats": [
+      "coast"
+    ],
+    "topic": "生息場所",
+    "term": "生息場所",
+    "fact": "砂浜に巣穴を掘って暮らすカニです。淡水の渓流に生息するサワガニとの生息場所の違いを比べられます。",
+    "icon": "🐾",
+    "icons": [
+      "🐾",
+      "🐾",
+      "🐾",
+      "🐾"
+    ],
+    "stages": [
+      "迎えた個体",
+      "育成初期",
+      "育成中",
+      "育成達成"
+    ],
+    "artMode": "portrait",
+    "question": "スナガニの生活場所として適切なのは？",
+    "answers": [
+      "海岸の砂浜",
+      "淡水の渓流",
+      "針葉樹林の林床"
+    ],
+    "explanation": "砂浜に巣穴を掘って暮らすカニです。淡水の渓流に生息するサワガニとの生息場所の違いを比べられます。",
+    "sourceUrl": "https://seibutsutayousei.city.fukuoka.lg.jp/learning/3297/",
+    "sourceLabel": "福岡市：スナガニ",
+    "card": {
+      "topic": "生息場所",
+      "signature": "生息場所を学ぶ",
+      "appearance": "淡い砂色の体と、長い眼柄。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "砂浜に巣穴を掘って暮らすカニです。淡水の渓流に生息するサワガニとの生息場所の違いを比べられます。",
+      "learning": "同じカニの仲間でも、海岸の砂浜と淡水の渓流では生息する種が異なります。",
+      "misconception": "水分が多いというだけでは、海水域と淡水域を同じ環境とは扱えません。",
+      "question": "スナガニの生活場所として適切なのは？",
+      "answer": "海岸の砂浜。砂浜に巣穴を掘って暮らします。",
+      "group": "節足動物・甲殻類",
+      "sources": [
+        {
+          "label": "福岡市：スナガニ",
+          "url": "https://seibutsutayousei.city.fukuoka.lg.jp/learning/3297/"
+        }
+      ]
+    }
+  },
+  {
+    "id": "yamatoosagani",
+    "name": "ヤマトオサガニ",
+    "kind": "animal",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "干潟",
+    "habitats": [
+      "tidalflat"
+    ],
+    "topic": "干潟",
+    "term": "干潟",
+    "fact": "泥質の干潟で見られるカニです。干潟は一様ではなく、泥・砂や潮の満ち引きによって生物の分布が異なります。",
+    "icon": "🐾",
+    "icons": [
+      "🐾",
+      "🐾",
+      "🐾",
+      "🐾"
+    ],
+    "stages": [
+      "迎えた個体",
+      "育成初期",
+      "育成中",
+      "育成達成"
+    ],
+    "artMode": "portrait",
+    "question": "干潟で生物の分布を比べるときに確認するのは？",
+    "answers": [
+      "底質や冠水の時間",
+      "名前の文字数",
+      "空の星座だけ"
+    ],
+    "explanation": "泥質の干潟で見られるカニです。干潟は一様ではなく、泥・砂や潮の満ち引きによって生物の分布が異なります。",
+    "sourceUrl": "https://www.env.go.jp/water/heisa/heisa_net/setouchiNet/seto/g1/g1chapter4/g1chapter4-2/higataikimono.html",
+    "sourceLabel": "環境省：干潟で見られる生きもの",
+    "card": {
+      "topic": "干潟",
+      "signature": "干潟を学ぶ",
+      "appearance": "平たい甲と、横に長く伸びる眼柄。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "泥質の干潟で見られるカニです。干潟は一様ではなく、泥・砂や潮の満ち引きによって生物の分布が異なります。",
+      "learning": "底質や潮汐による冠水時間は、干潟での生物の分布を考える要因になります。",
+      "misconception": "干潟はどこも一様な砂浜というわけではありません。",
+      "question": "干潟で生物の分布を比べるときに確認するのは？",
+      "answer": "底質や冠水の時間。底質や潮汐による冠水時間は、干潟での生物の分布を考える要因になります。",
+      "group": "節足動物・甲殻類",
+      "sources": [
+        {
+          "label": "環境省：干潟で見られる生きもの",
+          "url": "https://www.env.go.jp/water/heisa/heisa_net/setouchiNet/seto/g1/g1chapter4/g1chapter4-2/higataikimono.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "asari",
+    "name": "アサリ",
+    "kind": "animal",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "二枚貝",
+    "habitats": [
+      "tidalflat"
+    ],
+    "topic": "二枚貝",
+    "term": "二枚貝",
+    "fact": "砂泥質の干潟などにすむ二枚貝です。海水中の懸濁粒子を取り込んで利用するため、陸上の乾いた土とは生活条件が異なります。",
+    "icon": "🐾",
+    "icons": [
+      "🐾",
+      "🐾",
+      "🐾",
+      "🐾"
+    ],
+    "stages": [
+      "迎えた個体",
+      "育成初期",
+      "育成中",
+      "育成達成"
+    ],
+    "artMode": "portrait",
+    "question": "アサリの生活場所として適切なのは？",
+    "answers": [
+      "海水の影響を受ける砂泥底",
+      "乾いた林床の土の上",
+      "雪原の岩の上"
+    ],
+    "explanation": "砂泥質の干潟などにすむ二枚貝です。海水中の懸濁粒子を取り込んで利用するため、陸上の乾いた土とは生活条件が異なります。",
+    "sourceUrl": "https://www.env.go.jp/water/heisa/heisa_net/setouchiNet/seto/g1/g1chapter4/g1chapter4-2/higataikimono.html",
+    "sourceLabel": "環境省：干潟で見られる生きもの",
+    "card": {
+      "topic": "二枚貝",
+      "signature": "二枚貝を学ぶ",
+      "appearance": "放射状の筋と成長線のある、模様の多様な二枚の殻。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "砂泥質の干潟などにすむ二枚貝です。海水中の懸濁粒子を取り込んで利用するため、陸上の乾いた土とは生活条件が異なります。",
+      "learning": "二枚貝による懸濁粒子の利用を、生態系の食物関係と結び付けて考えます。",
+      "misconception": "水があるだけでは十分でなく、塩分や底質なども生活に関わります。",
+      "question": "アサリの生活場所として適切なのは？",
+      "answer": "海水の影響を受ける砂泥底。二枚貝による懸濁粒子の利用を、生態系の食物関係と結び付けて考えます。",
+      "group": "軟体動物・二枚貝類",
+      "sources": [
+        {
+          "label": "環境省：干潟で見られる生きもの",
+          "url": "https://www.env.go.jp/water/heisa/heisa_net/setouchiNet/seto/g1/g1chapter4/g1chapter4-2/higataikimono.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "shirochidori",
+    "name": "シロチドリ",
+    "kind": "animal",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "海岸の生物多様性",
+    "habitats": [
+      "coast",
+      "tidalflat"
+    ],
+    "topic": "海岸の生物多様性",
+    "term": "海岸の生物多様性",
+    "fact": "砂浜などで繁殖する小型の鳥です。人の踏み込みなども考慮し、海岸を生き物の生活場所として見ることが大切です。",
+    "icon": "🐾",
+    "icons": [
+      "🐾",
+      "🐾",
+      "🐾",
+      "🐾"
+    ],
+    "stages": [
+      "迎えた個体",
+      "育成初期",
+      "育成中",
+      "育成達成"
+    ],
+    "artMode": "portrait",
+    "question": "砂浜の生物を守る視点として適切なのは？",
+    "answers": [
+      "繁殖や採食の場所も保全する",
+      "砂浜は生物がいない場所とみなす",
+      "植物以外は環境の影響を受けない"
+    ],
+    "explanation": "砂浜などで繁殖する小型の鳥です。人の踏み込みなども考慮し、海岸を生き物の生活場所として見ることが大切です。",
+    "sourceUrl": "https://www4.city.kanazawa.lg.jp/soshikikarasagasu/kankyoseisakuka/gyomuannai/shizenhogo/kanazawasnature/flowerslandscapehighlights/shousai/7530.html",
+    "sourceLabel": "金沢市：海浜の自然",
+    "card": {
+      "topic": "海岸の生物多様性",
+      "signature": "海岸の生物多様性を学ぶ",
+      "appearance": "淡褐色の背と白い腹、細いくちばし。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "砂浜などで繁殖する小型の鳥です。人の踏み込みなども考慮し、海岸を生き物の生活場所として見ることが大切です。",
+      "learning": "保全では個体だけでなく、繁殖・採食に必要な生息場所も守る必要があります。",
+      "misconception": "何もないように見える砂浜も、生物の重要な生活場所です。",
+      "question": "砂浜の生物を守る視点として適切なのは？",
+      "answer": "繁殖や採食の場所も保全する。保全では個体だけでなく、繁殖・採食に必要な生息場所も守る必要があります。",
+      "group": "脊椎動物・鳥類",
+      "sources": [
+        {
+          "label": "金沢市：海浜の自然",
+          "url": "https://www4.city.kanazawa.lg.jp/soshikikarasagasu/kankyoseisakuka/gyomuannai/shizenhogo/kanazawasnature/flowerslandscapehighlights/shousai/7530.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "raicho",
+    "name": "ライチョウ",
+    "kind": "animal",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "高山の生態系",
+    "habitats": [
+      "highland",
+      "snowmelt"
+    ],
+    "topic": "高山の生態系",
+    "term": "高山の生態系",
+    "fact": "日本では本州中部の高山帯などに生息します。高山植物を主に食べ、ハイマツの根元などで営巣します。",
+    "icon": "🐾",
+    "icons": [
+      "🐾",
+      "🐾",
+      "🐾",
+      "🐾"
+    ],
+    "stages": [
+      "迎えた個体",
+      "育成初期",
+      "育成中",
+      "育成達成"
+    ],
+    "artMode": "portrait",
+    "question": "ライチョウの保全で重要なのは？",
+    "answers": [
+      "高山植生を含めた生息環境の保全",
+      "熱帯の低地へ放すこと",
+      "海水を増やすこと"
+    ],
+    "explanation": "日本では本州中部の高山帯などに生息します。高山植物を主に食べ、ハイマツの根元などで営巣します。",
+    "sourceUrl": "https://www.env.go.jp/nature/kisho/hogozoushoku/raicho.html",
+    "sourceLabel": "環境省：ライチョウ",
+    "card": {
+      "topic": "高山の生態系",
+      "signature": "高山の生態系を学ぶ",
+      "appearance": "夏羽を参考にした褐色の斑紋と、羽毛に覆われた脚。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "日本では本州中部の高山帯などに生息します。高山植物を主に食べ、ハイマツの根元などで営巣します。",
+      "learning": "気候変化が生物に及ぼす影響は、食物となる植生や生息場所の変化も含めて考えます。",
+      "misconception": "羽色は季節で変化するため、図の姿が一年中同じというわけではありません。",
+      "question": "ライチョウの保全で重要なのは？",
+      "answer": "高山植生を含めた生息環境の保全。気候変化が生物に及ぼす影響は、食物となる植生や生息場所の変化も含めて考えます。",
+      "group": "脊椎動物・鳥類",
+      "sources": [
+        {
+          "label": "環境省：ライチョウ",
+          "url": "https://www.env.go.jp/nature/kisho/hogozoushoku/raicho.html"
+        }
+      ]
+    }
+  },
+  {
+    "id": "pika",
+    "name": "エゾナキウサギ",
+    "kind": "animal",
+    "tree": false,
+    "water": 20,
+    "soil": 5,
+    "cost": 0,
+    "group": "habitat",
+    "aquatic": false,
+    "classroom": true,
+    "habitat": "寒冷地の生物",
+    "habitats": [
+      "highland",
+      "snowmelt"
+    ],
+    "topic": "寒冷地の生物",
+    "term": "寒冷地の生物",
+    "fact": "北海道の岩塊地などに生息するウサギ目の動物です。岩のすき間を利用し、植物を食べます。",
+    "icon": "🐾",
+    "icons": [
+      "🐾",
+      "🐾",
+      "🐾",
+      "🐾"
+    ],
+    "stages": [
+      "迎えた個体",
+      "育成初期",
+      "育成中",
+      "育成達成"
+    ],
+    "artMode": "portrait",
+    "question": "エゾナキウサギの生活と結び付く環境は？",
+    "answers": [
+      "岩のすき間と周囲の植物",
+      "熱帯の海中",
+      "砂浜の潮だまりだけ"
+    ],
+    "explanation": "北海道の岩塊地などに生息するウサギ目の動物です。岩のすき間を利用し、植物を食べます。",
+    "sourceUrl": "https://www.mlit.go.jp/tagengo-db/R4-00346%2Chtml",
+    "sourceLabel": "国土交通省：エゾナキウサギ",
+    "card": {
+      "topic": "寒冷地の生物",
+      "signature": "寒冷地の生物を学ぶ",
+      "appearance": "丸い耳と短い四肢、目立つ長い尾をもたない体。 画像は特徴を参考にした生成イラストで、同定用の図や成長段階ごとの姿ではありません。",
+      "ecology": "北海道の岩塊地などに生息するウサギ目の動物です。岩のすき間を利用し、植物を食べます。",
+      "learning": "岩のすき間のような微小な環境も、生物の生活を考える重要な単位です。",
+      "misconception": "ネズミのように見えても、分類上はウサギ目の動物です。",
+      "question": "エゾナキウサギの生活と結び付く環境は？",
+      "answer": "岩のすき間と周囲の植物。岩のすき間のような微小な環境も、生物の生活を考える重要な単位です。",
+      "group": "脊椎動物・哺乳類",
+      "sources": [
+        {
+          "label": "国土交通省：エゾナキウサギ",
+          "url": "https://www.mlit.go.jp/tagengo-db/R4-00346%2Chtml"
+        }
+      ]
+    }
+  }
+]

@@ -1,7 +1,7 @@
 const assert=require('node:assert/strict'),B=require('../src/biome.js');
 let s=B.normalize();assert.deepEqual(s.environmentsOwned,['canyon']);assert.equal(s.environmentPending,null);
 assert.throws(()=>B.chooseEnvironment(s,'tundra'),/獲得/);
-let old=B.normalize({environment:'tundra',plants:[{id:'grass',age:3}],xp:77});assert.deepEqual(old.environmentsOwned,['canyon','tundra']);assert.equal(old.environment,'tundra');assert.equal(old.plants[0].age,3);assert.equal(old.xp,77);
+let old=B.normalize({environment:'tundra',plants:[{id:'grass',age:3}],xp:77});assert.deepEqual(old.environmentsOwned,['canyon','tundra']);assert.equal(old.environment,'tundra');assert.equal(old.reserve[0].age,3);assert.equal(old.xp,77);
 assert.equal(B.normalize({...s,environment:'tundra'}).environment,'canyon');assert.deepEqual(B.normalize({environmentsOwned:['bad','tundra','tundra']}).environmentsOwned,['canyon','tundra']);
 for(const odds of B.ENVIRONMENT_ODDS)assert.equal(odds.reduce((a,b)=>a+b),100);
 for(let lv=0;lv<6;lv++){let sum=0;for(let g=0;g<4;g++){const odds=B.ENVIRONMENT_ODDS[lv],pool=B.ENVIRONMENTS.filter(e=>e.grade===g&&e.id!=='canyon');for(let n=0;n<pool.length;n++){let calls=0;const r=B.drawEnvironment({xp:B.THRESHOLDS[lv]},48,()=>calls++?(n+.5)/pool.length:(sum+.001)/100);assert.equal(r.state.environmentPending,pool[n].id);assert.equal(r.coins,24);assert.equal(r.state.environmentDraws,1);assert.equal(B.normalize(JSON.parse(JSON.stringify(r.state))).environmentPending,pool[n].id);}sum+=odds[g];}}

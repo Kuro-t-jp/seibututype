@@ -1,11 +1,11 @@
 const assert=require('node:assert/strict'),B=require('../src/biome.js'),rows=require('../data/biome-school-expansion.json');
 assert.equal(rows.length,36);assert.equal(rows.filter(c=>c.kind==='plant').length,12);
-assert.equal(new Set(B.SPECIES.map(c=>c.id)).size,132);
-for(const c of rows.concat(require('../data/biome-extra-expansion.json'),require('../data/biome-more-expansion.json'))){
+assert.equal(new Set(B.SPECIES.map(c=>c.id)).size,156);
+for(const c of rows.concat(require('../data/biome-extra-expansion.json'),require('../data/biome-more-expansion.json'),require('../data/biome-habitat-expansion.json'))){
  assert.equal(new Set(c.answers).size,3);assert(c.card.answer.includes(c.answers[0]));
  for(const key of ['group','topic','signature','appearance','ecology','learning','misconception','question','answer'])assert(c.card[key]?.length>0,c.id+key);
  assert(c.card.sources.every(s=>new URL(s.url).protocol==='https:'));
- let s=B.normalize({plants:[{id:'grass',age:3}],xp:35,pending:{id:c.id,age:0,tier:0},moisture:100,soil:100});
+ let s=B.normalize({environment:B.HABITATS.species[c.id][0]||'canyon',plants:[],xp:35,pending:{id:c.id,age:0,tier:0},moisture:100,soil:100});
  s=B.resolve(s,true).state;assert(s.speciesKnown.includes(c.id));
  const key=B.slotKey(c.kind),slot=c.kind==='plant'?1:0;
  s=B.place(s,10,c.id,slot).state;assert.equal(s[key][slot].growth,0);
@@ -19,4 +19,4 @@ for(const c of rows.concat(require('../data/biome-extra-expansion.json'),require
 let s=B.normalize({plants:[{id:'grass',age:4}],animals:[{id:'hopper',age:3}],xp:123});assert.equal(s.observations.length,4);assert.equal(s.xp,123);assert.equal(s.plants[0].age,4);
 assert.throws(()=>B.remove(s,'invalid',0));
 s=B.normalize({observations:[{id:'ecoli',age:0}],weather:'sun',moisture:8});s=B.learn(s,800);assert(B.progress(s.observations[0],s).done);assert.equal(B.scenery(s).cover,0);
-console.log('PASS 60 school organisms: cards, stock/placement, 12-step pace, observation independence, bonus, recycling, migration');
+console.log('PASS all school and habitat expansion organisms: cards, stock/placement, 12-step pace, observation independence, bonus, recycling, migration');

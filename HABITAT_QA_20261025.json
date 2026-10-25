@@ -1,0 +1,32 @@
+{
+  "date": "2026-10-25",
+  "species": 156,
+  "backgrounds": 20,
+  "added": 24,
+  "schema": 7,
+  "testsPassed": [
+    "biome",
+    "biome-long-growth",
+    "biome-habitats",
+    "biome-art",
+    "biome-score",
+    "biome-secrets",
+    "biome-environments",
+    "biome-school",
+    "biome-economy",
+    "gas-assets",
+    "gas-server",
+    "biome-placement-ui",
+    "biome-habitats-ui"
+  ],
+  "screenshots": [
+    "/tmp/habitat-picker-320.png",
+    "/tmp/habitat-world-390.png",
+    "/tmp/habitat-card-desktop.png"
+  ],
+  "limits": [
+    "Representative habitat rules, not a full ecological simulator or geographic distribution model.",
+    "Generated representative portraits, not identification plates or exact biological stage images.",
+    "GAS expansion images require access to the existing GitHub Pages asset host."
+  ]
+}

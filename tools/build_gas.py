@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build a self-contained Apps Script upload bundle. Does not log in or deploy."""
+"""Build an Apps Script bundle; expansion images use the existing Pages CDN. Does not deploy."""
 import hashlib
 import base64
 import gzip
@@ -37,8 +37,10 @@ def main():
     boundaries = [(0,20),(20,40),(40,60),(60,92),(92,None)]
     for i, (start, end) in enumerate(boundaries):
         name = f'biome-art-{i+1}.html'
-        # Preserve all four deployed image files; school artwork is a separate fifth file.
+        # Preserve the four original embedded files; expansion artwork uses the existing public Pages host.
         chunk = dict(list(art.items())[start:end])
+        if i == 4:
+            chunk = {key: 'https://kuro-t-jp.github.io/seibututype/assets/biome-runtime/' + key + '.webp?v=' + hashlib.sha256((ROOT / 'assets/biome-runtime' / (key + '.webp')).read_bytes()).hexdigest()[:12] for key in chunk}
         if len(json.dumps(chunk).encode()) > 3_500_000:
             raise ValueError('GAS image chunk exceeds safe editor upload size; split assets first')
         data = json.dumps(chunk, ensure_ascii=False)

@@ -454,3 +454,5 @@ body:is([data-screen="game"],[data-screen="quiz"]) footer,body[data-screen="thin
 #observationShelf .observation-empty>span{font-size:28px;line-height:1}#observationShelf .observation-empty b{font-size:13px}#observationShelf .observation-empty small{font-size:11px}
 #observationShelf .observation-empty:hover{background:#ede8f9}#observationShelf button:focus-visible{outline:3px solid #b78127;outline-offset:3px}
 @media(max-width:600px){#biomeShelf #observationShelf{padding:14px}#observationShelf .observation-slots{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}#observationShelf h4{font-size:16px}#observationShelf .observation-empty{min-height:104px}}
+
+.habitat-context{margin:0 0 14px;padding:14px 18px;border:1px solid #b7d1c7;border-radius:14px;background:#f0f7f3;color:#224b3f}.habitat-context>strong{font-size:15px}.habitat-context p{font-size:13px;line-height:1.7;margin:6px 0 10px}.habitat-context>small{display:block;font-size:11px;line-height:1.6;margin-top:8px;color:#51695f}.habitat-rescue{background:#fff9e9;border-color:#dac596}.habitat-context .btn{white-space:normal}

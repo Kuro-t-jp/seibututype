@@ -30,6 +30,6 @@ for(const [odds,old,draw,grade] of [[B.ODDS,oldSpecies,B.draw,s=>s.pending.tier]
  }
 }
 const rows=require('../data/biome-extra-expansion.json');assert.equal(rows.length,12);
-assert.equal(B.SPECIES.length,132);assert.equal(new Set(B.SPECIES.map(c=>c.id)).size,132);
+assert.equal(B.SPECIES.length,156);assert.equal(new Set(B.SPECIES.map(c=>c.id)).size,156);
 for(const c of rows){assert(B.QUESTIONS[c.id]);assert.equal(c.artMode,'portrait');assert.equal(c.kind,'observation');assert.equal(B.requirements(B.normalize(),c.id).length,0);assert(fs.existsSync('assets/biome-runtime/species-'+c.id+'.webp'));}
 console.log('PASS typing 34/41, quiz/recall 68/83, rounding/partial/hint/reveal; reduced odds across all 6 levels and grade interval edges; 12 new organisms reachable');

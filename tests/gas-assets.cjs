@@ -4,8 +4,8 @@ vm.createContext(context);vm.runInContext(fs.readFileSync('Code.gs','utf8'),cont
 assert(delivered.includes('const ART='),'compressed HTML must survive GAS comment removal and restore the application');
 const local=fs.readFileSync('index.html','utf8');
 const images=html=>JSON.parse(html.match(/const ART=(\{.*?\});/s)[1]);
-assert.deepEqual(images(delivered),images(local));assert.equal(Object.keys(images(delivered)).length,152);
+const resolved=Object.fromEntries(Object.entries(images(delivered)).map(([key,value])=>{if(!value.startsWith('https:'))return [key,value];const u=new URL(value);assert.equal(u.origin,'https://kuro-t-jp.github.io');assert.equal(u.pathname,'/seibututype/assets/biome-runtime/'+key+'.webp');const bytes=fs.readFileSync('assets/biome-runtime/'+key+'.webp');assert.equal(u.searchParams.get('v'),require('node:crypto').createHash('sha256').update(bytes).digest('hex').slice(0,12));return [key,'data:image/webp;base64,'+bytes.toString('base64')];}));assert.deepEqual(resolved,images(local));assert.equal(Object.keys(images(delivered)).length,require('../src/biome.js').SPECIES.length+require('../src/biome.js').ENVIRONMENTS.length);
 assert.equal(delivered.replace(/const ART=\{.*?\};/s,'const ART={};'),local.replace(/const ART=\{.*?\};/s,'const ART={};'));
 assert(!delivered.includes('/*BIOME_ART_DATA*/'));
-console.log('PASS GAS asset assembly: 152 images, complete HTML equivalent to locally tested app');
+console.log('PASS GAS asset assembly: all species and environment images, complete HTML equivalent to locally tested app');
 module.exports={delivered};
