@@ -1,4 +1,5 @@
 const {chromium}=require('playwright');
+const reveal=require('./helpers/biome-navigation.cjs');
 const assert=require('node:assert/strict');
 (async()=>{
  const browser=await chromium.launch({channel:'chrome'}),page=await browser.newPage({viewport:{width:1180,height:1000},reducedMotion:'reduce'}),errors=[];
@@ -8,8 +9,8 @@ const assert=require('node:assert/strict');
  const original=await page.evaluate(()=>JSON.stringify(SAVE));
  for(const view of ['explore','book','grow']){await page.locator('#biomeView-'+view).click();assert.equal(await page.locator('[data-biome-panel]:visible').count(),1);assert.equal(await page.locator('#biomeView-'+view).getAttribute('aria-pressed'),'true');}
  assert.equal(await page.evaluate(()=>JSON.stringify(SAVE)),original,'view navigation must not change progress');
- await page.locator('#habitatPlace').click();assert.equal(await page.evaluate(()=>SAVE.biome.plants.filter(Boolean).length),1);
- await page.locator('[data-fold="environment"]>summary').click();await page.locator('[data-weather="sun"]').click();assert(await page.locator('#habitatEnvironment').isVisible(),'open fold survives render');
+ assert.equal(await page.locator('#biomeAcquire').count(),0);assert(await page.locator('[data-shelf="biome"]').isHidden());await page.locator('#growthStarter').click();assert.equal(await page.evaluate(()=>SAVE.biome.plants.filter(Boolean).length),1);
+ await reveal(page,'[data-weather="sun"]');await page.locator('[data-weather="sun"]').click();assert(await page.locator('[data-weather="sun"]').isVisible(),'open fold survives render');assert(await page.locator('#habitatEnvironment').isHidden(),'background selection lives in the book');
  await page.evaluate(()=>{SAVE.coins=240;persist();renderBiomeShop();Math.random=()=>.5;});
  await page.locator('#biomeView-explore').click();assert(await page.locator('#biomeDraw').isVisible());assert(await page.locator('#environmentDraw').isVisible());assert(await page.locator('.environment-odds').isHidden());
  await page.locator('[data-fold="odds-environment"]>summary').click();assert(await page.locator('.environment-odds').isVisible());await page.locator('[data-fold="odds-environment"]>summary').click();
@@ -25,6 +26,6 @@ const assert=require('node:assert/strict');
  await page.locator('#shopExtras>summary').click();for(const shelf of ['upgrades','themes','badges']){await page.locator('[data-shelf="'+shelf+'"]').click();assert(await page.locator('#biomeShelf').isHidden());assert.equal(await page.locator('#shop').getAttribute('data-active-shelf'),shelf);}await page.locator('[data-shelf="biome"]').click();assert(await page.locator('#biomeShelf').isVisible());assert(await page.locator('[data-shelf="themes"]').isHidden());
  await page.reload();await page.locator('#shopBtn').click();assert.equal(await page.evaluate(()=>SAVE.biome.environment),env);assert.equal(await page.evaluate(()=>SAVE.coins),192);
  await page.locator('#biomeView-explore').focus();await page.keyboard.press('Enter');assert(await page.locator('#biomePanel-explore').isVisible());
- for(const width of [1180,390,320]){await page.setViewportSize({width,height:900});for(const view of ['grow','explore','book']){await page.locator('#biomeView-'+view).click();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${width} ${view}: no horizontal overflow`);if(width===1180&&view==='grow')await page.locator('#shop').screenshot({path:'artifacts/biome-simple-desktop.png'});if(width===390&&view==='explore')await page.locator('#shop').screenshot({path:'artifacts/biome-simple-mobile.png'});}}
+ for(const width of [1180,390,320]){await page.setViewportSize({width,height:900});for(const view of ['grow','explore','book']){await page.locator('#biomeView-'+view).click();assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${width} ${view}: no horizontal overflow`);if(width===1180&&view==='grow')await page.locator('#shop').screenshot({path:'/tmp/biome-simple-desktop.png'});if(width===390&&view==='explore')await page.locator('#shop').screenshot({path:'/tmp/biome-simple-mobile.png'});}}
  assert.deepEqual(errors,[]);await browser.close();console.log('PASS simple views, details, pending reload, discovery/collection links, placement, weather, shop categories, saved coins, keyboard, desktop/mobile');
 })().catch(e=>{console.error(e);process.exit(1)});
