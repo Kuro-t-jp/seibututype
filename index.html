@@ -3725,7 +3725,7 @@ function actor(item,kind,i,s){
 }
 function emptyPlot(kind,i){
  const animal=kind==='animal',[x,y]=SLOT_POSITIONS[kind][i],label=animal?'動物':'植物';
- return `<button type="button" class="habitat-plot ${animal?'habitat-animal-plot':''}" style="--x:${x}%;--y:${y}%" ${animal?'data-animal-plot':'data-plot'}="${i}" aria-label="${label}の空き場所 ${i+1}。持っている${label}を選んで配置" aria-haspopup="dialog"><b aria-hidden="true">${animal?'🐾':'＋'}</b><small>${animal?'動物':'空き'} ${i+1}</small></button>`;
+ return `<button type="button" class="habitat-plot ${animal?'habitat-animal-plot':''}" style="--x:${x}%;--y:${y}%" ${animal?'data-animal-plot':'data-plot'}="${i}" aria-label="${label}の空き場所 ${i+1}。持っている${label}を選んで配置" aria-haspopup="dialog"><b aria-hidden="true">${animal?'🐾':'🌱'}</b><small>${label} ${i+1}</small></button>`;
 }
 
 function openPlacement(kind,slot){
@@ -3751,7 +3751,7 @@ function openPlacement(kind,slot){
  dialog.showModal();
 }
 function vacancyTools(s){
- return `<div class="habitat-vacancies" id="habitatVacancies"><p><strong>＋ 植物の空き ${s.plants.filter(p=>!p).length}/6　🐾 動物の空き ${s.animals.filter(p=>!p).length}/4</strong><span>景色の空きマークを押す → 持っている生物を選んで置く（無料）</span></p></div>`;
+ return `<div class="habitat-vacancies" id="habitatVacancies"><p><strong>🌱 植物の空き ${s.plants.filter(p=>!p).length}/6　🐾 動物の空き ${s.animals.filter(p=>!p).length}/4</strong><span>景色の「植物」「動物」を押す → 持っている生物を選んで置く（無料）</span></p></div>`;
 }
 
 function mysteryArt(kind){return `<span class="mystery-art ${kind}" aria-hidden="true"><span>?</span></span>`;}
