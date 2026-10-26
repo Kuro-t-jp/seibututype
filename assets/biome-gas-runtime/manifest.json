@@ -1,0 +1,855 @@
+{
+  "format": 1,
+  "sharpVersion": "0.35.5",
+  "settings": {
+    "width": 288,
+    "height": 288,
+    "quality": 72,
+    "alphaQuality": 90,
+    "effort": 6
+  },
+  "sourceBytes": 2964860,
+  "bytes": 1496568,
+  "records": [
+    {
+      "id": "species-fern",
+      "sourceSha256": "5061fe1c0a1ec5fad764aa3f4eb124eeb14c73396fc71ae8ef797be0e739a9e1",
+      "sha256": "979cf8282c8e501f722427df95ae9687e98d67988d8eab6996dc326e6f92a835",
+      "beforeBytes": 47980,
+      "bytes": 25122,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-moss",
+      "sourceSha256": "6f4bdccbe79cbe3f9821bdee0a005c94e300bcc7a6649aa63b7de6bee5dd3503",
+      "sha256": "cee634b78960613a2a672c14a61d880ae7c932c5779e533a14403ac9e5230299",
+      "beforeBytes": 53662,
+      "bytes": 28088,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-horsetail",
+      "sourceSha256": "475894ea8f70569cf8c5e7aa15cb0f437374f3f8a140100373e646afb4f3436b",
+      "sha256": "41c0560ce8380565c47dc5558a77bad651e9c38f67e6bde24f03e3e1dfe96b7d",
+      "beforeBytes": 33834,
+      "bytes": 18280,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-cycad",
+      "sourceSha256": "f7d93a0fab06ec20f44608315239195c9af3cd6ee12ce41c79d8b91d63ad5ede",
+      "sha256": "6f41e663011e0c8f6f0f9883bd3c75631aaab364075b489aa3bb41e1c3884644",
+      "beforeBytes": 33258,
+      "bytes": 17596,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-oat",
+      "sourceSha256": "7e445c7fd7bc34b02d50c0e173c8729a51df816c4fd20e0ee2b946b20933e03e",
+      "sha256": "7ba0bc6aed3f5945a71fa601add30afd72941c6f15aad4f2e2c3d4d9b1280163",
+      "beforeBytes": 37836,
+      "bytes": 20758,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-wheat",
+      "sourceSha256": "8b4b87e55de74d24f84eaf1bd6e905ab3f2a3e10ceea26a4875207b99513bf08",
+      "sha256": "7fad973cf5d068d91a3ca8ad9150604935f17d86f9a2e45a76dbe6c5a30263de",
+      "beforeBytes": 34616,
+      "bytes": 19158,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-broadbean",
+      "sourceSha256": "11504f8f223706d9aa79e0d775e7f5066ce02420b7db3e57302cad2b8fd3dda7",
+      "sha256": "bc8e011086220abb5e4fabe626770f08fbb6e97e6909acb1c1d51f2d9d6959d5",
+      "beforeBytes": 33476,
+      "bytes": 17234,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-potato",
+      "sourceSha256": "7ff334d576a4b87f9345c55170e773c215e70500a6528cb9db93bef5e8f028b7",
+      "sha256": "a3ca7dac5af7fe154395d88d05fff39ea5ae5bd146d1c47dca98d97dd76994ea",
+      "beforeBytes": 45554,
+      "bytes": 24236,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-strawberry",
+      "sourceSha256": "ac94021546b32b988067fd514e3c6cb13329d945aea65a26bddacd8845903247",
+      "sha256": "7c20b91895a21c9be46bc34161b2b9bdaabbf9ff8570cfd5e12f42eb9c6159f8",
+      "beforeBytes": 40920,
+      "bytes": 21734,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-tomato",
+      "sourceSha256": "879beb21b2188509ca4828dbc61cfbd210293767eb0cc31d27392c7ae21aa801",
+      "sha256": "b4aaa60b430d37436ccbe802386017459cf813caa0e280dca3b3c34f8fccb799",
+      "beforeBytes": 42274,
+      "bytes": 22464,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-barley",
+      "sourceSha256": "e24f2c478d1916216549ea95e88ae818290f1a9db2c9022bc04e4ba98ae45d11",
+      "sha256": "b415ebe2cc17a1a49b434ea7d2dabfc6707812ad48399ff01523df86089fe44b",
+      "beforeBytes": 42462,
+      "bytes": 23304,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-soybean",
+      "sourceSha256": "9058351a8a847cbb0f3dca6040e3fb1ba76c9fb36b8f3f64fcd1d0e37841148f",
+      "sha256": "a88f4909b596dc9f564a5831398b977db125e400808844a0893a225f37cbbf1e",
+      "beforeBytes": 37826,
+      "bytes": 19710,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-urchin",
+      "sourceSha256": "cd991f64aa95737e32b4a52975665ff72ffb0a3c8dc0e77be4a538e5c3aeda45",
+      "sha256": "7c8d1ba362e3015560fdf8ba03a25bca584498b263426d17bd0a4f78fd7085fa",
+      "beforeBytes": 46732,
+      "bytes": 24440,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-starfish",
+      "sourceSha256": "4dfb75a236a44a11062fdaa68aac3dc06a47a968666c9e35ad4708532598389a",
+      "sha256": "f4f6878eb62f67218631a9c60f04eed1330667833dec4830f35c2b8dc7a370f6",
+      "beforeBytes": 27508,
+      "bytes": 12212,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-hydra",
+      "sourceSha256": "30f4eff696359d7ef2455f3ef29c889e51ffd3b8dd1e2f90d1a025c867e035df",
+      "sha256": "acfd0b359c65bcd8e2a68fa11fda6f79ea2d9565df5410d85c0021fdef968faf",
+      "beforeBytes": 22486,
+      "bytes": 11414,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-planarian",
+      "sourceSha256": "480ddb17ac6b301d9fa39037d0faf0fe6c2b624327acb5681b378c2bffbf792a",
+      "sha256": "2ab6f8cc5b859dde7959cee2f8f39b71c6bdde32db36d0e3497e88680dd2ac71",
+      "beforeBytes": 18650,
+      "bytes": 8050,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-amphioxus",
+      "sourceSha256": "333a398101f594c655c2063f4136fe6ba18479a18b0262ec50c11fe40a8e58fa",
+      "sha256": "89c98f6f74fa8f7ff11d344cc806d08a0aa752476574477e62edba3233219dda",
+      "beforeBytes": 12992,
+      "bytes": 5888,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-ascidian",
+      "sourceSha256": "7d9be28fbd58cca233758ff71333d373fb58c9c797423c529b0cfd6c7c679ebb",
+      "sha256": "5dfef169e7bb6eee26b9453328f6a6b3dbc4e4a88ad29d4fa54399fef293b293",
+      "beforeBytes": 17762,
+      "bytes": 8582,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-xenopus",
+      "sourceSha256": "b75a0e52676b3dac09a1c4d751dae42fe21e7efcf2330c0efa335d592daccdde",
+      "sha256": "37af030d16eeda4f810b60536792e2cfe06f7ff96187cee61dbb8bb88dd12cf6",
+      "beforeBytes": 24696,
+      "bytes": 12934,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-axolotl",
+      "sourceSha256": "afcc55b76749a39b7c44c5894a48dadf93a83c47c02d5482e963c81fa8ae35d9",
+      "sha256": "860e59947474e826898c49cfde119ae12a34d5ec39a98195c867c4e2800e7c93",
+      "beforeBytes": 24148,
+      "bytes": 12582,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-nematode",
+      "sourceSha256": "3b821211554d982bb6330bacccc69d6356392c86d22ec50a96df22d62b5484ce",
+      "sha256": "f5c80215644053a79f7653f6399c1421203f6be7ffc2b01663ddf16cb68525f4",
+      "beforeBytes": 12280,
+      "bytes": 5854,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-mouse",
+      "sourceSha256": "44edc55929008890c9c289e1bdd186938bb842c76e56b5b42682b019c3e438da",
+      "sha256": "717c68a4d39b466df3addb085fdb17bfe4be1f5de0f1d7c1abbe4719cf0b81a1",
+      "beforeBytes": 23452,
+      "bytes": 11810,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-chicken",
+      "sourceSha256": "37d85eb3a4f553b62aca990c8171ca3670d3ec7974369f39122cc072cec0d242",
+      "sha256": "317cb258964e164e11fb54f4915f6ad98f42465dbacce514ba714a2778c9b562",
+      "beforeBytes": 20086,
+      "bytes": 9116,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-squid",
+      "sourceSha256": "96edab7c0aaae18f3535ffdd3ff7031c9d5389ad5c5dac97219180a20084f013",
+      "sha256": "64848786e12ad83d5a4e768940be72626fbce48041c00471f5afad3da1a311e8",
+      "beforeBytes": 25370,
+      "bytes": 13362,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-ecoli",
+      "sourceSha256": "1fb0313a38cec4180e3782c4bc95b741df931f55f0f641322e48ba97ef77fcc2",
+      "sha256": "abdf22c27d7fe95e642e840cd0afada5ac326a2fc0b8e7c36b2741f546fe234b",
+      "beforeBytes": 49088,
+      "bytes": 25232,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-bacillus",
+      "sourceSha256": "baeb3846e374fc81490182d978a015645dd416929d8c25b9edcfda7b7d8150a5",
+      "sha256": "76858bc27db86541938cc132075252fe7800f1d8558e9c6d2d183c0e25ad2b8b",
+      "beforeBytes": 13970,
+      "bytes": 6366,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-buddingyeast",
+      "sourceSha256": "11ec12942cee751f8f62875b34d7fc8b0c50728db253067aaaa37d65c192c9bc",
+      "sha256": "0f5acac5243a208ba1a462f8191e9ec9065b23ab6cbc73865692ec231f16a493",
+      "beforeBytes": 27626,
+      "bytes": 11510,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-fissionyeast",
+      "sourceSha256": "9a7b2c105d59ad7b510eeeffcd8d73ec6b86e615ca18b62c11e29387188f7051",
+      "sha256": "1c3bf7988a8cb53e7d037d54a95ac5689551d886c348b4eefbaefd70a7b62f17",
+      "beforeBytes": 32422,
+      "bytes": 13310,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-lactic",
+      "sourceSha256": "9ce37e2132a74ad3bc1590c2d51a17abbfb9779dfe4b6d8ce38bf2ef588de468",
+      "sha256": "f8f88c2e719981b09f105f45b60469545adf925dce70318bb3883bd31541d17d",
+      "beforeBytes": 25104,
+      "bytes": 11450,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-rhizobium",
+      "sourceSha256": "1e9acdad03d4da431e4a5a9f8674335f243ee58832a89259b389348a552ad2ee",
+      "sha256": "ebe1578a775e7bbd0801a64bc4388343c898685286eb8725f3eb7584a0c10c6b",
+      "beforeBytes": 20860,
+      "bytes": 10836,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-nitrifier",
+      "sourceSha256": "972eaaf1609b452f57e5f790aeaf0f7ac698086cfd22431ed44db207dfd4a391",
+      "sha256": "34daccb57ba4831043105c45d3fc4417f4d666b76e837d27ede3b84b38ac223a",
+      "beforeBytes": 24180,
+      "bytes": 10496,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-nostoc",
+      "sourceSha256": "b9984ba20d14aa519cae140e1edc74fe25f398a63e72f345fba8a8a0f8beba1b",
+      "sha256": "2fea224e81b5091dd3b3d3fd251c95e88bb9abb9f8653cc3b92fae72ae7d4184",
+      "beforeBytes": 23844,
+      "bytes": 12104,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-euglena",
+      "sourceSha256": "5e6ba02a624243b1382d0913ab7c2af4dfdaf915aaccf84d035d20383c2cfb9d",
+      "sha256": "f443cde1a9cbf5a35de6a2c2bcd200d32e04aa5226b3d0f08c7275711461c653",
+      "beforeBytes": 18552,
+      "bytes": 9352,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-paramecium",
+      "sourceSha256": "d16ea7494e3e8ef1f78478b9187388866d83b813053c4d21c76ce7074ea6cb6a",
+      "sha256": "74a8b4150cfcd85655aa4d096b1b48cdca69c7731601dcf6331c2248a5e769d8",
+      "beforeBytes": 36042,
+      "bytes": 17442,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-chlamydomonas",
+      "sourceSha256": "b768aa8f8e9919ccb9f8f5423e9c8ae5e651f51c7a8de8e4c7aae45b6cb37c48",
+      "sha256": "8fa69655b233f2dcbd6ebf0db043e5fd562da486f4a6c73d7655707b43b11cb3",
+      "beforeBytes": 21714,
+      "bytes": 9588,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-volvox",
+      "sourceSha256": "bd056e3704eb1880d6443200298d0763a3f8f9694c309e79bbaf8b9178fc9276",
+      "sha256": "da71bcdca83a6f640952004b55f467089a20f78f8d87e037a1fa6b1590514468",
+      "beforeBytes": 44760,
+      "bytes": 20832,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-amoeba",
+      "sourceSha256": "387533f49c86105273e2f28ff27d3769f86b74784c64cbcd9351fe67ce66b8fd",
+      "sha256": "5e8af7a28923a40c0a265f1f906c8484339161fbff06282d9415ef359ee3611d",
+      "beforeBytes": 30698,
+      "bytes": 15040,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-spirogyra",
+      "sourceSha256": "0ca54bef9f74e2ab2a74d7bac7c9a7c57452c7f183e548d9409eb7099e1561d1",
+      "sha256": "c5d752b284d63c22ff5fe94e0ebe734d2dc90c60f04348bc86ed689e9db95ad3",
+      "beforeBytes": 18096,
+      "bytes": 8278,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-acetabularia",
+      "sourceSha256": "a95a886ef0461f7d55c1dbebf320f24c851b8a9fd997968deb9654e0db0043f7",
+      "sha256": "76e8ad4d7e49745479dd42e66038f4ba450232bfc1bfbad0f1a46e55a5d137dd",
+      "beforeBytes": 16306,
+      "bytes": 8562,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-diatom",
+      "sourceSha256": "e1e57549815567b7ed84bb3dc81136d4ed9f5b495af0447ca9f844adf755963f",
+      "sha256": "4a5ae03cb9b60d51155d399a70da61d0b1ed5d5e278f2547c03643a2cbda0292",
+      "beforeBytes": 20062,
+      "bytes": 9586,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-chlorella",
+      "sourceSha256": "2c16f3b18654270d94c3896dd388ce8a0f8aac938937c2b4dd4af656f0aaafa2",
+      "sha256": "700461c0332e5b8936459a154ee0b39decfdb0b4cc7f3034eaad395bcb26f713",
+      "beforeBytes": 33408,
+      "bytes": 14554,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-oscillatoria",
+      "sourceSha256": "bbbcee8d3c1c607f6e4cacc6a8be72ea0b1c327bfddb32c4ccc443a4724dce2f",
+      "sha256": "7a8a02012c7b78c413aecf5c449b36adebad8302d693182904815d79c9c013e0",
+      "beforeBytes": 18072,
+      "bytes": 9052,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-neurospora",
+      "sourceSha256": "6cc978bb62258bf0fa6f8fb9d82b2d140a7c40c7e05f33357008b3ddc5ecd3f9",
+      "sha256": "ecce28d9d1018fc087451e2c725f2c94c3829cc4eea0c805b40842db1efb3b4a",
+      "beforeBytes": 52744,
+      "bytes": 27854,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-penicillium",
+      "sourceSha256": "b57fc3883e7b2cadf8db2d2d3cf58414fa87ab02e907b5a7ba6e365f9a92083b",
+      "sha256": "8d6e8ca19f7fa78b23388b71f1d885e4d23d5e6467884e2f87ecefcfd884cd5a",
+      "beforeBytes": 51494,
+      "bytes": 27446,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-koji",
+      "sourceSha256": "c1dc02db6a4896c98e002c2f4e0d3b145a7929473efdf048a0d4a9eb3544f249",
+      "sha256": "ca5ddb608e1baa8aca908271c10dec5cd9945bcc00849a843dbd44c035bc5773",
+      "beforeBytes": 46302,
+      "bytes": 23814,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-anemone",
+      "sourceSha256": "3f19dad94f3efd553a573bd376e90f38a486a57a24857ce612038718299b8582",
+      "sha256": "e482b75335aeea3f61892223d466620b136ccdf3a615b12ac26fa33917ec0e79",
+      "beforeBytes": 44308,
+      "bytes": 23058,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-mussel",
+      "sourceSha256": "f25e39db7c4d627a911f0bcc55364849d909d7094422618a2e313cf016bff905",
+      "sha256": "add9e6f168d2913a0153ce7575bb374598fd586a911c7292b4685e6a08c1a33e",
+      "beforeBytes": 32832,
+      "bytes": 15494,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-crayfish",
+      "sourceSha256": "f47392979548c89cbee9d6e3d58024810c8cfdc64b5fe94df821f64b421706f3",
+      "sha256": "5ebc2db7f89bd45462c8aa7c82de72331f17c2b578106d1a94a7395e7eafac50",
+      "beforeBytes": 34324,
+      "bytes": 17698,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-mimosa",
+      "sourceSha256": "7a60c6959bbc9a8725a81f96e4bca022020abb770171886a03b714b852b604f5",
+      "sha256": "57ce304ce171bad1b1f60e5f25f7dea642400bc0623d57c829ea65eb983dd8f9",
+      "beforeBytes": 55142,
+      "bytes": 28532,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-chrysanthemum",
+      "sourceSha256": "12386040829ba0fba8c3d589350576223e3b4867eb996f027f1d5c694f7f0d85",
+      "sha256": "15e3ebac18720436647bd4d30657e2adc2c2d01b3ccb427717518ba7f04ded72",
+      "beforeBytes": 46884,
+      "bytes": 24752,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-spinach",
+      "sourceSha256": "7c38cc3738b7aff994fd85af6e64f1dfe4e1f390436405b2552b4853475956d7",
+      "sha256": "45b6291c4cc817bc619c29d76a46124399ca75644eac3daf2e9c480416def531",
+      "beforeBytes": 32564,
+      "bytes": 17912,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-azuki",
+      "sourceSha256": "eaec4a7286ecab66b859070ffb777d8a02ba924531f0a206edd706399fc0511d",
+      "sha256": "dfbf43891a515ac3f1997d4ac24a17f2d4672ca367ba9af25996561657ff62e3",
+      "beforeBytes": 41214,
+      "bytes": 22568,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-moonjelly",
+      "sourceSha256": "703a02eb5cb9bd32f6b3c3553e043cb5417dc2d7302ba84b9031f3ced349528a",
+      "sha256": "8aa2af3b35701f650df2331053dd67b408be0c2d56ee1820366a5d5ad47e7ea5",
+      "beforeBytes": 36202,
+      "bytes": 18242,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-stonycoral",
+      "sourceSha256": "1d5c396b6ee55ae0dbc48b29f114c78f81531e1f8fad44ed820f5ebd8176ef1c",
+      "sha256": "798861b4169beead8e30c563ef0537cea7a9e7666ace95adc04f874af001c71a",
+      "beforeBytes": 43946,
+      "bytes": 20552,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-sponge",
+      "sourceSha256": "24caabaf40dbf973f5acb156e236e4bbf0babedb73903df4b61a4e0a27c081ac",
+      "sha256": "df0a55cc4158a0cf31f8c430e3727a6da2b8900bfcbe621faf125e11400f6f93",
+      "beforeBytes": 31508,
+      "bytes": 12576,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-octopus",
+      "sourceSha256": "777c3d32d01e8f8e911e8b4525e20c1ba895aefd5412479ace75a4cd2da472d4",
+      "sha256": "cf5135c76a03f3a01106d3d8547a2921083a83a382f4b46863b42e9de406d4dc",
+      "beforeBytes": 40884,
+      "bytes": 20172,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-vorticella",
+      "sourceSha256": "54626d358a1b05f9a9e31825859078050515c6fd61ad55f6b65d03962e64ec22",
+      "sha256": "891ba4b93bd7090b4a47b2ff57ca0f314a99c243813e7f98ce81a7ce22077b20",
+      "beforeBytes": 19888,
+      "bytes": 10178,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-stentor",
+      "sourceSha256": "666ab30013054475d6be01d9fd417be0641c2909ad56ed0275cede75b42c699e",
+      "sha256": "3d80f5ef8e048feddbdb57ce89200e5e89f507d4f12f5ca14a9f6d86f5aa9863",
+      "beforeBytes": 20034,
+      "bytes": 10020,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-closterium",
+      "sourceSha256": "89fe10457af746ed1a6e5f023f5b7baa151c21fe1bf4c83d79c2c21b385c82db",
+      "sha256": "c3b0a7a42eb23a8f8517a191abfb93cb63a101343230bc7162028859b2b8316f",
+      "beforeBytes": 16100,
+      "bytes": 7222,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-pediastrum",
+      "sourceSha256": "ba595b5950dc19138222dc3774f486e45d687af1794f47bb9ed53c3994d95be4",
+      "sha256": "790ec0314917434a6f440d3a65a9b47a759a2f4ee0e19345c1133f65387b7b2a",
+      "beforeBytes": 35144,
+      "bytes": 15758,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-hamahirugao",
+      "sourceSha256": "3b52b37a6d3eff32ef3570fd594775316a4cb1157ccc7da6ee32984cfd1fae22",
+      "sha256": "575e27c425d87e7b0bf5dd8357ab96b883506ccf952eef5325688d00f56052e0",
+      "beforeBytes": 38516,
+      "bytes": 20262,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-kobomugi",
+      "sourceSha256": "c7624e00e2321623d29c55c1584245631989907f1726dd25c2e8c7f9f3f69adf",
+      "sha256": "83b64cb41ae07019c197b2005e5db9f86ff0c56d46a66e52bdb6f33083b546be",
+      "beforeBytes": 70368,
+      "bytes": 36940,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-hamago",
+      "sourceSha256": "56be5557b49bd344a336373bfe24efc339ebc0a48b164bbfe8d5837c04e633d8",
+      "sha256": "240e9afdf744a02a62e2f507d1d1d0989380fd6794b36ee4301ec3f0ac039c77",
+      "beforeBytes": 59342,
+      "bytes": 30734,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-kuromatsu",
+      "sourceSha256": "4cc61de9166e8ffa823ee1a86a827160a346f4579837b1d08e3414768ca1e4b1",
+      "sha256": "0c7e2e954f4c288e98cf665536c5343e056172b0b1107559240903bb0cd0917b",
+      "beforeBytes": 50846,
+      "bytes": 27366,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-hamanasu",
+      "sourceSha256": "6ef98466b39f2d0d36744614eb5b48717dc55d04967bfe0288057268ce48419b",
+      "sha256": "02945bb66c428fddf455899f781599ef55e3f4adfaf8f24132ae212b765d3829",
+      "beforeBytes": 57048,
+      "bytes": 29172,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-ohirugi",
+      "sourceSha256": "5f1ebe565638a4b4f61a0cbc344b4031f4c79f08b15c8fe8d0ae7349f003cdb0",
+      "sha256": "459e89717110c16adc46736d85fd6511ca450c46f0d7839d9b4c3fac029d8b66",
+      "beforeBytes": 45322,
+      "bytes": 23610,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-mehirugi",
+      "sourceSha256": "50b5ce5435853810a513c629a6d4e62645fb8706e26a20fc6d5b6cf3df53593f",
+      "sha256": "68b4e037e562c24397eefc82c8d8914b449c1b36c85ed420cfac40d6f0a0b80d",
+      "beforeBytes": 52386,
+      "bytes": 27792,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-sphagnum",
+      "sourceSha256": "e5182f061abf274902b1fb34c8ea4b6ae2703265a3e8cb9afbb852f083454f63",
+      "sha256": "b2da6c8b11c92dbe4b1bfa649ae6e48af8fe19928506fedb96269454a7f046cd",
+      "beforeBytes": 46556,
+      "bytes": 23050,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-sundew",
+      "sourceSha256": "3bef592a591ef034784a2c7856fd167658bfdc4f5c8372e8e04b5e060b32427b",
+      "sha256": "59aa27c35dd339c3aacfb2e405d9e71427424caf25a3ae5ce6a4584e4e3785c3",
+      "beforeBytes": 50000,
+      "bytes": 25428,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-cottongrass",
+      "sourceSha256": "79e52adefbe14b53dd7aebaaa995e69c0f0cc64f11afb9534b56e83050cce758",
+      "sha256": "940e1e22c52c26d8b6eb4c594c16979885772d8f79fc0ac6f3e3752772af6054",
+      "beforeBytes": 53206,
+      "bytes": 28932,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-haimatsu",
+      "sourceSha256": "49a6a67c29b816e8619b9ffe29766cceb553c14d1e020a88a10d7ab894272708",
+      "sha256": "22a7619ee5d628bcb65a34a0238b9ff7cb0b06e8a75abc04ccd6753a9278a4c6",
+      "beforeBytes": 33676,
+      "bytes": 16658,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-kokemomo",
+      "sourceSha256": "1e20b37bd4ed9ff6ad3fdbdc704a9e42bf774e0e575431baedc4acb21c4b2baf",
+      "sha256": "c5d49832e45ad1c17ae51b70e7d623af964a2f010d1c4bd5253b394facbc887b",
+      "beforeBytes": 57928,
+      "bytes": 30454,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-dryas",
+      "sourceSha256": "03bf0e084418ba09053c8fea9d65c1bd6112a79c2abbdecfa54fb4d150741eaf",
+      "sha256": "d648d0a50b1559797e2bd98c8f2053ca047f5671e496a65261fde53006744576",
+      "beforeBytes": 50604,
+      "bytes": 25426,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-ezomatsu",
+      "sourceSha256": "6fdc2611cdcb75821cdb8074b51b06ee2be101c9b941ee90abe183fee03d1284",
+      "sha256": "a52ad5bfed4156c5dca46c15253aa613b9801e248cd8f65499e3c536f3afd873",
+      "beforeBytes": 33204,
+      "bytes": 16940,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-todomatsu",
+      "sourceSha256": "8c284a7cb91bbf51b1462251aa90a6d1649726f987cff4add08672d27ca6be60",
+      "sha256": "dbf93b63fc6103de194b9ecba3a7a63e75d26aa7bdc947895c25b58f60d123c5",
+      "beforeBytes": 38386,
+      "bytes": 19434,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-tabunoki",
+      "sourceSha256": "fc58eba299ef8e170338f6b9b7f5de924069b8da494a5b4c02530e1757cf0a4d",
+      "sha256": "ff04986f33bc491fa2bd97e8914606f84c8de65d843e860a0d37b479c8e1ae9e",
+      "beforeBytes": 47510,
+      "bytes": 23486,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-arakashi",
+      "sourceSha256": "eecbfd468d2b345c49350e2b5de3cdafe0a0478607348b295ae5eea539b4b549",
+      "sha256": "e71e2c7a77ecd18bc5701b8a1378c504b3ffeab699255944c9e089382c652bd6",
+      "beforeBytes": 49774,
+      "bytes": 25498,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-acacia",
+      "sourceSha256": "9309569bfbb3bdf74f2ec911588f2e862a3ae8b947d02e3ce0c1a06d1e37d278",
+      "sha256": "5a3e09b3a584ec1a0c7c80b7f41bb3b26ff409ff86994a53d350bfd5c3a1fe38",
+      "beforeBytes": 46606,
+      "bytes": 24318,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-sunagani",
+      "sourceSha256": "88f62d60f2c476c78530d4a9fb16eed9d6fd9ff0ef00255162426a1516982a3d",
+      "sha256": "062452639ea91c6ce35755ca67cbafc0033fc0a33d744a45ab090f1ba4f4d8a3",
+      "beforeBytes": 37604,
+      "bytes": 19358,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-yamatoosagani",
+      "sourceSha256": "bbad3929e52f0df6dc9e68a709b34446d2c37d8756e95bc9bef253131d293b36",
+      "sha256": "76bd5a48eafb601640691fbcc32a9077ce1ea1659b2351b6b964515f1e9f8957",
+      "beforeBytes": 26588,
+      "bytes": 13164,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-asari",
+      "sourceSha256": "ea2d40f9eee97a53671cc97e7ac239eb3724a97839659e8ffacec4b14f0ec85d",
+      "sha256": "b654d4e6622c6494a6a218f3815ba052da805f5521a948f3728f6694049c94bd",
+      "beforeBytes": 28098,
+      "bytes": 12388,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-shirochidori",
+      "sourceSha256": "0339127e7352221f81c14c4bb8719597aee1949ed74842c744d72bdd413d4e19",
+      "sha256": "cf58a8e998dbc66b421ec199d62b3e7bd89fda1e24d70b972d7d1648353c360f",
+      "beforeBytes": 19262,
+      "bytes": 10322,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-raicho",
+      "sourceSha256": "ede12a6ed1251d061097cfed0a2ce13ab251d377fafd0c1c38e189d29f46556c",
+      "sha256": "bba6bc9c3e7a2d73bd51e322f0c9d77ac7ef7cc6e917b86d0ed078be4f10c947",
+      "beforeBytes": 27444,
+      "bytes": 12364,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    },
+    {
+      "id": "species-pika",
+      "sourceSha256": "a238f3e257d4f8ceff5069dea0f7a56c32a445baabb3149ee0fdc7296557d0aa",
+      "sha256": "48589900d114f59e0149d234e1a33db04221faf3597a39b7829ea441058be37f",
+      "beforeBytes": 28408,
+      "bytes": 12106,
+      "width": 288,
+      "height": 288,
+      "hasAlpha": true
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build an Apps Script bundle; expansion images use the existing Pages CDN. Does not deploy."""
+"""Build a self-contained Apps Script bundle with lightweight embedded artwork. Does not deploy."""
 import hashlib
 import base64
 import gzip
@@ -32,15 +32,25 @@ def main():
     if not match:
         raise ValueError('Missing biome image catalog')
     art = json.loads(match.group(1))
+    optimized = json.loads((ROOT / 'assets/biome-gas-runtime/manifest.json').read_text())
+    optimized_records = {row['id']: row for row in optimized['records']}
+    if set(optimized_records) != set(list(art)[92:]):
+        raise ValueError('GAS artwork is out of date; run tools/pack_gas_art.cjs')
     gas_html = html[:match.start(1)] + '{}' + html[match.end(1):]
     asset_names = []
     boundaries = [(0,20),(20,40),(40,60),(60,92),(92,None)]
     for i, (start, end) in enumerate(boundaries):
         name = f'biome-art-{i+1}.html'
-        # Preserve the four original embedded files; expansion artwork uses the existing public Pages host.
+        # Preserve the four original embedded files. Embed lightweight expansion copies too.
         chunk = dict(list(art.items())[start:end])
         if i == 4:
-            chunk = {key: 'https://kuro-t-jp.github.io/seibututype/assets/biome-runtime/' + key + '.webp?v=' + hashlib.sha256((ROOT / 'assets/biome-runtime' / (key + '.webp')).read_bytes()).hexdigest()[:12] for key in chunk}
+            for key in chunk:
+                record = optimized_records[key]
+                original = (ROOT / 'assets/biome-runtime' / (key + '.webp')).read_bytes()
+                image = (ROOT / 'assets/biome-gas-runtime' / (key + '.webp')).read_bytes()
+                if hashlib.sha256(original).hexdigest() != record['sourceSha256'] or hashlib.sha256(image).hexdigest() != record['sha256']:
+                    raise ValueError('Stale or damaged GAS artwork: ' + key)
+                chunk[key] = 'data:image/webp;base64,' + base64.b64encode(image).decode('ascii')
         if len(json.dumps(chunk).encode()) > 3_500_000:
             raise ValueError('GAS image chunk exceeds safe editor upload size; split assets first')
         data = json.dumps(chunk, ensure_ascii=False)
