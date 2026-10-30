@@ -13,7 +13,7 @@ const thinkingKinds={graph:'グラフ',table:'表',text:'文章',mixed:'複数�
 const thinkingLevels={foundation:'基礎',standard:'条件整理',challenge:'応用'};
 const thinkingSkills={quantify:'数量・割合',compare:'条件比較',integrate:'資料の統合',hypothesis:'仮説・実験計画',evidence:'根拠と結論の限界'};
 const thinkingAnswers=q=>q.answers||[q.answer];
-function thinkingPool(){return thinkingBank().filter(q=>(fiveMode?($('fiveFamily').value==='all'||q.family===$('fiveFamily').value):($('thinkCollection').value==='all'||q.collection===$('thinkCollection').value))&&($('thinkSubject').value==='all'||CURRICULUM[q.unit].subject===$('thinkSubject').value)&&($('thinkKind').value==='all'||q.kind===$('thinkKind').value)&&($('thinkLevel').value==='all'||q.level===$('thinkLevel').value)&&(fiveMode||$('thinkSkill').value==='all'||q.competency===$('thinkSkill').value)&&(!$('thinkMistakes').checked||thinkingHistory[q.id]?.ok===false||thinkingHistory[q.id]?.uncertain));}
+function thinkingPool(){return thinkingBank().filter(q=>(!fiveMode||$('fiveFamily').value==='all'||q.family===$('fiveFamily').value)&&($('thinkCollection').value==='all'||q.collection===$('thinkCollection').value)&&($('thinkSubject').value==='all'||CURRICULUM[q.unit].subject===$('thinkSubject').value)&&($('thinkKind').value==='all'||q.kind===$('thinkKind').value)&&($('thinkLevel').value==='all'||q.level===$('thinkLevel').value)&&(fiveMode||$('thinkSkill').value==='all'||q.competency===$('thinkSkill').value)&&(!$('thinkMistakes').checked||thinkingHistory[q.id]?.ok===false||thinkingHistory[q.id]?.uncertain));}
 function thinkingSetup(){
  const bank=thinkingBank(),records=bank.filter(q=>thinkingHistory[q.id]).map(q=>thinkingHistory[q.id]);
  const n=thinkingPool().length,attempted=records.length,due=records.filter(r=>!r.ok||r.uncertain).length;
@@ -28,7 +28,9 @@ function configureThinkingMode(){
  $('thinkNotice').textContent=fiveMode?'5つから1つを選び、回答を確定。知識の正確さと、資料・実験への応用を練習します。独自教材で、実際の入試問題の転載ではありません。':originalThinkingCopy.notice;
  $('thinkIntro').textContent=fiveMode?'「正しい」か「誤っている」かを確認 → 5つを比較 → 自信を確認して回答。知識と応用を混ぜる設定では、両方を含めて出題します。時間制限はありません。':originalThinkingCopy.intro;
  for(const id of ['fiveFamilyLabel','fiveResearch'])$(id).classList.toggle('hidden',!fiveMode);
- for(const id of ['thinkCollectionLabel','thinkSkillLabel','thinkResearch'])$(id).classList.toggle('hidden',fiveMode);
+ for(const id of ['thinkSkillLabel','thinkResearch'])$(id).classList.toggle('hidden',fiveMode);
+ for(const option of $('thinkCollection').options){option.hidden=option.disabled=fiveMode&&!['all','rag'].includes(option.value);if(option.value==='rag')option.textContent=`新着：生物RAG参照 ${thinkingBank().filter(q=>q.collection==='rag').length}問`;}
+ if($('thinkCollection').selectedOptions[0]?.disabled)$('thinkCollection').value='all';
 }
 function launchThinkingMode(five){
  if(T?.running)return;fiveMode=five;
@@ -72,8 +74,17 @@ function loadThinking(){
  $('thinkQuestionTitle').focus({preventScroll:true});$('thinkRun').scrollIntoView({block:'start',behavior:'instant'});
  window.refreshSuperRunLabel?.();
 }
+function thinkingSourceNotes(q){
+ const sources=(q.sources||[]).map(id=>FIVE_SOURCES[id]).filter(Boolean);
+ if(!sources.length)return '';
+ return `<details class="thinking-sources"><summary>根拠・参考教材（${sources.length}件）</summary><ul>${sources.map(source=>{
+  const label=escapeHtml(source.title),url=source.url;
+  const title=typeof url==='string'&&/^https:\/\//.test(url)?`<a href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${label}</a>`:label;
+  return `<li>${title}${source.location?` · ${escapeHtml(source.location)}`:''}${source.evidenceId?` · ${escapeHtml(source.evidenceId)}`:''}</li>`;
+ }).join('')}</ul>${q.sourcePack==='rag-20261030'?'<p>生物RAGの教材を参照して独自に作問しています。数値モデルは実測値ではありません。原文・原図は掲載していません。</p>':''}</details>`;
+}
 function thinkingExplanation(q,order=q.options.map((_,i)=>i)){
- const answers=thinkingAnswers(q);return `${q.recall?`<section class="thinking-recall"><h4>自分の言葉で説明：解答例</h4><p>${escapeHtml(q.recall.prompt)}</p><p>${escapeHtml(q.recall.answer)}</p><small>表現の一致ではなく、理由や関係が説明できたかをメモと比べましょう。自動採点は行いません。</small></section>`:''}<p><b>読み取りの視点：${escapeHtml(q.skill)}</b></p><ol>${q.steps.map(s=>`<li>${escapeHtml(s)}</li>`).join('')}</ol><details open><summary>${q.options.length}つの選択肢の理由</summary>${order.map((oi,j)=>`<p><b>${j+1}. ${escapeHtml(q.options[oi].text)}${answers.includes(oi)?(q.family?'（選ぶべき選択肢）':'（正解）'):''}</b><br>${escapeHtml(q.options[oi].why)}</p>`).join('')}</details>${q.family?`<p>${(q.sources||[]).map(id=>FIVE_SOURCES[id]).filter(Boolean).map(source=>`<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener">${escapeHtml(source.title)}</a>`).join(' ／ ')}</p>`:''}<small>対応単元：${escapeHtml(CURRICULUM[q.unit].subject)} · ${escapeHtml(CURRICULUM[q.unit].title)}</small>`;
+ const answers=thinkingAnswers(q);return `${q.recall?`<section class="thinking-recall"><h4>自分の言葉で説明：解答例</h4><p>${escapeHtml(q.recall.prompt)}</p><p>${escapeHtml(q.recall.answer)}</p><small>表現の一致ではなく、理由や関係が説明できたかをメモと比べましょう。自動採点は行いません。</small></section>`:''}<p><b>読み取りの視点：${escapeHtml(q.skill)}</b></p><ol>${q.steps.map(s=>`<li>${escapeHtml(s)}</li>`).join('')}</ol><details open><summary>${q.options.length}つの選択肢の理由</summary>${order.map((oi,j)=>`<p><b>${j+1}. ${escapeHtml(q.options[oi].text)}${answers.includes(oi)?(q.family?'（選ぶべき選択肢）':'（正解）'):''}</b><br>${escapeHtml(q.options[oi].why)}</p>`).join('')}</details>${thinkingSourceNotes(q)}<small>対応単元：${escapeHtml(CURRICULUM[q.unit].subject)} · ${escapeHtml(CURRICULUM[q.unit].title)}</small>`;
 }
 function answerThinking(i){
  if(!T?.running||T.locked||!T.choicesRevealed||!Number.isInteger(i)||i<0||i>=T.order.length)return;

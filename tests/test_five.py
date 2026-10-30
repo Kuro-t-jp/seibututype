@@ -4,8 +4,8 @@ spec=importlib.util.spec_from_file_location('thinking',ROOT/'tools/thinking.py')
 class FiveTests(unittest.TestCase):
  def setUp(self):self.q=json.loads((ROOT/'data/five-choice.json').read_text());self.units=json.loads((ROOT/'data/curriculum.json').read_text())['units']
  def test_structure(self):
-  self.assertEqual(len(self.q),98);self.assertEqual(sum(q['family']=='knowledge' for q in self.q),54)
-  for subject in ['生物基礎','生物']:self.assertEqual(sum(self.units[q['unit']]['subject']==subject for q in self.q),49)
+  self.assertEqual(len(self.q),170);self.assertEqual(sum(q['family']=='knowledge' for q in self.q),90)
+  for subject,n in [('生物基礎',73),('生物',97)]:self.assertEqual(sum(self.units[q['unit']]['subject']==subject for q in self.q),n)
   self.assertEqual(m.compile_thinking(self.q,self.units)[1],[])
   for q in self.q:self.assertEqual(len(q['options']),5);self.assertEqual(len(q.get('answers',[q['answer']])),1)
  def test_invalid_five_fields(self):

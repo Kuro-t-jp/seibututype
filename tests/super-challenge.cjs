@@ -2,8 +2,8 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict');
 (async()=>{
  const b=await chromium.launch({channel:process.env.PLAYWRIGHT_CHANNEL||'chrome'}),p=await b.newPage({viewport:{width:1366,height:1000},reducedMotion:'reduce'}),errors=[];
  p.on('pageerror',e=>errors.push(e.message));await p.goto('http://127.0.0.1:8766/');await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));
- assert.deepEqual(await p.evaluate(()=>Object.fromEntries(Object.keys(SUPER_SUBJECTS).map(c=>[c,superStats(c).phases.map(p=>p.items.length)]))),{basic:[243,213,243,50,49],advanced:[616,565,616,58,49]});
- assert.equal(await p.evaluate(()=>superStats('basic').total),798);assert.equal(await p.evaluate(()=>superStats('advanced').total),1904);
+ assert.deepEqual(await p.evaluate(()=>Object.fromEntries(Object.keys(SUPER_SUBJECTS).map(c=>[c,superStats(c).phases.map(p=>p.items.length)]))),{basic:[243,213,243,62,73],advanced:[616,565,616,82,97]});
+ assert.equal(await p.evaluate(()=>superStats('basic').total),834);assert.equal(await p.evaluate(()=>superStats('advanced').total),1976);
  await p.locator('#superChallenge').evaluate(e=>{for(let n=e.parentElement;n;n=n.parentElement)if(n.tagName==='DETAILS')n.open=true;e.scrollIntoView()});await p.screenshot({path:'/tmp/super-challenge-desktop.png'});
  // Normal study records do not falsely complete the exhaustive course.
  await p.locator('#quickTypeStart').click();const text=await p.evaluate(()=>G.units.map((u,i)=>canonical(G.units,i,'')).join(''));await p.locator('#typingInput').pressSequentially(text);await p.waitForFunction(()=>G.done===1);await p.locator('#game .finish-run').click();await p.locator('#menuBtn').click();assert.equal(await p.evaluate(()=>superStats('basic').done),0);
@@ -11,7 +11,7 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict');
  await p.locator('#learnSubject').selectOption('生物');await p.locator('#learnUnit').selectOption('A2a');await p.locator('#learnFocus').selectOption('due');
  await p.locator('#super-basic .super-start').click();assert.equal(await p.evaluate(()=>G.targetCount),243);assert.equal(await p.evaluate(()=>G.queue.every(w=>w.unit==='P'||w.unit.startsWith('B'))),true);
  const answered=await p.evaluate(()=>G.cur.t);await p.locator('#typingInput').pressSequentially(await p.evaluate(()=>G.units.map((u,i)=>canonical(G.units,i,'')).join('')));await p.waitForFunction(()=>superStats('basic').done===1);
- await p.locator('#superPause').click();assert.match(await p.locator('#superResult').textContent(),/残り 797問/);await p.reload();await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));
+ await p.locator('#superPause').click();assert.match(await p.locator('#superResult').textContent(),/残り 833問/);await p.reload();await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));
  await p.locator('#super-basic .super-start').click();assert.equal(await p.evaluate(()=>G.targetCount),242);assert.equal(await p.evaluate(t=>G.queue.some(w=>w.t===t),answered),false);await p.locator('#superPause').click();
  // Finish each real engine queue, bypassing only physical keystrokes/animation delays.
  for(const course of ['basic','advanced']){
@@ -36,11 +36,11 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict');
   }
   assert.equal(await p.evaluate(c=>superStats(c).left,course),0);console.log('PASS exhaustive course:',course);
  }
- assert.equal(await p.evaluate(()=>superStats('basic').done),798);assert.equal(await p.evaluate(()=>superStats('advanced').done),1904);assert.equal(await p.evaluate(()=>superStats('basic').weak),1);
+ assert.equal(await p.evaluate(()=>superStats('basic').done),834);assert.equal(await p.evaluate(()=>superStats('advanced').done),1976);assert.equal(await p.evaluate(()=>superStats('basic').weak),1);
  await p.evaluate(()=>show('start'));await p.locator('#super-basic').getByRole('button',{name:'要復習 1問を解き直す'}).click();assert.equal(await p.evaluate(()=>T.items.length),1);
- await p.evaluate(()=>{T.selected=thinkingAnswers(T.items[0]).slice();submitThinking();});await p.locator('#thinkNext').click();assert.equal(await p.evaluate(()=>superStats('basic').weak),0);assert.match(await p.locator('#superThinkResult').textContent(),/全798問/);
- await p.reload();await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));assert.equal(await p.evaluate(()=>superStats('basic').done),798);assert.equal(await p.evaluate(()=>superStats('advanced').done),1904);
- await p.locator('#super-basic .super-new-round').click();assert.equal(await p.evaluate(()=>superStats('basic').done),0);assert.equal(await p.evaluate(()=>superProgress.basic.round),2);assert.equal(await p.evaluate(()=>superStats('advanced').done),1904);
+ await p.evaluate(()=>{T.selected=thinkingAnswers(T.items[0]).slice();submitThinking();});await p.locator('#thinkNext').click();assert.equal(await p.evaluate(()=>superStats('basic').weak),0);assert.match(await p.locator('#superThinkResult').textContent(),/全834問/);
+ await p.reload();await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));assert.equal(await p.evaluate(()=>superStats('basic').done),834);assert.equal(await p.evaluate(()=>superStats('advanced').done),1976);
+ await p.locator('#super-basic .super-new-round').click();assert.equal(await p.evaluate(()=>superStats('basic').done),0);assert.equal(await p.evaluate(()=>superProgress.basic.round),2);assert.equal(await p.evaluate(()=>superStats('advanced').done),1976);
  // Pausing without an answer leaves it pending, and a revealed answer remains weak.
  await p.locator('#super-basic button[data-kind="recall"]').evaluate(e=>revealPracticeSection(e));await p.locator('#super-basic button[data-kind="recall"]').click();assert.equal(await p.evaluate(()=>G.targetCount),243);await p.locator('#revealAnswer').click();assert.equal(await p.evaluate(()=>superStats('basic').weak),1);await p.locator('#superPause').click();await p.reload();await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));
  assert.equal(await p.evaluate(()=>superStats('basic').done),1);await p.locator('#super-basic .super-start').click();assert.equal(await p.evaluate(()=>playMode),'recall');assert.equal(await p.evaluate(()=>G.targetCount),242);await p.locator('#superPause').click();
@@ -50,5 +50,5 @@ const {chromium}=require('playwright'),assert=require('node:assert/strict');
  await p.evaluate(()=>localStorage.setItem(SUPER_KEY,JSON.stringify({basic:{round:-8,lastKind:'not-a-mode',answers:{'type:unknown':{clean:true},'type:細胞':{clean:'yes'}}}})));await p.reload();await p.evaluate(()=>document.querySelectorAll('#start details').forEach(e=>e.open=true));assert.equal(await p.evaluate(()=>superStats('basic').done),0);assert.equal(await p.evaluate(()=>superProgress.basic.round),1);
  await p.setViewportSize({width:390,height:844});await p.locator('#superChallenge').evaluate(e=>{for(let n=e.parentElement;n;n=n.parentElement)if(n.tagName==='DETAILS')n.open=true;e.scrollIntoView()});assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);await p.screenshot({path:'/tmp/super-challenge-mobile.png'});
  await p.locator('#super-basic button[data-kind="five"]').evaluate(e=>revealPracticeSection(e));await p.locator('#super-basic button[data-kind="five"]').click();await p.screenshot({path:'/tmp/super-challenge-running.png'});assert.equal(await p.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),true);
- assert.deepEqual(errors,[]);await b.close();console.log('PASS super challenge: all 2702 questions, independent subjects, no caps/duplicates, resume, review, next round, ordinary practice isolation, storage failure, corrupt data, desktop/mobile');
+ assert.deepEqual(errors,[]);await b.close();console.log('PASS super challenge: all 2810 questions, independent subjects, no caps/duplicates, resume, review, next round, ordinary practice isolation, storage failure, corrupt data, desktop/mobile');
 })().catch(e=>{console.error(e);process.exit(1)});

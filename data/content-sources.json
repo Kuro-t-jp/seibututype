@@ -138,5 +138,644 @@
     "title": "UMass Amherst：光周期の制御と開花",
     "url": "https://www.umass.edu/agriculture-food-environment/greenhouse-floriculture/fact-sheets/photoperiod-control-systems-for-greenhouse-crops",
     "role": "連続暗期と光中断の概念を確認。比較条件と数値は独自作成。"
+  },
+  "rag-C8791": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.5",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.5｜印刷p.6｜原本の文字抽出",
+    "evidenceId": "C8791",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "1bdaba5af719585cb5377f88f6d0968e115edbb07d33f0775acec912ec1de2f6",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8795": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.6",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.6｜印刷p.7｜原本の文字抽出",
+    "evidenceId": "C8795",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "eaf73d84b5dfd3890b7213087adfaee301720f65d22918e73a6988dbb670e389",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8797": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.6",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.6｜印刷p.7｜原本の文字抽出",
+    "evidenceId": "C8797",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "3cfb6f7dfb0036a8f16b1406ade1a3b014d295c1990d6f5e143a901e965da553",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8785": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.3",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.3｜印刷p.4｜原本の文字抽出",
+    "evidenceId": "C8785",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "88bc3c8d4f31d60847d16c1aed6f1ba41ad8251927ec016e3d333aa14c70f19a",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8813": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.10",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.10｜印刷p.11｜原本の文字抽出",
+    "evidenceId": "C8813",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "869b4c245b040a639f06f5a58950d24e72c95f94d01cdc0732933e40e05adf6c",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8843": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.17",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.17｜印刷p.18｜原本の文字抽出",
+    "evidenceId": "C8843",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "7920d2be6b09fad69740742ef40b87b591e5aad69da43702b49e30b9cdec21fc",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8842": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.16",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.16｜印刷p.17｜原本の文字抽出",
+    "evidenceId": "C8842",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "d3aec2feb392245c63913342d541916fadcef30a98ed05b6a39bc2e006d65d90",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5472": {
+    "title": "702生物-3章1節4遺伝子の発現調節-本文Word",
+    "location": "§4",
+    "sectionTitle": "C 真核生物では，遺伝子の発現はどのように調節されるだろうか？",
+    "evidenceId": "C5472",
+    "sourceSha256": "ae1a1dc1837531c29eb073db605260e33a7da2f8f900713b39ecdbcd40ef018c",
+    "contentSha256": "9c276c249b67e95e995114cd6a69ff058c4e7e8bf1ad0e042db49acde534c81e",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8839": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.16",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.16｜印刷p.17｜原本の文字抽出",
+    "evidenceId": "C8839",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "9fcd27b18f6c4248bf254cc8cfd88eafa450f8a6447b2bc427bd6bf1fe000d84",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8828": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.14",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.14｜印刷p.15｜原本の文字抽出",
+    "evidenceId": "C8828",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "2cfa11bacbda988e8f0ec74fc90ded3164e4448599c0e7d1c0f6139b6daa65dc",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8814": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.11",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.11｜印刷p.12｜原本の文字抽出",
+    "evidenceId": "C8814",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "768a9d981bd363c0a1a4faca982c7a3aca6e3ac58b6940348961d522c32b30d6",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8870": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.23",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.23｜印刷p.24｜原本の文字抽出",
+    "evidenceId": "C8870",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "82601268e9e7dd6593efb3d6f2157a75c34a8ec4d7388ac58c95d98e04182af6",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8878": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.25",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.25｜印刷p.26｜原本の文字抽出",
+    "evidenceId": "C8878",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "4ff911409ba4365cdaa5620f9f3eb2ea04cfac78b45cbb85b6444e1cb9df2199",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8894": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.29",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.29｜印刷p.30｜原本の文字抽出",
+    "evidenceId": "C8894",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "250e0f338fa6eb6f3b4e68e0282a90fe8181a8c804c294a986071fa8aea9e9fd",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8892": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.29",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.29｜印刷p.30｜原本の文字抽出",
+    "evidenceId": "C8892",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "f969ef9d422c90e19ccf8ad70bd6f269d6ee8ba73279f2a81a19157fb881f943",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8896": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.30",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.30｜印刷p.31｜原本の文字抽出",
+    "evidenceId": "C8896",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "475fd7aab90e6c201126e0df917f79fbd184b78aae58a00632ca4eba7016423c",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8887": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.27",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.27｜印刷p.28｜原本の文字抽出",
+    "evidenceId": "C8887",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "b9271236e43f51f2cd005ab2c3d1aac172245ea0fbfae1272999d81f0aaba400",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8906": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.32",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.32｜印刷p.33｜原本の文字抽出",
+    "evidenceId": "C8906",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "edda849c68fa206797eced9416bfecfaa5e96a3757a16317743c97c34a3089c8",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8908": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.33",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.33｜印刷p.34｜原本の文字抽出",
+    "evidenceId": "C8908",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "cafc728477ee786fe9d5bb3243ede1b7664eabcef12481c5147ea360a1e8c251",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8916": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.35",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.35｜印刷p.36｜原本の文字抽出",
+    "evidenceId": "C8916",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "d0465cb7ec9f7d78bcff04e2ab1fa20d12208b4ddc8491f98a3b954c46d169ae",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8919": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.36",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.36｜印刷p.37｜原本の文字抽出",
+    "evidenceId": "C8919",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "990f84700b9b69b81f4da57cdb7202a206abb2cc8ac216ffc779285cc3019c74",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8931": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.39",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.39｜印刷p.40｜原本の文字抽出",
+    "evidenceId": "C8931",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "6aa4bc5a86a90ed0135ffc2d44f8fcba420236567697d03b3db44b7f7491bf5e",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8927": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.38",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.38｜印刷p.39｜原本の文字抽出",
+    "evidenceId": "C8927",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "dfb53c7af74e853b048177bd91c25ed99bdc9c613b8dac92b99450b2ed301993",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5393": {
+    "title": "702生物-1章1節1最初の生物と初期の生物進化-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 最初の生命はどのように誕生したのだろう？",
+    "evidenceId": "C5393",
+    "sourceSha256": "05376cbee2d71f75d69aec9289c67f8f41e16f03739b224e9358b61913865f7b",
+    "contentSha256": "cd2d8b35e5303e3f2573cd92fec433d7f0c8f2109721fe80427387ebf7e50925",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5396": {
+    "title": "702生物-1章1節1最初の生物と初期の生物進化-本文Word",
+    "location": "§6",
+    "sectionTitle": "E ミトコンドリアと葉緑体の起源はどのようなものか？",
+    "evidenceId": "C5396",
+    "sourceSha256": "05376cbee2d71f75d69aec9289c67f8f41e16f03739b224e9358b61913865f7b",
+    "contentSha256": "42dafbdb900332e1979466ca9c9d05a6f37fd43a2a399ed06b7144ab9176806e",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5395": {
+    "title": "702生物-1章1節1最初の生物と初期の生物進化-本文Word",
+    "location": "§5",
+    "sectionTitle": "D シアノバクテリアの出現は地球環境にどのような影響を及ぼしたのだろうか？",
+    "evidenceId": "C5395",
+    "sourceSha256": "05376cbee2d71f75d69aec9289c67f8f41e16f03739b224e9358b61913865f7b",
+    "contentSha256": "05eea3ec4f0c104b396b13b1a551a46de916c9bb4bfe9140d893152bd31d8f10",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5410": {
+    "title": "702生物-1章2節3進化のしくみ-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 新しい形質はどのようにして広まるのだろうか",
+    "evidenceId": "C5410",
+    "sourceSha256": "fbad0ffcaf47a9a310b5dab6ebedb41393e2604d94df46f18a3069f3caf55121",
+    "contentSha256": "6f71c29fee872a9fd4154acffd65725ea9812c0f58076338667fa04bf9367d10",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5414": {
+    "title": "702生物-1章2節3進化のしくみ-本文Word",
+    "location": "§5",
+    "sectionTitle": "D 分子進化と中立説",
+    "evidenceId": "C5414",
+    "sourceSha256": "fbad0ffcaf47a9a310b5dab6ebedb41393e2604d94df46f18a3069f3caf55121",
+    "contentSha256": "b2cd6707bbdd5fb0c8730e23c42907432de47d522372e8b7fb9e261bd18da21f",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5411": {
+    "title": "702生物-1章2節3進化のしくみ-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 新しい形質はどのようにして広まるのだろうか",
+    "evidenceId": "C5411",
+    "sourceSha256": "fbad0ffcaf47a9a310b5dab6ebedb41393e2604d94df46f18a3069f3caf55121",
+    "contentSha256": "dd97401b7abfc21624b2309e6eea8b079b0b81b2235db9b1a6917eda8d4360fe",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5412": {
+    "title": "702生物-1章2節3進化のしくみ-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 新しい形質はどのようにして広まるのだろうか",
+    "evidenceId": "C5412",
+    "sourceSha256": "fbad0ffcaf47a9a310b5dab6ebedb41393e2604d94df46f18a3069f3caf55121",
+    "contentSha256": "bd99bf25a382e06b24dff5925550f77693a1b5ca6508a49ca5bc6b1d357dcefd",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C840": {
+    "title": "702生物-1章3節1生物の系統と進化-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 分子系統樹を用いると，どのようなことがわかるだろうか？",
+    "evidenceId": "C840",
+    "sourceSha256": "392cadb8d77013f47bca4f8dd9254c88cf703968b04515e7dd1a25025c3ec7cb",
+    "contentSha256": "edcdc1839d43ccd11f1400fb3bfd5c12d7f5f3b5968930f36ac435ebfefbb61c",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5418": {
+    "title": "702生物-1章3節1生物の系統と進化-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 分子系統樹を用いると，どのようなことがわかるだろうか？",
+    "evidenceId": "C5418",
+    "sourceSha256": "392cadb8d77013f47bca4f8dd9254c88cf703968b04515e7dd1a25025c3ec7cb",
+    "contentSha256": "d0deddb5b57826ee177b9b6152c6b1e3e0f9529a3c95fcfeea2b8c9ce776ab26",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5430": {
+    "title": "702生物-2章1節2生体膜の働きと細胞-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 生体膜はどのような構造と働きをしているのだろうか？",
+    "evidenceId": "C5430",
+    "sourceSha256": "b49f6ce219c02286d36999889d2d88adb8c78ea5af80d348d1cfbc63a55473f3",
+    "contentSha256": "517c61fa887baeb3ee195355c65df0eae0830ced113764242448f8b7b922f815",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5440": {
+    "title": "702生物-2章2節3物質の輸送や情報伝達に働くタンパク質-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 細胞膜を通して物質はどのように移動するのだろうか？",
+    "evidenceId": "C5440",
+    "sourceSha256": "2fe923be471ba580d858ec556a1c7535bb78c25900641bc1a388ca1b387dbd02",
+    "contentSha256": "5a0d74ae8b9c01ed2bf65bf7504f45e0df420cc84a4425f641c7a100d7225f60",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5442": {
+    "title": "702生物-2章2節3物質の輸送や情報伝達に働くタンパク質-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 細胞膜を通して物質はどのように移動するのだろうか？",
+    "evidenceId": "C5442",
+    "sourceSha256": "2fe923be471ba580d858ec556a1c7535bb78c25900641bc1a388ca1b387dbd02",
+    "contentSha256": "3de0f9e1474faccf9f7ca8e0141ab16409b9675b9437e983bb922aa34ea21a55",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5439": {
+    "title": "702生物-2章2節2酵素として働くタンパク質-本文Word",
+    "location": "§4",
+    "sectionTitle": "C 酵素反応はどのように調節されているのだろうか？",
+    "evidenceId": "C5439",
+    "sourceSha256": "e78dfad64804ce3a23715226915fad0eb5e5544445cdcf99b7118af42e198cae",
+    "contentSha256": "2f374c17adc00331827b398dee7d5592f878e045679f99070459f3e155d25770",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5445": {
+    "title": "702生物-2章3節2呼吸と発酵-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 呼吸とはどのような反応なのだろうか？",
+    "evidenceId": "C5445",
+    "sourceSha256": "fac44c5a140bd74b2ca9098e9ca1e34cdfbe36e97a278836773ae5209d84fc44",
+    "contentSha256": "551c528d61173eec5946688cdfb4082e29719f2fd6e6ac5e732ac804e76e63af",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5454": {
+    "title": "702生物-2章3節3光合成-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 光合成のくわしいしくみ",
+    "evidenceId": "C5454",
+    "sourceSha256": "29da239a7a42e272f59e70399bd19e3fd93c7228a65c9cdd2a27b431edda37b3",
+    "contentSha256": "3944bb9e4e23dcf4eea47e7ba09f823bb16fa773085ff4dd62d278aca7b81392",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5456": {
+    "title": "702生物-2章3節3光合成-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 光合成のくわしいしくみ",
+    "evidenceId": "C5456",
+    "sourceSha256": "29da239a7a42e272f59e70399bd19e3fd93c7228a65c9cdd2a27b431edda37b3",
+    "contentSha256": "26949688995daf4a2510a549a22a9f96486b56d30756993a86b97daf1d7f0e32",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C913": {
+    "title": "702生物-2章3節3光合成-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 光合成のくわしいしくみ",
+    "evidenceId": "C913",
+    "sourceSha256": "29da239a7a42e272f59e70399bd19e3fd93c7228a65c9cdd2a27b431edda37b3",
+    "contentSha256": "3b090f6741c57088aba66b6f597578265dcc6f93109ea60f30d430ff3580d178",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5466": {
+    "title": "702生物-3章1節2DNAの複製-本文Word",
+    "location": "§2",
+    "sectionTitle": "A DNAはどのようなしくみで複製されるのだろうか？",
+    "evidenceId": "C5466",
+    "sourceSha256": "3c817c62d9775f306557e909d1e8e11eef2a3c1c82dbabcb10ad93a64aa074ea",
+    "contentSha256": "4f5f744331ad415873477ed7090b21d3aafac3f37eb69f9313a0f67b36bb588c",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5468": {
+    "title": "702生物-3章1節3遺伝子の発現-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 転写とはどのようなしくみだろうか？",
+    "evidenceId": "C5468",
+    "sourceSha256": "479152dad81b0408dca8a84aa7c372629decc27359dc93bb103045b4786aa399",
+    "contentSha256": "e1b6b26ffcfd809d855c554c5fc79e341544b8623b2e45fe67fbefb7215424d7",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5465": {
+    "title": "702生物-3章1節2DNAの複製-本文Word",
+    "location": "§2",
+    "sectionTitle": "A DNAはどのようなしくみで複製されるのだろうか？",
+    "evidenceId": "C5465",
+    "sourceSha256": "3c817c62d9775f306557e909d1e8e11eef2a3c1c82dbabcb10ad93a64aa074ea",
+    "contentSha256": "b7fa1acaf03c42dd66989b65408c6b19d45d7ce61da6ca2d1e9b16ef0da72c9c",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C944": {
+    "title": "702生物-3章1節3遺伝子の発現-本文Word",
+    "location": "§5",
+    "sectionTitle": "D 原核生物における転写・翻訳のしくみ",
+    "evidenceId": "C944",
+    "sourceSha256": "479152dad81b0408dca8a84aa7c372629decc27359dc93bb103045b4786aa399",
+    "contentSha256": "c0f16ed3e5d516b65426dc4c0cac4b86bfce7a7ee589f06df4a1e7e5192782b7",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5474": {
+    "title": "702生物-3章2節2初期発生の過程-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 受精卵はどのように分裂していくのだろうか？",
+    "evidenceId": "C5474",
+    "sourceSha256": "18275c8953a6f0d27d695a6c8f58436e0ce4b735b8d25b6a84e2bb7e12602636",
+    "contentSha256": "4df1264fd89994bc6147891fec55118e7561bc81b77784f5683a5d41886d0d7b",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5479": {
+    "title": "702生物-3章2節3発生のしくみと遺伝子発現-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 受精卵からどのようにして複雑なからだが形成されるのか？",
+    "evidenceId": "C5479",
+    "sourceSha256": "083677d9b3fb51024d55551ffc19bd6a95896569ae70728312378d36b15c10d6",
+    "contentSha256": "88ab7761574a95e6a64d5387b5e4a2517db66731f0ca06ba653366be789031dc",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5480": {
+    "title": "702生物-3章2節3発生のしくみと遺伝子発現-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 受精卵からどのようにして複雑なからだが形成されるのか？",
+    "evidenceId": "C5480",
+    "sourceSha256": "083677d9b3fb51024d55551ffc19bd6a95896569ae70728312378d36b15c10d6",
+    "contentSha256": "f30763ada90736805c106935ca56021ed6024b5ef41b5b1d4f3b36290ae2d17b",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5485": {
+    "title": "702生物-3章3節1バイオテクノロジー-本文Word",
+    "location": "§3",
+    "sectionTitle": "B DNA を増やす技術－PCR法－",
+    "evidenceId": "C5485",
+    "sourceSha256": "2d3743b6e11e5ad5a02a6cd82d83fc4dfe2638dd0a85d15f2035b41e8afb0209",
+    "contentSha256": "264c25995874289334c19a2b85bdd910f649c94c538446831ecae0f5b02eccd0",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5486": {
+    "title": "702生物-3章3節1バイオテクノロジー-本文Word",
+    "location": "§4",
+    "sectionTitle": "C DNA の長さを調べる技術－電気泳動法－",
+    "evidenceId": "C5486",
+    "sourceSha256": "2d3743b6e11e5ad5a02a6cd82d83fc4dfe2638dd0a85d15f2035b41e8afb0209",
+    "contentSha256": "555cb067e9fc215e090829a3eea109b63a6bb657af87d0529750171a763bdb56",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5502": {
+    "title": "702生物-4章1節2ニューロンと興奮-本文Word",
+    "location": "§4",
+    "sectionTitle": "C 興奮はどのようにニューロンを伝わるのだろうか？",
+    "evidenceId": "C5502",
+    "sourceSha256": "f3980351645c304b1c9a4c912d934d8ae7eeefc347642c544c4bdcad86c7eb0c",
+    "contentSha256": "044a88945692c5643108ff56f5d80d264a177e14ab8dfbdfca3ded11ac90bcb0",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5503": {
+    "title": "702生物-4章1節2ニューロンと興奮-本文Word",
+    "location": "§4",
+    "sectionTitle": "C 興奮はどのようにニューロンを伝わるのだろうか？",
+    "evidenceId": "C5503",
+    "sourceSha256": "f3980351645c304b1c9a4c912d934d8ae7eeefc347642c544c4bdcad86c7eb0c",
+    "contentSha256": "1acc52556b0869565ab9bf7c4ac1b0ae4224633dd1019f4b4cddde9391ef012d",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5516": {
+    "title": "702生物-4章2節2習得的行動-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 学習などにより動物の行動はどのようにかわるか？",
+    "evidenceId": "C5516",
+    "sourceSha256": "6cdd9e6bf6ec9e229a4547c1274af4ad1df0171c2d07624c799181720ddd0fbf",
+    "contentSha256": "7489a4a43d9d3651b7cd48eec563e4b651a8116ddca98bed15f23278a1ce7ce9",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5522": {
+    "title": "702生物-4章3節2植物の成長-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 屈性はどのようにして起こるのだろうか？",
+    "evidenceId": "C5522",
+    "sourceSha256": "d9bdc8e6665203aab537116e18d6d6c42863c1ee43c70dbad7b3354248fa2648",
+    "contentSha256": "1fa418bd70703322e2c5734e8306a35d44a84e9551143b890ba6289e779e64f2",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5528": {
+    "title": "702生物-4章3節3開花・結実の調節-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 開花の時期はどのように決まるのだろうか？",
+    "evidenceId": "C5528",
+    "sourceSha256": "9726a551a73c4f0276f28be454b5ad1538c3ec1aa8dc6dc4ebaa60f0efb26bfa",
+    "contentSha256": "3ca085a5da184861674ec4840a318f77f17c1c56449e8b564d84cae1259fef89",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5523": {
+    "title": "702生物-4章3節2植物の成長-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 屈性はどのようにして起こるのだろうか？",
+    "evidenceId": "C5523",
+    "sourceSha256": "d9bdc8e6665203aab537116e18d6d6c42863c1ee43c70dbad7b3354248fa2648",
+    "contentSha256": "6f049420c5fad9a690af98838b2c59be778e2f83a33fffa4f999dd34fcf3df2c",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5524": {
+    "title": "702生物-4章3節2植物の成長-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 屈性はどのようにして起こるのだろうか？",
+    "evidenceId": "C5524",
+    "sourceSha256": "d9bdc8e6665203aab537116e18d6d6c42863c1ee43c70dbad7b3354248fa2648",
+    "contentSha256": "f8ddbdb9e31f388a662a742f48dd04adff7508595555f8ca321180b7378b992f",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5553": {
+    "title": "702生物-5章1節3異種個体群間の相互作用-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 異種の個体群間にはどのような関係がみられるのだろうか？",
+    "evidenceId": "C5553",
+    "sourceSha256": "3fa521978588ad8b04403766870d6486b382394fcf8d9cd5b0e695c19b6b0544",
+    "contentSha256": "88bb4323db956dd829dfb825491de2802e3bccb379369eb2cd3f1ab090d95794",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5544": {
+    "title": "702生物-5章1節1個体群とその性質-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 個体群の個体数はどのように変化するだろうか？",
+    "evidenceId": "C5544",
+    "sourceSha256": "1c513ce6aae02af9cc9008d2921accd88e7e5a60a50327890543f8aa9b82d0b3",
+    "contentSha256": "081960e17d1819cbe51bdc2de8293af63a8d5f8d1f7c745bb9f87ceb34864eac",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5545": {
+    "title": "702生物-5章1節1個体群とその性質-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 個体群の個体数はどのように変化するだろうか？",
+    "evidenceId": "C5545",
+    "sourceSha256": "1c513ce6aae02af9cc9008d2921accd88e7e5a60a50327890543f8aa9b82d0b3",
+    "contentSha256": "8129a07e05f4c20de9042c6ed4ff112230f4e2483a1479b2582a69a92bdf96a9",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C1114": {
+    "title": "702生物-5章1節3異種個体群間の相互作用-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 異種の個体群間にはどのような関係がみられるのだろうか？",
+    "evidenceId": "C1114",
+    "sourceSha256": "3fa521978588ad8b04403766870d6486b382394fcf8d9cd5b0e695c19b6b0544",
+    "contentSha256": "e5e1c4ba12bc1bdd6d62734ba5833cd104b68f84728a7110b5b43b1fd3a412a2",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5564": {
+    "title": "702生物-5章2節2物質循環とエネルギーの流れ-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 物質は生態系内をどのように循環しているのだろうか？",
+    "evidenceId": "C5564",
+    "sourceSha256": "f3a1ad68c5a4c0ff70744c858c7a8cbcd34f95c0b6bf665f66f83294d62be31b",
+    "contentSha256": "398d0de58732b0f39a9ef3979fe21f7e7fe1042339c28b9f1450c9a685af62f2",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5563": {
+    "title": "702生物-5章2節2物質循環とエネルギーの流れ-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 物質は生態系内をどのように循環しているのだろうか？",
+    "evidenceId": "C5563",
+    "sourceSha256": "f3a1ad68c5a4c0ff70744c858c7a8cbcd34f95c0b6bf665f66f83294d62be31b",
+    "contentSha256": "9de7ec7a717c6aed5463fd0e5bcf2e15d5b79776ddc1561eab1e6b7c11f0300c",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5566": {
+    "title": "702生物-5章2節2物質循環とエネルギーの流れ-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 生態系でエネルギーはどのように移動するのだろうか？",
+    "evidenceId": "C5566",
+    "sourceSha256": "f3a1ad68c5a4c0ff70744c858c7a8cbcd34f95c0b6bf665f66f83294d62be31b",
+    "contentSha256": "c1df44567afa8f328d132ef5079f1f65dbf404f17395049da24b1e5bb9a3a174",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5560": {
+    "title": "702生物-5章2節1生態系の物質生産-本文Word",
+    "location": "§4",
+    "sectionTitle": "C 生態系によって物質生産にどのような違いがあるだろうか？",
+    "evidenceId": "C5560",
+    "sourceSha256": "c06ce0e39ece734ee621888b3686d6c35b3dc499a5d6d377128c2fe551142a4d",
+    "contentSha256": "f51e233b58a9a0bfb2c6d2aa862d36f38f43ef77d4b478221f75c69daacfabe5",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8805": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.8",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.8｜印刷p.9｜原本の文字抽出",
+    "evidenceId": "C8805",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "11c8d3936f77ebd4306c70865144923a9d2adea9ec9a2ef3f98ee2bb8fad3670",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8891": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.28",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.28｜印刷p.29｜原本の文字抽出",
+    "evidenceId": "C8891",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "f8345454db8f40bbfffd0c02aadaff6423d4bce52eb8b63db548cfdee7753fb7",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C8930": {
+    "title": "三訂版 リードLightノート生物基礎 解答編",
+    "location": "PDF p.39",
+    "sectionTitle": "三訂版 リードLightノート生物基礎 解答編｜PDF p.39｜印刷p.40｜原本の文字抽出",
+    "evidenceId": "C8930",
+    "sourceSha256": "7362aeb000fbeeae2bcec73f0b75f11a60d5c703384ccdb8e65fe35b8dde9a06",
+    "contentSha256": "14e5429f8579788b745d58aae48b053936335d016171a2536db57e238d7ff0a6",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5431": {
+    "title": "702生物-2章1節2生体膜の働きと細胞-本文Word",
+    "location": "§3",
+    "sectionTitle": "B 生体膜によって構成される細胞小器官",
+    "evidenceId": "C5431",
+    "sourceSha256": "b49f6ce219c02286d36999889d2d88adb8c78ea5af80d348d1cfbc63a55473f3",
+    "contentSha256": "8c9d9c2f46374677c98603d1eaad363e5c68d7cbe651000646684ab486f040d5",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5415": {
+    "title": "702生物-1章3節1生物の系統と進化-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 生物の系統関係はどのようにして調べられるのか？",
+    "evidenceId": "C5415",
+    "sourceSha256": "392cadb8d77013f47bca4f8dd9254c88cf703968b04515e7dd1a25025c3ec7cb",
+    "contentSha256": "90169b17456de932ef84848a3f826d0cc1e01f2de367b01028c5d9007d47f70f",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5517": {
+    "title": "702生物-4章2節2習得的行動-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 学習などにより動物の行動はどのようにかわるか？",
+    "evidenceId": "C5517",
+    "sourceSha256": "6cdd9e6bf6ec9e229a4547c1274af4ad1df0171c2d07624c799181720ddd0fbf",
+    "contentSha256": "7f0cb0efb2a0411b7665fe51a40ab1c3b6b40f48703b12611e4797b5499e5c03",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
+  },
+  "rag-C5543": {
+    "title": "702生物-5章1節1個体群とその性質-本文Word",
+    "location": "§2",
+    "sectionTitle": "A 個体群とは",
+    "evidenceId": "C5543",
+    "sourceSha256": "1c513ce6aae02af9cc9008d2921accd88e7e5a60a50327890543f8aa9b82d0b3",
+    "contentSha256": "8ebb40a5abad35756f55ae0aa54c5488c0e45850d5c70a8711997eaaff99f52c",
+    "role": "生物RAGの本文・解答資料を参照し独自作問。資料の原文・原図は転載していません。"
   }
 }

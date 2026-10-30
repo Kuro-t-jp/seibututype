@@ -68,7 +68,11 @@ class ContentAuditTests(unittest.TestCase):
     def test_review_coverage_includes_every_current_term_and_question(self):
         audit = load('content-audit-20261024')
         for filename, section, key in [('words', 'words', 't'), ('thinking', 'thinking', 'id'), ('five-choice', 'five_choice', 'id')]:
-            self.assertEqual(audit['coverage'][section], [x[key] for x in load(filename)])
+            reviewed = audit['coverage'][section]
+            if filename in ['thinking', 'five-choice']:
+                pack = load('rag-expansion-20261030')
+                reviewed = reviewed + pack['ids']['thinking' if filename == 'thinking' else 'five']
+            self.assertEqual(reviewed, [x[key] for x in load(filename)])
         for change in audit['changes']:
             self.assertNotEqual(change['before'], change['after'])
             self.assertTrue(change['reason'])

@@ -7,9 +7,9 @@ class ThinkingTests(unittest.TestCase):
   cls.q=json.loads((ROOT/'data/thinking.json').read_text());cls.by={q['id']:q for q in cls.q};cls.units=json.loads((ROOT/'data/curriculum.json').read_text())['units']
  def test_structure_and_format_coverage(self):
   compiled,errors=module.compile_thinking(self.q,self.units);self.assertEqual(errors,[])
-  self.assertEqual(len(compiled),108)
+  self.assertEqual(len(compiled),144)
   for kind in ['graph','table','text','mixed']:self.assertGreaterEqual(sum(q['kind']==kind for q in compiled),6)
-  for subject,n in [('生物',58),('生物基礎',50)]:self.assertEqual(sum(self.units[q['unit']]['subject']==subject for q in compiled),n)
+  for subject,n in [('生物',82),('生物基礎',62)]:self.assertEqual(sum(self.units[q['unit']]['subject']==subject for q in compiled),n)
  def test_independent_numeric_answers(self):
   q=self.by
   self.assertEqual(q['g1']['graph']['series'][0]['values'][3]-q['g1']['graph']['series'][0]['values'][0],8)
